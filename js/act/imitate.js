@@ -32,6 +32,10 @@
     G.bindHome(root);
 
     const items = () => groups[groupIdx].items;
+    // İngilizce modda heceler İngilizce kelimeden/sesten gelir
+    const isEn = () => Speech.mode() === 'en';
+    const sylOf = (it) => isEn() ? (it.synEn || it.en.split(' ')) : it.syl;
+    const SL = () => isEn() ? EN : TR;
 
     function renderStrip() {
       $('#strip').innerHTML = items().map((it, i) => `<button class="thumb ${i === idx ? 'on' : ''}" data-i="${i}">${pic(it.emoji)}</button>`).join('');
@@ -44,8 +48,8 @@
     function show(it) {
       $('#card').innerHTML = pic(it.emoji);
       G.anim($('#card'), 'pop-in');
-      $('#word').innerHTML = `<b>${esc(it.tr)}</b><small>${esc(it.en)}</small>`;
-      $('#syl').innerHTML = it.syl.map(s => `<span>${esc(s)}</span>`).join('<i>·</i>');
+      $('#word').innerHTML = `${G.showTr() ? `<b>${esc(it.tr)}</b>` : ''}${G.showEn() ? `<small>${esc(it.en)}</small>` : ''}`;
+      $('#syl').innerHTML = sylOf(it).map(s => `<span>${esc(s)}</span>`).join('<i>·</i>');
       $('#listen').classList.remove('on');
       renderStrip();
     }
@@ -58,7 +62,7 @@
       $('#listen').classList.remove('on');
       G.anim($('#card'), 'jump');
       G.burstAt($('#card'), ['⭐', '💖', '✨'], 16);
-      const p = G.celebrate({ extra: [{ t: 'Çok güzel söyledin!', l: TR }] });
+      const p = G.celebrate({ extra: G.both('Çok güzel söyledin!', 'You said it so well!') });
       if (it.snd) setTimeout(() => AnimalSounds.play(it.snd), 1600);
       await p;
       successLock = false;
@@ -91,22 +95,23 @@
         if (!G.alive(id)) return;
         await wait(250);
       }
-      if (!await Speech.seq([{ t: it.tr, l: TR }, 300, { t: it.en, l: EN }, 400])) return;
+      if (!await Speech.seq([...G.both(it.tr, it.en), 300])) return;
       // 2) Hece hece, yavaşça (karaoke gibi vurgulanır)
-      for (let i = 0; i < it.syl.length; i++) {
+      const sy = sylOf(it);
+      for (let i = 0; i < sy.length; i++) {
         sylEls.forEach((s, k) => s.classList.toggle('lit', k === i));
         G.anim($('#card'), 'nod');
-        if (!await Speech.seq([{ t: it.syl[i], l: TR, rate: 0.7, pitch: 1.2 }, 120])) return;
+        if (!await Speech.seq([{ t: sy[i], l: SL(), rate: 0.75 }, 120])) return;
       }
       sylEls.forEach(s => s.classList.remove('lit'));
-      if (!await Speech.seq([300, { t: 'Sen söyle!', l: TR, pitch: 1.3 }, 150, { t: 'Your turn!', l: EN, pitch: 1.3 }])) return;
+      if (!await Speech.seq([250, ...G.both('Sen söyle!', 'Your turn!')])) return;
       // 3) Çocuğu dinle
       let r = await listenOnce(id);
       if (r === 'voice') return success(id);
       if (r === 'cancel' || !G.alive(id)) return;
       if (r === 'silence') {
         // Nazikçe bir kez daha, birlikte
-        if (!await Speech.seq([{ t: 'Hadi birlikte söyleyelim!', l: TR }, 200, { t: it.syl.join(' '), l: TR, rate: 0.75, pitch: 1.2 }])) return;
+        if (!await Speech.seq([...G.both('Hadi birlikte söyleyelim!', "Let's say it together!"), 200, { t: sylOf(it).join(' '), l: SL(), rate: 0.8 }])) return;
         r = await listenOnce(id);
         if (r === 'voice') return success(id);
         if (!G.alive(id)) return;
@@ -127,7 +132,7 @@
 
     (async () => {
       show(items()[0]);
-      if (!await Speech.seq([{ t: cfg.introTr, l: TR, pitch: 1.25 }, 200, { t: cfg.introEn, l: EN, pitch: 1.25 }])) return;
+      if (!await Speech.seq(G.both(cfg.introTr, cfg.introEn))) return;
       const ok = await Mic.ensure();
       if (!G.alive(id0)) return;
       if (!ok) G.toast('Mikrofon kapalı — çocuk söyleyince 👍 düğmesine basın', 4200);

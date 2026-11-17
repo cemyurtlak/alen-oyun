@@ -58,7 +58,7 @@ G.activities.feed = () => {
     fly.style.width = from.width + 'px';
     document.body.appendChild(fly);
     btn.style.visibility = 'hidden';
-    Speech.seq([{ t: food.tr + '!', l: TR }, 120, { t: food.en + '!', l: EN }]);
+    Speech.seq(G.both(food.tr + '!', food.en + '!'));
     face(ch.open);
     eater.classList.add('open');
     requestAnimationFrame(() => {
@@ -71,7 +71,7 @@ G.activities.feed = () => {
     eater.classList.remove('open');
     face(ch.chew);
     eater.classList.add('chewing');
-    say('Ham ham ham!');
+    say(G.tx('Ham ham ham!', 'Yum yum yum!'));
     for (let i = 0; i < 6; i++) { if (!G.alive(fid)) { busy = false; return; } Sounds.crunch(); await wait(230); }
     if (!G.alive(fid)) { busy = false; return; }
     eater.classList.remove('chewing');
@@ -82,14 +82,14 @@ G.activities.feed = () => {
     tummy = Math.min(FULL, tummy + 1);
     $('#tf').style.height = (tummy / FULL * 100) + '%';
     if (ch.snd) AnimalSounds.play(ch.snd);
-    say('Mmm! Çok lezzetli!');
-    await Speech.seq([{ t: 'Mmmm! Çok lezzetli!', l: TR, pitch: 1.5 }, 150, { t: 'Yummy!', l: EN, pitch: 1.5 }]);
+    say(G.tx('Mmm! Çok lezzetli!', 'Mmm! Yummy!'));
+    await Speech.seq(G.both('Mmmm! Çok lezzetli!', 'Mmm! Yummy!'));
     if (!G.alive(fid)) { busy = false; return; }
     if (tummy >= FULL) {
       face(ch.full);
-      say('Karnım doydu!');
-      await G.celebrate({ big: true, extra: [{ t: 'Karnım doydu!', l: TR }, { t: "I'm full!", l: EN },
-        300, { t: `Şimdi sıra sende ${G.childName()}! Sen de bir lokma ye!`, l: TR }] });
+      say(G.tx('Karnım doydu!', "I'm full!"));
+      await G.celebrate({ big: true, extra: [...G.both('Karnım doydu!', "I'm full!"), 250,
+        ...G.both(`Şimdi sıra sende ${G.childName()}! Sen de bir lokma ye!`, `Now it's your turn, ${G.childName()}! Take a bite!`)] });
       tummy = 0;
       $('#tf').style.height = '0%';
       fillTray();
@@ -100,7 +100,7 @@ G.activities.feed = () => {
       btn.innerHTML = pic(nf.emoji);
       G.anim(btn, 'pop-in');
       btn.onclick = () => feed(btn, nf);
-      if (tummy === 2) await Speech.seq([{ t: 'Sen de ye! Ham!', l: TR, pitch: 1.4 }]);
+      if (tummy === 2) await Speech.seq(G.both('Sen de ye! Ham!', 'You eat too! Yum!'));
     }
     face(ch.face);
     busy = false;
@@ -112,14 +112,14 @@ G.activities.feed = () => {
     busy = true;
     const cid = G.newFlow();
     const steps = [
-      async () => { face(ch.open); eater.classList.add('open'); say('Ağzını aç: Aaaa!'); await Speech.seq([{ t: 'Ağzını aç! Aaaaa!', l: TR, pitch: 1.3 }, { t: 'Open wide!', l: EN }]); eater.classList.remove('open'); },
-      async () => { face(ch.chew); G.anim(eater, 'nod'); Sounds.crunch(); say('Isır: Hap!'); await Speech.seq([{ t: 'Isır! Hap!', l: TR, pitch: 1.3 }, { t: 'Bite!', l: EN }]); },
-      async () => { eater.classList.add('chewing'); say('Çiğne, çiğne, çiğne!'); for (let i = 0; i < 3; i++) { Sounds.crunch(); await wait(200); }
-        await Speech.seq([{ t: 'Çiğne, çiğne, çiğne!', l: TR, pitch: 1.3 }, { t: 'Chew chew chew!', l: EN }]); eater.classList.remove('chewing'); },
-      async () => { Sounds.gulp(); face(ch.love); G.anim(eater, 'jump'); say('Yut: Gulp!'); await Speech.seq([{ t: 'Yut! Gulp!', l: TR, pitch: 1.3 }, { t: 'Swallow!', l: EN }]); }
+      async () => { face(ch.open); eater.classList.add('open'); say(G.tx('Ağzını aç: Aaaa!', 'Open wide: Aaah!')); await Speech.seq(G.both('Ağzını aç! Aaaaa!', 'Open wide! Aaaah!')); eater.classList.remove('open'); },
+      async () => { face(ch.chew); G.anim(eater, 'nod'); Sounds.crunch(); say(G.tx('Isır: Hap!', 'Bite: Chomp!')); await Speech.seq(G.both('Isır! Hap!', 'Bite! Chomp!')); },
+      async () => { eater.classList.add('chewing'); say(G.tx('Çiğne, çiğne, çiğne!', 'Chew, chew, chew!')); for (let i = 0; i < 3; i++) { Sounds.crunch(); await wait(200); }
+        await Speech.seq(G.both('Çiğne, çiğne, çiğne!', 'Chew, chew, chew!')); eater.classList.remove('chewing'); },
+      async () => { Sounds.gulp(); face(ch.love); G.anim(eater, 'jump'); say(G.tx('Yut: Gulp!', 'Swallow: Gulp!')); await Speech.seq(G.both('Yut! Gulp!', 'Swallow! Gulp!')); }
     ];
     for (const s of steps) { if (!G.alive(cid)) break; await s(); await wait(400); }
-    if (G.alive(cid)) await G.celebrate({ extra: [{ t: 'Sen de yapabilirsin!', l: TR }] });
+    if (G.alive(cid)) await G.celebrate({ extra: G.both('Sen de yapabilirsin!', 'You can do it too!') });
     face(ch.face);
     busy = false;
   }
@@ -130,7 +130,7 @@ G.activities.feed = () => {
     busy = false;
     face(ch.love);
     G.anim(eater, 'jump');
-    G.celebrate({ big: true, extra: [{ t: `Aferin ${G.childName()}! Kocaman bir lokma yedin!`, l: TR }, 200, { t: 'You ate it! Great job!', l: EN }] });
+    G.celebrate({ big: true, extra: G.both(`Aferin ${G.childName()}! Kocaman bir lokma yedin!`, `Great job, ${G.childName()}! What a big bite!`) });
     G.confetti(80);
   };
   $$('.cp', root).forEach(b => b.onclick = () => {
@@ -143,7 +143,6 @@ G.activities.feed = () => {
   eater.onclick = () => { G.anim(eater, 'wiggle'); if (ch.snd) AnimalSounds.play(ch.snd); };
 
   fillTray();
-  say('Karnım aç!');
-  Speech.seq([{ t: 'Karnım çok aç!', l: TR, pitch: 1.5 }, 150, { t: "I'm hungry!", l: EN, pitch: 1.5 }, 200,
-    { t: 'Bana yemek verir misin?', l: TR, pitch: 1.5 }]);
+  say(G.tx('Karnım aç!', "I'm hungry!"));
+  Speech.seq([...G.both('Karnım çok aç!', "I'm so hungry!"), 200, ...G.both('Bana yemek verir misin?', 'Can I have some food?')]);
 };

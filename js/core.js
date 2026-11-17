@@ -130,29 +130,39 @@ const G = (() => {
     el.classList.add(cls);
   }
 
+  /* ---------- Dil yardımcıları ---------- */
+  // İki dilli bir cümle çifti → seçili dile göre konuşma parçaları
+  function both(tr, en, opts = {}) {
+    const m = Speech.mode();
+    if (m === 'tr') return [{ t: tr, l: TR, ...opts }];
+    if (m === 'en') return [{ t: en, l: EN, ...opts }];
+    return [{ t: tr, l: TR, ...opts }, 120, { t: en, l: EN, ...opts }];
+  }
+  const showTr = () => Speech.mode() !== 'en';
+  // Ekranda gösterilecek metin (seçili dile göre)
+  const tx = (tr, en) => Speech.mode() === 'en' ? en : (Speech.mode() === 'tr' ? tr : tr + ' · ' + en);
+  const showEn = () => Speech.mode() !== 'tr';
+
   /* ---------- Sevinç / teselli ---------- */
-  // Doğru cevap ya da başarı: müzik + alkış + konfeti + "Yeeey! Aferin!"
+  // Doğru cevap ya da başarı: müzik + alkış + konfeti + kısa "Yeeey! Aferin!"
   function celebrate(opts = {}) {
     Sounds.fanfare();
-    Sounds.applause(opts.big ? 3 : 2.2);
+    Sounds.applause(opts.big ? 2.4 : 1.6);
     confetti(opts.big ? 130 : 75);
     const p = rand(PRAISE);
     const parts = [];
     if (Sounds.playFile('yeah')) parts.push(900);
-    else parts.push({ t: p.en, l: EN, pitch: 1.6, rate: 1.05 });
-    parts.push({ t: p.tr, l: TR, pitch: 1.35 });
-    if (opts.extra) parts.push(250, ...opts.extra);
+    else parts.push(...both(p.tr, p.en));
+    if (opts.extra) parts.push(200, ...opts.extra);
     return Speech.seq(parts);
   }
 
-  // Yanlış cevap: "Hayıııır!" + komik ses + "Tekrar dene!"
+  // Yanlış cevap: kısa "Hayıııır!" + komik ses (beklemeden tekrar denenebilir)
   function oops() {
     const t = rand(TRY_AGAIN);
-    const parts = [];
-    if (Sounds.playFile('hayir')) parts.push(1000);
-    else { Sounds.wrong(); parts.push(250, { t: t.tr, l: TR, pitch: 0.9, rate: 0.75 }); }
-    parts.push(200, { t: t.tr2, l: TR }, 150, { t: t.en, l: EN });
-    return Speech.seq(parts);
+    if (Sounds.playFile('hayir')) return wait(900);
+    Sounds.wrong();
+    return Speech.seq([200, ...both(t.tr, t.en)]);
   }
 
   /* ---------- Görseller ---------- */
@@ -280,7 +290,7 @@ const G = (() => {
     app, fx, $, $$, esc, rand, shuffle, wait, TR, EN, RAINBOW,
     newFlow, alive, onLeave, leave, childName, genitive, rainbowText,
     screen, topbar, bindHome, confetti, burst, burstAt, toast, anim,
-    celebrate, oops, visual, hands, setFingers, shapeSvg, longPress, toggleFullscreen,
+    celebrate, oops, both, tx, showTr, showEn, visual, hands, setFingers, shapeSvg, longPress, toggleFullscreen,
     goHome: () => {}, // home.js tarafından doldurulur
     activities: {}    // etkinlik dosyaları buraya kaydolur
   };

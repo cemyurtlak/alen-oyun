@@ -58,9 +58,9 @@ G.activities.parrot = () => {
     G.burstAt(charEl, ['💖', '✨'], 10);
     if (ch.tickle) AnimalSounds.play(ch.tickle);
     const line = rand(ch.lines);
-    say(line);
+    say(Speech.mode() === 'en' && PHRASE_EN[line] ? PHRASE_EN[line] : line);
     talkAnim(1500);
-    await Speech.say(line, TR, { pitch: 1.9, rate: 1.05 });
+    await Speech.say(line, TR, { pitch: 1.2, rate: 1.05 });
     busy = false;
   }
 
@@ -133,9 +133,9 @@ G.activities.parrot = () => {
   });
 
   (async () => {
-    say('Merhaba! Bana bir şey söyle!');
+    say(G.tx('Merhaba! Bana bir şey söyle!', 'Hi! Say something!'));
     talkAnim(2000);
-    await Speech.seq([{ t: `Merhaba ${G.childName()}! Bana bir şey söyle!`, l: TR, pitch: 1.8 }, 200, { t: 'Say something!', l: EN, pitch: 1.8 }]);
+    await Speech.seq(G.both(`Merhaba ${G.childName()}! Bana bir şey söyle!`, `Hi ${G.childName()}! Say something!`));
     if (G.alive(id)) loop();
   })();
 };

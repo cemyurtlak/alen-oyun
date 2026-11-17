@@ -184,9 +184,9 @@ img { -webkit-user-drag: none; }
 .dots span.done { background: #69db7c; }
 .dots span.on { background: #ff922b; transform: scale(1.4); }
 .play-btn { display: flex; align-items: center; gap: 10px; font-size: clamp(24px, 4.5vmin, 40px); font-weight: 800; color: #fff; padding: 8px 34px 6px 22px; border-radius: 999px;
-  background: linear-gradient(160deg, #ff6b6b, #f03e3e); box-shadow: 0 8px 0 #c92a2a, 0 14px 24px rgba(0,0,0,.2); z-index: 2; margin-bottom: 1vh; }
+  background: linear-gradient(160deg, #51cf66, #2f9e44); box-shadow: 0 8px 0 #237032, 0 14px 24px rgba(0,0,0,.2); z-index: 2; margin-bottom: 1vh; }
 .play-btn .pic { width: 1.4em; height: 1.4em; }
-.play-btn:active { transform: translateY(6px); box-shadow: 0 2px 0 #c92a2a; }
+.play-btn:active { transform: translateY(6px); box-shadow: 0 2px 0 #237032; }
 .play-btn.glow { animation: breathe 1s ease-in-out infinite; }
 
 /* ---------- Soru-cevap ---------- */
@@ -562,3 +562,37 @@ img { -webkit-user-drag: none; }
   .dance-ctrl .dbtn small, .feed-ctrl .dbtn small { font-size: 11px; }
 }
 @media (prefers-reduced-motion: reduce) { .sky * { animation: none !important; } }
+
+/* ---------- Dil seçimi (başlangıç) ---------- */
+.lang-pick { display: flex; gap: 2.5vmin; flex-wrap: wrap; justify-content: center; z-index: 2; }
+.lang-btn { display: flex; flex-direction: column; align-items: center; gap: 4px; min-width: clamp(130px, 22vmin, 210px); padding: 14px 18px 10px;
+  border-radius: 28px; background: #fff; box-shadow: 0 8px 0 rgba(0,0,0,.12), 0 14px 26px rgba(0,0,0,.15); transition: transform .15s; }
+.lang-btn b { font-size: clamp(22px, 3.8vmin, 34px); line-height: 1; }
+.lang-btn small { font-size: clamp(13px, 2vmin, 17px); color: #6b7aa1; font-weight: 700; }
+.lang-btn.on { outline: 6px solid #40c057; transform: scale(1.06); }
+.lang-btn:active { transform: translateY(5px); }
+.flag { width: clamp(60px, 9vmin, 84px); height: clamp(40px, 6vmin, 56px); border-radius: 10px; box-shadow: 0 3px 8px rgba(0,0,0,.25); background-size: cover; background-position: center; }
+.flag.tr { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 20'%3E%3Crect width='30' height='20' fill='%23E30A17'/%3E%3Ccircle cx='11' cy='10' r='5' fill='%23fff'/%3E%3Ccircle cx='12.25' cy='10' r='4' fill='%23E30A17'/%3E%3Cpolygon fill='%23fff' points='16.6,10 19.9,8.9 17.9,11.8 17.9,8.2 19.9,11.1'/%3E%3C/svg%3E"); }
+.flag.en { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 30'%3E%3Crect width='60' height='30' fill='%23012169'/%3E%3Cpath d='M0,0 60,30 M60,0 0,30' stroke='%23fff' stroke-width='6'/%3E%3Cpath d='M0,0 60,30 M60,0 0,30' stroke='%23C8102E' stroke-width='3'/%3E%3Cpath d='M30,0v30M0,15h60' stroke='%23fff' stroke-width='10'/%3E%3Cpath d='M30,0v30M0,15h60' stroke='%23C8102E' stroke-width='6'/%3E%3C/svg%3E"); }
+.flag.both { background-image: linear-gradient(90deg, transparent 49%, #fff 49% 51%, transparent 51%),
+  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 20'%3E%3Crect width='15' height='20' fill='%23E30A17'/%3E%3Ccircle cx='7' cy='10' r='4' fill='%23fff'/%3E%3Ccircle cx='8' cy='10' r='3.2' fill='%23E30A17'/%3E%3Crect x='15' width='15' height='20' fill='%23012169'/%3E%3Cpath d='M22.5,0v20M15,10h15' stroke='%23fff' stroke-width='5'/%3E%3Cpath d='M22.5,0v20M15,10h15' stroke='%23C8102E' stroke-width='3'/%3E%3C/svg%3E"); }
+.start .big-play { width: clamp(100px, 18vmin, 170px); height: clamp(100px, 18vmin, 170px); font-size: clamp(46px, 9vmin, 80px); }
+
+/* Soru: kocaman isim */
+.q-line.big { font-size: clamp(40px, 8.5vmin, 86px); line-height: 1.05; }
+
+/* ---------- Balon patlat ---------- */
+.popgame { padding: 0; background: linear-gradient(180deg, #8fdcff 0%, #d6f5ff 65%, #b8f0a8 100%); }
+.popgame .topbar { padding: 10px 14px 0; position: relative; z-index: 5; }
+.pop-field { position: absolute; inset: 0; overflow: hidden; touch-action: none; }
+.pballoon { position: absolute; left: 0; top: 0; padding: 0; will-change: transform; filter: drop-shadow(0 12px 10px rgba(0,0,0,.18)); }
+.pballoon .pic { width: 100%; height: 100%; }
+.pballoon .rider { position: absolute; left: 25%; width: 50%; height: 50%; top: 92%; animation: wiggle 1.2s ease-in-out infinite; }
+.pballoon.popped { transform-origin: center; animation: none; opacity: 0; transition: opacity .2s; }
+.shard { position: absolute; width: 14px; height: 14px; border-radius: 50%; margin: -7px 0 0 -7px; animation: burst .7s ease-out forwards; }
+.falling-friend { position: absolute; width: 110px; height: 110px; margin-left: -55px; animation: friendFall 2.6s ease-in forwards; }
+@keyframes friendFall { 0% { transform: translateY(0) scale(.5); } 15% { transform: translateY(-40px) scale(1.15); } 100% { transform: translateY(70vh) rotate(25deg) scale(1); opacity: .9; } }
+
+/* Balon görselinin etrafında boşluk var: renk sorusunda balonları büyüt */
+.opt img[src*="balloon_"], .learn-item img[src*="balloon_"] { transform: scale(1.55); transform-origin: 50% 45%; }
+.pballoon .pic { transform: scale(1.5); transform-origin: 50% 40%; }

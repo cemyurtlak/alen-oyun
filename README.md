@@ -8,9 +8,10 @@ Kurulum gerektirmez; tarayıcıda açılır, telefonda/tablette tam ekran çalı
 ## Neler var?
 
 ### 📖 Öğrenelim (tanıtım + soru-cevap)
-Her bölümde önce öğeler tek tek **sesli tanıtılır** (önce Türkçe, sonra İngilizce adı),
-sonra oyun başlar: *"Which one is red? Hangisi kırmızı?"*. Doğru cevapta **"Yeeey!" + alkış + konfeti**,
-yanlışta **"Hayıııır! Tekrar dene!"** sesi gelir. 2 yanlıştan sonra doğru cevap parlayarak ipucu verir.
+Başlangıçta **dil seçilir**: Türkçe, English ya da İkisi. Seçilen dilde konuşur.
+Her bölümde önce öğeler tek tek **sesli tanıtılır**, sonra oyun başlar: doğrudan isim söylenir (*"Kedi!"* / *"Dog!"*)
+ve hayvanın gerçek sesi çalar. Doğru cevapta **"Yeeey!" + alkış + konfeti** ve **beklemeden** sıradaki soru;
+yanlışta kısa **"Hayıııır!"** (hemen yeniden denenebilir). 2 yanlıştan sonra doğru cevap parlayarak ipucu verir.
 
 | Bölüm | İçerik |
 |---|---|
@@ -37,7 +38,8 @@ yanlışta **"Hayıııır! Tekrar dene!"** sesi gelir. 2 yanlıştan sonra doğ
 | **Parmakla Say** | Dokundukça parmaklar açılır ve sayılır (1–10); "Kaç tane?" modunda parmak sayısını bulur. |
 | **Yumurta Sürprizi** | Renkli yumurtalara dokun, çatlasın; içinden civciv, ördek, kedi, baykuş... çıksın. Her dokunuşta yumurtanın rengi söylenir. |
 | **Hayvan Evleri** | Önce tüm hayvanların nerede yaşadığı öğretilir (ördek → göl, kuş → yuva, inek → çiftlik...), sonra hayvan **parmakla doğru eve sürüklenir**. |
-| **Sapan** | Hayvanı sapana oturt, **parmakla geri çek, bırak**; renkli balonları patlat. Küçük eller için balona dokunmak da otomatik atış yapar. |
+| **Balon Patlat** | Renkli balonlar aşağıdan sürekli uçar, dokununca patlar; bazılarının altında sürpriz hayvan vardır. |
+| **Sapan** | Sapan ekranın altında: hayvanı **kendine doğru geri çek, bırak** → ileri, uzaktaki balonlara uçar. Balona dokunmak da otomatik atış yapar. |
 | **Balonu Üfle** | Mikrofona üfledikçe balon şişer ve patlar (ağız-dudak kaslarını çalıştırır). |
 
 ## Kullanım
@@ -55,10 +57,16 @@ yanlışta **"Hayıııır! Tekrar dene!"** sesi gelir. 2 yanlıştan sonra doğ
 > **Türkçe ses:** Sesli okuma tarayıcının/işletim sisteminin seslerini kullanır. Türkçe ses yoksa:
 > Windows → Ayarlar → Saat ve dil → Konuşma → Türkçe ses ekleyin; Android → Google metin okuma → Türkçe indirin.
 
+## Doğal sesler
+- **Hayvan ve taşıt sesleri** gerçek kayıtlardır (`assets/sfx/`, ESC-50 veri seti).
+- **Konuşmalar** doğal yapay zekâ sesleriyle önceden üretilir (`audio/voice/`). Türkçe: *Emel*, İngilizce: *Ana* (çocuk sesi).
+  Yeni cümle/içerik eklenince: `node tools/ses_listesi_olustur.js` → klasördeki **`ses_uret.bat`**'a çift tıklayın
+  (Python ve internet gerekir; yalnızca yeni cümleleri üretir, bitince GitHub'a da gönderir).
+  Kayıt bulunmayan cümlelerde tarayıcının kendi sesi kullanılır.
+
 ## Kendi sesinizi ekleyin (isteğe bağlı)
 - `sounds/yeah.mp3`, `sounds/alkis.mp3`, `sounds/hayir.mp3` → doğru/yanlış cevap sesleri yerine çalınır (anne-baba sesi çok etkili olur!).
-- `sounds/animals/` → gerçek hayvan kayıtları: `cat.mp3`, `dog.mp3`, `cow.mp3`, `howl.mp3` (uluma), `kitten.mp3` ...
-  Dosya varsa otomatik kullanılır, yoksa oyunun kendi ürettiği sesler çalar. Anahtar listesi `js/animalsounds.js` başında.
+- `sounds/animals/` → kendi hayvan kayıtlarınız: `cat.mp3`, `dog.mp3`, `howl.mp3` (uluma) ... Varsa hazır seslerin yerine çalınır.
 
 ## Yayın (GitHub Pages)
 - Depo: https://github.com/cemyurtlak/alen-oyun — Pages: `main` dalı, `/ (root)`.
@@ -83,11 +91,15 @@ js/core.js            Ortak altyapı: ekran, konfeti, kutlama, eller (parmak)
 js/learn.js           Öğren + soru-cevap motoru
 js/home.js            Başla ekranı, ana sayfa, ayarlar
 js/act/*.js           Oyunlar: catrun, imitate (Konuşalım + Ses Taklidi), parrot,
-                      dance, feed, fingers, eggs, homes, sling, blow
+                      dance, feed, fingers, eggs, homes, sling, pop, blow
+assets/sfx/           Gerçek hayvan/taşıt sesleri ve alkış (ESC-50, CC BY-NC 3.0)
+audio/voice/          Doğal konuşma kayıtları + index.js (ses_uret.bat üretir)
+tools/                ses_listesi_olustur.js (cümle listesi), ses_uret.py (ses üretimi)
 assets/img/           3D görseller (Microsoft Fluent Emoji, MIT lisansı)
 assets/img/tint/      Renklendirilmiş balon, araba, yumurta, köpek balığı
 sounds/               (isteğe bağlı) kendi ses kayıtlarınız
 github_yukle.bat      Değişiklikleri GitHub'a gönderir (Git gerekir)
+ses_uret.bat          Doğal konuşma kayıtlarını üretir ve GitHub'a gönderir
 ```
 
 ## Ebeveyn için not
@@ -98,5 +110,7 @@ bu oyun o desteğin yerine geçmez, yanında eğlenceli bir yardımcıdır.
 
 ## Lisans / Kaynaklar
 - 3D görseller: [Microsoft Fluent UI Emoji](https://github.com/microsoft/fluentui-emoji) — MIT lisansı.
-- Sesler ve müzik: Web Audio API ile bu proje için üretilmiştir.
+- Hayvan/taşıt sesleri ve alkış: [ESC-50](https://github.com/karolpiczak/ESC-50) (K. J. Piczak) — CC BY-NC 3.0, ticari olmayan kullanım.
+- Konuşma kayıtları: Microsoft Edge sinir ağı sesleri (edge-tts ile üretildi), kişisel/eğitim amaçlı.
+- Müzik ve diğer efektler: Web Audio API ile bu proje için üretilmiştir.
 - Yazı tipi: Baloo 2 (Google Fonts, OFL).

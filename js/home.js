@@ -23,23 +23,36 @@
     document.body.prepend(sky);
   }
 
-  /* ---------- Başla ---------- */
+  /* ---------- Başla: dil seçimi ---------- */
   function renderStart() {
     G.newFlow();
+    const cur = Settings.get('lang') || 'tr';
     const root = G.screen('start', `
       <h1 class="rainbow-title big">${G.rainbowText(G.genitive(G.childName()))}<br>${G.rainbowText('Oyunu')}</h1>
       <div class="start-friends">
         <span style="--i:0">${pic('🐱')}</span><span style="--i:1">${pic('🦈')}</span>
         <span style="--i:2">${pic('🐥')}</span><span style="--i:3">${pic('🐶')}</span><span style="--i:4">${pic('🚗')}</span>
       </div>
-      <button class="big-play" id="play" aria-label="Başla"><span>▶</span></button>
-      <p class="hint">Başlamak için dokun · Tap to start</p>`);
-    $('#play', root).onclick = () => {
+      <div class="lang-pick">
+        <button class="lang-btn ${cur === 'tr' ? 'on' : ''}" data-l="tr"><span class="flag tr"></span><b>Türkçe</b><small>Türkçe konuşsun</small></button>
+        <button class="lang-btn ${cur === 'en' ? 'on' : ''}" data-l="en"><span class="flag en"></span><b>English</b><small>Speak English</small></button>
+        <button class="lang-btn ${cur === 'both' ? 'on' : ''}" data-l="both"><span class="flag both"></span><b>İkisi · Both</b><small>Türkçe + English</small></button>
+      </div>
+      <button class="big-play" id="play" aria-label="Başla"><span>▶</span></button>`);
+    $$('.lang-btn', root).forEach(b => b.onclick = () => {
+      Sounds.init();
+      Sounds.tap();
+      Settings.set('lang', b.dataset.l);
+      $$('.lang-btn', root).forEach(x => x.classList.toggle('on', x === b));
+      start();
+    });
+    $('#play', root).onclick = () => { if (!Settings.get('lang')) Settings.set('lang', 'tr'); start(); };
+    function start() {
       Sounds.init();
       Sounds.fanfare();
       if (Settings.get('autoFull')) G.toggleFullscreen(true);
       renderHome(true);
-    };
+    }
   }
 
   /* ---------- Ana sayfa ---------- */
@@ -79,12 +92,8 @@
 
     if (greet) {
       const n = G.childName();
-      Speech.seq([{ t: `Merhaba ${n}!`, l: TR, pitch: 1.3 }, 150, { t: `Hello ${n}!`, l: EN, pitch: 1.3 }]);
-      if (Speech.supported) {
-        setTimeout(() => {
-          if (G.alive(id) && !Speech.hasLang('tr')) G.toast('⚠️ Bu cihazda Türkçe ses bulunamadı. Ayarlara bakın.', 4000);
-        }, 1800);
-      }
+      Speech.seq(G.both(`Merhaba ${n}!`, `Hello ${n}!`));
+      void id;
     }
   }
   G.goHome = () => renderHome(false);
@@ -107,6 +116,7 @@
     wrap.innerHTML = `
       <div class="panel">
         <h2>⚙️ Ebeveyn Ayarları</h2>
+        <p class="note">${Speech.hasRecordings() ? '✅ Doğal ses kayıtları yüklü.' : '⚠️ Doğal ses kayıtları yok; tarayıcının sesi kullanılıyor.'}</p>
         ${!Speech.supported ? '<p class="warn">Bu tarayıcı sesli okumayı desteklemiyor. Chrome veya Edge kullanın.</p>' : ''}
         ${noTr ? '<p class="warn">Türkçe ses bulunamadı. Windows: Ayarlar → Saat ve dil → Konuşma → Türkçe ses ekleyin. Android: Google metin okuma ayarlarından Türkçe indirin.</p>' : ''}
         <label>Çocuğun adı <input id="sName" maxlength="20" value="${esc(G.childName())}"></label>
@@ -114,7 +124,9 @@
         <label>Bir turdaki soru sayısı ${sel('sQ', [3, 5, 8, 10], Settings.get('questionCount'))}</label>
         <label>Bir grupta kaç öğe öğretilsin ${sel('sG', [3, 4, 5, 6, 8, 30], Settings.get('groupSize'), v => v === 30 ? 'Hepsi' : v)}</label>
         <label>Konuşma hızı <input type="range" id="sRate" min="0.6" max="1.2" step="0.05" value="${Settings.get('rate')}"></label>
-        <label>Soru sırası
+        <label>Konuşma dili
+          <select id="sLang">${[['tr', 'Sadece Türkçe'], ['en', 'Only English'], ['both', 'İkisi (Türkçe + English)']].map(([v, t]) => `<option value="${v}" ${v === (Settings.get('lang') || 'tr') ? 'selected' : ''}>${t}</option>`).join('')}</select></label>
+        <label>İkisi seçiliyse sıra
           <select id="sOrd"><option value="1" ${Settings.get('enFirst') ? 'selected' : ''}>Önce İngilizce, sonra Türkçe</option>
           <option value="0" ${!Settings.get('enFirst') ? 'selected' : ''}>Önce Türkçe, sonra İngilizce</option></select></label>
         <label class="check"><input type="checkbox" id="sFull" ${Settings.get('autoFull') ? 'checked' : ''}> Başlarken tam ekran aç</label>
@@ -136,6 +148,7 @@
       Settings.set('groupSize', +$('#sG').value);
       Settings.set('rate', +$('#sRate').value);
       Settings.set('enFirst', $('#sOrd').value === '1');
+      Settings.set('lang', $('#sLang').value);
       Settings.set('autoFull', $('#sFull').checked);
       Settings.set('voiceTr', $('#sVTr').value);
       Settings.set('voiceEn', $('#sVEn').value);

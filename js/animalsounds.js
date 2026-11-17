@@ -297,20 +297,55 @@ const AnimalSounds = (() => {
     }
   };
 
+  /* GERÇEK KAYITLAR (assets/sfx) — ESC-50 veri setinden (CC BY-NC 3.0, K. J. Piczak)
+     rate: çalma hızı (1.35 = yavru kedi gibi ince, 0.8 = iri kedi) */
+  const REAL = {
+    dog: { f: ['dog_1', 'dog_2', 'dog_3'] },
+    cat: { f: ['cat_1', 'cat_2'] },
+    kitten: { f: ['cat_1', 'cat_2'], rate: 1.35 },
+    catBig: { f: ['cat_1', 'cat_3'], rate: 0.8 },
+    catHappy: { f: ['cat_2'], rate: 1.15 },
+    catSurprised: { f: ['cat_2'], rate: 1.45 },
+    catSad: { f: ['cat_1'], rate: 0.85 },
+    cow: { f: ['cow_1', 'cow_2', 'cow_3'] },
+    sheep: { f: ['sheep_1', 'sheep_2'] },
+    chicken: { f: ['hen_1', 'hen_2', 'rooster_1'] },
+    rooster: { f: ['rooster_1', 'rooster_2'] },
+    frog: { f: ['frog_1', 'frog_3'] },
+    bird: { f: ['chirping_birds_3', 'chirping_birds_1'] },
+    bee: { f: ['insects_1'] },
+    car: { f: ['car_horn_2', 'car_horn_3'] },
+    truck: { f: ['car_horn_1'] },
+    siren: { f: ['siren_1', 'siren_2'] },
+    train: { f: ['train_1'] },
+    plane: { f: ['airplane_1'] },
+    heli: { f: ['helicopter_1', 'helicopter_2'] }
+  };
+  const playing = new Set();
+
+  function playSrc(src, rate, resolve) {
+    const a = new Audio(src);
+    a.preservesPitch = false; a.mozPreservesPitch = false; a.webkitPreservesPitch = false;
+    a.playbackRate = rate || 1;
+    playing.add(a);
+    let done = false;
+    const fin = () => { if (!done) { done = true; clearTimeout(t); playing.delete(a); resolve(); } };
+    const t = setTimeout(() => { try { a.pause(); } catch (e) { /* yoksay */ } fin(); }, 3500);
+    a.onended = fin;
+    a.onpause = fin;
+    a.onerror = fin;
+    a.play().catch(fin);
+  }
+
   // Sesi çal, bitince çözülen bir söz (Promise) döndür
   function play(key) {
     return new Promise(resolve => {
       if (!key) return resolve();
-      const f = files[key];
-      if (f) {
-        try {
-          f.currentTime = 0;
-          const done = () => { clearTimeout(t); resolve(); };
-          const t = setTimeout(done, 5000);
-          f.onended = done;
-          f.play().catch(done);
-          return;
-        } catch (e) { /* sentezle devam */ }
+      if (files[key]) return playSrc(files[key].src, 1, resolve);         // kullanıcının kendi kaydı
+      const r = REAL[key];
+      if (r) {
+        const name = r.f[Math.floor(Math.random() * r.f.length)];
+        return playSrc('assets/sfx/' + name + '.mp3', (r.rate || 1) * (0.95 + Math.random() * 0.1), resolve);
       }
       const fn = SYNTH[key];
       if (!fn || !out()) return resolve();
@@ -319,18 +354,20 @@ const AnimalSounds = (() => {
     });
   }
 
-  // Kedi Koşusu için rastgele tonda miyav
-  function randomMeow() {
-    const opts = ['cat', 'kitten', 'catBig', 'catHappy', 'catSurprised', 'catSad'];
-    if (Math.random() < 0.6) {
-      // tamamen rastgele perde ve uzunluk
-      const p = 0.7 + Math.random() * 1.0;
-      const contour = ['normal', 'up', 'down'][Math.floor(Math.random() * 3)];
-      out() && meow(p, 0.45 + Math.random() * 0.8, 0, contour);
-      return Promise.resolve();
+  function stopAll() {
+    playing.forEach(a => { try { a.pause(); } catch (e) { /* yoksay */ } });
+    playing.clear();
+    if (master) {
+      try { master.disconnect(); } catch (e) { /* yoksay */ }
+      master = null;
     }
-    return play(opts[Math.floor(Math.random() * opts.length)]);
   }
 
-  return { play, randomMeow, has: (k) => !!(files[k] || SYNTH[k]) };
+  // Kedi Koşusu için rastgele tonda miyav
+  function randomMeow() {
+    // gerçek kedi kaydı, her seferinde farklı tonda (yavru → iri kedi)
+    return new Promise(res => playSrc('assets/sfx/' + ['cat_1', 'cat_2', 'cat_3'][Math.floor(Math.random() * 3)] + '.mp3', 0.75 + Math.random() * 0.75, res));
+  }
+
+  return { play, randomMeow, stopAll, has: (k) => !!(files[k] || REAL[k] || SYNTH[k]) };
 })();

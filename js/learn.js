@@ -9,17 +9,17 @@ const Learn = (() => {
   const trSay = (it) => it.trSay || it.tr;
   const enSay = (it) => it.enSay || it.en;
 
-  // Soru cümleleri (gösterim ve konuşma için ayrı)
-  function question(cat, it, forSpeech) {
-    let trName, enName;
-    if (cat.type === 'letter') {
-      trName = forSpeech ? trSay(it) : it.tr;
-      enName = it.en;
-    } else {
-      trName = it.tr.toLocaleLowerCase('tr-TR');
-      enName = it.en.toLowerCase();
-    }
-    return { en: cat.qEn.replace('{en}', enName), tr: cat.qTr.replace('{tr}', trName) };
+  /* Soru: uzun "Which one is..." yerine doğrudan isim ("Köpek!" / "Dog!").
+     Çocuk konuşmayı beklemiyor, sevdiğine hemen dokunuyor. */
+  function names(it, forSpeech) {
+    return { tr: forSpeech ? trSay(it) : it.tr, en: enSay(it) };
+  }
+  function promptParts(cat, it) {
+    if (cat.soundQuiz) return G.both('Kim bu?', 'Who is it?');
+    const n = names(it, true);
+    const parts = G.both(n.tr + '!', n.en + '!');
+    if (Speech.mode() === 'both' && Settings.get('enFirst')) parts.reverse();
+    return parts;
   }
 
   function groupsOf(cat) {
@@ -69,7 +69,7 @@ const Learn = (() => {
     const root = G.screen('groups' + themeCls(cat), sceneDeco(cat) + G.topbar(titleOf(cat)) + `<div class="group-list">${btns}</div>`, cat.bg);
     G.bindHome(root);
     $$('.group-btn', root).forEach(b => b.onclick = () => { Sounds.tap(); startLearn(cat, +b.dataset.g); });
-    Speech.seq([{ t: cat.tr, l: TR }, 150, { t: cat.en, l: EN }]);
+    Speech.seq(G.both(cat.tr, cat.en));
   }
 
   /* ---------- Tanıtım ---------- */
@@ -122,6 +122,8 @@ const Learn = (() => {
       el.style.color = col || '';
       el.classList.toggle('outlined', !!col && /^#(ffffff|ffd600)$/i.test(col));
     });
+    $('#ntr').style.display = G.showTr() ? '' : 'none';
+    $('#nen').style.display = G.showEn() ? '' : 'none';
     $('#dots').innerHTML = S.items.map((_, i) => `<span class="${i === S.idx ? 'on' : (i < S.idx ? 'done' : '')}"></span>`).join('');
   }
 
@@ -165,12 +167,12 @@ const Learn = (() => {
     const id = G.newFlow();
     showLearnItem();
     if (withIntro) {
-      if (!await Speech.seq([{ t: S.cat.tr + '!', l: TR }, 150, { t: S.cat.en + '!', l: EN }, 300])) return;
+      if (!await Speech.seq([...G.both(S.cat.tr + '!', S.cat.en + '!'), 250])) return;
     }
     while (G.alive(id)) {
       showLearnItem();
       if (!await speakItem(S.items[S.idx], id)) return;
-      await wait(1100);
+      await wait(650);
       if (!G.alive(id)) return;
       if (S.idx < S.items.length - 1) {
         S.idx++;
@@ -178,7 +180,7 @@ const Learn = (() => {
         continue;
       }
       $('#play') && $('#play').classList.add('glow');
-      if (!await Speech.seq([300, { t: 'Şimdi oyun zamanı!', l: TR }, 150, { t: "Let's play!", l: EN }, 300])) return;
+      if (!await Speech.seq([200, ...G.both('Şimdi oyun zamanı!', "Let's play!")])) return;
       if (G.alive(id)) startQuiz();
       return;
     }
@@ -205,7 +207,9 @@ const Learn = (() => {
     S.target = target;
     S.last = target;
     const n = Math.min(Settings.get('optionCount'), S.cat.items.length);
-    let others = shuffle(pool.filter(x => x !== target));
+    const similar = (a, b) => a.key && b.key && SIMILAR[a.key] && SIMILAR[a.key].includes(b.key);
+    let others = shuffle(pool.filter(x => x !== target && !similar(target, x)));
+    if (others.length < n - 1) others = others.concat(shuffle(S.cat.items.filter(x => x !== target && !others.includes(x) && !similar(target, x))));
     if (others.length < n - 1) {
       others = others.concat(shuffle(S.cat.items.filter(x => x !== target && !others.includes(x))));
     }
@@ -225,11 +229,10 @@ const Learn = (() => {
 
   function renderQuiz() {
     const c = S.cat;
-    const q = question(c, S.target, false);
-    const enFirst = Settings.get('enFirst');
-    const lines = enFirst
-      ? `<div class="q-line en">${esc(q.en)}</div><div class="q-line tr">${esc(q.tr)}</div>`
-      : `<div class="q-line tr">${esc(q.tr)}</div><div class="q-line en">${esc(q.en)}</div>`;
+    const nm = names(S.target, false);
+    const lines = c.soundQuiz
+      ? `${G.showTr() ? '<div class="q-line tr">Kim bu?</div>' : ''}${G.showEn() ? '<div class="q-line en">Who is it?</div>' : ''}`
+      : `${G.showTr() ? `<div class="q-line tr big">${esc(nm.tr)}</div>` : ''}${G.showEn() ? `<div class="q-line en big">${esc(nm.en)}</div>` : ''}`;
     const root = G.screen('quiz' + themeCls(c), sceneDeco(c) + `
       <div class="topbar">
         <button class="icon-btn" data-home aria-label="Ana sayfa">${pic('🏠')}</button>
@@ -260,25 +263,15 @@ const Learn = (() => {
   async function ask() {
     const id = G.newFlow();
     const c = S.cat, it = S.target;
-    const q = question(c, it, true);
-    const en = { t: q.en, l: EN }, tr = { t: q.tr, l: TR };
-    const parts = Settings.get('enFirst') ? [en, 350, tr] : [tr, 350, en];
     $$('.q-line').forEach(l => l.classList.add('pulse'));
     if (c.soundQuiz) {
       G.anim($('.q-speaker'), 'boom');
       await AnimalSounds.play(it.snd);
       if (!G.alive(id)) return;
-      await wait(300);
     }
-    const ok = await Speech.seq(parts);
-    // Örn. "Which one is the cat? Hangisi kedi?" → ardından miyav sesi
-    if (ok && G.alive(id) && it.snd) {
-      await wait(250);
-      if (G.alive(id)) {
-        G.anim($('.q-speaker'), 'boom');
-        await AnimalSounds.play(it.snd);
-      }
-    }
+    const ok = await Speech.seq(promptParts(c, it));
+    // isimden hemen sonra hayvanın sesi (ör. "Kedi!" → miyav)
+    if (ok && G.alive(id) && it.snd && !c.soundQuiz) await AnimalSounds.play(it.snd);
     if (G.alive(id)) $$('.q-line').forEach(l => l.classList.remove('pulse'));
   }
 
@@ -288,6 +281,7 @@ const Learn = (() => {
     else wrongAnswer(btn);
   }
 
+  // Doğru: kısa kutlama, beklemeden sonraki soru
   async function correct(btn) {
     S.locked = true;
     const id = G.newFlow();
@@ -296,25 +290,22 @@ const Learn = (() => {
     btn.classList.add('correct');
     $$('.opt').forEach(o => { if (o !== btn) o.classList.add('fade'); });
     G.burstAt(btn);
-    if (S.cat.id === 'colors') setTimeout(() => Sounds.pop(), 700);
+    if (S.cat.id === 'colors') setTimeout(() => Sounds.pop(), 500);
     setMascot('🥳', 'jump');
-    const it = S.target;
-    if (it.snd) setTimeout(() => AnimalSounds.play(it.snd), 1700);
-    await G.celebrate({ extra: [{ t: trSay(it) + '!', l: TR }, 200, { t: enSay(it) + '!', l: EN }, 400] });
-    if (it.snd && G.alive(id)) await wait(600);
+    // kutlama en fazla ~1,6 sn sürer; sonra yeni soru (konuşma kesilir)
+    await Promise.race([G.celebrate(), wait(1600)]);
     if (G.alive(id)) nextQuestion();
   }
 
+  // Yanlış: kısa "Hayır!", kilit yok — çocuk hemen başka birine dokunabilir
   async function wrongAnswer(btn) {
     S.attempts++;
-    S.locked = true;
     const id = G.newFlow();
     G.anim(btn, 'shake');
-    setTimeout(() => btn.classList.add('wrong'), 450);
+    btn.classList.add('wrong');
     setMascot('🙈', 'shake');
     await G.oops();
     if (!G.alive(id)) return;
-    S.locked = false;
     setMascot('🐼');
     const left = $$('.opt').filter(o => !o.classList.contains('wrong'));
     if (S.attempts >= 2 || left.length <= 1) {
@@ -336,7 +327,7 @@ const Learn = (() => {
       <h2 class="sub">Great job, ${esc(n)}!</h2>
       <div class="stars-big">${('<span>' + pic('⭐') + '</span>').repeat(S.score)}</div>
       <div class="finish-btns">
-        <button class="fbtn" id="replay" style="--c1:#ff6b6b;--c2:#ff9a8b">${pic('🔁')}<small>Tekrar oyna</small></button>
+        <button class="fbtn" id="replay" style="--c1:#2fb344;--c2:#69db7c">${pic('🔁')}<small>Tekrar oyna</small></button>
         <button class="fbtn" id="relearn" style="--c1:#4dabf7;--c2:#74c0fc">${pic('📖')}<small>Tekrar öğren</small></button>
         ${hasNext ? `<button class="fbtn" id="nextg" style="--c1:#40c057;--c2:#8ce99a">${pic('🌟')}<small>Yenileri öğren</small></button>` : ''}
         <button class="fbtn" data-home style="--c1:#845ef7;--c2:#b197fc">${pic('🏠')}<small>Ana sayfa</small></button>
@@ -349,8 +340,7 @@ const Learn = (() => {
     Sounds.applause(3);
     G.confetti(130);
     setTimeout(() => { if (G.alive(id)) G.confetti(80); }, 1200);
-    Speech.seq([{ t: `Aferin ${n}!`, l: TR, pitch: 1.35 }, 200, { t: `Great job, ${n}!`, l: EN, pitch: 1.35 },
-      300, { t: 'Çok güzel oynadın!', l: TR }]);
+    Speech.seq(G.both(`Aferin ${n}!`, `Great job, ${n}!`));
   }
 
   return { open };

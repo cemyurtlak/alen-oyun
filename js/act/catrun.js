@@ -22,7 +22,7 @@ G.activities.catrun = () => {
   const cats = [];
   let count = 0, nextSpawn = 0.6, last = performance.now();
 
-  Speech.seq([{ t: 'Kediler geliyor!', l: TR, pitch: 1.3 }, 200, { t: 'Here come the kitties!', l: EN, pitch: 1.3 }]);
+  Speech.seq(G.both('Kediler geliyor!', 'Here come the kitties!'));
 
   function spawn() {
     const el = document.createElement('div');
@@ -51,11 +51,10 @@ G.activities.catrun = () => {
     if (cnt) { cnt.textContent = count; G.anim($('#cnt'), 'boom'); }
     setTimeout(() => {
       if (!G.alive(id)) return;
-      Speech.say(`${COUNT_TR[count - 1]}!`, TR, { pitch: 1.3, rate: 1.1 }).then(() => {
-        if (G.alive(id)) Speech.say(`${COUNT_EN[count - 1]}!`, EN, { pitch: 1.3, rate: 1.1 });
-      });
-      if (count === 10) setTimeout(() => G.alive(id) && G.celebrate({ big: true, extra: [{ t: 'On kedi!', l: TR }, { t: 'Ten kitties!', l: EN }] }), 1500);
-    }, 650);
+      // miyav bittikten sonra sayıyı söyle (sesler üst üste binmesin)
+      if (!Speech.busy()) Speech.seq(G.both(COUNT_TR[count - 1] + '!', COUNT_EN[count - 1] + '!'));
+      if (count === 10) setTimeout(() => G.alive(id) && G.celebrate({ big: true, extra: G.both('On kedi!', 'Ten kitties!') }), 1200);
+    }, 900);
   }
 
   // Kedi camın üstüne "yapışır" ve pati izi bırakır

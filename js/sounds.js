@@ -76,6 +76,13 @@ const Sounds = (() => {
   // Kalabalık alkışı: çok sayıda kısa gürültü patlaması
   function applause(duration = 2.4) {
     if (playFile('alkis')) return;
+    // gerçek alkış kaydı (ESC-50), kısa tutulur
+    try {
+      const a = new Audio('assets/sfx/clapping_' + (1 + Math.floor(Math.random() * 2)) + '.mp3');
+      a.volume = 0.8;
+      a.play().then(() => setTimeout(() => { try { a.pause(); } catch (e) { /* yoksay */ } }, Math.min(duration, 2.4) * 1000)).catch(() => {});
+      return;
+    } catch (e) { /* sentezle */ }
     init();
     if (!ctx) return;
     const claps = Math.floor(duration * 70);

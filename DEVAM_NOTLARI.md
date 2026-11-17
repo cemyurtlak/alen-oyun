@@ -8,6 +8,12 @@
 - Her metin iki dilli: önce Türkçe ad, sonra İngilizce (soru sırası ayarlanabilir, varsayılan önce İngilizce).
 - Görsel kalite: düz 2D emoji/çizim yerine 3D Fluent görselleri, parlak gradyanlı düğmeler, yaylı (spring) animasyonlar.
 
+- **Hız:** Alen konuşmayı beklemiyor. Uzun cümle yok; soru = sadece isim. Doğru cevaptan sonra en fazla ~1,6 sn, yanlışta kilit yok.
+- **Dil:** Başlangıçta seçilir (tr / en / both). Yeni cümle eklerken `G.both(tr, en)` kullan; tek dilli cümle gerekiyorsa
+  `PHRASE_EN` sözlüğüne karşılığını ekle. Sonra `node tools/ses_listesi_olustur.js` + `ses_uret.bat`.
+- **Başlatma düğmeleri yeşil** (Oyna, Tekrar oyna, Başla). Oyun kartlarının renkleri değişmeyecek (Cem istemedi).
+- **Bitince otomatik GitHub'a gönder** (Cem'in isteği): `github_yukle.bat` (ya da ses değiştiyse `ses_uret.bat`) Dosya Gezgini'nden çift tıklanarak çalıştırılır.
+
 ## Teknik kararlar ve nedenleri
 | Karar | Neden |
 |---|---|
@@ -15,8 +21,10 @@
 | Script'ler sırayla `<script>` ile (modül değil) | `file://` ile açıldığında da çalışsın (ES module CORS sorunu yok) |
 | 3D görseller: Microsoft Fluent Emoji (MIT) → WebP 200px | Profesyonel görünüm, cihazdan bağımsız, küçük boyut |
 | Renkli varyantlar önceden üretildi (PIL, HSV) | CSS mask/canvas tint `file://`'da CORS'a takılıyor; önceden üretmek her yerde çalışır |
-| Sesler Web Audio ile sentez | İnternetten telifli/lisanssız ses indirmemek; dosya eklenirse otomatik onu kullanır |
-| TTS: Web Speech API | Ücretsiz, çevrimdışı; Türkçe ses cihaza bağlı (ayarlarda uyarı var) |
+| Hayvan sesleri: ESC-50 gerçek kayıtları (GitHub'dan), yoksa sentez | Sentez sesler "kötü" bulundu; ESC-50 GitHub'dan erişilebilir ve ticari olmayan kullanıma açık |
+| Konuşma: önceden üretilmiş MP3 (edge-tts, EmelNeural/AnaNeural), yedek Web Speech | PC Chrome'da Türkçe ses "Microsoft Tolga" (robotik); doğal ses için kayıt şart. Üretim Cem'in PC'sinde yapılır (bu ortamdan Microsoft servisine erişim yok) |
+| Ses dosyası anahtarı = dil + küçük harf, noktalamasız metin | "Kedi!" ve "Kedi" aynı kaydı kullanır; speech.js `keyOf` ile ses_listesi_olustur.js birebir aynı olmalı |
+| `Speech.cancel()` hayvan seslerini de durdurur | Sesler üst üste binmesin |
 | Mikrofon yalnızca seviye ölçer | Çocuğun ne dediğini anlamaya gerek yok; her ses denemesi ödül alır (babıldama dahil) |
 | Akış belirteci (`G.newFlow()` / `G.alive(id)`) | Ekran değişince eski konuşmalar/döngüler kendini durdurur |
 | Yüzdelik `padding` kullanılmaz | Yüzde, düğme yerine kapsayıcı genişliğine göre hesaplanıyor → görseller küçülüyordu |
@@ -42,11 +50,13 @@
 - Türkçe TTS sesi olmayan cihazda Türkçe metinler İngilizce sesle okunabilir (ayarlarda uyarı ve rehber var).
 - Mikrofon algılama eşiği gürültülü ortamda hassas olabilir; gerçek cihazda Alen'le denenip ayarlanmalı (`mic.js` → `thr`).
 - Konuşan Kedi: `MediaRecorder` + `decodeAudioData` gerektirir (Chrome/Edge/Safari 14.1+).
+- ESC-50'de olmayan sesler (ördek, at, aslan, fil, maymun, baykuş, uluma, civciv) hâlâ sentez; gerçek kayıt bulunursa `sounds/animals/` veya `assets/sfx` + `REAL` haritası.
+- Çocuğun adı değişirse adlı cümleler (Merhaba Alen!) için `node tools/ses_listesi_olustur.js YeniAd` + `ses_uret.bat` gerekir.
 - `sounds/` içinde dosya yoksa tarayıcı konsolunda 404 uyarıları görünür (zararsız).
 - Sentez hayvan sesleri çizgi film tarzıdır; gerçekçi ses için `sounds/animals/` klasörüne kayıt eklenebilir.
 
 ## Sonraki adımlar / fikirler
-- Gerçek hayvan seslerini (CC0 lisanslı) bulup `sounds/animals/` klasörüne eklemek.
+- Eksik hayvanlar için gerçek kayıt (ördek, at, aslan, uluyan köpek...).
 - Anne-baba sesiyle "aferin", "hayır" ve kelime kayıtları (ayarlardan kayıt alma özelliği eklenebilir).
 - Çevrimdışı çalışma için service worker.
 - İlerleme takibi: hangi kelimeleri söylemeye çalıştı, kaç lokma yedi (ebeveyn paneli).

@@ -12,6 +12,8 @@ G.activities.dance = () => {
     { t: 'Jump jump!', l: EN }, { t: 'Hi hi hi!', l: TR }, { t: () => `${G.childName()}, gel dans et!`, l: TR },
     { t: 'Merhaba!', l: TR }, { t: 'Hello!', l: EN }, { t: 'Agu agu!', l: TR }
   ];
+  // seçili dile uyan cümleler
+  const pickLine = () => rand(LINES.filter(x => Speech.allows(x.l) || (typeof x.t === 'string' && PHRASE_EN[x.t] && Speech.mode() === 'en')));
   const babies = BABIES.map((b, i) => ({ src: 'assets/img/' + b + '.webp', move: MOVES[i % MOVES.length] }));
 
   const root = G.screen('dance', G.topbar(`${pic('🪩', 'title-ic')} Dans Eden Bebekler <small>Dancing Babies</small>`) + `
@@ -38,19 +40,20 @@ G.activities.dance = () => {
   function setTempo() { root.style.setProperty('--beat', (60 / Music.bpm()) + 's'); }
 
   function babySay(el, line) {
-    const text = typeof line.t === 'function' ? line.t() : line.t;
+    let text = typeof line.t === 'function' ? line.t() : line.t;
+    if (!Speech.allows(line.l) && PHRASE_EN[text]) text = PHRASE_EN[text];
     const b = el.querySelector('.say');
     b.textContent = text;
     G.anim(b, 'show');
     Music.duck(true);
-    Speech.say(text, line.l, { pitch: 1.95, rate: 1.05 }).then(() => Music.duck(false));
+    Speech.say(text, Speech.allows(line.l) ? line.l : EN, { pitch: 1.2, rate: 1.05 }).then(() => Music.duck(false));
   }
 
   els.forEach(el => el.onclick = () => {
     Sounds.tap();
     G.anim(el.querySelector('.pic'), 'twirl');
     G.burstAt(el, ['💖', '⭐', '🎵'], 10);
-    babySay(el, rand(LINES));
+    babySay(el, pickLine());
   });
 
   Music.onBeat((beat) => {
@@ -66,7 +69,7 @@ G.activities.dance = () => {
       setTimeout(() => n.remove(), 2600);
     }
     // ara sıra bir bebek konuşur
-    if (beat % 16 === 8) babySay(rand(els), rand(LINES));
+    if (beat % 16 === 8 && !Speech.busy()) babySay(rand(els), pickLine());
   });
 
   $('#pp').onclick = () => {
@@ -92,6 +95,6 @@ G.activities.dance = () => {
     Music.start(0);
     setTempo();
     await wait(600);
-    if (G.alive(id)) babySay(els[2], { t: 'Hadi dans edelim!', l: TR });
+    if (G.alive(id)) babySay(els[2], Speech.mode() === 'en' ? { t: "Let's dance!", l: EN } : { t: 'Hadi dans edelim!', l: TR });
   })();
 };

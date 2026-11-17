@@ -4,6 +4,49 @@
 
 ---
 
+## Aşama 3 — Hızlı geçiş, dil seçimi, gerçek sesler, doğal konuşma, Balon Patlat, ileri sapan
+**Tarih:** 17.11.2026
+
+**İstek (Cem):**
+- Seçimden sonra beklemeden hızlı geçiş olsun (Alen konuşmayı beklemeden basmaya devam ediyor).
+- Başlangıçta dil seçimi: İngilizce seçilirse her şey İngilizce, Türkçe seçilirse Türkçe; sesler birbirine girmesin.
+- "Which one is..." yerine doğrudan "Dog!" / "Köpek!" desin.
+- Hayvan sesleri ve konuşma sesleri daha gerçekçi olsun.
+- Renkler zor seçiliyor; daha belirgin renkler.
+- Oyun başlatma düğmeleri her zaman yeşil olsun (oyun kartları aynı kalsın).
+- Sürekli uçan, dokununca patlayan balon oyunu.
+- Sapan: soldan sağa değil, geriye çekip ileri atılsın.
+- Bitince otomatik olarak GitHub'a gönderilsin.
+
+**Yapılanlar:**
+- `speech.js` yeniden yazıldı: dil modu (tr / en / both), seçilmeyen dildeki cümleler atlanır (karşılığı varsa
+  `alt`/`PHRASE_EN` sözlüğüyle çevrilir); önce `audio/voice/` doğal ses kayıtlarını çalar, yoksa tarayıcı sesine düşer;
+  `cancel()` konuşmayı, kayıtları ve hayvan seslerini birlikte susturur (üst üste binme biter); TTS perdesi doğal aralığa çekildi.
+- Başlangıç ekranına bayraklı dil seçimi (Türkçe / English / İkisi); ayarlara "Konuşma dili" eklendi.
+- Soru-cevap: soru = sadece isim ("Kedi!") + hayvan sesi; doğru cevapta en fazla ~1,6 sn kutlama, sonra hemen yeni soru;
+  yanlışta kilit yok, kısa "Hayıııır!". Benzer renkler (kırmızı-turuncu, pembe-mor...) aynı soruda çıkmaz.
+- Gerçek kayıtlar: ESC-50 veri setinden (CC BY-NC 3.0) köpek, kedi, inek, koyun, tavuk, horoz, kurbağa, kuş, arı,
+  korna, siren, tren, uçak, helikopter ve alkış seçildi, kırpıldı, ses düzeyi eşitlendi → `assets/sfx/` (54 dosya).
+  Kedi tonları gerçek kaydın hızıyla (yavru/iri) üretiliyor; Kedi Koşusu her seferinde farklı tonda gerçek miyav.
+- Doğal konuşma: `tools/ses_listesi_olustur.js` oyundaki 717 cümleyi çıkarır; `tools/ses_uret.py` + `ses_uret.bat`
+  bunları Microsoft sinir ağı sesleriyle (tr-TR-EmelNeural, en-US-AnaNeural) MP3'e çevirir ve `audio/voice/index.js` yazar;
+  bitince `github_yukle.bat` ile otomatik GitHub'a gönderir.
+- Renkler daha canlı ve doygun yeniden üretildi; renk sorusunda balonlar büyütüldü; ilk renk grubu ana renkler.
+- "Oyna", "Tekrar oyna" gibi başlatma düğmeleri yeşil yapıldı.
+- Yeni oyun: **Balon Patlat** (`js/act/pop.js`) — balonlar aşağıdan sürekli uçar, dokununca patlar, bazılarında sürpriz hayvan.
+- **Sapan** baştan yazıldı: 3B perspektif; sapan altta, hayvan geriye çekilip bırakılınca ileri, derinliğe uçar.
+
+**Değişen / oluşan dosyalar:** `js/speech.js`, `js/core.js`, `js/learn.js`, `js/home.js`, `js/data.js`, `js/sounds.js`,
+`js/animalsounds.js`, `js/act/{imitate,catrun,dance,parrot,feed,sling,pop}.js`, `css/style.css`, `index.html`,
+`assets/sfx/*` (yeni), `assets/img/tint/*` (yeniden), `tools/ses_listesi_olustur.js`, `tools/ses_listesi.json`,
+`tools/ses_uret.py`, `ses_uret.bat` (yeni), `.gitignore`, README, DEVAM_NOTLARI, bu günlük.
+
+**Test durumu:** Tüm JS `node --check` temiz; headless Chrome'da başlangıç/dil seçimi, renk ve hayvan soruları,
+Balon Patlat, sapan çekme-atma, İngilizce Ses Taklidi denendi — sayfa hatası yok. Doğal ses üretimi kullanıcının
+bilgisayarında çalıştırılır (bu ortamdan Microsoft ses servisine erişim yok).
+
+---
+
 ## Aşama 2 — GitHub'a yükleme ve GitHub Pages yayını
 **Tarih:** 17.11.2026
 

@@ -9,17 +9,21 @@
    ========================================================= */
 
 const COLORS = [
-  { key: 'red', tr: 'Kırmızı', en: 'Red', hex: '#ff2d2d' },
-  { key: 'blue', tr: 'Mavi', en: 'Blue', hex: '#1e90ff' },
-  { key: 'yellow', tr: 'Sarı', en: 'Yellow', hex: '#ffd600' },
-  { key: 'green', tr: 'Yeşil', en: 'Green', hex: '#2ecc40' },
-  { key: 'orange', tr: 'Turuncu', en: 'Orange', hex: '#ff8c00' },
-  { key: 'purple', tr: 'Mor', en: 'Purple', hex: '#9b30ff' },
-  { key: 'pink', tr: 'Pembe', en: 'Pink', hex: '#ff69b4' },
-  { key: 'brown', tr: 'Kahverengi', en: 'Brown', hex: '#8b5a2b' },
-  { key: 'black', tr: 'Siyah', en: 'Black', hex: '#333333' },
-  { key: 'white', tr: 'Beyaz', en: 'White', hex: '#ffffff' }
+  // ilk gruptakiler birbirinden çok farklı ana renkler (2 yaş için kolay ayırt edilir)
+  { key: 'red', tr: 'Kırmızı', en: 'Red', hex: '#ff1a1a' },
+  { key: 'blue', tr: 'Mavi', en: 'Blue', hex: '#0a84ff' },
+  { key: 'yellow', tr: 'Sarı', en: 'Yellow', hex: '#ffe100' },
+  { key: 'green', tr: 'Yeşil', en: 'Green', hex: '#22d63a' },
+  { key: 'white', tr: 'Beyaz', en: 'White', hex: '#ffffff' },
+  { key: 'orange', tr: 'Turuncu', en: 'Orange', hex: '#ff8800' },
+  { key: 'purple', tr: 'Mor', en: 'Purple', hex: '#a020f0' },
+  { key: 'pink', tr: 'Pembe', en: 'Pink', hex: '#ff4fb8' },
+  { key: 'black', tr: 'Siyah', en: 'Black', hex: '#2a2a2a' },
+  { key: 'brown', tr: 'Kahverengi', en: 'Brown', hex: '#9a5a24' }
 ];
+/* Birbirine benzeyen renkler aynı soruda seçenek olarak çıkmaz */
+const SIMILAR = { red: ['orange', 'pink'], orange: ['red', 'yellow', 'brown'], pink: ['red', 'purple'], purple: ['pink', 'blue'],
+  yellow: ['orange'], brown: ['orange', 'black'], black: ['brown'], blue: ['purple'], green: [], white: [] };
 
 const ANIMALS = [
   { tr: 'Köpek', en: 'Dog', emoji: '🐶', sound: 'Hav hav!', snd: 'dog' },
@@ -227,21 +231,21 @@ const TALK_GROUPS = [
 
 /* SES TAKLİDİ — hayvan seslerini dinle ve taklit et */
 const COPY_ITEMS = [
-  { tr: 'İnek', en: 'Cow', emoji: '🐮', syl: ['Mööö'], snd: 'cow' },
-  { tr: 'Uluyan köpek', en: 'Howling dog', emoji: '🐕', syl: ['Auuuu'], snd: 'howl' },
-  { tr: 'Köpek', en: 'Dog', emoji: '🐶', syl: ['Hav', 'hav'], snd: 'dog' },
-  { tr: 'Kedi', en: 'Cat', emoji: '🐱', syl: ['Mi', 'yav'], snd: 'cat' },
-  { tr: 'Yavru kedi', en: 'Kitten', emoji: '😺', syl: ['Miy', 'miy'], snd: 'kitten' },
-  { tr: 'Koyun', en: 'Sheep', emoji: '🐑', syl: ['Meee'], snd: 'sheep' },
-  { tr: 'Ördek', en: 'Duck', emoji: '🦆', syl: ['Vak', 'vak'], snd: 'duck' },
-  { tr: 'Tavuk', en: 'Chicken', emoji: '🐔', syl: ['Gıt', 'gıt', 'gıdak'], snd: 'chicken' },
-  { tr: 'Civciv', en: 'Chick', emoji: '🐥', syl: ['Cik', 'cik'], snd: 'chick' },
-  { tr: 'Aslan', en: 'Lion', emoji: '🦁', syl: ['Rooaar'], snd: 'lion' },
-  { tr: 'Baykuş', en: 'Owl', emoji: '🦉', syl: ['Hu', 'hu'], snd: 'owl' },
-  { tr: 'Kurbağa', en: 'Frog', emoji: '🐸', syl: ['Vı', 'rak'], snd: 'frog' },
-  { tr: 'Arı', en: 'Bee', emoji: '🐝', syl: ['Vızzz'], snd: 'bee' },
-  { tr: 'Araba', en: 'Car', emoji: '🚗', syl: ['Düt', 'düt'], snd: 'car' },
-  { tr: 'Tren', en: 'Train', emoji: '🚂', syl: ['Çuf', 'çuf'], snd: 'train' }
+  { tr: 'İnek', en: 'Cow', emoji: '🐮', syl: ['Mööö'], synEn: ['Moooo'], snd: 'cow' },
+  { tr: 'Uluyan köpek', en: 'Howling dog', emoji: '🐕', syl: ['Auuuu'], synEn: ['Awoooo'], snd: 'howl' },
+  { tr: 'Köpek', en: 'Dog', emoji: '🐶', syl: ['Hav', 'hav'], synEn: ['Woof', 'woof'], snd: 'dog' },
+  { tr: 'Kedi', en: 'Cat', emoji: '🐱', syl: ['Mi', 'yav'], synEn: ['Me', 'ow'], snd: 'cat' },
+  { tr: 'Yavru kedi', en: 'Kitten', emoji: '😺', syl: ['Miy', 'miy'], synEn: ['Mew', 'mew'], snd: 'kitten' },
+  { tr: 'Koyun', en: 'Sheep', emoji: '🐑', syl: ['Meee'], synEn: ['Baaa'], snd: 'sheep' },
+  { tr: 'Ördek', en: 'Duck', emoji: '🦆', syl: ['Vak', 'vak'], synEn: ['Quack', 'quack'], snd: 'duck' },
+  { tr: 'Tavuk', en: 'Chicken', emoji: '🐔', syl: ['Gıt', 'gıt', 'gıdak'], synEn: ['Cluck', 'cluck'], snd: 'chicken' },
+  { tr: 'Civciv', en: 'Chick', emoji: '🐥', syl: ['Cik', 'cik'], synEn: ['Tweet', 'tweet'], snd: 'chick' },
+  { tr: 'Aslan', en: 'Lion', emoji: '🦁', syl: ['Rooaar'], synEn: ['Roooar'], snd: 'lion' },
+  { tr: 'Baykuş', en: 'Owl', emoji: '🦉', syl: ['Hu', 'hu'], synEn: ['Hoo', 'hoo'], snd: 'owl' },
+  { tr: 'Kurbağa', en: 'Frog', emoji: '🐸', syl: ['Vı', 'rak'], synEn: ['Rib', 'bit'], snd: 'frog' },
+  { tr: 'Arı', en: 'Bee', emoji: '🐝', syl: ['Vızzz'], synEn: ['Buzzz'], snd: 'bee' },
+  { tr: 'Araba', en: 'Car', emoji: '🚗', syl: ['Düt', 'düt'], synEn: ['Beep', 'beep'], snd: 'car' },
+  { tr: 'Tren', en: 'Train', emoji: '🚂', syl: ['Çuf', 'çuf'], synEn: ['Choo', 'choo'], snd: 'train' }
 ];
 
 /* HAYVAN EVLERİ — hangi hayvan nerede yaşar */
@@ -270,19 +274,21 @@ const ACTIVITIES = [
   { id: 'eggs', tr: 'Yumurta Sürprizi', en: 'Egg Surprise', icon: '🐣' },
   { id: 'homes', tr: 'Hayvan Evleri', en: 'Animal Homes', icon: '🏡' },
   { id: 'sling', tr: 'Sapan', en: 'Slingshot', icon: '🎯' },
-  { id: 'blow', tr: 'Balonu Üfle', en: 'Blow It Up', icon: '🎈' }
+  { id: 'pop', tr: 'Balon Patlat', en: 'Pop Balloons', icon: '🎈' },
+  { id: 'blow', tr: 'Balonu Üfle', en: 'Blow It Up', icon: '🌬️' }
 ];
 
 /* Sevinç ve teselli cümleleri (rastgele seçilir) */
+/* Sevinç: tek dilde kısa ve coşkulu (hızlı geçiş için) */
 const PRAISE = [
-  { en: 'Yeeeey!', tr: 'Aferin sana!' },
-  { en: 'Yeeeey! Good job!', tr: 'Bravo!' },
-  { en: 'Wooow! Great!', tr: 'Süpersin!' },
-  { en: 'Yeeeey! Well done!', tr: 'Harikasın!' }
+  { tr: 'Yeeey! Aferin!', en: 'Yeeey! Good job!' },
+  { tr: 'Yaşasın! Bravo!', en: 'Yaaay! Well done!' },
+  { tr: 'Süpersin!', en: 'Super!' },
+  { tr: 'Harikasın!', en: 'Awesome!' }
 ];
 const TRY_AGAIN = [
-  { tr: 'Hayıııır!', tr2: 'Tekrar dene!', en: 'Try again!' },
-  { tr: 'Hayıııır!', tr2: 'Bir daha bak!', en: 'Look again!' }
+  { tr: 'Hayıııır!', en: 'Nooo!' },
+  { tr: 'Hayır, o değil!', en: 'Nope, not that one!' }
 ];
 const COUNT_TR = ['Bir', 'İki', 'Üç', 'Dört', 'Beş', 'Altı', 'Yedi', 'Sekiz', 'Dokuz', 'On'];
 const COUNT_EN = ['One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten'];

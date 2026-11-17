@@ -1,0 +1,4304 @@
+[
+ {
+  "key": "tr|kim bu",
+  "lang": "tr",
+  "text": "Kim bu?",
+  "file": "audio/voice/tr_d71f6c7a67.mp3"
+ },
+ {
+  "key": "en|who is it",
+  "lang": "en",
+  "text": "Who is it?",
+  "file": "audio/voice/en_6b23c31ab6.mp3"
+ },
+ {
+  "key": "tr|şimdi oyun zamanı",
+  "lang": "tr",
+  "text": "Şimdi oyun zamanı!",
+  "file": "audio/voice/tr_8dd76d0261.mp3"
+ },
+ {
+  "key": "en|lets play",
+  "lang": "en",
+  "text": "Let's play!",
+  "file": "audio/voice/en_77bad09c76.mp3"
+ },
+ {
+  "key": "tr|pat patladı",
+  "lang": "tr",
+  "text": "Pat! Patladı!",
+  "file": "audio/voice/tr_82b6c7b7b8.mp3"
+ },
+ {
+  "key": "en|pop",
+  "lang": "en",
+  "text": "Pop!",
+  "file": "audio/voice/en_bbfb80ea9c.mp3"
+ },
+ {
+  "key": "tr|balonu üfle fuuuu",
+  "lang": "tr",
+  "text": "Balonu üfle! Fuuuu!",
+  "file": "audio/voice/tr_a3762c0895.mp3"
+ },
+ {
+  "key": "en|blow the balloon",
+  "lang": "en",
+  "text": "Blow the balloon!",
+  "file": "audio/voice/en_f6f8a76d82.mp3"
+ },
+ {
+  "key": "tr|kediler geliyor",
+  "lang": "tr",
+  "text": "Kediler geliyor!",
+  "file": "audio/voice/tr_62e4f87ef2.mp3"
+ },
+ {
+  "key": "en|here come the kitties",
+  "lang": "en",
+  "text": "Here come the kitties!",
+  "file": "audio/voice/en_d0f1ca4b37.mp3"
+ },
+ {
+  "key": "tr|on kedi",
+  "lang": "tr",
+  "text": "On kedi!",
+  "file": "audio/voice/tr_c9aa4789f7.mp3"
+ },
+ {
+  "key": "en|ten kitties",
+  "lang": "en",
+  "text": "Ten kitties!",
+  "file": "audio/voice/en_d25eefa0cf.mp3"
+ },
+ {
+  "key": "tr|dans edelim",
+  "lang": "tr",
+  "text": "Dans edelim!",
+  "file": "audio/voice/tr_49eed96a45.mp3"
+ },
+ {
+  "key": "en|lets dance",
+  "lang": "en",
+  "text": "Let's dance!",
+  "file": "audio/voice/en_21997fd3c0.mp3"
+ },
+ {
+  "key": "tr|yaşasın",
+  "lang": "tr",
+  "text": "Yaşasın!",
+  "file": "audio/voice/tr_b59b19b206.mp3"
+ },
+ {
+  "key": "tr|ellerini çırp",
+  "lang": "tr",
+  "text": "Ellerini çırp!",
+  "file": "audio/voice/tr_2d7123680d.mp3"
+ },
+ {
+  "key": "en|clap your hands",
+  "lang": "en",
+  "text": "Clap your hands!",
+  "file": "audio/voice/en_e80ad8299a.mp3"
+ },
+ {
+  "key": "tr|zıpla zıpla",
+  "lang": "tr",
+  "text": "Zıpla zıpla!",
+  "file": "audio/voice/tr_1259e6a890.mp3"
+ },
+ {
+  "key": "en|jump jump",
+  "lang": "en",
+  "text": "Jump jump!",
+  "file": "audio/voice/en_78654d8485.mp3"
+ },
+ {
+  "key": "tr|hi hi hi",
+  "lang": "tr",
+  "text": "Hi hi hi!",
+  "file": "audio/voice/tr_24018bc105.mp3"
+ },
+ {
+  "key": "tr|merhaba",
+  "lang": "tr",
+  "text": "Merhaba!",
+  "file": "audio/voice/tr_6887f8188f.mp3"
+ },
+ {
+  "key": "en|hello",
+  "lang": "en",
+  "text": "Hello!",
+  "file": "audio/voice/en_271e5875b6.mp3"
+ },
+ {
+  "key": "tr|agu agu",
+  "lang": "tr",
+  "text": "Agu agu!",
+  "file": "audio/voice/tr_ce55f940a5.mp3"
+ },
+ {
+  "key": "tr|hadi dans edelim",
+  "lang": "tr",
+  "text": "Hadi dans edelim!",
+  "file": "audio/voice/tr_f6ab40b841.mp3"
+ },
+ {
+  "key": "tr|yeni yumurtalar geliyor",
+  "lang": "tr",
+  "text": "Yeni yumurtalar geliyor!",
+  "file": "audio/voice/tr_25ebf34f0b.mp3"
+ },
+ {
+  "key": "en|more eggs",
+  "lang": "en",
+  "text": "More eggs!",
+  "file": "audio/voice/en_135b51e3b7.mp3"
+ },
+ {
+  "key": "tr|yumurtalara dokun",
+  "lang": "tr",
+  "text": "Yumurtalara dokun!",
+  "file": "audio/voice/tr_2757b22756.mp3"
+ },
+ {
+  "key": "en|tap the eggs",
+  "lang": "en",
+  "text": "Tap the eggs!",
+  "file": "audio/voice/en_74286e264e.mp3"
+ },
+ {
+  "key": "tr|içinden ne çıkacak",
+  "lang": "tr",
+  "text": "İçinden ne çıkacak?",
+  "file": "audio/voice/tr_30ec7a6b73.mp3"
+ },
+ {
+  "key": "tr|mmmm çok lezzetli",
+  "lang": "tr",
+  "text": "Mmmm! Çok lezzetli!",
+  "file": "audio/voice/tr_af18f9fccd.mp3"
+ },
+ {
+  "key": "en|mmm yummy",
+  "lang": "en",
+  "text": "Mmm! Yummy!",
+  "file": "audio/voice/en_c9cda500ae.mp3"
+ },
+ {
+  "key": "tr|karnım doydu",
+  "lang": "tr",
+  "text": "Karnım doydu!",
+  "file": "audio/voice/tr_24d8de8e3e.mp3"
+ },
+ {
+  "key": "en|im full",
+  "lang": "en",
+  "text": "I'm full!",
+  "file": "audio/voice/en_9db2ed976c.mp3"
+ },
+ {
+  "key": "tr|sen de ye ham",
+  "lang": "tr",
+  "text": "Sen de ye! Ham!",
+  "file": "audio/voice/tr_9e17175d5c.mp3"
+ },
+ {
+  "key": "en|you eat too yum",
+  "lang": "en",
+  "text": "You eat too! Yum!",
+  "file": "audio/voice/en_d0c29561f8.mp3"
+ },
+ {
+  "key": "tr|ağzını aç aaaaa",
+  "lang": "tr",
+  "text": "Ağzını aç! Aaaaa!",
+  "file": "audio/voice/tr_d0eb4626c8.mp3"
+ },
+ {
+  "key": "en|open wide aaaah",
+  "lang": "en",
+  "text": "Open wide! Aaaah!",
+  "file": "audio/voice/en_cf67c037fb.mp3"
+ },
+ {
+  "key": "tr|ısır hap",
+  "lang": "tr",
+  "text": "Isır! Hap!",
+  "file": "audio/voice/tr_f43dc80fae.mp3"
+ },
+ {
+  "key": "en|bite chomp",
+  "lang": "en",
+  "text": "Bite! Chomp!",
+  "file": "audio/voice/en_1aafbed76b.mp3"
+ },
+ {
+  "key": "tr|çiğne çiğne çiğne",
+  "lang": "tr",
+  "text": "Çiğne, çiğne, çiğne!",
+  "file": "audio/voice/tr_aa74a2e806.mp3"
+ },
+ {
+  "key": "en|chew chew chew",
+  "lang": "en",
+  "text": "Chew, chew, chew!",
+  "file": "audio/voice/en_654a0e0bef.mp3"
+ },
+ {
+  "key": "tr|yut gulp",
+  "lang": "tr",
+  "text": "Yut! Gulp!",
+  "file": "audio/voice/tr_cf28de4ece.mp3"
+ },
+ {
+  "key": "en|swallow gulp",
+  "lang": "en",
+  "text": "Swallow! Gulp!",
+  "file": "audio/voice/en_96ae3f5f52.mp3"
+ },
+ {
+  "key": "tr|sen de yapabilirsin",
+  "lang": "tr",
+  "text": "Sen de yapabilirsin!",
+  "file": "audio/voice/tr_521ca633d3.mp3"
+ },
+ {
+  "key": "en|you can do it too",
+  "lang": "en",
+  "text": "You can do it too!",
+  "file": "audio/voice/en_e87974d2ae.mp3"
+ },
+ {
+  "key": "tr|karnım çok aç",
+  "lang": "tr",
+  "text": "Karnım çok aç!",
+  "file": "audio/voice/tr_ed90519247.mp3"
+ },
+ {
+  "key": "en|im so hungry",
+  "lang": "en",
+  "text": "I'm so hungry!",
+  "file": "audio/voice/en_5b6635c39e.mp3"
+ },
+ {
+  "key": "tr|bana yemek verir misin",
+  "lang": "tr",
+  "text": "Bana yemek verir misin?",
+  "file": "audio/voice/tr_fb9a51beaf.mp3"
+ },
+ {
+  "key": "en|can i have some food",
+  "lang": "en",
+  "text": "Can I have some food?",
+  "file": "audio/voice/en_a4a708b26a.mp3"
+ },
+ {
+  "key": "tr|parmaklarına dokun ve sayalım",
+  "lang": "tr",
+  "text": "Parmaklarına dokun ve sayalım!",
+  "file": "audio/voice/tr_9c7db29335.mp3"
+ },
+ {
+  "key": "en|tap and lets count",
+  "lang": "en",
+  "text": "Tap and let's count!",
+  "file": "audio/voice/en_c1b0e69fcc.mp3"
+ },
+ {
+  "key": "tr|on parmak",
+  "lang": "tr",
+  "text": "On parmak!",
+  "file": "audio/voice/tr_a588d40b84.mp3"
+ },
+ {
+  "key": "en|ten fingers",
+  "lang": "en",
+  "text": "Ten fingers!",
+  "file": "audio/voice/en_5920bd8bf7.mp3"
+ },
+ {
+  "key": "en|how many fingers",
+  "lang": "en",
+  "text": "How many fingers?",
+  "file": "audio/voice/en_30a4661a0a.mp3"
+ },
+ {
+  "key": "tr|kaç parmak var",
+  "lang": "tr",
+  "text": "Kaç parmak var?",
+  "file": "audio/voice/tr_c86a79dd92.mp3"
+ },
+ {
+  "key": "tr|hayvanlar nerede yaşar",
+  "lang": "tr",
+  "text": "Hayvanlar nerede yaşar?",
+  "file": "audio/voice/tr_4a526f59e7.mp3"
+ },
+ {
+  "key": "en|where do animals live",
+  "lang": "en",
+  "text": "Where do animals live?",
+  "file": "audio/voice/en_bdff0136c5.mp3"
+ },
+ {
+  "key": "tr|bütün hayvanlar evine gitti",
+  "lang": "tr",
+  "text": "Bütün hayvanlar evine gitti!",
+  "file": "audio/voice/tr_e898eb5fad.mp3"
+ },
+ {
+  "key": "tr|çok güzel söyledin",
+  "lang": "tr",
+  "text": "Çok güzel söyledin!",
+  "file": "audio/voice/tr_daf381e2fe.mp3"
+ },
+ {
+  "key": "en|you said it so well",
+  "lang": "en",
+  "text": "You said it so well!",
+  "file": "audio/voice/en_fdab6972dd.mp3"
+ },
+ {
+  "key": "tr|sen söyle",
+  "lang": "tr",
+  "text": "Sen söyle!",
+  "file": "audio/voice/tr_d84a7a40cd.mp3"
+ },
+ {
+  "key": "en|your turn",
+  "lang": "en",
+  "text": "Your turn!",
+  "file": "audio/voice/en_50f76f0fb1.mp3"
+ },
+ {
+  "key": "tr|hadi birlikte söyleyelim",
+  "lang": "tr",
+  "text": "Hadi birlikte söyleyelim!",
+  "file": "audio/voice/tr_961ce5bacd.mp3"
+ },
+ {
+  "key": "en|lets say it together",
+  "lang": "en",
+  "text": "Let's say it together!",
+  "file": "audio/voice/en_78c7fd6560.mp3"
+ },
+ {
+  "key": "tr|balonları patlat",
+  "lang": "tr",
+  "text": "Balonları patlat!",
+  "file": "audio/voice/tr_b63a5fa875.mp3"
+ },
+ {
+  "key": "en|pop the balloons",
+  "lang": "en",
+  "text": "Pop the balloons!",
+  "file": "audio/voice/en_0d2208061a.mp3"
+ },
+ {
+  "key": "tr|hayvanı geri çek ve bırak",
+  "lang": "tr",
+  "text": "Hayvanı geri çek ve bırak!",
+  "file": "audio/voice/tr_3e974a1d49.mp3"
+ },
+ {
+  "key": "en|pull back and let go",
+  "lang": "en",
+  "text": "Pull back and let go!",
+  "file": "audio/voice/en_e04d458866.mp3"
+ },
+ {
+  "key": "en|goo goo",
+  "lang": "en",
+  "text": "Goo goo!",
+  "file": "audio/voice/en_616415b279.mp3"
+ },
+ {
+  "key": "en|all the animals are home",
+  "lang": "en",
+  "text": "All the animals are home!",
+  "file": "audio/voice/en_27ff1aa001.mp3"
+ },
+ {
+  "key": "en|whats inside",
+  "lang": "en",
+  "text": "What's inside?",
+  "file": "audio/voice/en_843f196f74.mp3"
+ },
+ {
+  "key": "tr|çok güzel oynadın",
+  "lang": "tr",
+  "text": "Çok güzel oynadın!",
+  "file": "audio/voice/tr_a22c732731.mp3"
+ },
+ {
+  "key": "en|you played so well",
+  "lang": "en",
+  "text": "You played so well!",
+  "file": "audio/voice/en_444158c500.mp3"
+ },
+ {
+  "key": "tr|miyav merhaba",
+  "lang": "tr",
+  "text": "Miyav! Merhaba!",
+  "file": "audio/voice/tr_e654dbbed4.mp3"
+ },
+ {
+  "key": "en|meow hello",
+  "lang": "en",
+  "text": "Meow! Hello!",
+  "file": "audio/voice/en_3e17830c72.mp3"
+ },
+ {
+  "key": "tr|benimle konuş",
+  "lang": "tr",
+  "text": "Benimle konuş!",
+  "file": "audio/voice/tr_0cd0559b53.mp3"
+ },
+ {
+  "key": "en|talk to me",
+  "lang": "en",
+  "text": "Talk to me!",
+  "file": "audio/voice/en_b8d6d8d38c.mp3"
+ },
+ {
+  "key": "tr|miyav miyav",
+  "lang": "tr",
+  "text": "Miyav miyav!",
+  "file": "audio/voice/tr_94f3f58380.mp3"
+ },
+ {
+  "key": "en|meow meow",
+  "lang": "en",
+  "text": "Meow meow!",
+  "file": "audio/voice/en_ec6f3140a1.mp3"
+ },
+ {
+  "key": "tr|bir şey söyle",
+  "lang": "tr",
+  "text": "Bir şey söyle!",
+  "file": "audio/voice/tr_1c773c4975.mp3"
+ },
+ {
+  "key": "en|say something",
+  "lang": "en",
+  "text": "Say something!",
+  "file": "audio/voice/en_55bd756f82.mp3"
+ },
+ {
+  "key": "tr|wiii",
+  "lang": "tr",
+  "text": "Wiii!",
+  "file": "audio/voice/tr_bae349d675.mp3"
+ },
+ {
+  "key": "en|wheee",
+  "lang": "en",
+  "text": "Wheee!",
+  "file": "audio/voice/en_3e9dd33e34.mp3"
+ },
+ {
+  "key": "tr|ham ham ham",
+  "lang": "tr",
+  "text": "Ham ham ham!",
+  "file": "audio/voice/tr_a73ee96390.mp3"
+ },
+ {
+  "key": "en|yum yum yum",
+  "lang": "en",
+  "text": "Yum yum yum!",
+  "file": "audio/voice/en_932cbeb212.mp3"
+ },
+ {
+  "key": "tr|hav hav",
+  "lang": "tr",
+  "text": "Hav hav!",
+  "file": "audio/voice/tr_aed9ad397a.mp3"
+ },
+ {
+  "key": "en|woof woof",
+  "lang": "en",
+  "text": "Woof woof!",
+  "file": "audio/voice/en_375e7dfc80.mp3"
+ },
+ {
+  "key": "tr|miyav",
+  "lang": "tr",
+  "text": "Miyav!",
+  "file": "audio/voice/tr_bdafd8f0c1.mp3"
+ },
+ {
+  "key": "en|meow",
+  "lang": "en",
+  "text": "Meow!",
+  "file": "audio/voice/en_73de54d3ad.mp3"
+ },
+ {
+  "key": "tr|möööö",
+  "lang": "tr",
+  "text": "Möööö!",
+  "file": "audio/voice/tr_b8f6894a19.mp3"
+ },
+ {
+  "key": "en|moo",
+  "lang": "en",
+  "text": "Moo!",
+  "file": "audio/voice/en_ea9b399785.mp3"
+ },
+ {
+  "key": "tr|meee",
+  "lang": "tr",
+  "text": "Meee!",
+  "file": "audio/voice/tr_3626cb60f9.mp3"
+ },
+ {
+  "key": "en|baa",
+  "lang": "en",
+  "text": "Baa!",
+  "file": "audio/voice/en_529c4afc35.mp3"
+ },
+ {
+  "key": "tr|gıt gıt gıdak",
+  "lang": "tr",
+  "text": "Gıt gıt gıdak!",
+  "file": "audio/voice/tr_8599e6738e.mp3"
+ },
+ {
+  "key": "en|cluck cluck",
+  "lang": "en",
+  "text": "Cluck cluck!",
+  "file": "audio/voice/en_c3b70993eb.mp3"
+ },
+ {
+  "key": "tr|vak vak",
+  "lang": "tr",
+  "text": "Vak vak!",
+  "file": "audio/voice/tr_395cd4fdc4.mp3"
+ },
+ {
+  "key": "en|quack quack",
+  "lang": "en",
+  "text": "Quack quack!",
+  "file": "audio/voice/en_29c350a78b.mp3"
+ },
+ {
+  "key": "tr|cik cik",
+  "lang": "tr",
+  "text": "Cik cik!",
+  "file": "audio/voice/tr_9e0242068b.mp3"
+ },
+ {
+  "key": "en|tweet tweet",
+  "lang": "en",
+  "text": "Tweet tweet!",
+  "file": "audio/voice/en_ec20eba3c5.mp3"
+ },
+ {
+  "key": "tr|ihihi",
+  "lang": "tr",
+  "text": "İhihi!",
+  "file": "audio/voice/tr_2b94a92f40.mp3"
+ },
+ {
+  "key": "en|neigh",
+  "lang": "en",
+  "text": "Neigh!",
+  "file": "audio/voice/en_dbeb1f5c6c.mp3"
+ },
+ {
+  "key": "tr|rooar",
+  "lang": "tr",
+  "text": "Rooar!",
+  "file": "audio/voice/tr_b1b65c79a3.mp3"
+ },
+ {
+  "key": "en|roar",
+  "lang": "en",
+  "text": "Roar!",
+  "file": "audio/voice/en_f4fddeca40.mp3"
+ },
+ {
+  "key": "tr|böööö",
+  "lang": "tr",
+  "text": "Böööö!",
+  "file": "audio/voice/tr_bc20b42d2f.mp3"
+ },
+ {
+  "key": "en|toot toot",
+  "lang": "en",
+  "text": "Toot toot!",
+  "file": "audio/voice/en_02fc517e2c.mp3"
+ },
+ {
+  "key": "tr|uu aa",
+  "lang": "tr",
+  "text": "Uu aa!",
+  "file": "audio/voice/tr_3409fc0eb1.mp3"
+ },
+ {
+  "key": "en|ooh ooh aah aah",
+  "lang": "en",
+  "text": "Ooh ooh aah aah!",
+  "file": "audio/voice/en_679438ff67.mp3"
+ },
+ {
+  "key": "tr|vırak vırak",
+  "lang": "tr",
+  "text": "Vırak vırak!",
+  "file": "audio/voice/tr_52fc3e41cc.mp3"
+ },
+ {
+  "key": "en|ribbit ribbit",
+  "lang": "en",
+  "text": "Ribbit ribbit!",
+  "file": "audio/voice/en_2b0f2d3e71.mp3"
+ },
+ {
+  "key": "tr|hu hu",
+  "lang": "tr",
+  "text": "Hu hu!",
+  "file": "audio/voice/tr_f73fa04309.mp3"
+ },
+ {
+  "key": "en|hoot hoot",
+  "lang": "en",
+  "text": "Hoot hoot!",
+  "file": "audio/voice/en_323e5cf2bb.mp3"
+ },
+ {
+  "key": "tr|grrr",
+  "lang": "tr",
+  "text": "Grrr!",
+  "file": "audio/voice/tr_dfbdf8dcd0.mp3"
+ },
+ {
+  "key": "en|grrr",
+  "lang": "en",
+  "text": "Grrr!",
+  "file": "audio/voice/en_9bd12a2a12.mp3"
+ },
+ {
+  "key": "tr|vızzz",
+  "lang": "tr",
+  "text": "Vızzz!",
+  "file": "audio/voice/tr_81a9d675c8.mp3"
+ },
+ {
+  "key": "en|buzz",
+  "lang": "en",
+  "text": "Buzz!",
+  "file": "audio/voice/en_a02eb43fcb.mp3"
+ },
+ {
+  "key": "tr|blup blup",
+  "lang": "tr",
+  "text": "Blup blup!",
+  "file": "audio/voice/tr_53d4bfd6b7.mp3"
+ },
+ {
+  "key": "en|blub blub",
+  "lang": "en",
+  "text": "Blub blub!",
+  "file": "audio/voice/en_f921acaee4.mp3"
+ },
+ {
+  "key": "en|hee hee hee",
+  "lang": "en",
+  "text": "Hee hee hee!",
+  "file": "audio/voice/en_2698b1661b.mp3"
+ },
+ {
+  "key": "tr|mırr mırr",
+  "lang": "tr",
+  "text": "Mırr mırr!",
+  "file": "audio/voice/tr_a81ccd2925.mp3"
+ },
+ {
+  "key": "en|purr purr",
+  "lang": "en",
+  "text": "Purr purr!",
+  "file": "audio/voice/en_7ff2782799.mp3"
+ },
+ {
+  "key": "tr|muck",
+  "lang": "tr",
+  "text": "Muck!",
+  "file": "audio/voice/tr_014be04838.mp3"
+ },
+ {
+  "key": "en|mwah",
+  "lang": "en",
+  "text": "Mwah!",
+  "file": "audio/voice/en_ab98febc57.mp3"
+ },
+ {
+  "key": "tr|miyy",
+  "lang": "tr",
+  "text": "Miyy?",
+  "file": "audio/voice/tr_2a6f802607.mp3"
+ },
+ {
+  "key": "en|mew",
+  "lang": "en",
+  "text": "Mew?",
+  "file": "audio/voice/en_61fb30b3eb.mp3"
+ },
+ {
+  "key": "tr|miyaaav",
+  "lang": "tr",
+  "text": "Miyaaav...",
+  "file": "audio/voice/tr_7eacc9705f.mp3"
+ },
+ {
+  "key": "tr|hıhhh",
+  "lang": "tr",
+  "text": "Hıhhh!",
+  "file": "audio/voice/tr_67761c23d8.mp3"
+ },
+ {
+  "key": "en|hiss",
+  "lang": "en",
+  "text": "Hiss!",
+  "file": "audio/voice/en_57385626d5.mp3"
+ },
+ {
+  "key": "tr|miy miy",
+  "lang": "tr",
+  "text": "Miy miy!",
+  "file": "audio/voice/tr_c7d77ecb97.mp3"
+ },
+ {
+  "key": "en|mew mew",
+  "lang": "en",
+  "text": "Mew mew!",
+  "file": "audio/voice/en_0dbc158351.mp3"
+ },
+ {
+  "key": "tr|dii duu dii duu",
+  "lang": "tr",
+  "text": "Dii duu dii duu!",
+  "file": "audio/voice/tr_c0fc229bd3.mp3"
+ },
+ {
+  "key": "en|nee naw nee naw",
+  "lang": "en",
+  "text": "Nee naw nee naw!",
+  "file": "audio/voice/en_330800bf7a.mp3"
+ },
+ {
+  "key": "tr|dii duu",
+  "lang": "tr",
+  "text": "Dii duu!",
+  "file": "audio/voice/tr_7aface87bb.mp3"
+ },
+ {
+  "key": "en|nee naw",
+  "lang": "en",
+  "text": "Nee naw!",
+  "file": "audio/voice/en_0316a08422.mp3"
+ },
+ {
+  "key": "tr|düt düt",
+  "lang": "tr",
+  "text": "Düt düt!",
+  "file": "audio/voice/tr_af12dcb07a.mp3"
+ },
+ {
+  "key": "en|beep beep",
+  "lang": "en",
+  "text": "Beep beep!",
+  "file": "audio/voice/en_d825f75b69.mp3"
+ },
+ {
+  "key": "tr|vınnn",
+  "lang": "tr",
+  "text": "Vınnn!",
+  "file": "audio/voice/tr_9480f39684.mp3"
+ },
+ {
+  "key": "en|vroom",
+  "lang": "en",
+  "text": "Vroom!",
+  "file": "audio/voice/en_e2d28b790c.mp3"
+ },
+ {
+  "key": "tr|döt döt",
+  "lang": "tr",
+  "text": "Döt döt!",
+  "file": "audio/voice/tr_2aade847d1.mp3"
+ },
+ {
+  "key": "en|honk honk",
+  "lang": "en",
+  "text": "Honk honk!",
+  "file": "audio/voice/en_7dff06c2de.mp3"
+ },
+ {
+  "key": "tr|vırrrın",
+  "lang": "tr",
+  "text": "Vırrrın!",
+  "file": "audio/voice/tr_f82aa8ec1a.mp3"
+ },
+ {
+  "key": "en|vroom vroom",
+  "lang": "en",
+  "text": "Vroom vroom!",
+  "file": "audio/voice/en_8a7b33853c.mp3"
+ },
+ {
+  "key": "tr|vıııın",
+  "lang": "tr",
+  "text": "Vıııın!",
+  "file": "audio/voice/tr_ac42d205fb.mp3"
+ },
+ {
+  "key": "en|zoom",
+  "lang": "en",
+  "text": "Zoom!",
+  "file": "audio/voice/en_30e37a32f9.mp3"
+ },
+ {
+  "key": "tr|çuf çuf",
+  "lang": "tr",
+  "text": "Çuf çuf!",
+  "file": "audio/voice/tr_0f8bbc9eb6.mp3"
+ },
+ {
+  "key": "en|choo choo",
+  "lang": "en",
+  "text": "Choo choo!",
+  "file": "audio/voice/en_1145bfd66e.mp3"
+ },
+ {
+  "key": "tr|düüüt",
+  "lang": "tr",
+  "text": "Düüüt!",
+  "file": "audio/voice/tr_21f55c668b.mp3"
+ },
+ {
+  "key": "tr|tak tak tak",
+  "lang": "tr",
+  "text": "Tak tak tak!",
+  "file": "audio/voice/tr_9a1a531929.mp3"
+ },
+ {
+  "key": "en|chop chop chop",
+  "lang": "en",
+  "text": "Chop chop chop!",
+  "file": "audio/voice/en_8c05f34a3a.mp3"
+ },
+ {
+  "key": "tr|dırın dırın",
+  "lang": "tr",
+  "text": "Dırın dırın!",
+  "file": "audio/voice/tr_df9f406a0a.mp3"
+ },
+ {
+  "key": "en|ring ring",
+  "lang": "en",
+  "text": "Ring ring!",
+  "file": "audio/voice/en_2def9d6f7a.mp3"
+ },
+ {
+  "key": "tr|tıkı tıkı",
+  "lang": "tr",
+  "text": "Tıkı tıkı!",
+  "file": "audio/voice/tr_ad59a1a01b.mp3"
+ },
+ {
+  "key": "en|putt putt",
+  "lang": "en",
+  "text": "Putt putt!",
+  "file": "audio/voice/en_1c9cdf2a4e.mp3"
+ },
+ {
+  "key": "tr|fşşşuu",
+  "lang": "tr",
+  "text": "Fşşşuu!",
+  "file": "audio/voice/tr_72970fa1bb.mp3"
+ },
+ {
+  "key": "en|whoosh",
+  "lang": "en",
+  "text": "Whoosh!",
+  "file": "audio/voice/en_0fddcdfdd1.mp3"
+ },
+ {
+  "key": "tr|renkler",
+  "lang": "tr",
+  "text": "Renkler",
+  "file": "audio/voice/tr_b4516a5a06.mp3"
+ },
+ {
+  "key": "en|colors",
+  "lang": "en",
+  "text": "Colors",
+  "file": "audio/voice/en_fb054f9d96.mp3"
+ },
+ {
+  "key": "tr|kırmızı",
+  "lang": "tr",
+  "text": "Kırmızı!",
+  "file": "audio/voice/tr_a4a7c3581e.mp3"
+ },
+ {
+  "key": "en|red",
+  "lang": "en",
+  "text": "Red!",
+  "file": "audio/voice/en_15ac998213.mp3"
+ },
+ {
+  "key": "tr|mavi",
+  "lang": "tr",
+  "text": "Mavi!",
+  "file": "audio/voice/tr_618f44c39e.mp3"
+ },
+ {
+  "key": "en|blue",
+  "lang": "en",
+  "text": "Blue!",
+  "file": "audio/voice/en_72620dbfa1.mp3"
+ },
+ {
+  "key": "tr|sarı",
+  "lang": "tr",
+  "text": "Sarı!",
+  "file": "audio/voice/tr_e943f249c8.mp3"
+ },
+ {
+  "key": "en|yellow",
+  "lang": "en",
+  "text": "Yellow!",
+  "file": "audio/voice/en_51fc074920.mp3"
+ },
+ {
+  "key": "tr|yeşil",
+  "lang": "tr",
+  "text": "Yeşil!",
+  "file": "audio/voice/tr_f3026c8226.mp3"
+ },
+ {
+  "key": "en|green",
+  "lang": "en",
+  "text": "Green!",
+  "file": "audio/voice/en_4009a927d8.mp3"
+ },
+ {
+  "key": "tr|beyaz",
+  "lang": "tr",
+  "text": "Beyaz!",
+  "file": "audio/voice/tr_6eae21b6dc.mp3"
+ },
+ {
+  "key": "en|white",
+  "lang": "en",
+  "text": "White!",
+  "file": "audio/voice/en_833e9f2952.mp3"
+ },
+ {
+  "key": "tr|turuncu",
+  "lang": "tr",
+  "text": "Turuncu!",
+  "file": "audio/voice/tr_d819b7fa86.mp3"
+ },
+ {
+  "key": "en|orange",
+  "lang": "en",
+  "text": "Orange!",
+  "file": "audio/voice/en_33f82e6f45.mp3"
+ },
+ {
+  "key": "tr|mor",
+  "lang": "tr",
+  "text": "Mor!",
+  "file": "audio/voice/tr_8e9cbc3d34.mp3"
+ },
+ {
+  "key": "en|purple",
+  "lang": "en",
+  "text": "Purple!",
+  "file": "audio/voice/en_1fb3daeadf.mp3"
+ },
+ {
+  "key": "tr|pembe",
+  "lang": "tr",
+  "text": "Pembe!",
+  "file": "audio/voice/tr_d48802709b.mp3"
+ },
+ {
+  "key": "en|pink",
+  "lang": "en",
+  "text": "Pink!",
+  "file": "audio/voice/en_fe82dddd3e.mp3"
+ },
+ {
+  "key": "tr|siyah",
+  "lang": "tr",
+  "text": "Siyah!",
+  "file": "audio/voice/tr_e2ef06e3d8.mp3"
+ },
+ {
+  "key": "en|black",
+  "lang": "en",
+  "text": "Black!",
+  "file": "audio/voice/en_433be63dc3.mp3"
+ },
+ {
+  "key": "tr|kahverengi",
+  "lang": "tr",
+  "text": "Kahverengi!",
+  "file": "audio/voice/tr_5fe0302a1b.mp3"
+ },
+ {
+  "key": "en|brown",
+  "lang": "en",
+  "text": "Brown!",
+  "file": "audio/voice/en_3e4a4a3ab5.mp3"
+ },
+ {
+  "key": "tr|sayılar",
+  "lang": "tr",
+  "text": "Sayılar",
+  "file": "audio/voice/tr_a4f68296e6.mp3"
+ },
+ {
+  "key": "en|numbers",
+  "lang": "en",
+  "text": "Numbers",
+  "file": "audio/voice/en_1f04f600b6.mp3"
+ },
+ {
+  "key": "tr|bir",
+  "lang": "tr",
+  "text": "Bir!",
+  "file": "audio/voice/tr_310d3b14bf.mp3"
+ },
+ {
+  "key": "en|one",
+  "lang": "en",
+  "text": "One!",
+  "file": "audio/voice/en_26c889486e.mp3"
+ },
+ {
+  "key": "tr|iki",
+  "lang": "tr",
+  "text": "İki!",
+  "file": "audio/voice/tr_fd7b31727e.mp3"
+ },
+ {
+  "key": "en|two",
+  "lang": "en",
+  "text": "Two!",
+  "file": "audio/voice/en_33e5f0c982.mp3"
+ },
+ {
+  "key": "tr|üç",
+  "lang": "tr",
+  "text": "Üç!",
+  "file": "audio/voice/tr_c7a6d0f553.mp3"
+ },
+ {
+  "key": "en|three",
+  "lang": "en",
+  "text": "Three!",
+  "file": "audio/voice/en_27d1aa50ec.mp3"
+ },
+ {
+  "key": "tr|dört",
+  "lang": "tr",
+  "text": "Dört!",
+  "file": "audio/voice/tr_c18eabaa39.mp3"
+ },
+ {
+  "key": "en|four",
+  "lang": "en",
+  "text": "Four!",
+  "file": "audio/voice/en_0df10de822.mp3"
+ },
+ {
+  "key": "tr|beş",
+  "lang": "tr",
+  "text": "Beş!",
+  "file": "audio/voice/tr_d5f30c0ddf.mp3"
+ },
+ {
+  "key": "en|five",
+  "lang": "en",
+  "text": "Five!",
+  "file": "audio/voice/en_d35e4525d0.mp3"
+ },
+ {
+  "key": "tr|altı",
+  "lang": "tr",
+  "text": "Altı!",
+  "file": "audio/voice/tr_cc70139e49.mp3"
+ },
+ {
+  "key": "en|six",
+  "lang": "en",
+  "text": "Six!",
+  "file": "audio/voice/en_a8b249c694.mp3"
+ },
+ {
+  "key": "tr|yedi",
+  "lang": "tr",
+  "text": "Yedi!",
+  "file": "audio/voice/tr_69f45fd57f.mp3"
+ },
+ {
+  "key": "en|seven",
+  "lang": "en",
+  "text": "Seven!",
+  "file": "audio/voice/en_8ac71ec9d1.mp3"
+ },
+ {
+  "key": "tr|sekiz",
+  "lang": "tr",
+  "text": "Sekiz!",
+  "file": "audio/voice/tr_c2eaf497bc.mp3"
+ },
+ {
+  "key": "en|eight",
+  "lang": "en",
+  "text": "Eight!",
+  "file": "audio/voice/en_c04880f529.mp3"
+ },
+ {
+  "key": "tr|dokuz",
+  "lang": "tr",
+  "text": "Dokuz!",
+  "file": "audio/voice/tr_f0407d6379.mp3"
+ },
+ {
+  "key": "en|nine",
+  "lang": "en",
+  "text": "Nine!",
+  "file": "audio/voice/en_cb1afff902.mp3"
+ },
+ {
+  "key": "tr|on",
+  "lang": "tr",
+  "text": "On!",
+  "file": "audio/voice/tr_102db3fafd.mp3"
+ },
+ {
+  "key": "en|ten",
+  "lang": "en",
+  "text": "Ten!",
+  "file": "audio/voice/en_b09e5491b7.mp3"
+ },
+ {
+  "key": "tr|kediler",
+  "lang": "tr",
+  "text": "Kediler",
+  "file": "audio/voice/tr_cb72476ab4.mp3"
+ },
+ {
+  "key": "en|kitties",
+  "lang": "en",
+  "text": "Kitties",
+  "file": "audio/voice/en_72798a5e7e.mp3"
+ },
+ {
+  "key": "tr|mutlu kedi",
+  "lang": "tr",
+  "text": "Mutlu kedi!",
+  "file": "audio/voice/tr_f0baa63269.mp3"
+ },
+ {
+  "key": "en|happy cat",
+  "lang": "en",
+  "text": "Happy cat!",
+  "file": "audio/voice/en_d276dec383.mp3"
+ },
+ {
+  "key": "tr|gülen kedi",
+  "lang": "tr",
+  "text": "Gülen kedi!",
+  "file": "audio/voice/tr_8b14d0ad52.mp3"
+ },
+ {
+  "key": "en|laughing cat",
+  "lang": "en",
+  "text": "Laughing cat!",
+  "file": "audio/voice/en_566b87e1e3.mp3"
+ },
+ {
+  "key": "tr|seven kedi",
+  "lang": "tr",
+  "text": "Seven kedi!",
+  "file": "audio/voice/tr_c50169d695.mp3"
+ },
+ {
+  "key": "en|loving cat",
+  "lang": "en",
+  "text": "Loving cat!",
+  "file": "audio/voice/en_c5fc6737b0.mp3"
+ },
+ {
+  "key": "tr|öpücük veren kedi",
+  "lang": "tr",
+  "text": "Öpücük veren kedi!",
+  "file": "audio/voice/tr_9fb92f88b2.mp3"
+ },
+ {
+  "key": "en|kissing cat",
+  "lang": "en",
+  "text": "Kissing cat!",
+  "file": "audio/voice/en_c856e882d8.mp3"
+ },
+ {
+  "key": "tr|şaşkın kedi",
+  "lang": "tr",
+  "text": "Şaşkın kedi!",
+  "file": "audio/voice/tr_5fac37e30a.mp3"
+ },
+ {
+  "key": "en|surprised cat",
+  "lang": "en",
+  "text": "Surprised cat!",
+  "file": "audio/voice/en_c96016f411.mp3"
+ },
+ {
+  "key": "tr|üzgün kedi",
+  "lang": "tr",
+  "text": "Üzgün kedi!",
+  "file": "audio/voice/tr_6a443bde39.mp3"
+ },
+ {
+  "key": "en|sad cat",
+  "lang": "en",
+  "text": "Sad cat!",
+  "file": "audio/voice/en_ca868e9840.mp3"
+ },
+ {
+  "key": "tr|kızgın kedi",
+  "lang": "tr",
+  "text": "Kızgın kedi!",
+  "file": "audio/voice/tr_4109ea9abf.mp3"
+ },
+ {
+  "key": "en|angry cat",
+  "lang": "en",
+  "text": "Angry cat!",
+  "file": "audio/voice/en_a2a7b5733b.mp3"
+ },
+ {
+  "key": "tr|sarı kedi",
+  "lang": "tr",
+  "text": "Sarı kedi!",
+  "file": "audio/voice/tr_3da1ca1f1c.mp3"
+ },
+ {
+  "key": "en|yellow cat",
+  "lang": "en",
+  "text": "Yellow cat!",
+  "file": "audio/voice/en_fadb3ef645.mp3"
+ },
+ {
+  "key": "tr|siyah kedi",
+  "lang": "tr",
+  "text": "Siyah kedi!",
+  "file": "audio/voice/tr_f90d97c039.mp3"
+ },
+ {
+  "key": "en|black cat",
+  "lang": "en",
+  "text": "Black cat!",
+  "file": "audio/voice/en_787f5d1820.mp3"
+ },
+ {
+  "key": "tr|yavru kedi",
+  "lang": "tr",
+  "text": "Yavru kedi!",
+  "file": "audio/voice/tr_3d9bf431e2.mp3"
+ },
+ {
+  "key": "en|kitten",
+  "lang": "en",
+  "text": "Kitten!",
+  "file": "audio/voice/en_d2b1c7d421.mp3"
+ },
+ {
+  "key": "tr|hayvanlar",
+  "lang": "tr",
+  "text": "Hayvanlar",
+  "file": "audio/voice/tr_b7a7512828.mp3"
+ },
+ {
+  "key": "en|animals",
+  "lang": "en",
+  "text": "Animals",
+  "file": "audio/voice/en_1629a40c23.mp3"
+ },
+ {
+  "key": "tr|köpek",
+  "lang": "tr",
+  "text": "Köpek!",
+  "file": "audio/voice/tr_59f26944a2.mp3"
+ },
+ {
+  "key": "en|dog",
+  "lang": "en",
+  "text": "Dog!",
+  "file": "audio/voice/en_60ce9319fa.mp3"
+ },
+ {
+  "key": "tr|kedi",
+  "lang": "tr",
+  "text": "Kedi!",
+  "file": "audio/voice/tr_c64cd7f48c.mp3"
+ },
+ {
+  "key": "en|cat",
+  "lang": "en",
+  "text": "Cat!",
+  "file": "audio/voice/en_1b5ef74e3a.mp3"
+ },
+ {
+  "key": "tr|inek",
+  "lang": "tr",
+  "text": "İnek!",
+  "file": "audio/voice/tr_867bf0604b.mp3"
+ },
+ {
+  "key": "en|cow",
+  "lang": "en",
+  "text": "Cow!",
+  "file": "audio/voice/en_f2f7647868.mp3"
+ },
+ {
+  "key": "tr|koyun",
+  "lang": "tr",
+  "text": "Koyun!",
+  "file": "audio/voice/tr_8d4ce8c682.mp3"
+ },
+ {
+  "key": "en|sheep",
+  "lang": "en",
+  "text": "Sheep!",
+  "file": "audio/voice/en_0cd1de3a29.mp3"
+ },
+ {
+  "key": "tr|tavuk",
+  "lang": "tr",
+  "text": "Tavuk!",
+  "file": "audio/voice/tr_7ebd5d59cc.mp3"
+ },
+ {
+  "key": "en|chicken",
+  "lang": "en",
+  "text": "Chicken!",
+  "file": "audio/voice/en_60025f30ff.mp3"
+ },
+ {
+  "key": "tr|ördek",
+  "lang": "tr",
+  "text": "Ördek!",
+  "file": "audio/voice/tr_63b4aae47a.mp3"
+ },
+ {
+  "key": "en|duck",
+  "lang": "en",
+  "text": "Duck!",
+  "file": "audio/voice/en_db3afbe342.mp3"
+ },
+ {
+  "key": "tr|civciv",
+  "lang": "tr",
+  "text": "Civciv!",
+  "file": "audio/voice/tr_dd993904ac.mp3"
+ },
+ {
+  "key": "en|chick",
+  "lang": "en",
+  "text": "Chick!",
+  "file": "audio/voice/en_5ef616e46c.mp3"
+ },
+ {
+  "key": "tr|at",
+  "lang": "tr",
+  "text": "At!",
+  "file": "audio/voice/tr_8b5545c28e.mp3"
+ },
+ {
+  "key": "en|horse",
+  "lang": "en",
+  "text": "Horse!",
+  "file": "audio/voice/en_1f28d12403.mp3"
+ },
+ {
+  "key": "tr|aslan",
+  "lang": "tr",
+  "text": "Aslan!",
+  "file": "audio/voice/tr_5c9e27cf23.mp3"
+ },
+ {
+  "key": "en|lion",
+  "lang": "en",
+  "text": "Lion!",
+  "file": "audio/voice/en_77769add29.mp3"
+ },
+ {
+  "key": "tr|fil",
+  "lang": "tr",
+  "text": "Fil!",
+  "file": "audio/voice/tr_afc824dc55.mp3"
+ },
+ {
+  "key": "en|elephant",
+  "lang": "en",
+  "text": "Elephant!",
+  "file": "audio/voice/en_503ea43bcf.mp3"
+ },
+ {
+  "key": "tr|maymun",
+  "lang": "tr",
+  "text": "Maymun!",
+  "file": "audio/voice/tr_5edc3b5b96.mp3"
+ },
+ {
+  "key": "en|monkey",
+  "lang": "en",
+  "text": "Monkey!",
+  "file": "audio/voice/en_e0cc972362.mp3"
+ },
+ {
+  "key": "tr|kurbağa",
+  "lang": "tr",
+  "text": "Kurbağa!",
+  "file": "audio/voice/tr_0c88ed51c5.mp3"
+ },
+ {
+  "key": "en|frog",
+  "lang": "en",
+  "text": "Frog!",
+  "file": "audio/voice/en_8399b7c7bc.mp3"
+ },
+ {
+  "key": "tr|kuş",
+  "lang": "tr",
+  "text": "Kuş!",
+  "file": "audio/voice/tr_8b37e4fc7b.mp3"
+ },
+ {
+  "key": "en|bird",
+  "lang": "en",
+  "text": "Bird!",
+  "file": "audio/voice/en_dc8d2315f7.mp3"
+ },
+ {
+  "key": "tr|baykuş",
+  "lang": "tr",
+  "text": "Baykuş!",
+  "file": "audio/voice/tr_9067babdcf.mp3"
+ },
+ {
+  "key": "en|owl",
+  "lang": "en",
+  "text": "Owl!",
+  "file": "audio/voice/en_612fad2aee.mp3"
+ },
+ {
+  "key": "tr|ayı",
+  "lang": "tr",
+  "text": "Ayı!",
+  "file": "audio/voice/tr_d258e6f87a.mp3"
+ },
+ {
+  "key": "en|bear",
+  "lang": "en",
+  "text": "Bear!",
+  "file": "audio/voice/en_24579989bb.mp3"
+ },
+ {
+  "key": "tr|arı",
+  "lang": "tr",
+  "text": "Arı!",
+  "file": "audio/voice/tr_c59c33e0ce.mp3"
+ },
+ {
+  "key": "en|bee",
+  "lang": "en",
+  "text": "Bee!",
+  "file": "audio/voice/en_df02c7e980.mp3"
+ },
+ {
+  "key": "tr|balık",
+  "lang": "tr",
+  "text": "Balık!",
+  "file": "audio/voice/tr_d76322d06b.mp3"
+ },
+ {
+  "key": "en|fish",
+  "lang": "en",
+  "text": "Fish!",
+  "file": "audio/voice/en_2f98c9e67b.mp3"
+ },
+ {
+  "key": "tr|tavşan",
+  "lang": "tr",
+  "text": "Tavşan!",
+  "file": "audio/voice/tr_e2925a120b.mp3"
+ },
+ {
+  "key": "en|rabbit",
+  "lang": "en",
+  "text": "Rabbit!",
+  "file": "audio/voice/en_059b29957e.mp3"
+ },
+ {
+  "key": "tr|tilki",
+  "lang": "tr",
+  "text": "Tilki!",
+  "file": "audio/voice/tr_35ceb116ab.mp3"
+ },
+ {
+  "key": "en|fox",
+  "lang": "en",
+  "text": "Fox!",
+  "file": "audio/voice/en_5b65b434c0.mp3"
+ },
+ {
+  "key": "tr|panda",
+  "lang": "tr",
+  "text": "Panda!",
+  "file": "audio/voice/tr_9f2e779b9a.mp3"
+ },
+ {
+  "key": "en|panda",
+  "lang": "en",
+  "text": "Panda!",
+  "file": "audio/voice/en_b4ff2acf8f.mp3"
+ },
+ {
+  "key": "tr|kim bu ses",
+  "lang": "tr",
+  "text": "Kim Bu Ses?",
+  "file": "audio/voice/tr_c1f8a6b838.mp3"
+ },
+ {
+  "key": "en|who says this",
+  "lang": "en",
+  "text": "Who Says This?",
+  "file": "audio/voice/en_8231a89dfb.mp3"
+ },
+ {
+  "key": "tr|köpek balıkları",
+  "lang": "tr",
+  "text": "Köpek Balıkları",
+  "file": "audio/voice/tr_5fe8c5e7a1.mp3"
+ },
+ {
+  "key": "en|sharks",
+  "lang": "en",
+  "text": "Sharks",
+  "file": "audio/voice/en_3749f18eaa.mp3"
+ },
+ {
+  "key": "tr|kırmızı köpek balığı",
+  "lang": "tr",
+  "text": "Kırmızı köpek balığı!",
+  "file": "audio/voice/tr_d418444b83.mp3"
+ },
+ {
+  "key": "en|red shark",
+  "lang": "en",
+  "text": "Red shark!",
+  "file": "audio/voice/en_5d7cee26bb.mp3"
+ },
+ {
+  "key": "tr|mavi köpek balığı",
+  "lang": "tr",
+  "text": "Mavi köpek balığı!",
+  "file": "audio/voice/tr_2ab70deb42.mp3"
+ },
+ {
+  "key": "en|blue shark",
+  "lang": "en",
+  "text": "Blue shark!",
+  "file": "audio/voice/en_948f6b3df3.mp3"
+ },
+ {
+  "key": "tr|sarı köpek balığı",
+  "lang": "tr",
+  "text": "Sarı köpek balığı!",
+  "file": "audio/voice/tr_aeb20bdc84.mp3"
+ },
+ {
+  "key": "en|yellow shark",
+  "lang": "en",
+  "text": "Yellow shark!",
+  "file": "audio/voice/en_9498517c07.mp3"
+ },
+ {
+  "key": "tr|yeşil köpek balığı",
+  "lang": "tr",
+  "text": "Yeşil köpek balığı!",
+  "file": "audio/voice/tr_f9259a5e52.mp3"
+ },
+ {
+  "key": "en|green shark",
+  "lang": "en",
+  "text": "Green shark!",
+  "file": "audio/voice/en_51d70d7c69.mp3"
+ },
+ {
+  "key": "tr|beyaz köpek balığı",
+  "lang": "tr",
+  "text": "Beyaz köpek balığı!",
+  "file": "audio/voice/tr_b649db46dd.mp3"
+ },
+ {
+  "key": "en|white shark",
+  "lang": "en",
+  "text": "White shark!",
+  "file": "audio/voice/en_83e518362b.mp3"
+ },
+ {
+  "key": "tr|turuncu köpek balığı",
+  "lang": "tr",
+  "text": "Turuncu köpek balığı!",
+  "file": "audio/voice/tr_f16aa7711f.mp3"
+ },
+ {
+  "key": "en|orange shark",
+  "lang": "en",
+  "text": "Orange shark!",
+  "file": "audio/voice/en_09f3fbb993.mp3"
+ },
+ {
+  "key": "tr|mor köpek balığı",
+  "lang": "tr",
+  "text": "Mor köpek balığı!",
+  "file": "audio/voice/tr_0af5fa157b.mp3"
+ },
+ {
+  "key": "en|purple shark",
+  "lang": "en",
+  "text": "Purple shark!",
+  "file": "audio/voice/en_d77111a3e6.mp3"
+ },
+ {
+  "key": "tr|pembe köpek balığı",
+  "lang": "tr",
+  "text": "Pembe köpek balığı!",
+  "file": "audio/voice/tr_8cff5114fa.mp3"
+ },
+ {
+  "key": "en|pink shark",
+  "lang": "en",
+  "text": "Pink shark!",
+  "file": "audio/voice/en_41623bd3c5.mp3"
+ },
+ {
+  "key": "tr|siyah köpek balığı",
+  "lang": "tr",
+  "text": "Siyah köpek balığı!",
+  "file": "audio/voice/tr_ae8c488ea8.mp3"
+ },
+ {
+  "key": "en|black shark",
+  "lang": "en",
+  "text": "Black shark!",
+  "file": "audio/voice/en_2a82369870.mp3"
+ },
+ {
+  "key": "tr|kahverengi köpek balığı",
+  "lang": "tr",
+  "text": "Kahverengi köpek balığı!",
+  "file": "audio/voice/tr_26d3837999.mp3"
+ },
+ {
+  "key": "en|brown shark",
+  "lang": "en",
+  "text": "Brown shark!",
+  "file": "audio/voice/en_bb658f0ee4.mp3"
+ },
+ {
+  "key": "tr|arabalar",
+  "lang": "tr",
+  "text": "Arabalar",
+  "file": "audio/voice/tr_82180ec473.mp3"
+ },
+ {
+  "key": "en|cars",
+  "lang": "en",
+  "text": "Cars",
+  "file": "audio/voice/en_5449913074.mp3"
+ },
+ {
+  "key": "tr|polis arabası",
+  "lang": "tr",
+  "text": "Polis arabası!",
+  "file": "audio/voice/tr_aa5cbfc995.mp3"
+ },
+ {
+  "key": "en|police car",
+  "lang": "en",
+  "text": "Police car!",
+  "file": "audio/voice/en_fb22c50ed1.mp3"
+ },
+ {
+  "key": "tr|ambulans",
+  "lang": "tr",
+  "text": "Ambulans!",
+  "file": "audio/voice/tr_4e83769c0b.mp3"
+ },
+ {
+  "key": "en|ambulance",
+  "lang": "en",
+  "text": "Ambulance!",
+  "file": "audio/voice/en_8a7ed99272.mp3"
+ },
+ {
+  "key": "tr|itfaiye",
+  "lang": "tr",
+  "text": "İtfaiye!",
+  "file": "audio/voice/tr_67a01700e1.mp3"
+ },
+ {
+  "key": "en|fire truck",
+  "lang": "en",
+  "text": "Fire truck!",
+  "file": "audio/voice/en_ada60c9cce.mp3"
+ },
+ {
+  "key": "tr|taksi",
+  "lang": "tr",
+  "text": "Taksi!",
+  "file": "audio/voice/tr_bf1d991110.mp3"
+ },
+ {
+  "key": "en|taxi",
+  "lang": "en",
+  "text": "Taxi!",
+  "file": "audio/voice/en_ee974a3e19.mp3"
+ },
+ {
+  "key": "tr|yarış arabası",
+  "lang": "tr",
+  "text": "Yarış arabası!",
+  "file": "audio/voice/tr_4bfb4b4026.mp3"
+ },
+ {
+  "key": "en|race car",
+  "lang": "en",
+  "text": "Race car!",
+  "file": "audio/voice/en_48bc77d659.mp3"
+ },
+ {
+  "key": "tr|kamyon",
+  "lang": "tr",
+  "text": "Kamyon!",
+  "file": "audio/voice/tr_d54577c8d5.mp3"
+ },
+ {
+  "key": "en|truck",
+  "lang": "en",
+  "text": "Truck!",
+  "file": "audio/voice/en_7b2807c9bc.mp3"
+ },
+ {
+  "key": "tr|otobüs",
+  "lang": "tr",
+  "text": "Otobüs!",
+  "file": "audio/voice/tr_ca9264928f.mp3"
+ },
+ {
+  "key": "en|bus",
+  "lang": "en",
+  "text": "Bus!",
+  "file": "audio/voice/en_ebaca5c4c5.mp3"
+ },
+ {
+  "key": "tr|kamyonet",
+  "lang": "tr",
+  "text": "Kamyonet!",
+  "file": "audio/voice/tr_4a4f9c5ca2.mp3"
+ },
+ {
+  "key": "en|pickup truck",
+  "lang": "en",
+  "text": "Pickup truck!",
+  "file": "audio/voice/en_9852aea72b.mp3"
+ },
+ {
+  "key": "tr|jip",
+  "lang": "tr",
+  "text": "Jip!",
+  "file": "audio/voice/tr_5bb8df6d19.mp3"
+ },
+ {
+  "key": "en|jeep",
+  "lang": "en",
+  "text": "Jeep!",
+  "file": "audio/voice/en_0e6228c465.mp3"
+ },
+ {
+  "key": "tr|motosiklet",
+  "lang": "tr",
+  "text": "Motosiklet!",
+  "file": "audio/voice/tr_a8a4b00774.mp3"
+ },
+ {
+  "key": "en|motorcycle",
+  "lang": "en",
+  "text": "Motorcycle!",
+  "file": "audio/voice/en_c2d30205c6.mp3"
+ },
+ {
+  "key": "tr|kırmızı araba",
+  "lang": "tr",
+  "text": "Kırmızı araba!",
+  "file": "audio/voice/tr_c061aa0fc7.mp3"
+ },
+ {
+  "key": "en|red car",
+  "lang": "en",
+  "text": "Red car!",
+  "file": "audio/voice/en_5e6774a1ed.mp3"
+ },
+ {
+  "key": "tr|mavi araba",
+  "lang": "tr",
+  "text": "Mavi araba!",
+  "file": "audio/voice/tr_71f9aad121.mp3"
+ },
+ {
+  "key": "en|blue car",
+  "lang": "en",
+  "text": "Blue car!",
+  "file": "audio/voice/en_bf8126cfe3.mp3"
+ },
+ {
+  "key": "tr|sarı araba",
+  "lang": "tr",
+  "text": "Sarı araba!",
+  "file": "audio/voice/tr_f24598a6eb.mp3"
+ },
+ {
+  "key": "en|yellow car",
+  "lang": "en",
+  "text": "Yellow car!",
+  "file": "audio/voice/en_4d3e7168c1.mp3"
+ },
+ {
+  "key": "tr|yeşil araba",
+  "lang": "tr",
+  "text": "Yeşil araba!",
+  "file": "audio/voice/tr_8c1b3a6bf5.mp3"
+ },
+ {
+  "key": "en|green car",
+  "lang": "en",
+  "text": "Green car!",
+  "file": "audio/voice/en_997c5de522.mp3"
+ },
+ {
+  "key": "tr|pembe araba",
+  "lang": "tr",
+  "text": "Pembe araba!",
+  "file": "audio/voice/tr_61425d7248.mp3"
+ },
+ {
+  "key": "en|pink car",
+  "lang": "en",
+  "text": "Pink car!",
+  "file": "audio/voice/en_16a1acbd06.mp3"
+ },
+ {
+  "key": "tr|taşıtlar",
+  "lang": "tr",
+  "text": "Taşıtlar",
+  "file": "audio/voice/tr_c2f48be2e2.mp3"
+ },
+ {
+  "key": "en|vehicles",
+  "lang": "en",
+  "text": "Vehicles",
+  "file": "audio/voice/en_134c45c12d.mp3"
+ },
+ {
+  "key": "tr|uçak",
+  "lang": "tr",
+  "text": "Uçak!",
+  "file": "audio/voice/tr_f88f4d0ecc.mp3"
+ },
+ {
+  "key": "en|airplane",
+  "lang": "en",
+  "text": "Airplane!",
+  "file": "audio/voice/en_0fec9a5bdd.mp3"
+ },
+ {
+  "key": "tr|tren",
+  "lang": "tr",
+  "text": "Tren!",
+  "file": "audio/voice/tr_dedabc21c0.mp3"
+ },
+ {
+  "key": "en|train",
+  "lang": "en",
+  "text": "Train!",
+  "file": "audio/voice/en_29cf0f68e3.mp3"
+ },
+ {
+  "key": "tr|gemi",
+  "lang": "tr",
+  "text": "Gemi!",
+  "file": "audio/voice/tr_793f110b45.mp3"
+ },
+ {
+  "key": "en|ship",
+  "lang": "en",
+  "text": "Ship!",
+  "file": "audio/voice/en_925d3ba611.mp3"
+ },
+ {
+  "key": "tr|helikopter",
+  "lang": "tr",
+  "text": "Helikopter!",
+  "file": "audio/voice/tr_85fe766a9c.mp3"
+ },
+ {
+  "key": "en|helicopter",
+  "lang": "en",
+  "text": "Helicopter!",
+  "file": "audio/voice/en_754e9e12a8.mp3"
+ },
+ {
+  "key": "tr|bisiklet",
+  "lang": "tr",
+  "text": "Bisiklet!",
+  "file": "audio/voice/tr_8208f62154.mp3"
+ },
+ {
+  "key": "en|bicycle",
+  "lang": "en",
+  "text": "Bicycle!",
+  "file": "audio/voice/en_f58e029f5d.mp3"
+ },
+ {
+  "key": "tr|traktör",
+  "lang": "tr",
+  "text": "Traktör!",
+  "file": "audio/voice/tr_9afb3c3e94.mp3"
+ },
+ {
+  "key": "en|tractor",
+  "lang": "en",
+  "text": "Tractor!",
+  "file": "audio/voice/en_824cff5b91.mp3"
+ },
+ {
+  "key": "tr|roket",
+  "lang": "tr",
+  "text": "Roket!",
+  "file": "audio/voice/tr_2792769e4b.mp3"
+ },
+ {
+  "key": "en|rocket",
+  "lang": "en",
+  "text": "Rocket!",
+  "file": "audio/voice/en_c6a546c7da.mp3"
+ },
+ {
+  "key": "tr|araba",
+  "lang": "tr",
+  "text": "Araba!",
+  "file": "audio/voice/tr_4f756f33c6.mp3"
+ },
+ {
+  "key": "en|car",
+  "lang": "en",
+  "text": "Car!",
+  "file": "audio/voice/en_13e090829b.mp3"
+ },
+ {
+  "key": "tr|meyveler",
+  "lang": "tr",
+  "text": "Meyveler",
+  "file": "audio/voice/tr_34ddba6fcd.mp3"
+ },
+ {
+  "key": "en|fruits",
+  "lang": "en",
+  "text": "Fruits",
+  "file": "audio/voice/en_221b745ade.mp3"
+ },
+ {
+  "key": "tr|elma",
+  "lang": "tr",
+  "text": "Elma!",
+  "file": "audio/voice/tr_314c37c755.mp3"
+ },
+ {
+  "key": "en|apple",
+  "lang": "en",
+  "text": "Apple!",
+  "file": "audio/voice/en_3d3134092f.mp3"
+ },
+ {
+  "key": "tr|muz",
+  "lang": "tr",
+  "text": "Muz!",
+  "file": "audio/voice/tr_0148284dc1.mp3"
+ },
+ {
+  "key": "en|banana",
+  "lang": "en",
+  "text": "Banana!",
+  "file": "audio/voice/en_7eff0c93c3.mp3"
+ },
+ {
+  "key": "tr|üzüm",
+  "lang": "tr",
+  "text": "Üzüm!",
+  "file": "audio/voice/tr_461855b9f0.mp3"
+ },
+ {
+  "key": "en|grape",
+  "lang": "en",
+  "text": "Grape!",
+  "file": "audio/voice/en_8618878209.mp3"
+ },
+ {
+  "key": "tr|çilek",
+  "lang": "tr",
+  "text": "Çilek!",
+  "file": "audio/voice/tr_241556fdfd.mp3"
+ },
+ {
+  "key": "en|strawberry",
+  "lang": "en",
+  "text": "Strawberry!",
+  "file": "audio/voice/en_39d66387b6.mp3"
+ },
+ {
+  "key": "tr|portakal",
+  "lang": "tr",
+  "text": "Portakal!",
+  "file": "audio/voice/tr_f608400424.mp3"
+ },
+ {
+  "key": "tr|karpuz",
+  "lang": "tr",
+  "text": "Karpuz!",
+  "file": "audio/voice/tr_bd268fa05a.mp3"
+ },
+ {
+  "key": "en|watermelon",
+  "lang": "en",
+  "text": "Watermelon!",
+  "file": "audio/voice/en_7cdbbaa363.mp3"
+ },
+ {
+  "key": "tr|armut",
+  "lang": "tr",
+  "text": "Armut!",
+  "file": "audio/voice/tr_c70de976ad.mp3"
+ },
+ {
+  "key": "en|pear",
+  "lang": "en",
+  "text": "Pear!",
+  "file": "audio/voice/en_476e84d805.mp3"
+ },
+ {
+  "key": "tr|kiraz",
+  "lang": "tr",
+  "text": "Kiraz!",
+  "file": "audio/voice/tr_3276af757d.mp3"
+ },
+ {
+  "key": "en|cherry",
+  "lang": "en",
+  "text": "Cherry!",
+  "file": "audio/voice/en_38263290c4.mp3"
+ },
+ {
+  "key": "tr|şeftali",
+  "lang": "tr",
+  "text": "Şeftali!",
+  "file": "audio/voice/tr_1991d63fbf.mp3"
+ },
+ {
+  "key": "en|peach",
+  "lang": "en",
+  "text": "Peach!",
+  "file": "audio/voice/en_2486b4bf69.mp3"
+ },
+ {
+  "key": "tr|ananas",
+  "lang": "tr",
+  "text": "Ananas!",
+  "file": "audio/voice/tr_9cd83f3877.mp3"
+ },
+ {
+  "key": "en|pineapple",
+  "lang": "en",
+  "text": "Pineapple!",
+  "file": "audio/voice/en_ca58e8caab.mp3"
+ },
+ {
+  "key": "tr|limon",
+  "lang": "tr",
+  "text": "Limon!",
+  "file": "audio/voice/tr_2f4b2ea96b.mp3"
+ },
+ {
+  "key": "en|lemon",
+  "lang": "en",
+  "text": "Lemon!",
+  "file": "audio/voice/en_118f89d87d.mp3"
+ },
+ {
+  "key": "tr|kivi",
+  "lang": "tr",
+  "text": "Kivi!",
+  "file": "audio/voice/tr_39c1b6057b.mp3"
+ },
+ {
+  "key": "en|kiwi",
+  "lang": "en",
+  "text": "Kiwi!",
+  "file": "audio/voice/en_136c76f835.mp3"
+ },
+ {
+  "key": "tr|yiyecekler",
+  "lang": "tr",
+  "text": "Yiyecekler",
+  "file": "audio/voice/tr_4d2e4a9a01.mp3"
+ },
+ {
+  "key": "en|foods",
+  "lang": "en",
+  "text": "Foods",
+  "file": "audio/voice/en_8656b84efb.mp3"
+ },
+ {
+  "key": "tr|ekmek",
+  "lang": "tr",
+  "text": "Ekmek!",
+  "file": "audio/voice/tr_b7fe10d8b1.mp3"
+ },
+ {
+  "key": "en|bread",
+  "lang": "en",
+  "text": "Bread!",
+  "file": "audio/voice/en_c9cfc853fe.mp3"
+ },
+ {
+  "key": "tr|peynir",
+  "lang": "tr",
+  "text": "Peynir!",
+  "file": "audio/voice/tr_e487fc241e.mp3"
+ },
+ {
+  "key": "en|cheese",
+  "lang": "en",
+  "text": "Cheese!",
+  "file": "audio/voice/en_c779390974.mp3"
+ },
+ {
+  "key": "tr|havuç",
+  "lang": "tr",
+  "text": "Havuç!",
+  "file": "audio/voice/tr_32ecc0d6e8.mp3"
+ },
+ {
+  "key": "en|carrot",
+  "lang": "en",
+  "text": "Carrot!",
+  "file": "audio/voice/en_09f227e571.mp3"
+ },
+ {
+  "key": "tr|yumurta",
+  "lang": "tr",
+  "text": "Yumurta!",
+  "file": "audio/voice/tr_24154b685c.mp3"
+ },
+ {
+  "key": "en|egg",
+  "lang": "en",
+  "text": "Egg!",
+  "file": "audio/voice/en_1a304b4902.mp3"
+ },
+ {
+  "key": "tr|bisküvi",
+  "lang": "tr",
+  "text": "Bisküvi!",
+  "file": "audio/voice/tr_860e464c3e.mp3"
+ },
+ {
+  "key": "en|biscuit",
+  "lang": "en",
+  "text": "Biscuit!",
+  "file": "audio/voice/en_9fbf42d1ad.mp3"
+ },
+ {
+  "key": "tr|makarna",
+  "lang": "tr",
+  "text": "Makarna!",
+  "file": "audio/voice/tr_62ba7b0b29.mp3"
+ },
+ {
+  "key": "en|pasta",
+  "lang": "en",
+  "text": "Pasta!",
+  "file": "audio/voice/en_685d78725b.mp3"
+ },
+ {
+  "key": "tr|pilav",
+  "lang": "tr",
+  "text": "Pilav!",
+  "file": "audio/voice/tr_0502c3f22b.mp3"
+ },
+ {
+  "key": "en|rice",
+  "lang": "en",
+  "text": "Rice!",
+  "file": "audio/voice/en_5e5bb4ce3f.mp3"
+ },
+ {
+  "key": "tr|patates",
+  "lang": "tr",
+  "text": "Patates!",
+  "file": "audio/voice/tr_8f10269b3e.mp3"
+ },
+ {
+  "key": "en|potato",
+  "lang": "en",
+  "text": "Potato!",
+  "file": "audio/voice/en_19e66e6636.mp3"
+ },
+ {
+  "key": "tr|salatalık",
+  "lang": "tr",
+  "text": "Salatalık!",
+  "file": "audio/voice/tr_8a1c6ced93.mp3"
+ },
+ {
+  "key": "en|cucumber",
+  "lang": "en",
+  "text": "Cucumber!",
+  "file": "audio/voice/en_3b3904178d.mp3"
+ },
+ {
+  "key": "tr|brokoli",
+  "lang": "tr",
+  "text": "Brokoli!",
+  "file": "audio/voice/tr_2fa573fe07.mp3"
+ },
+ {
+  "key": "en|broccoli",
+  "lang": "en",
+  "text": "Broccoli!",
+  "file": "audio/voice/en_2907429948.mp3"
+ },
+ {
+  "key": "tr|mısır",
+  "lang": "tr",
+  "text": "Mısır!",
+  "file": "audio/voice/tr_8aa55740a9.mp3"
+ },
+ {
+  "key": "en|corn",
+  "lang": "en",
+  "text": "Corn!",
+  "file": "audio/voice/en_603d6c0a37.mp3"
+ },
+ {
+  "key": "tr|domates",
+  "lang": "tr",
+  "text": "Domates!",
+  "file": "audio/voice/tr_dac63f9e94.mp3"
+ },
+ {
+  "key": "en|tomato",
+  "lang": "en",
+  "text": "Tomato!",
+  "file": "audio/voice/en_cf66be2a6a.mp3"
+ },
+ {
+  "key": "tr|köfte",
+  "lang": "tr",
+  "text": "Köfte!",
+  "file": "audio/voice/tr_c777c6e23c.mp3"
+ },
+ {
+  "key": "en|meatball",
+  "lang": "en",
+  "text": "Meatball!",
+  "file": "audio/voice/en_c196110174.mp3"
+ },
+ {
+  "key": "tr|harfler",
+  "lang": "tr",
+  "text": "Harfler",
+  "file": "audio/voice/tr_992079d60c.mp3"
+ },
+ {
+  "key": "en|letters",
+  "lang": "en",
+  "text": "Letters",
+  "file": "audio/voice/en_d35c991b23.mp3"
+ },
+ {
+  "key": "tr|a",
+  "lang": "tr",
+  "text": "a!",
+  "file": "audio/voice/tr_d534e922ea.mp3"
+ },
+ {
+  "key": "en|a",
+  "lang": "en",
+  "text": "A!",
+  "file": "audio/voice/en_18fc0f99a9.mp3"
+ },
+ {
+  "key": "tr|be",
+  "lang": "tr",
+  "text": "be!",
+  "file": "audio/voice/tr_25aac7adc1.mp3"
+ },
+ {
+  "key": "en|b",
+  "lang": "en",
+  "text": "B!",
+  "file": "audio/voice/en_04879deea3.mp3"
+ },
+ {
+  "key": "tr|ce",
+  "lang": "tr",
+  "text": "ce!",
+  "file": "audio/voice/tr_17dc940483.mp3"
+ },
+ {
+  "key": "en|c",
+  "lang": "en",
+  "text": "C!",
+  "file": "audio/voice/en_b4f81428ba.mp3"
+ },
+ {
+  "key": "tr|de",
+  "lang": "tr",
+  "text": "de!",
+  "file": "audio/voice/tr_b82f8866d6.mp3"
+ },
+ {
+  "key": "en|d",
+  "lang": "en",
+  "text": "D!",
+  "file": "audio/voice/en_ae9824394e.mp3"
+ },
+ {
+  "key": "tr|e",
+  "lang": "tr",
+  "text": "e!",
+  "file": "audio/voice/tr_32295ee779.mp3"
+ },
+ {
+  "key": "en|e",
+  "lang": "en",
+  "text": "E!",
+  "file": "audio/voice/en_c5d9fa64b1.mp3"
+ },
+ {
+  "key": "tr|fe",
+  "lang": "tr",
+  "text": "fe!",
+  "file": "audio/voice/tr_28646c96a8.mp3"
+ },
+ {
+  "key": "en|f",
+  "lang": "en",
+  "text": "F!",
+  "file": "audio/voice/en_ad055fc0f4.mp3"
+ },
+ {
+  "key": "tr|ge",
+  "lang": "tr",
+  "text": "ge!",
+  "file": "audio/voice/tr_2c6a7f75b5.mp3"
+ },
+ {
+  "key": "en|g",
+  "lang": "en",
+  "text": "G!",
+  "file": "audio/voice/en_38d4e10d2c.mp3"
+ },
+ {
+  "key": "tr|he",
+  "lang": "tr",
+  "text": "he!",
+  "file": "audio/voice/tr_3141aed7de.mp3"
+ },
+ {
+  "key": "en|h",
+  "lang": "en",
+  "text": "H!",
+  "file": "audio/voice/en_6a2d98d429.mp3"
+ },
+ {
+  "key": "tr|ı",
+  "lang": "tr",
+  "text": "ı!",
+  "file": "audio/voice/tr_06b86270e0.mp3"
+ },
+ {
+  "key": "en|i",
+  "lang": "en",
+  "text": "I!",
+  "file": "audio/voice/en_d63c0af1e8.mp3"
+ },
+ {
+  "key": "tr|je",
+  "lang": "tr",
+  "text": "je!",
+  "file": "audio/voice/tr_e8c3aa3f69.mp3"
+ },
+ {
+  "key": "en|j",
+  "lang": "en",
+  "text": "J!",
+  "file": "audio/voice/en_e48e4b00f3.mp3"
+ },
+ {
+  "key": "tr|ke",
+  "lang": "tr",
+  "text": "ke!",
+  "file": "audio/voice/tr_8f45f80b97.mp3"
+ },
+ {
+  "key": "en|k",
+  "lang": "en",
+  "text": "K!",
+  "file": "audio/voice/en_3de9f0ffdf.mp3"
+ },
+ {
+  "key": "tr|le",
+  "lang": "tr",
+  "text": "le!",
+  "file": "audio/voice/tr_9b1b18ad4c.mp3"
+ },
+ {
+  "key": "en|l",
+  "lang": "en",
+  "text": "L!",
+  "file": "audio/voice/en_acbcb32e33.mp3"
+ },
+ {
+  "key": "tr|me",
+  "lang": "tr",
+  "text": "me!",
+  "file": "audio/voice/tr_8aab1d5b1e.mp3"
+ },
+ {
+  "key": "en|m",
+  "lang": "en",
+  "text": "M!",
+  "file": "audio/voice/en_c1104e29d6.mp3"
+ },
+ {
+  "key": "tr|ne",
+  "lang": "tr",
+  "text": "ne!",
+  "file": "audio/voice/tr_520fed4a47.mp3"
+ },
+ {
+  "key": "en|n",
+  "lang": "en",
+  "text": "N!",
+  "file": "audio/voice/en_4fc096721d.mp3"
+ },
+ {
+  "key": "tr|o",
+  "lang": "tr",
+  "text": "o!",
+  "file": "audio/voice/tr_02576364dc.mp3"
+ },
+ {
+  "key": "en|o",
+  "lang": "en",
+  "text": "O!",
+  "file": "audio/voice/en_f6150132a0.mp3"
+ },
+ {
+  "key": "tr|pe",
+  "lang": "tr",
+  "text": "pe!",
+  "file": "audio/voice/tr_2492540a67.mp3"
+ },
+ {
+  "key": "en|p",
+  "lang": "en",
+  "text": "P!",
+  "file": "audio/voice/en_45b539fe59.mp3"
+ },
+ {
+  "key": "tr|re",
+  "lang": "tr",
+  "text": "re!",
+  "file": "audio/voice/tr_520951c346.mp3"
+ },
+ {
+  "key": "en|r",
+  "lang": "en",
+  "text": "R!",
+  "file": "audio/voice/en_04c388f4b1.mp3"
+ },
+ {
+  "key": "tr|se",
+  "lang": "tr",
+  "text": "se!",
+  "file": "audio/voice/tr_ac8fe6d186.mp3"
+ },
+ {
+  "key": "en|s",
+  "lang": "en",
+  "text": "S!",
+  "file": "audio/voice/en_af7b174fee.mp3"
+ },
+ {
+  "key": "tr|te",
+  "lang": "tr",
+  "text": "te!",
+  "file": "audio/voice/tr_90fbd5e1cc.mp3"
+ },
+ {
+  "key": "en|t",
+  "lang": "en",
+  "text": "T!",
+  "file": "audio/voice/en_d538fc8ab2.mp3"
+ },
+ {
+  "key": "tr|u",
+  "lang": "tr",
+  "text": "u!",
+  "file": "audio/voice/tr_385036071d.mp3"
+ },
+ {
+  "key": "en|u",
+  "lang": "en",
+  "text": "U!",
+  "file": "audio/voice/en_4b48334ddc.mp3"
+ },
+ {
+  "key": "tr|ve",
+  "lang": "tr",
+  "text": "ve!",
+  "file": "audio/voice/tr_30b6ad36c3.mp3"
+ },
+ {
+  "key": "en|v",
+  "lang": "en",
+  "text": "V!",
+  "file": "audio/voice/en_6f168a9522.mp3"
+ },
+ {
+  "key": "tr|ye",
+  "lang": "tr",
+  "text": "ye!",
+  "file": "audio/voice/tr_993de6b1a3.mp3"
+ },
+ {
+  "key": "en|y",
+  "lang": "en",
+  "text": "Y!",
+  "file": "audio/voice/en_12ce62567c.mp3"
+ },
+ {
+  "key": "tr|ze",
+  "lang": "tr",
+  "text": "ze!",
+  "file": "audio/voice/tr_cce91ef64a.mp3"
+ },
+ {
+  "key": "en|z",
+  "lang": "en",
+  "text": "Z!",
+  "file": "audio/voice/en_75abcfeb92.mp3"
+ },
+ {
+  "key": "tr|şekiller",
+  "lang": "tr",
+  "text": "Şekiller",
+  "file": "audio/voice/tr_d69b02d214.mp3"
+ },
+ {
+  "key": "en|shapes",
+  "lang": "en",
+  "text": "Shapes",
+  "file": "audio/voice/en_988a5e450a.mp3"
+ },
+ {
+  "key": "tr|daire",
+  "lang": "tr",
+  "text": "Daire!",
+  "file": "audio/voice/tr_3dc1103082.mp3"
+ },
+ {
+  "key": "en|circle",
+  "lang": "en",
+  "text": "Circle!",
+  "file": "audio/voice/en_9ccba8983a.mp3"
+ },
+ {
+  "key": "tr|kare",
+  "lang": "tr",
+  "text": "Kare!",
+  "file": "audio/voice/tr_27226b9a9d.mp3"
+ },
+ {
+  "key": "en|square",
+  "lang": "en",
+  "text": "Square!",
+  "file": "audio/voice/en_0f1c75e4a2.mp3"
+ },
+ {
+  "key": "tr|üçgen",
+  "lang": "tr",
+  "text": "Üçgen!",
+  "file": "audio/voice/tr_46a197b66d.mp3"
+ },
+ {
+  "key": "en|triangle",
+  "lang": "en",
+  "text": "Triangle!",
+  "file": "audio/voice/en_9e1925cd8b.mp3"
+ },
+ {
+  "key": "tr|yıldız",
+  "lang": "tr",
+  "text": "Yıldız!",
+  "file": "audio/voice/tr_f017fe4477.mp3"
+ },
+ {
+  "key": "en|star",
+  "lang": "en",
+  "text": "Star!",
+  "file": "audio/voice/en_5c5e519f76.mp3"
+ },
+ {
+  "key": "tr|kalp",
+  "lang": "tr",
+  "text": "Kalp!",
+  "file": "audio/voice/tr_94821b81bb.mp3"
+ },
+ {
+  "key": "en|heart",
+  "lang": "en",
+  "text": "Heart!",
+  "file": "audio/voice/en_943212d267.mp3"
+ },
+ {
+  "key": "tr|dikdörtgen",
+  "lang": "tr",
+  "text": "Dikdörtgen!",
+  "file": "audio/voice/tr_76e5fb72d9.mp3"
+ },
+ {
+  "key": "en|rectangle",
+  "lang": "en",
+  "text": "Rectangle!",
+  "file": "audio/voice/en_b548b83185.mp3"
+ },
+ {
+  "key": "tr|oval",
+  "lang": "tr",
+  "text": "Oval!",
+  "file": "audio/voice/tr_66e4c5dc22.mp3"
+ },
+ {
+  "key": "en|oval",
+  "lang": "en",
+  "text": "Oval!",
+  "file": "audio/voice/en_0debce888f.mp3"
+ },
+ {
+  "key": "tr|kırmızı yumurta",
+  "lang": "tr",
+  "text": "Kırmızı yumurta!",
+  "file": "audio/voice/tr_57d1fc9741.mp3"
+ },
+ {
+  "key": "en|red egg",
+  "lang": "en",
+  "text": "Red egg!",
+  "file": "audio/voice/en_ecc3c2e0b5.mp3"
+ },
+ {
+  "key": "tr|kırmızı balon",
+  "lang": "tr",
+  "text": "Kırmızı balon!",
+  "file": "audio/voice/tr_322e3ad329.mp3"
+ },
+ {
+  "key": "en|red balloon",
+  "lang": "en",
+  "text": "Red balloon!",
+  "file": "audio/voice/en_67ac2d877d.mp3"
+ },
+ {
+  "key": "tr|mavi yumurta",
+  "lang": "tr",
+  "text": "Mavi yumurta!",
+  "file": "audio/voice/tr_6657f3203c.mp3"
+ },
+ {
+  "key": "en|blue egg",
+  "lang": "en",
+  "text": "Blue egg!",
+  "file": "audio/voice/en_d106c4ccd6.mp3"
+ },
+ {
+  "key": "tr|mavi balon",
+  "lang": "tr",
+  "text": "Mavi balon!",
+  "file": "audio/voice/tr_29da79fd9e.mp3"
+ },
+ {
+  "key": "en|blue balloon",
+  "lang": "en",
+  "text": "Blue balloon!",
+  "file": "audio/voice/en_a59af03365.mp3"
+ },
+ {
+  "key": "tr|sarı yumurta",
+  "lang": "tr",
+  "text": "Sarı yumurta!",
+  "file": "audio/voice/tr_36ef41535d.mp3"
+ },
+ {
+  "key": "en|yellow egg",
+  "lang": "en",
+  "text": "Yellow egg!",
+  "file": "audio/voice/en_1399406765.mp3"
+ },
+ {
+  "key": "tr|sarı balon",
+  "lang": "tr",
+  "text": "Sarı balon!",
+  "file": "audio/voice/tr_a8c5d958c3.mp3"
+ },
+ {
+  "key": "en|yellow balloon",
+  "lang": "en",
+  "text": "Yellow balloon!",
+  "file": "audio/voice/en_58bc6a81f0.mp3"
+ },
+ {
+  "key": "tr|yeşil yumurta",
+  "lang": "tr",
+  "text": "Yeşil yumurta!",
+  "file": "audio/voice/tr_f2bcdea2ea.mp3"
+ },
+ {
+  "key": "en|green egg",
+  "lang": "en",
+  "text": "Green egg!",
+  "file": "audio/voice/en_1d2e760368.mp3"
+ },
+ {
+  "key": "tr|yeşil balon",
+  "lang": "tr",
+  "text": "Yeşil balon!",
+  "file": "audio/voice/tr_67b2de7c90.mp3"
+ },
+ {
+  "key": "en|green balloon",
+  "lang": "en",
+  "text": "Green balloon!",
+  "file": "audio/voice/en_3aa4c8f9fc.mp3"
+ },
+ {
+  "key": "tr|beyaz yumurta",
+  "lang": "tr",
+  "text": "Beyaz yumurta!",
+  "file": "audio/voice/tr_84450ae968.mp3"
+ },
+ {
+  "key": "en|white egg",
+  "lang": "en",
+  "text": "White egg!",
+  "file": "audio/voice/en_e893cb797f.mp3"
+ },
+ {
+  "key": "tr|beyaz balon",
+  "lang": "tr",
+  "text": "Beyaz balon!",
+  "file": "audio/voice/tr_b1639e0d51.mp3"
+ },
+ {
+  "key": "en|white balloon",
+  "lang": "en",
+  "text": "White balloon!",
+  "file": "audio/voice/en_e15ae4db2f.mp3"
+ },
+ {
+  "key": "tr|turuncu yumurta",
+  "lang": "tr",
+  "text": "Turuncu yumurta!",
+  "file": "audio/voice/tr_450231c2e7.mp3"
+ },
+ {
+  "key": "en|orange egg",
+  "lang": "en",
+  "text": "Orange egg!",
+  "file": "audio/voice/en_4983f2eb68.mp3"
+ },
+ {
+  "key": "tr|turuncu balon",
+  "lang": "tr",
+  "text": "Turuncu balon!",
+  "file": "audio/voice/tr_cb25e2ae54.mp3"
+ },
+ {
+  "key": "en|orange balloon",
+  "lang": "en",
+  "text": "Orange balloon!",
+  "file": "audio/voice/en_7e0b83504b.mp3"
+ },
+ {
+  "key": "tr|mor yumurta",
+  "lang": "tr",
+  "text": "Mor yumurta!",
+  "file": "audio/voice/tr_52f0dd2866.mp3"
+ },
+ {
+  "key": "en|purple egg",
+  "lang": "en",
+  "text": "Purple egg!",
+  "file": "audio/voice/en_56e67c064d.mp3"
+ },
+ {
+  "key": "tr|mor balon",
+  "lang": "tr",
+  "text": "Mor balon!",
+  "file": "audio/voice/tr_02d93ac1de.mp3"
+ },
+ {
+  "key": "en|purple balloon",
+  "lang": "en",
+  "text": "Purple balloon!",
+  "file": "audio/voice/en_bef3f76ae5.mp3"
+ },
+ {
+  "key": "tr|pembe yumurta",
+  "lang": "tr",
+  "text": "Pembe yumurta!",
+  "file": "audio/voice/tr_173a831236.mp3"
+ },
+ {
+  "key": "en|pink egg",
+  "lang": "en",
+  "text": "Pink egg!",
+  "file": "audio/voice/en_2b8fd10607.mp3"
+ },
+ {
+  "key": "tr|pembe balon",
+  "lang": "tr",
+  "text": "Pembe balon!",
+  "file": "audio/voice/tr_da62359e91.mp3"
+ },
+ {
+  "key": "en|pink balloon",
+  "lang": "en",
+  "text": "Pink balloon!",
+  "file": "audio/voice/en_c6fe61f466.mp3"
+ },
+ {
+  "key": "tr|siyah yumurta",
+  "lang": "tr",
+  "text": "Siyah yumurta!",
+  "file": "audio/voice/tr_f2e9949fc8.mp3"
+ },
+ {
+  "key": "en|black egg",
+  "lang": "en",
+  "text": "Black egg!",
+  "file": "audio/voice/en_8fbc8bb63a.mp3"
+ },
+ {
+  "key": "tr|siyah balon",
+  "lang": "tr",
+  "text": "Siyah balon!",
+  "file": "audio/voice/tr_b3892feb6c.mp3"
+ },
+ {
+  "key": "en|black balloon",
+  "lang": "en",
+  "text": "Black balloon!",
+  "file": "audio/voice/en_1284d686d5.mp3"
+ },
+ {
+  "key": "tr|kahverengi yumurta",
+  "lang": "tr",
+  "text": "Kahverengi yumurta!",
+  "file": "audio/voice/tr_1d220608af.mp3"
+ },
+ {
+  "key": "en|brown egg",
+  "lang": "en",
+  "text": "Brown egg!",
+  "file": "audio/voice/en_69bea9d806.mp3"
+ },
+ {
+  "key": "tr|kahverengi balon",
+  "lang": "tr",
+  "text": "Kahverengi balon!",
+  "file": "audio/voice/tr_1e3c5ad169.mp3"
+ },
+ {
+  "key": "en|brown balloon",
+  "lang": "en",
+  "text": "Brown balloon!",
+  "file": "audio/voice/en_cf5a490d72.mp3"
+ },
+ {
+  "key": "tr|burası göl",
+  "lang": "tr",
+  "text": "Burası göl.",
+  "file": "audio/voice/tr_4b69ae5bd8.mp3"
+ },
+ {
+  "key": "en|this is the pond",
+  "lang": "en",
+  "text": "This is the pond.",
+  "file": "audio/voice/en_a6e8a8fcb7.mp3"
+ },
+ {
+  "key": "tr|ördek gölde yaşar",
+  "lang": "tr",
+  "text": "Ördek gölde yaşar.",
+  "file": "audio/voice/tr_40c6c42e75.mp3"
+ },
+ {
+  "key": "en|the duck lives in the pond",
+  "lang": "en",
+  "text": "The duck lives in the pond.",
+  "file": "audio/voice/en_f2fb4b3b9e.mp3"
+ },
+ {
+  "key": "tr|ördek nerede yaşar",
+  "lang": "tr",
+  "text": "Ördek nerede yaşar?",
+  "file": "audio/voice/tr_87c5af621f.mp3"
+ },
+ {
+  "key": "en|where does the duck live",
+  "lang": "en",
+  "text": "Where does the duck live?",
+  "file": "audio/voice/en_f5acb763e4.mp3"
+ },
+ {
+  "key": "tr|balık gölde yaşar",
+  "lang": "tr",
+  "text": "Balık gölde yaşar.",
+  "file": "audio/voice/tr_13528a2a86.mp3"
+ },
+ {
+  "key": "en|the fish lives in the pond",
+  "lang": "en",
+  "text": "The fish lives in the pond.",
+  "file": "audio/voice/en_4a6a532acc.mp3"
+ },
+ {
+  "key": "tr|balık nerede yaşar",
+  "lang": "tr",
+  "text": "Balık nerede yaşar?",
+  "file": "audio/voice/tr_3f439aaa2d.mp3"
+ },
+ {
+  "key": "en|where does the fish live",
+  "lang": "en",
+  "text": "Where does the fish live?",
+  "file": "audio/voice/en_46524f2003.mp3"
+ },
+ {
+  "key": "tr|kurbağa gölde yaşar",
+  "lang": "tr",
+  "text": "Kurbağa gölde yaşar.",
+  "file": "audio/voice/tr_2bba85f488.mp3"
+ },
+ {
+  "key": "en|the frog lives in the pond",
+  "lang": "en",
+  "text": "The frog lives in the pond.",
+  "file": "audio/voice/en_6615803a3e.mp3"
+ },
+ {
+  "key": "tr|kurbağa nerede yaşar",
+  "lang": "tr",
+  "text": "Kurbağa nerede yaşar?",
+  "file": "audio/voice/tr_909663c3c8.mp3"
+ },
+ {
+  "key": "en|where does the frog live",
+  "lang": "en",
+  "text": "Where does the frog live?",
+  "file": "audio/voice/en_ff19c7d845.mp3"
+ },
+ {
+  "key": "tr|burası kuş yuvası",
+  "lang": "tr",
+  "text": "Burası kuş yuvası.",
+  "file": "audio/voice/tr_498b124544.mp3"
+ },
+ {
+  "key": "en|this is the nest",
+  "lang": "en",
+  "text": "This is the nest.",
+  "file": "audio/voice/en_be1272d2c2.mp3"
+ },
+ {
+  "key": "tr|kuş yuvada yaşar",
+  "lang": "tr",
+  "text": "Kuş yuvada yaşar.",
+  "file": "audio/voice/tr_3acfa70451.mp3"
+ },
+ {
+  "key": "en|the bird lives in the nest",
+  "lang": "en",
+  "text": "The bird lives in the nest.",
+  "file": "audio/voice/en_dde97948e4.mp3"
+ },
+ {
+  "key": "tr|kuş nerede yaşar",
+  "lang": "tr",
+  "text": "Kuş nerede yaşar?",
+  "file": "audio/voice/tr_7f2f1aa431.mp3"
+ },
+ {
+  "key": "en|where does the bird live",
+  "lang": "en",
+  "text": "Where does the bird live?",
+  "file": "audio/voice/en_1b3a947fbc.mp3"
+ },
+ {
+  "key": "tr|baykuş yuvada yaşar",
+  "lang": "tr",
+  "text": "Baykuş yuvada yaşar.",
+  "file": "audio/voice/tr_b3b8d5d54b.mp3"
+ },
+ {
+  "key": "en|the owl lives in the nest",
+  "lang": "en",
+  "text": "The owl lives in the nest.",
+  "file": "audio/voice/en_b105d0299b.mp3"
+ },
+ {
+  "key": "tr|baykuş nerede yaşar",
+  "lang": "tr",
+  "text": "Baykuş nerede yaşar?",
+  "file": "audio/voice/tr_5b54732470.mp3"
+ },
+ {
+  "key": "en|where does the owl live",
+  "lang": "en",
+  "text": "Where does the owl live?",
+  "file": "audio/voice/en_9c6665c7ed.mp3"
+ },
+ {
+  "key": "tr|civciv yuvada yaşar",
+  "lang": "tr",
+  "text": "Civciv yuvada yaşar.",
+  "file": "audio/voice/tr_8b2d5b8a23.mp3"
+ },
+ {
+  "key": "en|the chick lives in the nest",
+  "lang": "en",
+  "text": "The chick lives in the nest.",
+  "file": "audio/voice/en_f2de715bf5.mp3"
+ },
+ {
+  "key": "tr|civciv nerede yaşar",
+  "lang": "tr",
+  "text": "Civciv nerede yaşar?",
+  "file": "audio/voice/tr_82cc1de0b8.mp3"
+ },
+ {
+  "key": "en|where does the chick live",
+  "lang": "en",
+  "text": "Where does the chick live?",
+  "file": "audio/voice/en_047febfb1a.mp3"
+ },
+ {
+  "key": "tr|burası çiftlik",
+  "lang": "tr",
+  "text": "Burası çiftlik.",
+  "file": "audio/voice/tr_202d051d13.mp3"
+ },
+ {
+  "key": "en|this is the farm",
+  "lang": "en",
+  "text": "This is the farm.",
+  "file": "audio/voice/en_84a04b14f4.mp3"
+ },
+ {
+  "key": "tr|inek çiftlikte yaşar",
+  "lang": "tr",
+  "text": "İnek çiftlikte yaşar.",
+  "file": "audio/voice/tr_7bcca4c749.mp3"
+ },
+ {
+  "key": "en|the cow lives on the farm",
+  "lang": "en",
+  "text": "The cow lives on the farm.",
+  "file": "audio/voice/en_041690fe96.mp3"
+ },
+ {
+  "key": "tr|inek nerede yaşar",
+  "lang": "tr",
+  "text": "İnek nerede yaşar?",
+  "file": "audio/voice/tr_5f248ee555.mp3"
+ },
+ {
+  "key": "en|where does the cow live",
+  "lang": "en",
+  "text": "Where does the cow live?",
+  "file": "audio/voice/en_26c8220640.mp3"
+ },
+ {
+  "key": "tr|koyun çiftlikte yaşar",
+  "lang": "tr",
+  "text": "Koyun çiftlikte yaşar.",
+  "file": "audio/voice/tr_27d492eb4a.mp3"
+ },
+ {
+  "key": "en|the sheep lives on the farm",
+  "lang": "en",
+  "text": "The sheep lives on the farm.",
+  "file": "audio/voice/en_ca63243925.mp3"
+ },
+ {
+  "key": "tr|koyun nerede yaşar",
+  "lang": "tr",
+  "text": "Koyun nerede yaşar?",
+  "file": "audio/voice/tr_eb26931728.mp3"
+ },
+ {
+  "key": "en|where does the sheep live",
+  "lang": "en",
+  "text": "Where does the sheep live?",
+  "file": "audio/voice/en_022bf60e96.mp3"
+ },
+ {
+  "key": "tr|tavuk çiftlikte yaşar",
+  "lang": "tr",
+  "text": "Tavuk çiftlikte yaşar.",
+  "file": "audio/voice/tr_9afdd70d78.mp3"
+ },
+ {
+  "key": "en|the chicken lives on the farm",
+  "lang": "en",
+  "text": "The chicken lives on the farm.",
+  "file": "audio/voice/en_45504abf37.mp3"
+ },
+ {
+  "key": "tr|tavuk nerede yaşar",
+  "lang": "tr",
+  "text": "Tavuk nerede yaşar?",
+  "file": "audio/voice/tr_3cc6041072.mp3"
+ },
+ {
+  "key": "en|where does the chicken live",
+  "lang": "en",
+  "text": "Where does the chicken live?",
+  "file": "audio/voice/en_6bf0baa88a.mp3"
+ },
+ {
+  "key": "tr|at çiftlikte yaşar",
+  "lang": "tr",
+  "text": "At çiftlikte yaşar.",
+  "file": "audio/voice/tr_45dac8b4dc.mp3"
+ },
+ {
+  "key": "en|the horse lives on the farm",
+  "lang": "en",
+  "text": "The horse lives on the farm.",
+  "file": "audio/voice/en_9fb4a43817.mp3"
+ },
+ {
+  "key": "tr|at nerede yaşar",
+  "lang": "tr",
+  "text": "At nerede yaşar?",
+  "file": "audio/voice/tr_afc2539866.mp3"
+ },
+ {
+  "key": "en|where does the horse live",
+  "lang": "en",
+  "text": "Where does the horse live?",
+  "file": "audio/voice/en_9e8864444e.mp3"
+ },
+ {
+  "key": "tr|burası ev",
+  "lang": "tr",
+  "text": "Burası ev.",
+  "file": "audio/voice/tr_f80c9f66e7.mp3"
+ },
+ {
+  "key": "en|this is the house",
+  "lang": "en",
+  "text": "This is the house.",
+  "file": "audio/voice/en_653b636e12.mp3"
+ },
+ {
+  "key": "tr|köpek evde yaşar",
+  "lang": "tr",
+  "text": "Köpek evde yaşar.",
+  "file": "audio/voice/tr_ea7eea91dc.mp3"
+ },
+ {
+  "key": "en|the dog lives in the house",
+  "lang": "en",
+  "text": "The dog lives in the house.",
+  "file": "audio/voice/en_85f346b92f.mp3"
+ },
+ {
+  "key": "tr|köpek nerede yaşar",
+  "lang": "tr",
+  "text": "Köpek nerede yaşar?",
+  "file": "audio/voice/tr_fb75056da2.mp3"
+ },
+ {
+  "key": "en|where does the dog live",
+  "lang": "en",
+  "text": "Where does the dog live?",
+  "file": "audio/voice/en_5e6ca4887e.mp3"
+ },
+ {
+  "key": "tr|kedi evde yaşar",
+  "lang": "tr",
+  "text": "Kedi evde yaşar.",
+  "file": "audio/voice/tr_c9b94a4966.mp3"
+ },
+ {
+  "key": "en|the cat lives in the house",
+  "lang": "en",
+  "text": "The cat lives in the house.",
+  "file": "audio/voice/en_9c2b6ae67c.mp3"
+ },
+ {
+  "key": "tr|kedi nerede yaşar",
+  "lang": "tr",
+  "text": "Kedi nerede yaşar?",
+  "file": "audio/voice/tr_89939cafb3.mp3"
+ },
+ {
+  "key": "en|where does the cat live",
+  "lang": "en",
+  "text": "Where does the cat live?",
+  "file": "audio/voice/en_52b967f613.mp3"
+ },
+ {
+  "key": "tr|burası orman",
+  "lang": "tr",
+  "text": "Burası orman.",
+  "file": "audio/voice/tr_1027aa30c1.mp3"
+ },
+ {
+  "key": "en|this is the forest",
+  "lang": "en",
+  "text": "This is the forest.",
+  "file": "audio/voice/en_2c82b68479.mp3"
+ },
+ {
+  "key": "tr|aslan ormanda yaşar",
+  "lang": "tr",
+  "text": "Aslan ormanda yaşar.",
+  "file": "audio/voice/tr_c1d8ac82af.mp3"
+ },
+ {
+  "key": "en|the lion lives in the forest",
+  "lang": "en",
+  "text": "The lion lives in the forest.",
+  "file": "audio/voice/en_98879f6445.mp3"
+ },
+ {
+  "key": "tr|aslan nerede yaşar",
+  "lang": "tr",
+  "text": "Aslan nerede yaşar?",
+  "file": "audio/voice/tr_71f8328549.mp3"
+ },
+ {
+  "key": "en|where does the lion live",
+  "lang": "en",
+  "text": "Where does the lion live?",
+  "file": "audio/voice/en_6daedf18d6.mp3"
+ },
+ {
+  "key": "tr|fil ormanda yaşar",
+  "lang": "tr",
+  "text": "Fil ormanda yaşar.",
+  "file": "audio/voice/tr_525ff66720.mp3"
+ },
+ {
+  "key": "en|the elephant lives in the forest",
+  "lang": "en",
+  "text": "The elephant lives in the forest.",
+  "file": "audio/voice/en_21577d2453.mp3"
+ },
+ {
+  "key": "tr|fil nerede yaşar",
+  "lang": "tr",
+  "text": "Fil nerede yaşar?",
+  "file": "audio/voice/tr_b319d7cd6c.mp3"
+ },
+ {
+  "key": "en|where does the elephant live",
+  "lang": "en",
+  "text": "Where does the elephant live?",
+  "file": "audio/voice/en_6b94f416c6.mp3"
+ },
+ {
+  "key": "tr|maymun ormanda yaşar",
+  "lang": "tr",
+  "text": "Maymun ormanda yaşar.",
+  "file": "audio/voice/tr_ca30e9a45a.mp3"
+ },
+ {
+  "key": "en|the monkey lives in the forest",
+  "lang": "en",
+  "text": "The monkey lives in the forest.",
+  "file": "audio/voice/en_83e355a760.mp3"
+ },
+ {
+  "key": "tr|maymun nerede yaşar",
+  "lang": "tr",
+  "text": "Maymun nerede yaşar?",
+  "file": "audio/voice/tr_b277eec6a5.mp3"
+ },
+ {
+  "key": "en|where does the monkey live",
+  "lang": "en",
+  "text": "Where does the monkey live?",
+  "file": "audio/voice/en_62fea41a5c.mp3"
+ },
+ {
+  "key": "tr|ayı ormanda yaşar",
+  "lang": "tr",
+  "text": "Ayı ormanda yaşar.",
+  "file": "audio/voice/tr_9dfd8974a9.mp3"
+ },
+ {
+  "key": "en|the bear lives in the forest",
+  "lang": "en",
+  "text": "The bear lives in the forest.",
+  "file": "audio/voice/en_214d8623d9.mp3"
+ },
+ {
+  "key": "tr|ayı nerede yaşar",
+  "lang": "tr",
+  "text": "Ayı nerede yaşar?",
+  "file": "audio/voice/tr_d86641dc3f.mp3"
+ },
+ {
+  "key": "en|where does the bear live",
+  "lang": "en",
+  "text": "Where does the bear live?",
+  "file": "audio/voice/en_12adc58d4f.mp3"
+ },
+ {
+  "key": "tr|tilki ormanda yaşar",
+  "lang": "tr",
+  "text": "Tilki ormanda yaşar.",
+  "file": "audio/voice/tr_e16154794b.mp3"
+ },
+ {
+  "key": "en|the fox lives in the forest",
+  "lang": "en",
+  "text": "The fox lives in the forest.",
+  "file": "audio/voice/en_ddd13407a7.mp3"
+ },
+ {
+  "key": "tr|tilki nerede yaşar",
+  "lang": "tr",
+  "text": "Tilki nerede yaşar?",
+  "file": "audio/voice/tr_5d68681f58.mp3"
+ },
+ {
+  "key": "en|where does the fox live",
+  "lang": "en",
+  "text": "Where does the fox live?",
+  "file": "audio/voice/en_63472e95d0.mp3"
+ },
+ {
+  "key": "tr|sürpriz civciv",
+  "lang": "tr",
+  "text": "Sürpriz! Civciv!",
+  "file": "audio/voice/tr_e0a031bae7.mp3"
+ },
+ {
+  "key": "en|a chick",
+  "lang": "en",
+  "text": "A chick!",
+  "file": "audio/voice/en_337c178aae.mp3"
+ },
+ {
+  "key": "tr|sürpriz ördek",
+  "lang": "tr",
+  "text": "Sürpriz! Ördek!",
+  "file": "audio/voice/tr_ac7c4fdd15.mp3"
+ },
+ {
+  "key": "en|a duck",
+  "lang": "en",
+  "text": "A duck!",
+  "file": "audio/voice/en_edca442da5.mp3"
+ },
+ {
+  "key": "tr|sürpriz kedi",
+  "lang": "tr",
+  "text": "Sürpriz! Kedi!",
+  "file": "audio/voice/tr_f8405fc086.mp3"
+ },
+ {
+  "key": "en|a kitty",
+  "lang": "en",
+  "text": "A kitty!",
+  "file": "audio/voice/en_c831fdb1be.mp3"
+ },
+ {
+  "key": "tr|sürpriz kuş",
+  "lang": "tr",
+  "text": "Sürpriz! Kuş!",
+  "file": "audio/voice/tr_6884257e19.mp3"
+ },
+ {
+  "key": "en|a bird",
+  "lang": "en",
+  "text": "A bird!",
+  "file": "audio/voice/en_97b6f36bb6.mp3"
+ },
+ {
+  "key": "tr|sürpriz baykuş",
+  "lang": "tr",
+  "text": "Sürpriz! Baykuş!",
+  "file": "audio/voice/tr_37bddda7e5.mp3"
+ },
+ {
+  "key": "en|a owl",
+  "lang": "en",
+  "text": "A owl!",
+  "file": "audio/voice/en_debfecd05c.mp3"
+ },
+ {
+  "key": "tr|sürpriz tavşan",
+  "lang": "tr",
+  "text": "Sürpriz! Tavşan!",
+  "file": "audio/voice/tr_ebd55e0650.mp3"
+ },
+ {
+  "key": "en|a bunny",
+  "lang": "en",
+  "text": "A bunny!",
+  "file": "audio/voice/en_6250c17757.mp3"
+ },
+ {
+  "key": "tr|sürpriz köpek",
+  "lang": "tr",
+  "text": "Sürpriz! Köpek!",
+  "file": "audio/voice/tr_158b3d2565.mp3"
+ },
+ {
+  "key": "en|a puppy",
+  "lang": "en",
+  "text": "A puppy!",
+  "file": "audio/voice/en_49de7391dd.mp3"
+ },
+ {
+  "key": "tr|sürpriz kurbağa",
+  "lang": "tr",
+  "text": "Sürpriz! Kurbağa!",
+  "file": "audio/voice/tr_df3a26afb4.mp3"
+ },
+ {
+  "key": "en|a frog",
+  "lang": "en",
+  "text": "A frog!",
+  "file": "audio/voice/en_e2d346a769.mp3"
+ },
+ {
+  "key": "tr|aaa",
+  "lang": "tr",
+  "text": "Aaa",
+  "file": "audio/voice/tr_b7856f6a44.mp3"
+ },
+ {
+  "key": "en|aaa",
+  "lang": "en",
+  "text": "Aaa",
+  "file": "audio/voice/en_78d09e576c.mp3"
+ },
+ {
+  "key": "tr|aaaa",
+  "lang": "tr",
+  "text": "Aaaa",
+  "file": "audio/voice/tr_37451997e1.mp3"
+ },
+ {
+  "key": "tr|ooo",
+  "lang": "tr",
+  "text": "Ooo",
+  "file": "audio/voice/tr_f9361f4403.mp3"
+ },
+ {
+  "key": "en|ooo",
+  "lang": "en",
+  "text": "Ooo",
+  "file": "audio/voice/en_171a0080e8.mp3"
+ },
+ {
+  "key": "tr|oooo",
+  "lang": "tr",
+  "text": "Oooo",
+  "file": "audio/voice/tr_f1956e942d.mp3"
+ },
+ {
+  "key": "tr|uuu",
+  "lang": "tr",
+  "text": "Uuu",
+  "file": "audio/voice/tr_c786804ecb.mp3"
+ },
+ {
+  "key": "en|hoo",
+  "lang": "en",
+  "text": "Hoo",
+  "file": "audio/voice/en_1ec2a1d4ff.mp3"
+ },
+ {
+  "key": "tr|uuuu",
+  "lang": "tr",
+  "text": "Uuuu",
+  "file": "audio/voice/tr_5a24c08021.mp3"
+ },
+ {
+  "key": "tr|mmm",
+  "lang": "tr",
+  "text": "Mmm",
+  "file": "audio/voice/tr_119a3db8b2.mp3"
+ },
+ {
+  "key": "en|yummy",
+  "lang": "en",
+  "text": "Yummy",
+  "file": "audio/voice/en_f655ebad01.mp3"
+ },
+ {
+  "key": "tr|mmmm",
+  "lang": "tr",
+  "text": "Mmmm",
+  "file": "audio/voice/tr_de8bdce67c.mp3"
+ },
+ {
+  "key": "tr|ba ba ba",
+  "lang": "tr",
+  "text": "Ba ba ba",
+  "file": "audio/voice/tr_7b46fac65b.mp3"
+ },
+ {
+  "key": "en|ba ba",
+  "lang": "en",
+  "text": "Ba ba",
+  "file": "audio/voice/en_07aabe0756.mp3"
+ },
+ {
+  "key": "tr|ba",
+  "lang": "tr",
+  "text": "Ba",
+  "file": "audio/voice/tr_1118f78e55.mp3"
+ },
+ {
+  "key": "en|ba",
+  "lang": "en",
+  "text": "Ba",
+  "file": "audio/voice/en_750472356a.mp3"
+ },
+ {
+  "key": "tr|ma ma ma",
+  "lang": "tr",
+  "text": "Ma ma ma",
+  "file": "audio/voice/tr_145f87bf34.mp3"
+ },
+ {
+  "key": "en|ma ma",
+  "lang": "en",
+  "text": "Ma ma",
+  "file": "audio/voice/en_d3be060711.mp3"
+ },
+ {
+  "key": "tr|ma",
+  "lang": "tr",
+  "text": "Ma",
+  "file": "audio/voice/tr_00f52587da.mp3"
+ },
+ {
+  "key": "en|ma",
+  "lang": "en",
+  "text": "Ma",
+  "file": "audio/voice/en_1c85765c8c.mp3"
+ },
+ {
+  "key": "tr|pa pa pa",
+  "lang": "tr",
+  "text": "Pa pa pa",
+  "file": "audio/voice/tr_3c1026205c.mp3"
+ },
+ {
+  "key": "en|pa pa",
+  "lang": "en",
+  "text": "Pa pa",
+  "file": "audio/voice/en_bc9c4037fc.mp3"
+ },
+ {
+  "key": "tr|pa",
+  "lang": "tr",
+  "text": "Pa",
+  "file": "audio/voice/tr_d5b17ca13d.mp3"
+ },
+ {
+  "key": "en|pa",
+  "lang": "en",
+  "text": "Pa",
+  "file": "audio/voice/en_2fc8c3390e.mp3"
+ },
+ {
+  "key": "tr|da da da",
+  "lang": "tr",
+  "text": "Da da da",
+  "file": "audio/voice/tr_f2c727a33f.mp3"
+ },
+ {
+  "key": "en|da da",
+  "lang": "en",
+  "text": "Da da",
+  "file": "audio/voice/en_fa3c7df50a.mp3"
+ },
+ {
+  "key": "tr|da",
+  "lang": "tr",
+  "text": "Da",
+  "file": "audio/voice/tr_da477fddc8.mp3"
+ },
+ {
+  "key": "en|da",
+  "lang": "en",
+  "text": "Da",
+  "file": "audio/voice/en_bc383c2502.mp3"
+ },
+ {
+  "key": "tr|anne",
+  "lang": "tr",
+  "text": "Anne",
+  "file": "audio/voice/tr_7ebc4dd75c.mp3"
+ },
+ {
+  "key": "en|mommy",
+  "lang": "en",
+  "text": "Mommy",
+  "file": "audio/voice/en_ded2d95281.mp3"
+ },
+ {
+  "key": "tr|an",
+  "lang": "tr",
+  "text": "An",
+  "file": "audio/voice/tr_22b434c1ad.mp3"
+ },
+ {
+  "key": "tr|an ne",
+  "lang": "tr",
+  "text": "An ne",
+  "file": "audio/voice/tr_76f74c6e76.mp3"
+ },
+ {
+  "key": "tr|baba",
+  "lang": "tr",
+  "text": "Baba",
+  "file": "audio/voice/tr_98fc8a5dbf.mp3"
+ },
+ {
+  "key": "en|daddy",
+  "lang": "en",
+  "text": "Daddy",
+  "file": "audio/voice/en_5d434e814b.mp3"
+ },
+ {
+  "key": "tr|ba ba",
+  "lang": "tr",
+  "text": "Ba ba",
+  "file": "audio/voice/tr_627da6d1a6.mp3"
+ },
+ {
+  "key": "tr|mama",
+  "lang": "tr",
+  "text": "Mama",
+  "file": "audio/voice/tr_8969e06664.mp3"
+ },
+ {
+  "key": "en|food",
+  "lang": "en",
+  "text": "Food",
+  "file": "audio/voice/en_6baa3b267a.mp3"
+ },
+ {
+  "key": "tr|ma ma",
+  "lang": "tr",
+  "text": "Ma ma",
+  "file": "audio/voice/tr_8ac9dc588c.mp3"
+ },
+ {
+  "key": "tr|su",
+  "lang": "tr",
+  "text": "Su",
+  "file": "audio/voice/tr_0d702599c8.mp3"
+ },
+ {
+  "key": "en|water",
+  "lang": "en",
+  "text": "Water",
+  "file": "audio/voice/en_aef37217eb.mp3"
+ },
+ {
+  "key": "tr|top",
+  "lang": "tr",
+  "text": "Top",
+  "file": "audio/voice/tr_5428633a56.mp3"
+ },
+ {
+  "key": "en|ball",
+  "lang": "en",
+  "text": "Ball",
+  "file": "audio/voice/en_187b96f999.mp3"
+ },
+ {
+  "key": "tr|bay bay",
+  "lang": "tr",
+  "text": "Bay bay",
+  "file": "audio/voice/tr_b2eb8e290d.mp3"
+ },
+ {
+  "key": "en|bye bye",
+  "lang": "en",
+  "text": "Bye bye",
+  "file": "audio/voice/en_740446ac61.mp3"
+ },
+ {
+  "key": "tr|bay",
+  "lang": "tr",
+  "text": "Bay",
+  "file": "audio/voice/tr_e5ec884565.mp3"
+ },
+ {
+  "key": "en|bye",
+  "lang": "en",
+  "text": "Bye",
+  "file": "audio/voice/en_d20e7d5424.mp3"
+ },
+ {
+  "key": "tr|daha",
+  "lang": "tr",
+  "text": "Daha",
+  "file": "audio/voice/tr_e75efd9454.mp3"
+ },
+ {
+  "key": "en|more",
+  "lang": "en",
+  "text": "More",
+  "file": "audio/voice/en_737056fc6a.mp3"
+ },
+ {
+  "key": "tr|ha",
+  "lang": "tr",
+  "text": "ha",
+  "file": "audio/voice/tr_c5b50fa639.mp3"
+ },
+ {
+  "key": "tr|da ha",
+  "lang": "tr",
+  "text": "Da ha",
+  "file": "audio/voice/tr_f334d86897.mp3"
+ },
+ {
+  "key": "tr|ver",
+  "lang": "tr",
+  "text": "Ver",
+  "file": "audio/voice/tr_1cf533dc28.mp3"
+ },
+ {
+  "key": "en|give",
+  "lang": "en",
+  "text": "Give",
+  "file": "audio/voice/en_c8b4ca2255.mp3"
+ },
+ {
+  "key": "tr|dede",
+  "lang": "tr",
+  "text": "Dede",
+  "file": "audio/voice/tr_5c8598384f.mp3"
+ },
+ {
+  "key": "en|grandpa",
+  "lang": "en",
+  "text": "Grandpa",
+  "file": "audio/voice/en_0a1f5601b6.mp3"
+ },
+ {
+  "key": "tr|de de",
+  "lang": "tr",
+  "text": "De de",
+  "file": "audio/voice/tr_1a1836479d.mp3"
+ },
+ {
+  "key": "tr|nene",
+  "lang": "tr",
+  "text": "Nene",
+  "file": "audio/voice/tr_414495aa06.mp3"
+ },
+ {
+  "key": "en|grandma",
+  "lang": "en",
+  "text": "Grandma",
+  "file": "audio/voice/en_b7d6f534ca.mp3"
+ },
+ {
+  "key": "tr|ne ne",
+  "lang": "tr",
+  "text": "Ne ne",
+  "file": "audio/voice/tr_70b435f0f0.mp3"
+ },
+ {
+  "key": "tr|bebek",
+  "lang": "tr",
+  "text": "Bebek",
+  "file": "audio/voice/tr_b6d5c1dc3e.mp3"
+ },
+ {
+  "key": "en|baby",
+  "lang": "en",
+  "text": "Baby",
+  "file": "audio/voice/en_5ae033a050.mp3"
+ },
+ {
+  "key": "tr|bek",
+  "lang": "tr",
+  "text": "bek",
+  "file": "audio/voice/tr_2701c8ab8d.mp3"
+ },
+ {
+  "key": "tr|be bek",
+  "lang": "tr",
+  "text": "Be bek",
+  "file": "audio/voice/tr_b0b07fa7d5.mp3"
+ },
+ {
+  "key": "en|kitty",
+  "lang": "en",
+  "text": "Kitty",
+  "file": "audio/voice/en_7a2fbcd050.mp3"
+ },
+ {
+  "key": "tr|di",
+  "lang": "tr",
+  "text": "di",
+  "file": "audio/voice/tr_2663fc7137.mp3"
+ },
+ {
+  "key": "tr|ke di",
+  "lang": "tr",
+  "text": "Ke di",
+  "file": "audio/voice/tr_99cee64f2b.mp3"
+ },
+ {
+  "key": "tr|am",
+  "lang": "tr",
+  "text": "Am",
+  "file": "audio/voice/tr_61993c62f5.mp3"
+ },
+ {
+  "key": "en|yum",
+  "lang": "en",
+  "text": "Yum",
+  "file": "audio/voice/en_eade29cf58.mp3"
+ },
+ {
+  "key": "tr|aaam",
+  "lang": "tr",
+  "text": "Aaam",
+  "file": "audio/voice/tr_4a034ee54b.mp3"
+ },
+ {
+  "key": "tr|mööö",
+  "lang": "tr",
+  "text": "Mööö",
+  "file": "audio/voice/tr_7e7693e368.mp3"
+ },
+ {
+  "key": "en|moooo",
+  "lang": "en",
+  "text": "Moooo",
+  "file": "audio/voice/en_d4394e2e6c.mp3"
+ },
+ {
+  "key": "tr|uluyan köpek",
+  "lang": "tr",
+  "text": "Uluyan köpek",
+  "file": "audio/voice/tr_ebab855139.mp3"
+ },
+ {
+  "key": "en|howling dog",
+  "lang": "en",
+  "text": "Howling dog",
+  "file": "audio/voice/en_f313429a0b.mp3"
+ },
+ {
+  "key": "tr|auuuu",
+  "lang": "tr",
+  "text": "Auuuu",
+  "file": "audio/voice/tr_a88b9f5b42.mp3"
+ },
+ {
+  "key": "en|awoooo",
+  "lang": "en",
+  "text": "Awoooo",
+  "file": "audio/voice/en_f866c9a7cc.mp3"
+ },
+ {
+  "key": "tr|hav",
+  "lang": "tr",
+  "text": "Hav",
+  "file": "audio/voice/tr_5ca4e10826.mp3"
+ },
+ {
+  "key": "en|woof",
+  "lang": "en",
+  "text": "Woof",
+  "file": "audio/voice/en_6eb6f630d9.mp3"
+ },
+ {
+  "key": "tr|mi",
+  "lang": "tr",
+  "text": "Mi",
+  "file": "audio/voice/tr_d1a3165def.mp3"
+ },
+ {
+  "key": "tr|yav",
+  "lang": "tr",
+  "text": "yav",
+  "file": "audio/voice/tr_1e65cd1e2e.mp3"
+ },
+ {
+  "key": "tr|mi yav",
+  "lang": "tr",
+  "text": "Mi yav",
+  "file": "audio/voice/tr_b7175a399a.mp3"
+ },
+ {
+  "key": "en|me",
+  "lang": "en",
+  "text": "Me",
+  "file": "audio/voice/en_1ff7342e82.mp3"
+ },
+ {
+  "key": "en|ow",
+  "lang": "en",
+  "text": "ow",
+  "file": "audio/voice/en_67f71f9eb8.mp3"
+ },
+ {
+  "key": "en|me ow",
+  "lang": "en",
+  "text": "Me ow",
+  "file": "audio/voice/en_05737bab3c.mp3"
+ },
+ {
+  "key": "tr|miy",
+  "lang": "tr",
+  "text": "Miy",
+  "file": "audio/voice/tr_406108b4d9.mp3"
+ },
+ {
+  "key": "en|baaa",
+  "lang": "en",
+  "text": "Baaa",
+  "file": "audio/voice/en_117606cffc.mp3"
+ },
+ {
+  "key": "tr|vak",
+  "lang": "tr",
+  "text": "Vak",
+  "file": "audio/voice/tr_5e09b2bdf1.mp3"
+ },
+ {
+  "key": "en|quack",
+  "lang": "en",
+  "text": "Quack",
+  "file": "audio/voice/en_2265511e2f.mp3"
+ },
+ {
+  "key": "tr|gıt",
+  "lang": "tr",
+  "text": "Gıt",
+  "file": "audio/voice/tr_49265b7ade.mp3"
+ },
+ {
+  "key": "tr|gıdak",
+  "lang": "tr",
+  "text": "gıdak",
+  "file": "audio/voice/tr_8383d2a8bc.mp3"
+ },
+ {
+  "key": "en|cluck",
+  "lang": "en",
+  "text": "Cluck",
+  "file": "audio/voice/en_dcac1745f6.mp3"
+ },
+ {
+  "key": "tr|cik",
+  "lang": "tr",
+  "text": "Cik",
+  "file": "audio/voice/tr_a924722ba2.mp3"
+ },
+ {
+  "key": "en|tweet",
+  "lang": "en",
+  "text": "Tweet",
+  "file": "audio/voice/en_1f0d1f2591.mp3"
+ },
+ {
+  "key": "tr|rooaar",
+  "lang": "tr",
+  "text": "Rooaar",
+  "file": "audio/voice/tr_0dbb28fa79.mp3"
+ },
+ {
+  "key": "en|roooar",
+  "lang": "en",
+  "text": "Roooar",
+  "file": "audio/voice/en_e68ae85ddf.mp3"
+ },
+ {
+  "key": "tr|hu",
+  "lang": "tr",
+  "text": "Hu",
+  "file": "audio/voice/tr_af25bd01c4.mp3"
+ },
+ {
+  "key": "en|hoo hoo",
+  "lang": "en",
+  "text": "Hoo hoo",
+  "file": "audio/voice/en_35786a6b33.mp3"
+ },
+ {
+  "key": "tr|vı",
+  "lang": "tr",
+  "text": "Vı",
+  "file": "audio/voice/tr_fe45074879.mp3"
+ },
+ {
+  "key": "tr|rak",
+  "lang": "tr",
+  "text": "rak",
+  "file": "audio/voice/tr_da9bc9223c.mp3"
+ },
+ {
+  "key": "tr|vı rak",
+  "lang": "tr",
+  "text": "Vı rak",
+  "file": "audio/voice/tr_5487a18511.mp3"
+ },
+ {
+  "key": "en|rib",
+  "lang": "en",
+  "text": "Rib",
+  "file": "audio/voice/en_2f6f746c28.mp3"
+ },
+ {
+  "key": "en|bit",
+  "lang": "en",
+  "text": "bit",
+  "file": "audio/voice/en_cdc25fc1b8.mp3"
+ },
+ {
+  "key": "en|rib bit",
+  "lang": "en",
+  "text": "Rib bit",
+  "file": "audio/voice/en_724a1f196d.mp3"
+ },
+ {
+  "key": "en|buzzz",
+  "lang": "en",
+  "text": "Buzzz",
+  "file": "audio/voice/en_9ff2bcd50a.mp3"
+ },
+ {
+  "key": "tr|düt",
+  "lang": "tr",
+  "text": "Düt",
+  "file": "audio/voice/tr_5eae97a52c.mp3"
+ },
+ {
+  "key": "en|beep",
+  "lang": "en",
+  "text": "Beep",
+  "file": "audio/voice/en_dafbdde1d1.mp3"
+ },
+ {
+  "key": "tr|çuf",
+  "lang": "tr",
+  "text": "Çuf",
+  "file": "audio/voice/tr_ee7bad6d8d.mp3"
+ },
+ {
+  "key": "en|choo",
+  "lang": "en",
+  "text": "Choo",
+  "file": "audio/voice/en_54f6144546.mp3"
+ },
+ {
+  "key": "tr|yeeey aferin",
+  "lang": "tr",
+  "text": "Yeeey! Aferin!",
+  "file": "audio/voice/tr_0c670c5bf7.mp3"
+ },
+ {
+  "key": "en|yeeey good job",
+  "lang": "en",
+  "text": "Yeeey! Good job!",
+  "file": "audio/voice/en_084a4a9b4c.mp3"
+ },
+ {
+  "key": "tr|yaşasın bravo",
+  "lang": "tr",
+  "text": "Yaşasın! Bravo!",
+  "file": "audio/voice/tr_f52103a445.mp3"
+ },
+ {
+  "key": "en|yaaay well done",
+  "lang": "en",
+  "text": "Yaaay! Well done!",
+  "file": "audio/voice/en_27deaadf80.mp3"
+ },
+ {
+  "key": "tr|süpersin",
+  "lang": "tr",
+  "text": "Süpersin!",
+  "file": "audio/voice/tr_0821160d11.mp3"
+ },
+ {
+  "key": "en|super",
+  "lang": "en",
+  "text": "Super!",
+  "file": "audio/voice/en_0dc1b16cd9.mp3"
+ },
+ {
+  "key": "tr|harikasın",
+  "lang": "tr",
+  "text": "Harikasın!",
+  "file": "audio/voice/tr_90b01115d0.mp3"
+ },
+ {
+  "key": "en|awesome",
+  "lang": "en",
+  "text": "Awesome!",
+  "file": "audio/voice/en_d6f1c71fdc.mp3"
+ },
+ {
+  "key": "tr|hayıııır",
+  "lang": "tr",
+  "text": "Hayıııır!",
+  "file": "audio/voice/tr_c071cb1b8e.mp3"
+ },
+ {
+  "key": "en|nooo",
+  "lang": "en",
+  "text": "Nooo!",
+  "file": "audio/voice/en_e7ae8c62bb.mp3"
+ },
+ {
+  "key": "tr|hayır o değil",
+  "lang": "tr",
+  "text": "Hayır, o değil!",
+  "file": "audio/voice/tr_4639aa7690.mp3"
+ },
+ {
+  "key": "en|nope not that one",
+  "lang": "en",
+  "text": "Nope, not that one!",
+  "file": "audio/voice/en_3d15ff653a.mp3"
+ },
+ {
+  "key": "en|puppy",
+  "lang": "en",
+  "text": "Puppy!",
+  "file": "audio/voice/en_a2b84ba5d9.mp3"
+ },
+ {
+  "key": "tr|merhaba alen",
+  "lang": "tr",
+  "text": "Merhaba Alen!",
+  "file": "audio/voice/tr_2101ca9be1.mp3"
+ },
+ {
+  "key": "en|hello alen",
+  "lang": "en",
+  "text": "Hello Alen!",
+  "file": "audio/voice/en_03ac025418.mp3"
+ },
+ {
+  "key": "tr|aferin alen",
+  "lang": "tr",
+  "text": "Aferin Alen!",
+  "file": "audio/voice/tr_920527eea6.mp3"
+ },
+ {
+  "key": "en|great job alen",
+  "lang": "en",
+  "text": "Great job, Alen!",
+  "file": "audio/voice/en_746d506214.mp3"
+ },
+ {
+  "key": "tr|merhaba alen bana bir şey söyle",
+  "lang": "tr",
+  "text": "Merhaba Alen! Bana bir şey söyle!",
+  "file": "audio/voice/tr_1ee3e2b8af.mp3"
+ },
+ {
+  "key": "en|hi alen say something",
+  "lang": "en",
+  "text": "Hi Alen! Say something!",
+  "file": "audio/voice/en_a3361b9f5a.mp3"
+ },
+ {
+  "key": "tr|şimdi sıra sende alen sen de bir lokma ye",
+  "lang": "tr",
+  "text": "Şimdi sıra sende Alen! Sen de bir lokma ye!",
+  "file": "audio/voice/tr_505baa3f6b.mp3"
+ },
+ {
+  "key": "en|now its your turn alen take a bite",
+  "lang": "en",
+  "text": "Now it's your turn, Alen! Take a bite!",
+  "file": "audio/voice/en_77fe013b31.mp3"
+ },
+ {
+  "key": "tr|aferin alen kocaman bir lokma yedin",
+  "lang": "tr",
+  "text": "Aferin Alen! Kocaman bir lokma yedin!",
+  "file": "audio/voice/tr_90c36f9fcb.mp3"
+ },
+ {
+  "key": "en|great job alen what a big bite",
+  "lang": "en",
+  "text": "Great job, Alen! What a big bite!",
+  "file": "audio/voice/en_6fc5f18d47.mp3"
+ },
+ {
+  "key": "tr|alen gel dans et",
+  "lang": "tr",
+  "text": "Alen, gel dans et!",
+  "file": "audio/voice/tr_1e5c58732b.mp3"
+ }
+]
