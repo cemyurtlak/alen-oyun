@@ -3,6 +3,8 @@
 2 yaşındaki Alen için hazırlanmış, **Türkçe + İngilizce sesli**, renkli ve 3D görselli eğitici web oyunu.
 Kurulum gerektirmez; tarayıcıda açılır, telefonda/tablette tam ekran çalışır.
 
+🔗 **Canlı oyun:** https://cemyurtlak.github.io/alen-oyun/
+
 ## Neler var?
 
 ### 📖 Öğrenelim (tanıtım + soru-cevap)
@@ -58,11 +60,11 @@ yanlışta **"Hayıııır! Tekrar dene!"** sesi gelir. 2 yanlıştan sonra doğ
 - `sounds/animals/` → gerçek hayvan kayıtları: `cat.mp3`, `dog.mp3`, `cow.mp3`, `howl.mp3` (uluma), `kitten.mp3` ...
   Dosya varsa otomatik kullanılır, yoksa oyunun kendi ürettiği sesler çalar. Anahtar listesi `js/animalsounds.js` başında.
 
-## GitHub Pages ile yayınlama
-1. GitHub'da yeni bir depo açın (ör. `alen-oyun`), bu klasörün içeriğini yükleyin.
-2. Depo → **Settings → Pages** → Source: `main` dalı, `/ (root)` → Save.
-3. Birkaç dakika sonra link: `https://KULLANICI_ADI.github.io/alen-oyun/`
-4. Telefonda linki açıp **"Ana ekrana ekle"** derseniz uygulama gibi tam ekran açılır.
+## Yayın (GitHub Pages)
+- Depo: https://github.com/cemyurtlak/alen-oyun — Pages: `main` dalı, `/ (root)`.
+- **Güncelleme:** dosyalarda değişiklik yaptıktan sonra klasördeki `github_yukle.bat` dosyasına çift tıklayın;
+  tüm değişiklikleri kaydedip GitHub'a gönderir (1–2 dakika içinde siteye yansır).
+- Telefonda linki açıp **"Ana ekrana ekle"** derseniz uygulama gibi tam ekran açılır.
 
 ## Dosya yapısı
 ```
@@ -85,6 +87,7 @@ js/act/*.js           Oyunlar: catrun, imitate (Konuşalım + Ses Taklidi), parr
 assets/img/           3D görseller (Microsoft Fluent Emoji, MIT lisansı)
 assets/img/tint/      Renklendirilmiş balon, araba, yumurta, köpek balığı
 sounds/               (isteğe bağlı) kendi ses kayıtlarınız
+github_yukle.bat      Değişiklikleri GitHub'a gönderir (Git gerekir)
 ```
 
 ## Ebeveyn için not

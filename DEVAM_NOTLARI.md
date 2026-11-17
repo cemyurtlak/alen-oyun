@@ -21,6 +21,12 @@
 | Akış belirteci (`G.newFlow()` / `G.alive(id)`) | Ekran değişince eski konuşmalar/döngüler kendini durdurur |
 | Yüzdelik `padding` kullanılmaz | Yüzde, düğme yerine kapsayıcı genişliğine göre hesaplanıyor → görseller küçülüyordu |
 
+## Yayın
+- Depo: `cemyurtlak/alen-oyun` (herkese açık), site: https://cemyurtlak.github.io/alen-oyun/
+- Güncelleme yolu: klasördeki `github_yukle.bat` (git add/commit/push -f). Git kimlik bilgisi Windows'ta kayıtlı.
+- Claude oturumunda depoya doğrudan push izni yok; Chrome dosya seçimine izin vermiyor → bat dosyası Dosya Gezgini'nden çift tıklanarak çalıştırılır.
+- `.gitignore`: `github_yukle.bat`, `yukleme_log.txt` depoya gitmez.
+
 ## Kod haritası
 - `js/core.js` → `G`: `screen()`, `topbar()`, `celebrate()`, `oops()`, `confetti()`, `burstAt()`, `visual()`,
   `hands()/setFingers()` (parmaklı eller SVG), `longPress()`, `toggleFullscreen()`, `activities{}` kaydı.
@@ -40,7 +46,6 @@
 - Sentez hayvan sesleri çizgi film tarzıdır; gerçekçi ses için `sounds/animals/` klasörüne kayıt eklenebilir.
 
 ## Sonraki adımlar / fikirler
-- GitHub deposu oluşturup GitHub Pages ile yayınlamak (kullanıcının sıradaki isteği).
 - Gerçek hayvan seslerini (CC0 lisanslı) bulup `sounds/animals/` klasörüne eklemek.
 - Anne-baba sesiyle "aferin", "hayır" ve kelime kayıtları (ayarlardan kayıt alma özelliği eklenebilir).
 - Çevrimdışı çalışma için service worker.

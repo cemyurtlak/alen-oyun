@@ -4,6 +4,26 @@
 
 ---
 
+## Aşama 2 — GitHub'a yükleme ve GitHub Pages yayını
+**Tarih:** 17.11.2026
+
+**İstek:** Projeyi Chrome üzerinden GitHub'a yükleyip link oluşturmak.
+
+**Yapılanlar:**
+- Chrome'da `cemyurtlak/alen-oyun` adlı herkese açık depo oluşturuldu.
+- Web yükleme sayfası klasör yapısını koruyamadığı için (yalnızca kök dosyalar gitti), klasöre
+  `github_yukle.bat` eklendi: `git init` → `git add` → `commit` → `git push -f origin main`.
+  Dosya Gezgini'nden çalıştırıldı; GitHub girişi kullanıcı tarafından onaylandı. 251 dosya gönderildi (PUSH_OK).
+- GitHub Pages açıldı (Deploy from a branch → main → / root).
+- Yayın adresi: https://cemyurtlak.github.io/alen-oyun/ — Chrome'da açıldığı doğrulandı.
+
+**Değişen / oluşan dosyalar:** `github_yukle.bat` (yeni), `.gitignore` (yeni, bat ve log dosyasını hariç tutar),
+`README.md` (canlı link + güncelleme yöntemi), `DEVAM_NOTLARI.md`, `GELISTIRME_GUNLUGU.md`.
+
+**Test durumu:** Canlı site başlangıç ekranı Chrome'da sorunsuz yüklendi.
+
+---
+
 ## Aşama 1 — İlk sürüm: iki dilli sesli eğitim oyunu
 **Tarih:** 17.11.2026
 
