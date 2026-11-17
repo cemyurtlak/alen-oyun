@@ -40,6 +40,7 @@
 | Mikrofon yalnızca seviye ölçer | Çocuğun ne dediğini anlamaya gerek yok; her ses denemesi ödül alır (babıldama dahil) |
 | Akış belirteci (`G.newFlow()` / `G.alive(id)`) | Ekran değişince eski konuşmalar/döngüler kendini durdurur |
 | Hayvan görselleri gerçek fotoğraf (`assets/img/real`, arka planı temizlenmiş) | Cem "daha gerçekçi" istedi; Wikipedia ana fotoğrafları en net sonuç verdi. Yeni hayvan eklenirse aynı yöntem: foto → rembg isnet → 360px WebP → `images.js` gerçek fotoğraf bloğu |
+| Tanıtım yok, bölümler doğrudan oyunla başlar (`Learn.open` → `startPlay`; Hayvan Evleri → `play()`) | Cem: "direkt oyun oynayarak öğrenmiş olur". `startLearn`/`teach` kodu duruyor, istenirse geri açılabilir |
 | Bölümlerde grup yok (`groupsOf` tek grup döner) | Cem: "kendi içinde bölümler olmasın, tüm hayvanlar çıksın" |
 | Art arda dokunulan etkinliklerde ses kuyruğu (Yumurtalar, Kedi Koşusu) | Cem: sesler üst üste binmesin ve atlanmasın; kuyruk sınırlı tutulur |
 | Sentez fanfar kapalı; ses eklemeden önce spektrogramla kontrol | Alkıştaki ıslık ve yanlış fil kaydı kulakla değil spektrogramla bulundu |

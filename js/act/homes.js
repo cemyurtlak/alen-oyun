@@ -173,15 +173,14 @@ G.activities.homes = () => {
       <h2 class="sub">Every animal is home!</h2>
       <div class="finish-btns">
         <button class="fbtn" id="replay" style="--c1:#ff6b6b;--c2:#ff9a8b">${pic('🔁')}<small>Tekrar oyna</small></button>
-        <button class="fbtn" id="relearn" style="--c1:#4dabf7;--c2:#74c0fc">${pic('📖')}<small>Tekrar öğren</small></button>
         <button class="fbtn" data-home style="--c1:#845ef7;--c2:#b197fc">${pic('🏠')}<small>Ana sayfa</small></button>
       </div>`);
     G.bindHome(root);
     $('#replay').onclick = () => { Sounds.tap(); play(); };
-    $('#relearn').onclick = () => { Sounds.tap(); teach(); };
     G.celebrate({ big: true, extra: [{ t: 'Bütün hayvanlar evine gitti!', l: TR }] });
     void id;
   }
 
-  teach();
+  // Tanıtım turu yok: doğrudan oyun (yanlış evde ipucu ve doğru cevapta "Ördek gölde yaşar" ile öğrenir)
+  play();
 };

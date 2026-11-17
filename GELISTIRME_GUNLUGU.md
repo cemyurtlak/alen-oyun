@@ -4,6 +4,24 @@
 
 ---
 
+## Aşama 9 — Tanıtım kısımları kaldırıldı, doğrudan oyun
+**Tarih:** 17.11.2026
+
+**İstek (Cem):** Tanıtım kısımları olmasın, direkt oyun oynayarak öğrenmiş olur.
+
+**Yapılanlar:**
+- `js/learn.js`: bölüm açılınca tanıtım ekranı yerine doğrudan soru-cevap başlar (`startPlay`). Bitiş ekranındaki
+  "Tekrar öğren" düğmesi kaldırıldı ("Tekrar oyna" ve "Ana sayfa" kaldı). Tanıtım kodu (`startLearn`) kullanılmıyor, silinmedi.
+- `js/act/homes.js`: Hayvan Evleri tanıtım turu atlanır, doğrudan sürükleme oyunu açılır; "Tekrar öğren" kaldırıldı.
+  Çocuk doğru cevapta "Ördek gölde yaşar" cümlesiyle, iki yanlışta parlayan doğru evle öğrenir.
+
+**Değişen dosyalar:** `js/learn.js`, `js/act/homes.js`, README, bu günlük.
+
+**Test durumu:** Headless Chrome: 12 bölümün hepsi doğrudan soru ekranıyla, Hayvan Evleri doğrudan oyunla açıldı;
+3 soruluk tur doğru cevaplarla tebrik ekranına ulaştı (düğmeler: Tekrar oyna, Ana sayfa). Sayfa hatası yok.
+
+---
+
 ## Aşama 8 — Temiz alkış, doğru fil sesi, Kedi Koşusu ses sırası, bölümlerde grup yok
 **Tarih:** 17.11.2026
 

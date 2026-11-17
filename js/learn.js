@@ -46,7 +46,8 @@ const Learn = (() => {
 
   function open(cat) {
     const groups = groupsOf(cat);
-    if (groups.length === 1) startLearn(cat, 0);
+    // Tanıtım yok: bölüm doğrudan oyunla başlar, çocuk oynayarak öğrenir (Cem'in isteği)
+    if (groups.length === 1) startPlay(cat, 0);
     else renderGroups(cat);
   }
 
@@ -67,6 +68,15 @@ const Learn = (() => {
   }
 
   /* ---------- Tanıtım ---------- */
+  function startPlay(cat, gi) {
+    const groups = groupsOf(cat);
+    S.cat = cat;
+    S.group = Math.min(gi, groups.length - 1);
+    S.items = groups[S.group];
+    S.idx = 0;
+    startQuiz();
+  }
+
   function startLearn(cat, gi) {
     const groups = groupsOf(cat);
     S.cat = cat;
@@ -334,13 +344,11 @@ const Learn = (() => {
       <div class="stars-big">${('<span>' + pic('⭐') + '</span>').repeat(S.score)}</div>
       <div class="finish-btns">
         <button class="fbtn" id="replay" style="--c1:#2fb344;--c2:#69db7c">${pic('🔁')}<small>Tekrar oyna</small></button>
-        <button class="fbtn" id="relearn" style="--c1:#4dabf7;--c2:#74c0fc">${pic('📖')}<small>Tekrar öğren</small></button>
         ${hasNext ? `<button class="fbtn" id="nextg" style="--c1:#40c057;--c2:#8ce99a">${pic('🌟')}<small>Yenileri öğren</small></button>` : ''}
         <button class="fbtn" data-home style="--c1:#845ef7;--c2:#b197fc">${pic('🏠')}<small>Ana sayfa</small></button>
       </div>`, S.cat.bg);
     G.bindHome(root);
     $('#replay').onclick = () => { Sounds.tap(); startQuiz(); };
-    $('#relearn').onclick = () => { Sounds.tap(); startLearn(S.cat, S.group); };
     if (hasNext) $('#nextg').onclick = () => { Sounds.tap(); startLearn(S.cat, S.group + 1); };
     Sounds.fanfare();
     Sounds.applause(3);

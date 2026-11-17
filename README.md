@@ -9,8 +9,8 @@ Kurulum gerektirmez; tarayıcıda açılır, telefonda/tablette tam ekran çalı
 
 ### 📖 Öğrenelim (tanıtım + soru-cevap)
 Başlangıçta **dil seçilir**: Türkçe, English ya da İkisi. Seçilen dilde konuşur.
-Her bölümde (ara gruplara bölünmeden) **tüm öğeler** tek tek **sesli tanıtılır**, sonra oyun başlar: hayvanlarda önce
-gerçek ses, sonra isim söylenir (*"Kedi!"* / *"Dog!"*). Doğru cevapta **"Yeeey!" + alkış + konfeti** ve **beklemeden** sıradaki soru;
+Tanıtım yok: her bölüm **doğrudan oyunla** başlar, çocuk oynayarak öğrenir. Bölümler gruplara ayrılmaz, tüm öğelerden
+sorulur; hayvanlarda önce gerçek ses, sonra isim söylenir (*"Kedi!"* / *"Dog!"*). Doğru cevapta **"Yeeey!" + alkış + konfeti** ve **beklemeden** sıradaki soru;
 yanlışta kısa **"Hayıııır!"** (hemen yeniden denenebilir). 2 yanlıştan sonra doğru cevap parlayarak ipucu verir.
 
 | Bölüm | İçerik |
@@ -37,7 +37,7 @@ yanlışta kısa **"Hayıııır!"** (hemen yeniden denenebilir). 2 yanlıştan 
 | **Yemek Zamanı** | Kedi (köpek, panda, ayı) acıkmıştır; çocuk yiyeceğe dokununca kedi ağzını açar, **çiğner ("ham ham")**, "Mmm, çok lezzetli!" der. "Birlikte çiğneyelim" düğmesi aç–ısır–çiğne–yut adımlarını gösterir. **"Alen de yedi!"** düğmesi gerçek bir lokma yendiğinde büyük kutlama yapar. |
 | **Parmakla Say** | Dokundukça parmaklar açılır ve sayılır (1–10); "Kaç tane?" modunda parmak sayısını bulur. |
 | **Yumurta Sürprizi** | Renkli yumurtaya **bir kez** dokun, çatlasın; içinden civciv, ördek, kedi, baykuş... çıksın. Gerçek sesi ve adı duyulur; art arda dokununca sesler sıraya girer, hiçbiri atlanmaz. |
-| **Hayvan Evleri** | Önce tüm hayvanların nerede yaşadığı öğretilir (ördek → göl, kuş → yuva, inek → çiftlik...), sonra hayvan **parmakla doğru eve sürüklenir**. |
+| **Hayvan Evleri** | Doğrudan oyun: hayvanı **parmakla doğru evine sürükle** (ya da eve dokun). Doğru evde "Ördek gölde yaşar" denir; iki yanlışta doğru ev parlar. |
 | **Balon Patlat** | Renkli balonlar aşağıdan sürekli uçar, dokununca patlar; bazılarının altında sürpriz hayvan vardır. |
 | **Sapan** | Sapan ekranın altında: hayvanı **kendine doğru geri çek** — nişanlanan balon parlak halkayla gösterilir — **bırak** → hayvan tam o balona uçar. Dikey ve yatay ekranda balonlar hep görünür. Balona dokunmak da otomatik atış yapar. |
 | **Balonu Üfle** | Mikrofona üfledikçe balon şişer ve patlar (ağız-dudak kaslarını çalıştırır). |
