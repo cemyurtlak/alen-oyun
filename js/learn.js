@@ -22,15 +22,9 @@ const Learn = (() => {
     return parts;
   }
 
+  // Bölümler kendi içinde gruplara ayrılmaz: her bölümde tüm öğeler birlikte öğretilir ve sorulur (Cem'in isteği)
   function groupsOf(cat) {
-    const n = Math.max(2, Settings.get('groupSize'));
-    const g = [];
-    for (let i = 0; i < cat.items.length; i += n) g.push(cat.items.slice(i, i + n));
-    if (g.length > 1 && g[g.length - 1].length < 3) {
-      const last = g.pop();
-      g[g.length - 1] = g[g.length - 1].concat(last);
-    }
-    return g;
+    return [cat.items];
   }
 
   const themeCls = (cat) => cat.theme ? ' theme-' + cat.theme : '';

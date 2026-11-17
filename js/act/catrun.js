@@ -1,7 +1,8 @@
 /* =========================================================
    KEDİ KOŞUSU — kediler uzaktan koşarak ekrana yaklaşır,
    sonunda ekrana doğru zıplar (farklı tonlarda miyav).
-   Kediye dokununca hemen zıplar. Zıplayan kediler sayılır (1-10).
+   Kediye dokununca hemen zıplar, miyavlar ve sayılır (1-10). Sesler sıraya girer, üst üste binmez;
+   kendiliğinden zıplayan kediler sessizdir.
    ========================================================= */
 G.activities.catrun = () => {
   const { $, rand, TR, EN } = G;
@@ -22,7 +23,19 @@ G.activities.catrun = () => {
   const cats = [];
   let count = 0, nextSpawn = 0.6, last = performance.now();
 
-  Speech.seq(G.both('Kediler geliyor!', 'Here come the kitties!'));
+  /* Ses kuyruğu: her dokunuşta miyav → sayı sırayla çalar, üst üste binmez, atlanmaz.
+     Kuyruk en fazla 6 iş tutar (çok hızlı dokununca sesler dakikalarca birikmesin). */
+  let queue = Promise.resolve(), pending = 0;
+  function enqueue(job) {
+    if (pending >= 6) return false;
+    pending++;
+    queue = queue.then(async () => {
+      try { if (G.alive(id)) await job(); } catch (e) { /* yoksay */ }
+      pending--;
+    });
+    return true;
+  }
+  enqueue(() => Speech.seq(G.both('Kediler geliyor!', 'Here come the kitties!')));
 
   function spawn() {
     const el = document.createElement('div');
@@ -34,27 +47,29 @@ G.activities.catrun = () => {
       speed: 1 / (2.4 + Math.random() * 1.8), flip: Math.random() < 0.5, phase: Math.random() * 6,
       jumping: false, jt: 0
     };
-    el.addEventListener('pointerdown', (e) => { e.stopPropagation(); if (!c.jumping) startJump(c); });
+    el.addEventListener('pointerdown', (e) => { e.stopPropagation(); if (!c.jumping) startJump(c, true); });
     cats.push(c);
   }
 
-  function startJump(c) {
+  // tapped=true: çocuk dokundu → miyav + sayı. Kendiliğinden zıplayan kedi sessizdir (sesler birbirine girmesin).
+  function startJump(c, tapped) {
     c.jumping = true;
     c.jt = 0;
     c.s0 = c.scale || 0.5;
     c.xj = c.x || field.clientWidth / 2;
     c.yj = c.y || field.clientHeight * 0.8;
-    AnimalSounds.randomMeow();
-    count++;
-    if (count > 10) count = 1;
+    if (!tapped) return;
+    const n = count + 1 > 10 ? 1 : count + 1;
+    // kuyruk doluysa sayma da atlanmaz: sayı ve ses birlikte eklenir ya da hiç eklenmez
+    if (!enqueue(async () => {
+      await AnimalSounds.randomMeow();
+      if (!G.alive(id)) return;
+      await Speech.seq(G.both(COUNT_TR[n - 1] + '!', COUNT_EN[n - 1] + '!'));
+      if (n === 10 && G.alive(id)) await G.celebrate({ big: true, extra: G.both('On kedi!', 'Ten kitties!') });
+    })) return;
+    count = n;
     const cnt = $('#cnt b');
     if (cnt) { cnt.textContent = count; G.anim($('#cnt'), 'boom'); }
-    setTimeout(() => {
-      if (!G.alive(id)) return;
-      // miyav bittikten sonra sayıyı söyle (sesler üst üste binmesin)
-      if (!Speech.busy()) Speech.seq(G.both(COUNT_TR[count - 1] + '!', COUNT_EN[count - 1] + '!'));
-      if (count === 10) setTimeout(() => G.alive(id) && G.celebrate({ big: true, extra: G.both('On kedi!', 'Ten kitties!') }), 1200);
-    }, 900);
   }
 
   // Kedi camın üstüne "yapışır" ve pati izi bırakır

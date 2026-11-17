@@ -9,8 +9,8 @@ Kurulum gerektirmez; tarayıcıda açılır, telefonda/tablette tam ekran çalı
 
 ### 📖 Öğrenelim (tanıtım + soru-cevap)
 Başlangıçta **dil seçilir**: Türkçe, English ya da İkisi. Seçilen dilde konuşur.
-Her bölümde önce öğeler tek tek **sesli tanıtılır**, sonra oyun başlar: doğrudan isim söylenir (*"Kedi!"* / *"Dog!"*)
-ve hayvanın gerçek sesi çalar. Doğru cevapta **"Yeeey!" + alkış + konfeti** ve **beklemeden** sıradaki soru;
+Her bölümde (ara gruplara bölünmeden) **tüm öğeler** tek tek **sesli tanıtılır**, sonra oyun başlar: hayvanlarda önce
+gerçek ses, sonra isim söylenir (*"Kedi!"* / *"Dog!"*). Doğru cevapta **"Yeeey!" + alkış + konfeti** ve **beklemeden** sıradaki soru;
 yanlışta kısa **"Hayıııır!"** (hemen yeniden denenebilir). 2 yanlıştan sonra doğru cevap parlayarak ipucu verir.
 
 | Bölüm | İçerik |
@@ -29,7 +29,7 @@ yanlışta kısa **"Hayıııır!"** (hemen yeniden denenebilir). 2 yanlıştan 
 ### 🎮 Oyunlar
 | Oyun | Ne yapar? |
 |---|---|
-| **Kedi Koşusu** | Kediler uzaktan koşarak ekrana yaklaşır ve **ekrana zıplar**, camda pati izi bırakır; her seferinde farklı tonda miyav. Zıplayan kediler sayılır (1–10). |
+| **Kedi Koşusu** | Kediler uzaktan koşarak ekrana yaklaşır ve **ekrana zıplar**, camda pati izi bırakır. Dokunulan kedi farklı tonda gerçek miyavlar ve sayılır (1–10); sesler sırayla çalar, üst üste binmez. |
 | **Ses Taklidi** | İnek "Mööö", **uluyan köpek** "Auuuu", kedi, ördek, tavuk... Sesi dinler, hece hece duyar, "Sen yap!" der. Mikrofon çocuğun ses çıkarmasını algılar ve **her denemeyi** ödüllendirir. |
 | **Konuşalım** | İlk sesler (a, o, u, m, ba, ma, pa, da) ve ilk kelimeler (anne, baba, su, mama, daha, bay bay...). Hece hece yavaşça söylenir, çocuğun her sesi kutlanır. |
 | **Konuşan Kedi / Bebek** | Çocuk ne söylerse (babıldama dahil) kedi veya bebek onu **komik ince bir sesle tekrar eder**. Dokununca gıdıklanır. |

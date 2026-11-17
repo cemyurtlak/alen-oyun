@@ -111,7 +111,6 @@
         <label>Çocuğun adı <input id="sName" maxlength="20" value="${esc(G.childName())}"></label>
         <label>Seçenek sayısı ${sel('sOpt', [2, 3, 4], Settings.get('optionCount'))}</label>
         <label>Bir turdaki soru sayısı ${sel('sQ', [3, 5, 8, 10], Settings.get('questionCount'))}</label>
-        <label>Bir grupta kaç öğe öğretilsin ${sel('sG', [3, 4, 5, 6, 8, 30], Settings.get('groupSize'), v => v === 30 ? 'Hepsi' : v)}</label>
         <label>Konuşma dili
           <select id="sLang">${[['tr', 'Sadece Türkçe'], ['en', 'Only English'], ['both', 'İkisi (Türkçe + English)']].map(([v, t]) => `<option value="${v}" ${v === (Settings.get('lang') || 'tr') ? 'selected' : ''}>${t}</option>`).join('')}</select></label>
         <label>İkisi seçiliyse sıra
@@ -131,7 +130,6 @@
       Settings.set('childName', ($('#sName').value || 'Alen').trim() || 'Alen');
       Settings.set('optionCount', +$('#sOpt').value);
       Settings.set('questionCount', +$('#sQ').value);
-      Settings.set('groupSize', +$('#sG').value);
       Settings.set('enFirst', $('#sOrd').value === '1');
       Settings.set('lang', $('#sLang').value);
       Settings.set('autoFull', $('#sFull').checked);

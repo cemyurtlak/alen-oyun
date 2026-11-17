@@ -73,29 +73,28 @@ const Sounds = (() => {
     src.stop(t + dur + 0.02);
   }
 
-  // Kalabalık alkışı: çok sayıda kısa gürültü patlaması
+  // Alkış: SADECE gerçek kayıt (BBC Sound Effects, temiz salon alkışı) — sentez yedeği yok
   function applause(duration = 2.4) {
     if (playFile('alkis')) return;
-    // gerçek alkış kaydı (ESC-50), kısa tutulur
     try {
-      const a = new Audio('assets/sfx/clapping_' + (1 + Math.floor(Math.random() * 2)) + '.mp3');
-      a.volume = 0.8;
-      a.play().then(() => setTimeout(() => { try { a.pause(); } catch (e) { /* yoksay */ } }, Math.min(duration, 2.4) * 1000)).catch(() => {});
-      return;
-    } catch (e) { /* sentezle */ }
-    init();
-    if (!ctx) return;
-    const claps = Math.floor(duration * 70);
-    for (let i = 0; i < claps; i++) {
-      const s = Math.random() * duration;
-      const fade = 1 - s / duration;           // sona doğru azalır
-      noise(s, 0.03 + Math.random() * 0.04, 0.35 * fade + 0.03,
-            900 + Math.random() * 1800, 0.8 + Math.random());
-    }
+      const a = new Audio('assets/sfx/clapping_' + (1 + Math.floor(Math.random() * 3)) + '.mp3');
+      a.volume = 0.75;
+      const stopAt = Math.min(duration, 3) * 1000;
+      a.play().then(() => {
+        // sona doğru yumuşakça kıs (kesik "tık" olmasın)
+        setTimeout(() => {
+          let v = a.volume;
+          const iv = setInterval(() => { v -= 0.08; if (v <= 0) { clearInterval(iv); try { a.pause(); } catch (e) { /* yoksay */ } } else a.volume = v; }, 40);
+        }, Math.max(0, stopAt - 450));
+      }).catch(() => {});
+    } catch (e) { /* yoksay */ }
   }
 
   // Sevinç müziği (ta-da!)
-  function fanfare() {
+  /* Bilgisayarla üretilmiş "ta-da" müziği kutlamada alkışın arkasında ayrı bir ses gibi duyuluyordu
+     (Cem: "alkışta arka planda farklı sesler çıkıyor") → kapatıldı. Kutlama = gerçek alkış + Piku. */
+  function fanfare() { /* kapalı */ }
+  function fanfareSynth() {
     init();
     if (!ctx) return;
     const notes = [523.25, 659.25, 783.99, 1046.5];

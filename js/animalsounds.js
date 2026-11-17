@@ -32,7 +32,7 @@ const AnimalSounds = (() => {
     duck: { f: ['duck_1', 'duck_2', 'duck_3'] },
     horse: { f: ['horse_1', 'horse_2'] },
     lion: { f: ['lion_1', 'lion_2'] },
-    elephant: { f: ['elephant_1', 'elephant_2'] },
+    elephant: { f: ['elephant_1', 'elephant_2', 'elephant_3'] },
     monkey: { f: ['monkey_1', 'monkey_2'] },
     owl: { f: ['owl_1', 'owl_2'] },
     bear: { f: ['bear_1'] },

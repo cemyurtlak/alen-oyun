@@ -4,6 +4,36 @@
 
 ---
 
+## Aşama 8 — Temiz alkış, doğru fil sesi, Kedi Koşusu ses sırası, bölümlerde grup yok
+**Tarih:** 17.11.2026
+
+**İstek (Cem):**
+- Alkış sesinde sorun var, arka planda farklı sesler çıkıyor. Filin sesi doğru değil.
+- Kediler geliyor kısmında sesler üst üste biniyor ve seslerin çoğu çalışmıyor.
+- Hayvanlar, sayılar, renkler vb. kendi içinde bölümlere ayrılmasın; örneğin hayvanlarda tüm hayvanlar çıksın.
+
+**Yapılanlar:**
+- Spektrogram incelemesi: ESC-50 `clapping_1`'de sürekli ~5 kHz ıslık, `clapping_3` alkış değildi; `elephant_2` kuş/ortam karışıktı.
+- Alkış: BBC Sound Effects temiz salon alkışı (07047044, 07047045) → `assets/sfx/clapping_1..3.mp3` (-20 LUFS, yumuşak giriş/çıkış).
+  `sounds.js`: alkış 3 kayıttan seçilir, sonunda sesi kısılarak biter (kesik tık yok); sentez alkış yedeği kaldırıldı.
+- Kutlamadaki bilgisayar sentezi "ta-da" (fanfar) kapatıldı → kutlama = gerçek alkış + Piku "Yeeey! Aferin!".
+- Fil: BBC African elephant trumpeting (NHU05098070, NHU05098069) ve Indian elephant (07062089) kayıtlarından
+  spektrogramla doğrulanmış 3 temiz boru sesi → `elephant_1..3.mp3`.
+- Kedi Koşusu (`catrun.js`): ses kuyruğu — her dokunuşta gerçek miyav → sayı ("Bir! One!") sırayla, üst üste binmez,
+  atlanmaz (kuyruk ≤ 6). Kendiliğinden ekrana zıplayan kediler artık sessiz (üst üste binmenin ana sebebi buydu).
+  "On kedi!" kutlaması da kuyrukta.
+- Öğren bölümleri (`learn.js`): grup seçimi kaldırıldı; her bölüm doğrudan tüm öğelerle açılır ve tümünden sorulur.
+  Ebeveyn ayarlarındaki "Bir grupta kaç öğe" seçeneği kaldırıldı.
+
+**Değişen dosyalar:** `js/sounds.js`, `js/animalsounds.js`, `js/act/catrun.js`, `js/learn.js`, `js/home.js`,
+`assets/sfx/{clapping_1..3, elephant_1..3}.mp3`, README, DEVAM_NOTLARI, bu günlük.
+
+**Test durumu:** Yeni kliplerin spektrogramları temiz (alkışta sabit ton/konuşma yok; filde harmonikli boru sesi).
+Headless Chrome: fil 4 kez çalındı, kutlama hatasız; Kedi Koşusu'nda 5 hızlı dokunuş → 5 miyav + "bir…beş" sırayla, sayaç 5;
+12 bölümün hepsi grup ekranı olmadan tüm öğelerle açıldı. Sayfa hatası yok.
+
+---
+
 ## Aşama 7 — Sapan dikey ekranda düzgün ve nişanla vurulabilir; hayvanlarda önce ses, sonra ad
 **Tarih:** 17.11.2026
 
