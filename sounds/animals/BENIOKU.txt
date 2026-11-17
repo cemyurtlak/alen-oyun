@@ -1,0 +1,13 @@
+Bu klasör isteğe bağlıdır. Buraya koyduğunuz ses dosyaları oyundaki hazır seslerin yerine çalınır.
+
+sounds/yeah.mp3   -> doğru cevapta sevinç ("Yeeey!")
+sounds/alkis.mp3  -> doğru cevapta alkış
+sounds/hayir.mp3  -> yanlış cevapta "Hayıııır"
+
+sounds/animals/   -> gerçek hayvan/taşıt sesleri. Dosya adları:
+  dog howl cat kitten catBig catHappy catSad catAngry catPurr catLove catSurprised
+  cow sheep chicken chick duck horse lion elephant monkey frog bird owl bear bee fish
+  car race truck moto plane train bell ship heli siren tractor rocket chomp
+  (örnek: sounds/animals/cow.mp3)
+
+İpucu: Anne veya babanın "Aferin Alen! Yeeey!" kaydı çocuklar için çok motive edicidir.

@@ -1,0 +1,4 @@
+Bu klasördeki 3D görseller Microsoft Fluent UI Emoji projesinden alınmıştır.
+https://github.com/microsoft/fluentui-emoji
+MIT License - Copyright (c) Microsoft Corporation.
+tint/ klasöründeki renkli sürümler bu görsellerden türetilmiştir.
