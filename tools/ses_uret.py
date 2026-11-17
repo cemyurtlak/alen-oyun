@@ -1,67 +1,55 @@
 # -*- coding: utf-8 -*-
 """
-Doğal ses kayıtlarını üretir (Microsoft Edge'in sinir ağı sesleri, edge-tts paketi ile).
-  Türkçe : tr-TR-EmelNeural  (sıcak, net kadın sesi)
-  English: en-US-AnaNeural   (neşeli çocuk sesi)
-Girdi : tools/ses_listesi.json   (tools/ses_listesi_olustur.js üretir)
-Çıktı : audio/voice/*.mp3  ve  audio/voice/index.js (oyunun okuduğu liste)
-Daha önce üretilmiş dosyalar atlanır; sadece yeni cümleler üretilir.
-Sesi değiştirmek için aşağıdaki VOICES satırını düzenleyip audio/voice klasörünü silin.
+SES DİZİNİ ve EKSİK SES LİSTESİ (bilgisayar seslendirmesi YOKTUR)
+
+Oyundaki bütün konuşmalar ElevenLabs'te "Piku - Expressive Kid Character" sesiyle,
+"Eleven v4" modeliyle üretilir (ayarlar: Stability 50, Similarity 75 — varsayılan).
+
+Bu betik:
+  1) tools/ses_listesi.json'daki her cümle için audio/voice/ içinde kayıt var mı bakar,
+  2) olanlarla audio/voice/index.js dosyasını (oyunun okuduğu liste) yeniden yazar,
+  3) kaydı olmayanları tools/eksik_sesler_tr.txt ve tools/eksik_sesler_en.txt
+     dosyalarına ElevenLabs'e yapıştırılacak biçimde ([pause] ile ayrılmış) yazar.
+
+Yeni cümle eklenince:
+  node tools/ses_listesi_olustur.js   ->  python tools/ses_uret.py
+  -> eksik_sesler_*.txt içeriğini ElevenLabs'te Piku ile seslendirip indir
+  -> tools/elevenlabs_bol.py ile cümlelere böl  ->  python tools/ses_uret.py
 """
-import asyncio
 import json
 import os
-import sys
 
-try:
-    import edge_tts
-except ImportError:
-    print("edge-tts yuklu degil. Once: pip install edge-tts")
-    sys.exit(1)
-
-VOICES = {"tr": "tr-TR-EmelNeural", "en": "en-US-AnaNeural"}
-RATE = "-8%"   # çocuk için biraz yavaş ve anlaşılır
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+LISTE = os.path.join(ROOT, 'tools', 'ses_listesi.json')
+SES = os.path.join(ROOT, 'audio', 'voice')
 
 
-async def one(sem, e):
-    out = os.path.join(ROOT, *e["file"].split("/"))
-    if os.path.exists(out) and os.path.getsize(out) > 500:
-        return True
-    err = None
-    async with sem:
-        for attempt in range(4):
-            try:
-                c = edge_tts.Communicate(e["text"], VOICES[e["lang"]], rate=RATE)
-                await c.save(out + ".tmp")
-                os.replace(out + ".tmp", out)
-                return True
-            except Exception as ex:  # ağ hatası vb.
-                err = ex
-                await asyncio.sleep(1.5 * (attempt + 1))
-    print("HATA:", e["text"], "-", err)
-    return False
+def bitir(t):
+    t = t.strip()
+    return t if t[-1:] in '.!?' else t + '.'
 
 
-async def main():
-    items = json.load(open(os.path.join(ROOT, "tools", "ses_listesi.json"), encoding="utf-8"))
-    os.makedirs(os.path.join(ROOT, "audio", "voice"), exist_ok=True)
-    sem = asyncio.Semaphore(6)
-    done = 0
-    results = []
-    for i in range(0, len(items), 60):
-        part = items[i:i + 60]
-        results += await asyncio.gather(*[one(sem, e) for e in part])
-        done += len(part)
-        print(f"{done}/{len(items)} cumle hazir")
-    ok = {e["key"]: e["file"] for e, r in zip(items, results) if r}
-    with open(os.path.join(ROOT, "audio", "voice", "index.js"), "w", encoding="utf-8") as f:
-        f.write("/* Otomatik uretildi (tools/ses_uret.py) - elle duzenlemeyin */\n")
-        f.write("var VOICE_FILES = " + json.dumps(ok, ensure_ascii=False) + ";\n")
-    print(f"URETILDI {len(ok)}/{len(items)}")
-    if len(ok) < len(items):
-        print("Bazi cumleler uretilemedi; oyun onlar icin tarayicinin sesini kullanir.")
+def main():
+    items = json.load(open(LISTE, encoding='utf-8'))
+    m, eksik = {}, {'tr': [], 'en': []}
+    for it in items:
+        if os.path.exists(os.path.join(ROOT, it['file'])):
+            m[it['key']] = it['file']
+        else:
+            eksik[it['lang']].append(it)
+    with open(os.path.join(SES, 'index.js'), 'w', encoding='utf-8') as f:
+        f.write('/* ElevenLabs (Piku - Expressive Kid Character, Eleven v4) kayitlari. '
+                'tools/ses_uret.py yazar - elle duzenlemeyin */\n')
+        f.write('var VOICE_FILES = ' + json.dumps(m, ensure_ascii=False) + ';\n')
+    for lang, lst in eksik.items():
+        p = os.path.join(ROOT, 'tools', 'eksik_sesler_%s.txt' % lang)
+        if lst:
+            with open(p, 'w', encoding='utf-8') as f:
+                f.write(' [pause] '.join(bitir(i['text']) for i in lst))
+        elif os.path.exists(p):
+            os.remove(p)
+    print('Kayitli: %d  Eksik TR: %d  Eksik EN: %d' % (len(m), len(eksik['tr']), len(eksik['en'])))
 
 
-if __name__ == "__main__":
-    asyncio.run(main())
+if __name__ == '__main__':
+    main()

@@ -42,10 +42,7 @@ const ANIMALS = [
   { tr: 'Baykuş', en: 'Owl', emoji: '🦉', sound: 'Hu hu!', snd: 'owl' },
   { tr: 'Ayı', en: 'Bear', emoji: '🐻', sound: 'Grrr!', snd: 'bear' },
   { tr: 'Arı', en: 'Bee', emoji: '🐝', sound: 'Vızzz!', snd: 'bee' },
-  { tr: 'Balık', en: 'Fish', emoji: '🐟', sound: 'Blup blup!', snd: 'fish' },
-  { tr: 'Tavşan', en: 'Rabbit', emoji: '🐰' },
-  { tr: 'Tilki', en: 'Fox', emoji: '🦊' },
-  { tr: 'Panda', en: 'Panda', emoji: '🐼' }
+  { tr: 'Tilki', en: 'Fox', emoji: '🦊', snd: 'fox' }
 ];
 
 const FOODS = [
@@ -114,7 +111,7 @@ const CATEGORIES = [
   {
     id: 'sharks', tr: 'Köpek Balıkları', en: 'Sharks', icon: '🦈', type: 'pic', bg: '#0b4f8a', theme: 'ocean',
     qEn: 'Which one is the {en}?', qTr: 'Hangisi {tr}?', colorNames: true,
-    items: COLORS.map(c => ({ key: c.key, tr: c.tr + ' köpek balığı', en: c.en + ' shark', src: tintSrc('shark', c.key), color: c.hex, snd: 'chomp' }))
+    items: COLORS.map(c => ({ key: c.key, tr: c.tr + ' köpek balığı', en: c.en + ' shark', src: tintSrc('shark', c.key), color: c.hex }))
   },
   {
     id: 'cars', tr: 'Arabalar', en: 'Cars', icon: '🚓', type: 'pic', bg: '#e4ecf5', theme: 'road',
@@ -251,7 +248,7 @@ const COPY_ITEMS = [
 /* HAYVAN EVLERİ — hangi hayvan nerede yaşar */
 const HOMES = [
   { id: 'pond', tr: 'Göl', en: 'Pond', trLoc: 'gölde', enLoc: 'in the pond', icon: '🌊', deco: ['🪷', '🌿'], bg: 'linear-gradient(180deg,#7fd3ff,#1f8fe0)',
-    animals: [{ tr: 'Ördek', en: 'duck', emoji: '🦆', snd: 'duck' }, { tr: 'Balık', en: 'fish', emoji: '🐟', snd: 'fish' }, { tr: 'Kurbağa', en: 'frog', emoji: '🐸', snd: 'frog' }] },
+    animals: [{ tr: 'Ördek', en: 'duck', emoji: '🦆', snd: 'duck' }, { tr: 'Kurbağa', en: 'frog', emoji: '🐸', snd: 'frog' }] },
   { id: 'nest', tr: 'Kuş yuvası', en: 'Nest', trLoc: 'yuvada', enLoc: 'in the nest', icon: '🪺', deco: ['🌳'], bg: 'linear-gradient(180deg,#c9f2b5,#6cc35a)',
     animals: [{ tr: 'Kuş', en: 'bird', emoji: '🐦', snd: 'bird' }, { tr: 'Baykuş', en: 'owl', emoji: '🦉', snd: 'owl' }, { tr: 'Civciv', en: 'chick', emoji: '🐤', snd: 'chick' }] },
   { id: 'farm', tr: 'Çiftlik', en: 'Farm', trLoc: 'çiftlikte', enLoc: 'on the farm', icon: '🛖', deco: ['🌾', '🌻'], bg: 'linear-gradient(180deg,#ffe9a8,#f2b84b)',
@@ -259,7 +256,7 @@ const HOMES = [
   { id: 'house', tr: 'Ev', en: 'House', trLoc: 'evde', enLoc: 'in the house', icon: '🏡', deco: ['🌷'], bg: 'linear-gradient(180deg,#ffd6e7,#ff9cc2)',
     animals: [{ tr: 'Köpek', en: 'dog', emoji: '🐶', snd: 'dog' }, { tr: 'Kedi', en: 'cat', emoji: '🐱', snd: 'cat' }] },
   { id: 'forest', tr: 'Orman', en: 'Forest', trLoc: 'ormanda', enLoc: 'in the forest', icon: '🌲', deco: ['🌳', '🍄'], bg: 'linear-gradient(180deg,#9be7a0,#2e8b57)',
-    animals: [{ tr: 'Aslan', en: 'lion', emoji: '🦁', snd: 'lion' }, { tr: 'Fil', en: 'elephant', emoji: '🐘', snd: 'elephant' }, { tr: 'Maymun', en: 'monkey', emoji: '🐵', snd: 'monkey' }, { tr: 'Ayı', en: 'bear', emoji: '🐻', snd: 'bear' }, { tr: 'Tilki', en: 'fox', emoji: '🦊' }] }
+    animals: [{ tr: 'Aslan', en: 'lion', emoji: '🦁', snd: 'lion' }, { tr: 'Fil', en: 'elephant', emoji: '🐘', snd: 'elephant' }, { tr: 'Maymun', en: 'monkey', emoji: '🐵', snd: 'monkey' }, { tr: 'Ayı', en: 'bear', emoji: '🐻', snd: 'bear' }, { tr: 'Tilki', en: 'fox', emoji: '🦊', snd: 'fox' }] }
 ];
 
 /* Ana sayfadaki oyun / etkinlik kartları */

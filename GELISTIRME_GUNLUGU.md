@@ -4,6 +4,44 @@
 
 ---
 
+## Aşama 4 — Tüm seslendirme ElevenLabs çocuk sesi (Piku), sadece gerçek hayvan sesleri
+**Tarih:** 17.11.2026
+
+**İstek (Cem):**
+- Edge sesleri "yapmacık ve kötü"; seslendirme ElevenLabs sitesinden, çocuk sesiyle (ücretsiz plan) yapılsın.
+- Sayılar, harfler, renkler, hayvan isimleri, konuşmalar — hepsi ElevenLabs'ten; **hiçbir şey bilgisayar seslendirmesi olmasın**.
+- İki dilli: İngilizce kısım da eksiksiz seslendirilsin.
+- Oyunda sadece gerçek hayvan sesi olsun (ev kullanımı); gerçek sesi bulunamayan hayvan kaldırılsın. Eksikler BBC'den indirilsin.
+- Gelecekte yeni ses gerekirse yine ElevenLabs'ten üretilsin.
+
+**Yapılanlar:**
+- Ses seçimi: ElevenLabs **Piku - Expressive Kid Character**, model **Eleven v4** (Stability 50, Similarity 75). Cem seçti.
+- 717 cümle (369 TR + 348 EN) ~60'lık paketler halinde, cümleler arasına `[pause]` etiketi konarak üretildi
+  (1. hesap: Türkçe, 2. hesap: İngilizce). Her paket tek MP3 indirildi, burada sessizlik + cümle uzunluğu tabanlı
+  dinamik programlama ile cümlelere bölündü ve her bölünme süre tutarlılığıyla kontrol edildi → `audio/voice/*.mp3`
+  (dosya adları öncekiyle aynı; eski Edge kayıtlarının hepsinin üzerine yazıldı) + `audio/voice/index.js`.
+- `speech.js`: tarayıcı sesli okuması (Web Speech / TTS) **tamamen kaldırıldı**. Kaydı olmayan cümle sessiz geçer ve
+  konsola "Ses kaydı yok" uyarısı yazılır (`Speech.missing()`). Ayarlardan ses seçimi ve konuşma hızı kaldırıldı.
+- `animalsounds.js`: tüm sentez (Web Audio) hayvan/taşıt sesleri kaldırıldı; **sadece gerçek kayıt** çalar.
+  BBC Sound Effects arşivinden ördek, at, aslan, fil, maymun, baykuş, civciv, uluyan köpek, ayı ve tilki kayıtları
+  indirildi; en net bölüm seçilip kırpıldı, ses düzeyi eşitlendi → `assets/sfx/{duck,horse,lion,elephant,monkey,owl,chick,howl,bear,fox}_N.mp3`.
+- Gerçek sesi olmayan **balık, tavşan, panda** oyundan çıkarıldı (Hayvanlar, Göl evi, Yumurtalar, Sapan, Yemek Zamanı).
+  Sapan'da panda yerine ördek geldi. Köpek balıklarının sentez "ham" sesi kaldırıldı. Tilkiye gerçek havlama eklendi.
+- Kaydı olmayan taşıtlar (yarış arabası, motosiklet, gemi, bisiklet, traktör, roket) artık sentez ses çalmaz; adları söylenir.
+- Araçlar: `tools/ses_uret.py` artık ses üretmiyor — dizini (`index.js`) yazar ve eksik cümleleri ElevenLabs'e yapıştırılacak
+  biçimde `tools/eksik_sesler_tr/en.txt`'ye çıkarır. Yeni `tools/elevenlabs_bol.py` indirilen MP3'ü cümlelere böler.
+- `.gitignore`: kök klasördeki ElevenLabs/BBC ham indirmeleri depoya gitmez.
+
+**Değişen / oluşan dosyalar:** `js/speech.js`, `js/animalsounds.js`, `js/home.js`, `js/data.js`, `js/act/{eggs,sling,feed}.js`,
+`audio/voice/*` (717 kayıt + index.js), `assets/sfx/*` (20 yeni BBC kaydı), `tools/ses_uret.py`, `tools/elevenlabs_bol.py` (yeni),
+`tools/ses_listesi.json`, `tools/ses_listesi_olustur.js`, `.gitignore`, README, DEVAM_NOTLARI, bu günlük.
+
+**Test durumu:** `node --check` temiz. Headless Chrome'da 12 etkinlik × 3 dil modu açıldı; sayfa hatası yok;
+ilk testte 4 cümle ("Hadi konuşalım!", "Hayvanları taklit edelim!" ve İngilizceleri) listede yoktu → `ses_listesi_olustur.js`'e `introTr/introEn` taraması eklendi, bu 4 cümle de Piku ile üretildi; şimdi kodun söyleyebileceği 713 cümlenin hepsinin kaydı var. Yeni hayvan sesleri ve Piku kayıtları
+çalınarak süreleri doğrulandı. Kesimler kulakla dinlenemedi; yanlış kesilen/yanlış ses duyulursa bildirilmeli.
+
+---
+
 ## Aşama 3 — Hızlı geçiş, dil seçimi, gerçek sesler, doğal konuşma, Balon Patlat, ileri sapan
 **Tarih:** 17.11.2026
 

@@ -3,3 +3,12 @@ ses_uret.bat
 yukleme_log.txt
 ses_log.txt
 *.tmp
+
+# ElevenLabs/BBC ham indirmeleri (kok klasorde)
+/ElevenLabs_*.mp3
+/alen_*.mp3
+/bbc_*
+__pycache__/
+ses_kur_ve_yukle.bat
+ses_kur_log.txt
+ses_paketi.zip

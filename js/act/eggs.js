@@ -13,7 +13,6 @@ G.activities.eggs = () => {
     { tr: 'Kedi', en: 'Kitty', emoji: '🐱', snd: 'kitten' },
     { tr: 'Kuş', en: 'Bird', emoji: '🐦', snd: 'bird' },
     { tr: 'Baykuş', en: 'Owl', emoji: '🦉', snd: 'owl' },
-    { tr: 'Tavşan', en: 'Bunny', emoji: '🐰' },
     { tr: 'Köpek', en: 'Puppy', emoji: '🐶', snd: 'dog' },
     { tr: 'Kurbağa', en: 'Frog', emoji: '🐸', snd: 'frog' }
   ];

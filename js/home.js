@@ -99,39 +99,25 @@
   G.goHome = () => renderHome(false);
 
   /* ---------- Ebeveyn ayarları (⚙️ basılı tutunca) ---------- */
-  function voiceOptions(lang, key) {
-    const list = Speech.listVoices(lang);
-    const cur = Settings.get(key) || '';
-    if (!list.length) return `<option value="">(ses bulunamadı)</option>`;
-    return `<option value="">Otomatik</option>` + list.map(v =>
-      `<option value="${esc(v.name)}" ${v.name === cur ? 'selected' : ''}>${esc(v.name)} (${esc(v.lang)})</option>`).join('');
-  }
-
   function openSettings() {
     G.newFlow();
     const wrap = document.createElement('div');
     wrap.className = 'modal';
-    const noTr = Speech.supported && !Speech.hasLang('tr');
     const sel = (id, vals, cur, label) => `<select id="${id}">${vals.map(v => `<option value="${v}" ${v === cur ? 'selected' : ''}>${label ? label(v) : v}</option>`).join('')}</select>`;
     wrap.innerHTML = `
       <div class="panel">
         <h2>⚙️ Ebeveyn Ayarları</h2>
-        <p class="note">${Speech.hasRecordings() ? '✅ Doğal ses kayıtları yüklü.' : '⚠️ Doğal ses kayıtları yok; tarayıcının sesi kullanılıyor.'}</p>
-        ${!Speech.supported ? '<p class="warn">Bu tarayıcı sesli okumayı desteklemiyor. Chrome veya Edge kullanın.</p>' : ''}
-        ${noTr ? '<p class="warn">Türkçe ses bulunamadı. Windows: Ayarlar → Saat ve dil → Konuşma → Türkçe ses ekleyin. Android: Google metin okuma ayarlarından Türkçe indirin.</p>' : ''}
+        <p class="note">${Speech.hasRecordings() ? '✅ Tüm konuşmalar ElevenLabs çocuk sesiyle (Piku) kayıtlı. Bilgisayar seslendirmesi kullanılmaz.' : '⚠️ Ses kayıtları yüklenemedi.'}</p>
         <label>Çocuğun adı <input id="sName" maxlength="20" value="${esc(G.childName())}"></label>
         <label>Seçenek sayısı ${sel('sOpt', [2, 3, 4], Settings.get('optionCount'))}</label>
         <label>Bir turdaki soru sayısı ${sel('sQ', [3, 5, 8, 10], Settings.get('questionCount'))}</label>
         <label>Bir grupta kaç öğe öğretilsin ${sel('sG', [3, 4, 5, 6, 8, 30], Settings.get('groupSize'), v => v === 30 ? 'Hepsi' : v)}</label>
-        <label>Konuşma hızı <input type="range" id="sRate" min="0.6" max="1.2" step="0.05" value="${Settings.get('rate')}"></label>
         <label>Konuşma dili
           <select id="sLang">${[['tr', 'Sadece Türkçe'], ['en', 'Only English'], ['both', 'İkisi (Türkçe + English)']].map(([v, t]) => `<option value="${v}" ${v === (Settings.get('lang') || 'tr') ? 'selected' : ''}>${t}</option>`).join('')}</select></label>
         <label>İkisi seçiliyse sıra
           <select id="sOrd"><option value="1" ${Settings.get('enFirst') ? 'selected' : ''}>Önce İngilizce, sonra Türkçe</option>
           <option value="0" ${!Settings.get('enFirst') ? 'selected' : ''}>Önce Türkçe, sonra İngilizce</option></select></label>
         <label class="check"><input type="checkbox" id="sFull" ${Settings.get('autoFull') ? 'checked' : ''}> Başlarken tam ekran aç</label>
-        <label>Türkçe ses <select id="sVTr">${voiceOptions('tr', 'voiceTr')}</select></label>
-        <label>İngilizce ses <select id="sVEn">${voiceOptions('en', 'voiceEn')}</select></label>
         <div class="row">
           <button id="tTr">🔊 Türkçe dene</button>
           <button id="tEn">🔊 İngilizce dene</button>
@@ -146,15 +132,12 @@
       Settings.set('optionCount', +$('#sOpt').value);
       Settings.set('questionCount', +$('#sQ').value);
       Settings.set('groupSize', +$('#sG').value);
-      Settings.set('rate', +$('#sRate').value);
       Settings.set('enFirst', $('#sOrd').value === '1');
       Settings.set('lang', $('#sLang').value);
       Settings.set('autoFull', $('#sFull').checked);
-      Settings.set('voiceTr', $('#sVTr').value);
-      Settings.set('voiceEn', $('#sVEn').value);
     };
-    $('#tTr').onclick = () => { save(); Speech.cancel(); Speech.say(`Merhaba ${G.childName()}! Hangisi kırmızı?`, TR); };
-    $('#tEn').onclick = () => { save(); Speech.cancel(); Speech.say(`Hello ${G.childName()}! Which one is red?`, EN); };
+    $('#tTr').onclick = () => { save(); Speech.cancel(); Speech.say('Merhaba Alen!', TR); };
+    $('#tEn').onclick = () => { save(); Speech.cancel(); Speech.say('Hello Alen!', EN); };
     $('#sClose').onclick = () => { save(); Speech.cancel(); wrap.remove(); renderHome(); };
   }
 

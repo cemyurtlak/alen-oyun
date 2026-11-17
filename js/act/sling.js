@@ -12,7 +12,7 @@ G.activities.sling = () => {
     { e: '🐱', snd: 'kitten', tr: 'Kedi', en: 'Kitty' },
     { e: '🐶', snd: 'dog', tr: 'Köpek', en: 'Puppy' },
     { e: '🐥', snd: 'chick', tr: 'Civciv', en: 'Chick' },
-    { e: '🐼', snd: null, tr: 'Panda', en: 'Panda' },
+    { e: '🦆', snd: 'duck', tr: 'Ördek', en: 'Duck' },
     { e: '🐸', snd: 'frog', tr: 'Kurbağa', en: 'Frog' }
   ];
   const root = G.screen('sling', G.topbar(`${pic('🎯', 'title-ic')} Sapan <small>Slingshot</small>`,

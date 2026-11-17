@@ -11,7 +11,6 @@ G.activities.feed = () => {
   const CHARS = [
     { tr: 'Kedi', en: 'Kitty', face: '🐱', open: '🙀', chew: '😸', love: '😻', full: '😽', snd: 'catHappy' },
     { tr: 'Köpek', en: 'Puppy', face: '🐶', open: '🐶', chew: '🐶', love: '🐶', full: '🐶', snd: 'dog' },
-    { tr: 'Panda', en: 'Panda', face: '🐼', open: '🐼', chew: '🐼', love: '🐼', full: '🐼' },
     { tr: 'Ayı', en: 'Bear', face: '🐻', open: '🐻', chew: '🐻', love: '🐻', full: '🐻', snd: 'bear' }
   ];
   let ch = CHARS[0], tummy = 0, busy = false;

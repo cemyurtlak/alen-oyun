@@ -384,6 +384,30 @@
   "file": "audio/voice/en_78c7fd6560.mp3"
  },
  {
+  "key": "tr|hadi konuşalım",
+  "lang": "tr",
+  "text": "Hadi konuşalım!",
+  "file": "audio/voice/tr_7a35bf7c71.mp3"
+ },
+ {
+  "key": "en|lets talk",
+  "lang": "en",
+  "text": "Let's talk!",
+  "file": "audio/voice/en_d6135cb25d.mp3"
+ },
+ {
+  "key": "tr|hayvanları taklit edelim",
+  "lang": "tr",
+  "text": "Hayvanları taklit edelim!",
+  "file": "audio/voice/tr_7b82b7db9c.mp3"
+ },
+ {
+  "key": "en|lets copy the animals",
+  "lang": "en",
+  "text": "Let's copy the animals!",
+  "file": "audio/voice/en_0da61ac830.mp3"
+ },
+ {
   "key": "tr|balonları patlat",
   "lang": "tr",
   "text": "Balonları patlat!",
@@ -1524,30 +1548,6 @@
   "file": "audio/voice/en_df02c7e980.mp3"
  },
  {
-  "key": "tr|balık",
-  "lang": "tr",
-  "text": "Balık!",
-  "file": "audio/voice/tr_d76322d06b.mp3"
- },
- {
-  "key": "en|fish",
-  "lang": "en",
-  "text": "Fish!",
-  "file": "audio/voice/en_2f98c9e67b.mp3"
- },
- {
-  "key": "tr|tavşan",
-  "lang": "tr",
-  "text": "Tavşan!",
-  "file": "audio/voice/tr_e2925a120b.mp3"
- },
- {
-  "key": "en|rabbit",
-  "lang": "en",
-  "text": "Rabbit!",
-  "file": "audio/voice/en_059b29957e.mp3"
- },
- {
   "key": "tr|tilki",
   "lang": "tr",
   "text": "Tilki!",
@@ -1558,18 +1558,6 @@
   "lang": "en",
   "text": "Fox!",
   "file": "audio/voice/en_5b65b434c0.mp3"
- },
- {
-  "key": "tr|panda",
-  "lang": "tr",
-  "text": "Panda!",
-  "file": "audio/voice/tr_9f2e779b9a.mp3"
- },
- {
-  "key": "en|panda",
-  "lang": "en",
-  "text": "Panda!",
-  "file": "audio/voice/en_b4ff2acf8f.mp3"
  },
  {
   "key": "tr|kim bu ses",
@@ -2994,30 +2982,6 @@
   "file": "audio/voice/en_f5acb763e4.mp3"
  },
  {
-  "key": "tr|balık gölde yaşar",
-  "lang": "tr",
-  "text": "Balık gölde yaşar.",
-  "file": "audio/voice/tr_13528a2a86.mp3"
- },
- {
-  "key": "en|the fish lives in the pond",
-  "lang": "en",
-  "text": "The fish lives in the pond.",
-  "file": "audio/voice/en_4a6a532acc.mp3"
- },
- {
-  "key": "tr|balık nerede yaşar",
-  "lang": "tr",
-  "text": "Balık nerede yaşar?",
-  "file": "audio/voice/tr_3f439aaa2d.mp3"
- },
- {
-  "key": "en|where does the fish live",
-  "lang": "en",
-  "text": "Where does the fish live?",
-  "file": "audio/voice/en_46524f2003.mp3"
- },
- {
   "key": "tr|kurbağa gölde yaşar",
   "lang": "tr",
   "text": "Kurbağa gölde yaşar.",
@@ -4234,6 +4198,18 @@
   "lang": "en",
   "text": "Puppy!",
   "file": "audio/voice/en_a2b84ba5d9.mp3"
+ },
+ {
+  "key": "tr|panda",
+  "lang": "tr",
+  "text": "Panda!",
+  "file": "audio/voice/tr_9f2e779b9a.mp3"
+ },
+ {
+  "key": "en|panda",
+  "lang": "en",
+  "text": "Panda!",
+  "file": "audio/voice/en_b4ff2acf8f.mp3"
  },
  {
   "key": "tr|merhaba alen",

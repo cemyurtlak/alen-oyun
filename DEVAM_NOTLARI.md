@@ -10,9 +10,19 @@
 
 - **Hız:** Alen konuşmayı beklemiyor. Uzun cümle yok; soru = sadece isim. Doğru cevaptan sonra en fazla ~1,6 sn, yanlışta kilit yok.
 - **Dil:** Başlangıçta seçilir (tr / en / both). Yeni cümle eklerken `G.both(tr, en)` kullan; tek dilli cümle gerekiyorsa
-  `PHRASE_EN` sözlüğüne karşılığını ekle. Sonra `node tools/ses_listesi_olustur.js` + `ses_uret.bat`.
+  `PHRASE_EN` sözlüğüne karşılığını ekle. Sonra sesini ElevenLabs'te üret (aşağıdaki SES KURALI).
 - **Başlatma düğmeleri yeşil** (Oyna, Tekrar oyna, Başla). Oyun kartlarının renkleri değişmeyecek (Cem istemedi).
-- **Bitince otomatik GitHub'a gönder** (Cem'in isteği): `github_yukle.bat` (ya da ses değiştiyse `ses_uret.bat`) Dosya Gezgini'nden çift tıklanarak çalıştırılır.
+- **Bitince otomatik GitHub'a gönder** (Cem'in isteği): `github_yukle.bat` Dosya Gezgini'nden çift tıklanarak çalıştırılır.
+- **SES KURALI (Cem'in isteği): Hiçbir şey bilgisayar seslendirmesi olmayacak.** Bütün konuşmalar (sayılar, harfler, renkler,
+  hayvan isimleri, cümleler — TR ve EN) ElevenLabs'te **Piku - Expressive Kid Character**, **Eleven v4**, varsayılan ayarlar
+  (Stability 50, Similarity 75) ile üretilir. **Gelecekte oyuna yeni cümle/içerik eklenirse sesi de mutlaka buradan indirilir.**
+  Adımlar: `node tools/ses_listesi_olustur.js` → `python tools/ses_uret.py` (eksikleri `tools/eksik_sesler_*.txt`'ye yazar) →
+  metni elevenlabs.io/app/speech-synthesis/text-to-speech'e yapıştır (cümleler ` [pause] ` ile ayrılmış, paket ≤ ~1300 karakter;
+  daha uzun paketlerde aralar kısalıyor) → indir → `python tools/elevenlabs_bol.py dosya.mp3 tr|en` → `python tools/ses_uret.py`.
+  Ücretsiz plan 10.000 kredi/ay; bitince Cem başka hesapla giriş yapar (Piku: Voices → ara → "Use").
+- **Hayvan sesleri sadece gerçek kayıt.** Gerçek kaydı bulunamayan hayvan oyuna eklenmez (balık, tavşan, panda bu yüzden çıkarıldı).
+  Kaynak: ESC-50 ve BBC Sound Effects (sound-effects.bbcrewind.co.uk, API: sound-effects-api.bbcrewind.co.uk/api/sfx/search,
+  ses: sound-effects-media.bbcrewind.co.uk/mp3/<id>.mp3).
 
 ## Teknik kararlar ve nedenleri
 | Karar | Neden |
@@ -21,8 +31,10 @@
 | Script'ler sırayla `<script>` ile (modül değil) | `file://` ile açıldığında da çalışsın (ES module CORS sorunu yok) |
 | 3D görseller: Microsoft Fluent Emoji (MIT) → WebP 200px | Profesyonel görünüm, cihazdan bağımsız, küçük boyut |
 | Renkli varyantlar önceden üretildi (PIL, HSV) | CSS mask/canvas tint `file://`'da CORS'a takılıyor; önceden üretmek her yerde çalışır |
-| Hayvan sesleri: ESC-50 gerçek kayıtları (GitHub'dan), yoksa sentez | Sentez sesler "kötü" bulundu; ESC-50 GitHub'dan erişilebilir ve ticari olmayan kullanıma açık |
-| Konuşma: önceden üretilmiş MP3 (edge-tts, EmelNeural/AnaNeural), yedek Web Speech | PC Chrome'da Türkçe ses "Microsoft Tolga" (robotik); doğal ses için kayıt şart. Üretim Cem'in PC'sinde yapılır (bu ortamdan Microsoft servisine erişim yok) |
+| Hayvan sesleri: sadece gerçek kayıt (ESC-50 + BBC Sound Effects), sentez yok | Sentez sesler "kötü" bulundu; Cem: "sadece gerçek hayvan sesi olsun, bulunamazsa hayvanı kaldır" |
+| Konuşma: ElevenLabs Piku kayıtları, TTS yedeği YOK | Edge sesleri "yapmacık" bulundu; Cem bilgisayar seslendirmesi istemiyor |
+| ElevenLabs'te paket üretim + `[pause]` + bölme | 717 ayrı üretim yerine ~12 paket; `[pause]` cümle arasına ~0,3–0,9 sn boşluk koyar, bölme süre tahminiyle doğrulanır |
+| İndirme adı JS ile değiştirilir (`alen_xx.mp3`) | ElevenLabs dosya adında `:` var, Windows kabul etmiyor → indirme yarım kalıyordu |
 | Ses dosyası anahtarı = dil + küçük harf, noktalamasız metin | "Kedi!" ve "Kedi" aynı kaydı kullanır; speech.js `keyOf` ile ses_listesi_olustur.js birebir aynı olmalı |
 | `Speech.cancel()` hayvan seslerini de durdurur | Sesler üst üste binmesin |
 | Mikrofon yalnızca seviye ölçer | Çocuğun ne dediğini anlamaya gerek yok; her ses denemesi ödül alır (babıldama dahil) |
@@ -47,16 +59,16 @@
 
 ## Bilinen sorunlar / sınırlamalar
 - iOS Safari tam ekran API'sini desteklemez → "Ana ekrana ekle" ile açılınca tam ekran olur.
-- Türkçe TTS sesi olmayan cihazda Türkçe metinler İngilizce sesle okunabilir (ayarlarda uyarı ve rehber var).
 - Mikrofon algılama eşiği gürültülü ortamda hassas olabilir; gerçek cihazda Alen'le denenip ayarlanmalı (`mic.js` → `thr`).
 - Konuşan Kedi: `MediaRecorder` + `decodeAudioData` gerektirir (Chrome/Edge/Safari 14.1+).
-- ESC-50'de olmayan sesler (ördek, at, aslan, fil, maymun, baykuş, uluma, civciv) hâlâ sentez; gerçek kayıt bulunursa `sounds/animals/` veya `assets/sfx` + `REAL` haritası.
-- Çocuğun adı değişirse adlı cümleler (Merhaba Alen!) için `node tools/ses_listesi_olustur.js YeniAd` + `ses_uret.bat` gerekir.
+- Kaydı olmayan taşıtlar (yarış arabası, motosiklet, gemi, bisiklet, traktör, roket) sessiz; istenirse BBC'den gerçek kayıt eklenebilir.
+- ElevenLabs kesimleri otomatik doğrulandı ama kulakla dinlenmedi; hatalı kesim bildirilirse o paket yeniden üretilir.
+- Chrome aynı siteden art arda çok dosya indirmeyi engelliyor → BBC sesleri tek paket (`bbc_paket.bin`) olarak indirilip burada açıldı.
+- Çocuğun adı değişirse adlı cümleler (Merhaba Alen!) için yeni ad ElevenLabs'te seslendirilmeli (aksi halde o cümleler sessiz geçer).
 - `sounds/` içinde dosya yoksa tarayıcı konsolunda 404 uyarıları görünür (zararsız).
-- Sentez hayvan sesleri çizgi film tarzıdır; gerçekçi ses için `sounds/animals/` klasörüne kayıt eklenebilir.
 
 ## Sonraki adımlar / fikirler
-- Eksik hayvanlar için gerçek kayıt (ördek, at, aslan, uluyan köpek...).
+- Taşıtlar için gerçek kayıt (motor, gemi düdüğü, bisiklet zili, traktör, roket).
 - Anne-baba sesiyle "aferin", "hayır" ve kelime kayıtları (ayarlardan kayıt alma özelliği eklenebilir).
 - Çevrimdışı çalışma için service worker.
 - İlerleme takibi: hangi kelimeleri söylemeye çalıştı, kaç lokma yedi (ebeveyn paneli).

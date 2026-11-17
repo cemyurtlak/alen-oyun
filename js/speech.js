@@ -1,7 +1,7 @@
 /* =========================================================
    Konuşma motoru
-   1) Önce önceden üretilmiş DOĞAL ses kayıtlarını çalar (audio/voice/, VOICE_FILES)
-   2) Kayıt yoksa tarayıcının sesli okumasını kullanır (yedek)
+   1) ElevenLabs (Piku, çocuk sesi) ile üretilmiş kayıtları çalar (audio/voice/, VOICE_FILES)
+   2) Bilgisayar seslendirmesi YOK: kaydı olmayan cümle sessiz geçer
    Dil ayarı: 'tr' (sadece Türkçe), 'en' (sadece İngilizce), 'both' (ikisi)
    Seçilmeyen dildeki cümleler atlanır; karşılığı varsa (alt / sözlük) çevrilir.
    Aynı anda tek ses: yeni akış başlayınca eski konuşma ve sesler susar.
@@ -27,29 +27,14 @@ const PHRASE_EN = {
 };
 
 const Speech = (() => {
-  const supported = 'speechSynthesis' in window;
-  let voices = [];
+  /* Bilgisayar (tarayıcı) seslendirmesi KULLANILMAZ. Tüm konuşmalar ElevenLabs
+     (Piku sesi) ile kaydedilmiş dosyalardır. Kaydı olmayan cümle sessiz geçer ve
+     konsola uyarı yazılır: yeni cümle eklenirse sesini ElevenLabs'ten üretin. */
+  const supported = false;
   let token = 0;
   let current = null; // çalan ses kaydı
   const FILES = (typeof VOICE_FILES !== 'undefined') ? VOICE_FILES : {};
-
-  function loadVoices() { if (supported) voices = speechSynthesis.getVoices() || []; }
-  loadVoices();
-  if (supported) speechSynthesis.onvoiceschanged = loadVoices;
-
-  const norm = (s) => (s || '').toLowerCase().replace('_', '-');
-  const voicesFor = (lang) => voices.filter(v => norm(v.lang).startsWith(lang.slice(0, 2).toLowerCase()));
-
-  function pickVoice(lang) {
-    const list = voicesFor(lang);
-    if (!list.length) return null;
-    const wanted = Settings.get(lang.startsWith('tr') ? 'voiceTr' : 'voiceEn');
-    if (wanted) { const w = list.find(v => v.name === wanted); if (w) return w; }
-    const exact = list.filter(v => norm(v.lang) === norm(lang));
-    const pool = exact.length ? exact : list;
-    return pool.find(v => /natural/i.test(v.name)) || pool.find(v => /online/i.test(v.name)) ||
-           pool.find(v => /google/i.test(v.name)) || pool[0];
-  }
+  const missing = new Set();
 
   // Ses dosyası anahtarı (noktalama ve büyük/küçük harf fark etmez)
   function keyOf(text, lang) {
@@ -87,36 +72,18 @@ const Speech = (() => {
     });
   }
 
-  function tts(text, lang, opts) {
-    return new Promise(res => {
-      if (!supported || !text) return res();
-      const u = new SpeechSynthesisUtterance(text);
-      u.lang = lang;
-      const v = pickVoice(lang);
-      if (v) u.voice = v;
-      u.rate = (opts.rate || 1) * Settings.get('rate');
-      // aşırı ince ses robotik duyulur: perdeyi doğal aralıkta tut
-      u.pitch = Math.min(1.2, Math.max(0.9, opts.pitch || 1.05));
-      let done = false;
-      const finish = () => { if (!done) { done = true; clearTimeout(timer); res(); } };
-      u.onend = finish; u.onerror = finish;
-      const timer = setTimeout(finish, 2500 + text.length * 180);
-      speechSynthesis.speak(u);
-    });
-  }
-
   // Tek cümle (dil filtresiyle)
   async function say(text, lang = 'tr-TR', opts = {}) {
     const p = resolve({ t: text, l: lang, ...opts });
     if (!p || !p.t) return;
     const id = token;
     const f = FILES[keyOf(p.t, p.l)];
-    if (f) {
-      const r = await playFile(f, id);
-      if (r !== 'err') return;
+    if (!f) {
+      const k = keyOf(p.t, p.l);
+      if (!missing.has(k)) { missing.add(k); console.warn('Ses kaydı yok (ElevenLabs ile üretin):', k); }
+      return;
     }
-    if (id !== token) return;
-    return tts(p.t, p.l, p);
+    await playFile(f, id);
   }
 
   /* Sıralı konuşma. parts: [{t, l, alt?}, 300 (bekleme ms), ...]
@@ -141,7 +108,6 @@ const Speech = (() => {
 
   function cancel() {
     token++;
-    if (supported) speechSynthesis.cancel();
     if (current) { try { current.pause(); } catch (e) { /* yoksay */ } current = null; }
     if (typeof AnimalSounds !== 'undefined') AnimalSounds.stopAll();
   }
@@ -149,9 +115,10 @@ const Speech = (() => {
   return {
     supported, say, seq, cancel, wait, keyOf, mode,
     allows: (l) => mode() === 'both' || mode() === l.slice(0, 2),
-    hasLang: (lang) => voicesFor(lang).length > 0,
+    hasLang: () => false,
     hasRecordings: () => Object.keys(FILES).length > 0,
-    listVoices: (lang) => voicesFor(lang),
-    busy: () => !!current || (supported && speechSynthesis.speaking)
+    listVoices: () => [],
+    missing: () => [...missing],
+    busy: () => !!current
   };
 })();

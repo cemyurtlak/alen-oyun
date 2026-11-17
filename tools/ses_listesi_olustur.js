@@ -35,6 +35,7 @@ for (const f of files) {
   const src = read(f);
   for (const m of src.matchAll(new RegExp(`G\\.both\\(\\s*(${STR})\\s*,\\s*(${STR})`, 'g'))) both(unq(m[1]), unq(m[2]));
   for (const m of src.matchAll(new RegExp(`\\{\\s*t:\\s*(${STR}),\\s*l:\\s*(TR|EN)`, 'g'))) add(m[2] === 'TR' ? 'tr' : 'en', unq(m[1]));
+  for (const m of src.matchAll(new RegExp(`introTr:\\s*(${STR}),\\s*introEn:\\s*(${STR})`, 'g'))) both(unq(m[1]), unq(m[2]));
 }
 /* 2) Sözlük (tek dilli cümlelerin karşılıkları) */
 for (const [tr, en] of Object.entries(PHRASE_EN)) both(tr, en);
