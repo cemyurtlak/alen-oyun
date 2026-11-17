@@ -84,7 +84,7 @@ G.activities.fingers = () => {
         G.setFingers(hb, i);
         showNum(i);
         Sounds.tap();
-        if (!await Speech.seq([{ t: COUNT_TR[i - 1], l: TR, rate: 1.1 }])) return;
+        if (!await Speech.seq([{ t: COUNT_TR[i - 1], l: TR, alt: COUNT_EN[i - 1], rate: 1.1 }])) { lock = false; return; }
       }
       await G.celebrate({ extra: [{ t: COUNT_TR[target - 1] + '!', l: TR }, { t: COUNT_EN[target - 1] + '!', l: EN }] });
       if (G.alive(id)) setupQuiz();

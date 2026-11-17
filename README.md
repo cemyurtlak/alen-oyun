@@ -55,6 +55,10 @@ yanlışta kısa **"Hayıııır!"** (hemen yeniden denenebilir). 2 yanlıştan 
 > (Konuşan Kedi kaydı yalnızca tarayıcı içinde anında geri çalar). Mikrofon izni yoksa ebeveyn 👍 düğmesine basar.
 
 
+## Görseller
+- Hayvanlar **gerçek fotoğraflardır** (Wikimedia Commons, arka planı temizlenmiş) → `assets/img/real/`.
+- Diğer görseller Microsoft Fluent 3D (MIT). Kedi duygu yüzleri ve renkli köpek balıkları çizim olarak kalır.
+
 ## Sesler
 - **Bütün konuşmalar** (sayılar, harfler, renkler, hayvan isimleri, cümleler — Türkçe ve İngilizce) ElevenLabs'te
   **Piku** çocuk sesiyle (Eleven v4) kaydedildi → `audio/voice/`. **Bilgisayar seslendirmesi kullanılmaz.**
@@ -92,6 +96,7 @@ js/learn.js           Öğren + soru-cevap motoru
 js/home.js            Başla ekranı, ana sayfa, ayarlar
 js/act/*.js           Oyunlar: catrun, imitate (Konuşalım + Ses Taklidi), parrot,
                       dance, feed, fingers, eggs, homes, sling, pop, blow
+assets/img/real/      Gerçek hayvan fotoğrafları (KAYNAK.txt)
 assets/sfx/           Gerçek hayvan/taşıt sesleri ve alkış (ESC-50 + BBC Sound Effects)
 audio/voice/          ElevenLabs (Piku) konuşma kayıtları + index.js
 tools/                ses_listesi_olustur.js (cümle listesi), ses_uret.py (dizin + eksik listesi), elevenlabs_bol.py (bölme)
@@ -110,6 +115,7 @@ bu oyun o desteğin yerine geçmez, yanında eğlenceli bir yardımcıdır.
 ## Lisans / Kaynaklar
 - 3D görseller: [Microsoft Fluent UI Emoji](https://github.com/microsoft/fluentui-emoji) — MIT lisansı.
 - Hayvan/taşıt sesleri ve alkış: [ESC-50](https://github.com/karolpiczak/ESC-50) (K. J. Piczak) — CC BY-NC 3.0, ticari olmayan kullanım.
+- Gerçek hayvan fotoğrafları: Wikimedia Commons / Wikipedia (dosya bazında lisanslar, `assets/img/real/KAYNAK.txt`).
 - Konuşma kayıtları: ElevenLabs, Piku - Expressive Kid Character sesi (ücretsiz plan, ev kullanımı).
 - Ördek, at, aslan, fil, maymun, baykuş, civciv, uluma, ayı, tilki: [BBC Sound Effects](https://sound-effects.bbcrewind.co.uk) (RemArc lisansı, kişisel kullanım).
 - Müzik ve diğer efektler: Web Audio API ile bu proje için üretilmiştir.

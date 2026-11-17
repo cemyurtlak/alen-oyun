@@ -84,7 +84,7 @@ G.activities.homes = () => {
       <div class="drag-zone"><div class="draggable" id="ani">${pic(cur.emoji)}<span class="hand-hint">${pic('☝️')}</span></div></div>
       <div class="home-row">${homesNow.map(homeHtml).join('')}</div>`);
     G.bindHome(root);
-    $('#again').onclick = () => ask();
+    $('#again').onclick = () => { if (!lock) ask(); };
     setupDrag($('#ani'));
     $$('.home-box', root).forEach(b => b.addEventListener('click', () => { if (!dragging) drop(b); }));
     ask();

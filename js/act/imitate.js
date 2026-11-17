@@ -120,7 +120,11 @@
         idx = (idx + 1) % items().length;
         run();
       }
-      // 'nomic': ebeveyn 👍 düğmesini bekler
+      if (r === 'nomic') {
+        // Mikrofon yok: çocuğa söylemesi için zaman tanı, sonra yine de kutla ve devam et
+        await wait(3500);
+        if (G.alive(id)) success(id);
+      }
     }
 
     $('#prev').onclick = () => { Sounds.tap(); idx = (idx - 1 + items().length) % items().length; run(); };
@@ -133,7 +137,8 @@
     (async () => {
       show(items()[0]);
       if (!await Speech.seq(G.both(cfg.introTr, cfg.introEn))) return;
-      const ok = await Mic.ensure();
+      // izin penceresi cevaplanmazsa oyun beklemesin (izin sonradan verilirse mikrofon yine kullanılır)
+      const ok = await Promise.race([Mic.ensure(), wait(5000).then(() => false)]);
       if (!G.alive(id0)) return;
       if (!ok) G.toast('Mikrofon kapalı — çocuk söyleyince 👍 düğmesine basın', 4200);
       run();

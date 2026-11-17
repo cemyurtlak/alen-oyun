@@ -154,6 +154,33 @@ Object.assign(IMG, {
 const BABIES = ['baby_light', 'baby_medium_light', 'baby_medium', 'baby_medium_dark', 'baby_dark'];
 
 /* Görsel yolu (yoksa null) */
+
+/* Gerçek hayvan fotoğrafları (Wikimedia Commons, arka planı temizlendi) — 3D çizimlerin yerine geçer.
+   Kaynak listesi: assets/img/real/KAYNAK.txt. Kedi duygu yüzleri ve renkli köpek balıkları çizim olarak kalır. */
+Object.assign(IMG, {
+  "🐶": "real/dog",
+  "🐱": "real/cat",
+  "🐮": "real/cow",
+  "🐑": "real/sheep",
+  "🐔": "real/hen",
+  "🦆": "real/duck",
+  "🐥": "real/chick",
+  "🐤": "real/chick",
+  "🐴": "real/horse",
+  "🦁": "real/lion",
+  "🐘": "real/elephant",
+  "🐵": "real/monkey",
+  "🐸": "real/frog",
+  "🐦": "real/bird",
+  "🦉": "real/owl",
+  "🐻": "real/bear",
+  "🐝": "real/bee",
+  "🦊": "real/fox",
+  "🐕": "real/howl",
+  "🐈": "real/yellowcat",
+  "🐈‍⬛": "real/blackcat"
+});
+
 function imgSrc(e) { return IMG[e] ? 'assets/img/' + IMG[e] + '.webp' : null; }
 /* 3D görsel etiketi; görsel yoksa emojiye düşer */
 function pic(e, cls = '') {

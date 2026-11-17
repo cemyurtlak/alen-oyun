@@ -39,6 +39,9 @@
 | `Speech.cancel()` hayvan seslerini de durdurur | Sesler üst üste binmesin |
 | Mikrofon yalnızca seviye ölçer | Çocuğun ne dediğini anlamaya gerek yok; her ses denemesi ödül alır (babıldama dahil) |
 | Akış belirteci (`G.newFlow()` / `G.alive(id)`) | Ekran değişince eski konuşmalar/döngüler kendini durdurur |
+| Hayvan görselleri gerçek fotoğraf (`assets/img/real`, arka planı temizlenmiş) | Cem "daha gerçekçi" istedi; Wikipedia ana fotoğrafları en net sonuç verdi. Yeni hayvan eklenirse aynı yöntem: foto → rembg isnet → 360px WebP → `images.js` gerçek fotoğraf bloğu |
+| Etkinlik içinde `G.newFlow()` dikkatli kullanılır | `newFlow` etkinliğin başlangıç kimliğini geçersiz kılar; yalnızca konuşmayı susturmak için `Speech.cancel()` kullan, yoksa "ilerlemiyor" hatası çıkar (Yumurtalar'da yaşandı) |
+| Mikrofon gerektiren adımlar asla sonsuza kadar beklemez | Çocuk tek başına oynar; mikrofon/izin yoksa birkaç saniye sonra kendiliğinden devam |
 | Yüzdelik `padding` kullanılmaz | Yüzde, düğme yerine kapsayıcı genişliğine göre hesaplanıyor → görseller küçülüyordu |
 
 ## Yayın

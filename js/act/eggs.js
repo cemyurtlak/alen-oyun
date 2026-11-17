@@ -59,12 +59,12 @@ G.activities.eggs = () => {
       G.anim(el, 'wobble');
       Sounds.crunch();
       el.querySelector('.crack path').setAttribute('d', CRACK[el._taps]);
-      G.newFlow();
+      Speech.cancel();
       Speech.seq([{ t: `${c.tr} yumurta!`, l: TR }, 100, { t: `${c.en} egg!`, l: EN }]);
       return;
     }
     el._busy = true;
-    G.newFlow();
+    Speech.cancel(); // önceki konuşmayı sustur (akışı bozmadan)
     el.classList.add('hatched');
     Sounds.pop();
     Sounds.crunch();
@@ -74,7 +74,8 @@ G.activities.eggs = () => {
     if (k.snd) AnimalSounds.play(k.snd);
     await Speech.seq([{ t: `Sürpriz! ${k.tr}!`, l: TR, pitch: 1.4 }, 150, { t: `A ${k.en.toLowerCase()}!`, l: EN, pitch: 1.4 }]);
     hatched++;
-    if (hatched === 3 && G.alive(id)) {
+    if (hatched >= 3 && G.alive(id)) {
+      hatched = 0;
       await G.celebrate({ extra: [{ t: 'Yeni yumurtalar geliyor!', l: TR }, { t: 'More eggs!', l: EN }] });
       makeEggs();
     }

@@ -1,0 +1,23 @@
+Gerçek hayvan fotoğrafları — Wikimedia Commons / Wikipedia (her dosyanın lisansı kendi sayfasında; ev kullanımı).
+Arka planlar rembg (isnet-general-use) ile temizlendi, 360x360 WebP.
+
+dog.webp  <-  Golden Retriever  https://upload.wikimedia.org/wikipedia/commons/b/bd/Golden_Retriever_Dukedestiny01_drvd.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled
+cat.webp  <-  Tabby cat  https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4d/Cat_November_2010-1a.jpg/960px-Cat_November_2010-1a.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail
+yellowcat.webp  <-  European Shorthair  https://upload.wikimedia.org/wikipedia/commons/2/2c/European_Shorthair_EUR_d_22.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled
+blackcat.webp  <-  Bombay cat  https://upload.wikimedia.org/wikipedia/commons/a/ac/Bombay_femelle.JPG?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled
+sheep.webp  <-  Texel sheep  https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c7/Texelschafe_2003_%28cropped%29.jpg/960px-Texelschafe_2003_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail
+hen.webp  <-  Sussex chicken  https://upload.wikimedia.org/wikipedia/commons/5/54/Light_sussex_hen.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled
+duck.webp  <-  American Pekin  https://upload.wikimedia.org/wikipedia/commons/3/3f/Amerikanische_Pekingenten_2013_01%2C_cropped.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled
+chick.webp  <-  Day old chick black background.jpg  https://thumb.wikimedia.org/wikipedia/commons/thumb/5/54/Day_old_chick_black_background.jpg/500px-Day_old_chick_black_background.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail
+horse.webp  <-  Arabian horse  https://thumb.wikimedia.org/wikipedia/commons/thumb/5/54/Halterstandingshotarabianone.jpg/960px-Halterstandingshotarabianone.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail
+lion.webp  <-  Lion  https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a6/020_The_lion_king_Snyggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg/960px-020_The_lion_king_Snyggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail
+elephant.webp  <-  African bush elephant  https://thumb.wikimedia.org/wikipedia/commons/thumb/9/94/178_Male_African_bush_elephant_in_Etosha_National_Park_Photo_by_Giles_Laurent.jpg/960px-178_Male_African_bush_elephant_in_Etosha_National_Park_Photo_by_Giles_Laurent.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail
+monkey.webp  <-  Rhesus macaque  https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e1/Macaca_mulatta_%2822886604281%29.jpg/960px-Macaca_mulatta_%2822886604281%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail
+frog.webp  <-  American green tree frog  https://thumb.wikimedia.org/wikipedia/commons/thumb/4/49/Green_treefrog.jpg/960px-Green_treefrog.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail
+bird.webp  <-  European robin  https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f3/Erithacus_rubecula_with_cocked_head.jpg/960px-Erithacus_rubecula_with_cocked_head.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail
+owl.webp  <-  Tawny owl  https://upload.wikimedia.org/wikipedia/commons/5/55/Strix_aluco_3_%28Martin_Mecnarowski%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled
+bear.webp  <-  Brown bear  https://thumb.wikimedia.org/wikipedia/commons/thumb/7/71/2010-kodiak-bear-1.jpg/960px-2010-kodiak-bear-1.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail
+bee.webp  <-  Bombus terrestris  https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f6/Bombus_terrestris.jpg/960px-Bombus_terrestris.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail
+fox.webp  <-  Red fox  https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d2/Portrait_of_a_red_fox_in_Rautas_fj%C3%A4llurskog_%28cropped%29.jpg/960px-Portrait_of_a_red_fox_in_Rautas_fj%C3%A4llurskog_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail
+howl.webp  <-  Dog howling 001.jpg  https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d2/Dog_howling_001.jpg/500px-Dog_howling_001.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail
+cow.webp  <-  Holstein Friesian (Wikipedia: Holstein Friesian cattle)

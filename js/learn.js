@@ -137,7 +137,7 @@ const Learn = (() => {
         if (!G.alive(id)) return false;
         G.setFingers(box, i);
         Sounds.tap();
-        if (!await Speech.seq([{ t: COUNT_TR[i - 1], l: TR, rate: 1.05 }])) return false;
+        if (!await Speech.seq([{ t: COUNT_TR[i - 1], l: TR, alt: COUNT_EN[i - 1], rate: 1.05 }])) return false;
       }
       await wait(350);
     }

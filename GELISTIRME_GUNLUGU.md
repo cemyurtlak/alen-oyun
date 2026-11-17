@@ -4,6 +4,34 @@
 
 ---
 
+## Aşama 5 — Takılan akışlar düzeltildi, gerçekçi hayvan fotoğrafları
+**Tarih:** 17.11.2026
+
+**İstek (Cem):** Oyunun yapısını mantıksal olarak tekrar kontrol et, bazı yerlerde ilerlenmiyor. Hayvanların görüntülerini daha gerçekçi yap.
+
+**Yapılanlar:**
+- Akış denetimi (tüm etkinlikler kod + headless Chrome ile tarandı). Bulunan ve düzeltilen takılmalar:
+  - **Yumurtalar:** her dokunuşta `G.newFlow()` çağrıldığı için etkinliğin akış kimliği geçersiz oluyordu → 3 yumurta
+    çatlayınca yeni yumurtalar **hiç gelmiyordu**. Dokunuşlarda artık sadece konuşma susturuluyor (`Speech.cancel()`).
+  - **Hayvan Evleri:** kutlama sırasında 🔊 basılırsa akış iptal olup sıradaki hayvan gelmiyordu → kilitliyken 🔊 yok sayılır.
+  - **Konuşalım / Ses Taklidi:** mikrofon yoksa ebeveynin 👍 basması bekleniyordu (çocuk yalnızken takılıyordu) →
+    3,5 sn sonra kendiliğinden kutlayıp devam eder. İzin penceresi cevaplanmazsa 5 sn sonra mikrofonsuz devam eder.
+  - **Sayılar / Parmak Sayma:** sadece İngilizce modda parmakla sayarken sayılar söylenmiyordu → İngilizce sayılır.
+    Parmak sorusunda sayma yarıda kesilirse kilit açılır.
+- Gerçekçi görseller: 20 hayvan için Wikipedia/Wikimedia Commons'tan gerçek fotoğraf seçildi, arka planı rembg
+  (isnet-general-use) ile temizlendi, 360×360 WebP → `assets/img/real/` (kaynaklar `KAYNAK.txt`). `images.js`'te
+  köpek, kedi, sarı/siyah kedi, inek, koyun, tavuk, ördek, civciv, at, aslan, fil, maymun, kurbağa, kuş, baykuş,
+  ayı, arı, tilki, uluyan köpek emojileri bu fotoğraflara yönlendirildi. Kedi duygu yüzleri ve renkli köpek balıkları çizim kaldı.
+
+**Değişen / oluşan dosyalar:** `js/act/eggs.js`, `js/act/homes.js`, `js/act/imitate.js`, `js/act/fingers.js`, `js/learn.js`,
+`js/images.js`, `assets/img/real/*` (yeni), README, DEVAM_NOTLARI, bu günlük.
+
+**Test durumu:** `node --check` temiz. Headless Chrome: Yumurtalar 2 tur (yeni yumurtalar geliyor), Hayvan Evleri
+🔊 basılarak 4 tur ilerledi, Ses Taklidi mikrofonsuz kendiliğinden sonraki hayvana geçti; hayvanlar öğrenme/soru,
+Hayvan Evleri ve Sapan ekran görüntüleriyle görseller kontrol edildi; sayfa hatası yok.
+
+---
+
 ## Aşama 4 — Tüm seslendirme ElevenLabs çocuk sesi (Piku), sadece gerçek hayvan sesleri
 **Tarih:** 17.11.2026
 
