@@ -18,7 +18,7 @@ yanlışta kısa **"Hayıııır!"** (hemen yeniden denenebilir). 2 yanlıştan 
 | Renkler | 10 renk, havada süzülen 3D balonlarla |
 | Sayılar | 1–10, **parmaklarla tek tek sayarak** |
 | Kediler | Mutlu, gülen, seven, şaşkın, üzgün, kızgın kediler — her biri farklı tonda miyavlar |
-| Hayvanlar | 17 hayvan (hepsi gerçek sesli); soruda "Which one is the cat?" dedikten sonra **miyav sesi** gelir |
+| Hayvanlar | 17 hayvan (hepsi gerçek sesli ve gerçek fotoğraflı); önce hayvanın **gerçek sesi**, sonra adı söylenir |
 | Kim Bu Ses? | Hayvan sesi çalar, çocuk sesin sahibini bulur |
 | Köpek Balıkları | Okyanus sahnesinde yüzen **renkli köpek balıkları** |
 | Arabalar | Polis, ambulans, itfaiye (siren), taksi, yarış arabası, renkli arabalar |
@@ -36,10 +36,10 @@ yanlışta kısa **"Hayıııır!"** (hemen yeniden denenebilir). 2 yanlıştan 
 | **Dans Eden Bebekler** | Disko topu, renkli ışıklar, özgün neşeli müzik; 5 bebek dans eder ve konuşur. Dokununca döner ve bir şey söyler. |
 | **Yemek Zamanı** | Kedi (köpek, panda, ayı) acıkmıştır; çocuk yiyeceğe dokununca kedi ağzını açar, **çiğner ("ham ham")**, "Mmm, çok lezzetli!" der. "Birlikte çiğneyelim" düğmesi aç–ısır–çiğne–yut adımlarını gösterir. **"Alen de yedi!"** düğmesi gerçek bir lokma yendiğinde büyük kutlama yapar. |
 | **Parmakla Say** | Dokundukça parmaklar açılır ve sayılır (1–10); "Kaç tane?" modunda parmak sayısını bulur. |
-| **Yumurta Sürprizi** | Renkli yumurtalara dokun, çatlasın; içinden civciv, ördek, kedi, baykuş... çıksın. Her dokunuşta yumurtanın rengi söylenir. |
+| **Yumurta Sürprizi** | Renkli yumurtaya **bir kez** dokun, çatlasın; içinden civciv, ördek, kedi, baykuş... çıksın. Gerçek sesi ve adı duyulur; art arda dokununca sesler sıraya girer, hiçbiri atlanmaz. |
 | **Hayvan Evleri** | Önce tüm hayvanların nerede yaşadığı öğretilir (ördek → göl, kuş → yuva, inek → çiftlik...), sonra hayvan **parmakla doğru eve sürüklenir**. |
 | **Balon Patlat** | Renkli balonlar aşağıdan sürekli uçar, dokununca patlar; bazılarının altında sürpriz hayvan vardır. |
-| **Sapan** | Sapan ekranın altında: hayvanı **kendine doğru geri çek, bırak** → ileri, uzaktaki balonlara uçar. Balona dokunmak da otomatik atış yapar. |
+| **Sapan** | Sapan ekranın altında: hayvanı **kendine doğru geri çek** — nişanlanan balon parlak halkayla gösterilir — **bırak** → hayvan tam o balona uçar. Dikey ve yatay ekranda balonlar hep görünür. Balona dokunmak da otomatik atış yapar. |
 | **Balonu Üfle** | Mikrofona üfledikçe balon şişer ve patlar (ağız-dudak kaslarını çalıştırır). |
 
 ## Kullanım

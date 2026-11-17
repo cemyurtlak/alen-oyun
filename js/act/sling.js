@@ -2,7 +2,8 @@
    SAPAN (ileri atış) — sapan ekranın altında, çocuğun elinde gibi.
    Hayvanı parmakla GERİYE (kendine/aşağı doğru) çek, bırak:
    hayvan İLERİ, ekranın derinliğine uçar ve uzaktaki balonları patlatır.
-   Sağa-sola çekince ters yöne nişan alır (gerçek sapan gibi).
+   Sağa-sola çekince ters yöne nişan alır (gerçek sapan gibi); nişanlanan balon parlak halkayla gösterilir
+   ve hayvan tam ona uçar. Balonlar her ekranda (dikey/yatay) görünür alana yerleşir.
    Küçük eller için: bir balona dokunmak da otomatik atış yapar.
    ========================================================= */
 G.activities.sling = () => {
@@ -60,15 +61,30 @@ G.activities.sling = () => {
   function makeLevel() {
     const n = Math.min(3 + level, 7);
     const cols = shuffle(COLORS.filter(c => c.key !== 'white')).slice(0, n);
+    // u: -1..1 yatay (görünür genişliğe göre), v: 0..1 dikey — her ekran boyutunda balonlar görünür kalır
     balloons = cols.map((c, i) => ({
-      c, x: (i - (n - 1) / 2) * 2.2 + (Math.random() - 0.5), y: 2.2 + Math.random() * 3.2,
-      z: 10 + Math.random() * 12, r: 0.95, ph: Math.random() * 6, alive: true,
-      drift: level > 2 ? (Math.random() - 0.5) * 1.2 : 0
+      c, u: n > 1 ? -0.8 + 1.6 * i / (n - 1) + (Math.random() - 0.5) * 0.12 : 0, v: Math.random(),
+      z: 10 + Math.random() * 10, r: 0.95, ph: Math.random() * 6, alive: true,
+      drift: level > 2 ? (Math.random() - 0.5) * 0.25 : 0
     }));
+    balloons.forEach(placeBalloon);
     deco = Array.from({ length: 14 }, () => ({
       img: decoImgs[Math.floor(Math.random() * decoImgs.length)],
       x: (Math.random() < 0.5 ? -1 : 1) * (7 + Math.random() * 14), z: 18 + Math.random() * 45, h: 1.5 + Math.random() * 2.5
     })).sort((a, b) => b.z - a.z);
+  }
+
+  // Görünür alan (metre): z derinliğinde yarım genişlik ve balonların duracağı yükseklik aralığı
+  const halfW = (z) => (W / 2) / F * z;
+  function yRange(z) {
+    const top = CAM_H + (horizon() - H * 0.17) * z / F;      // üst çubuğun altı
+    const bot = Math.max(1.6, CAM_H + (horizon() - H * 0.5) * z / F);
+    return [bot, Math.max(bot + 0.5, top)];
+  }
+  function placeBalloon(b) {
+    b.x = b.u * halfW(b.z) * 0.85;
+    const [lo, hi] = yRange(b.z);
+    b.y = lo + (hi - lo) * b.v;
   }
 
   function resetShot() {
@@ -108,11 +124,16 @@ G.activities.sling = () => {
 
   function drawBalloons(t) {
     balloons.filter(b => b.alive).sort((a, b) => b.z - a.z).forEach(b => {
-      b.x += b.drift / 60;
-      if (Math.abs(b.x) > 7) b.drift *= -1;
+      b.u += b.drift / 60;
+      if (Math.abs(b.u) > 0.85) { b.drift *= -1; b.u = Math.sign(b.u) * 0.85; }
+      placeBalloon(b);
       b.cy = b.y + Math.sin(t * 1.5 + b.ph) * 0.25;
       const p = proj(b.x, b.cy, b.z), s = b.r * 2.6 * p.s;
       const im = balloonImgs[b.c.key];
+      if (aimTarget === b) {
+        ctx.save(); ctx.strokeStyle = '#fff'; ctx.lineWidth = 6; ctx.shadowColor = '#ffe066'; ctx.shadowBlur = 18;
+        ctx.beginPath(); ctx.arc(p.sx, p.sy + s * 0.08, s * 0.55 + Math.sin(t * 8) * 4, 0, Math.PI * 2); ctx.stroke(); ctx.restore();
+      }
       if (im.complete) ctx.drawImage(im, p.sx - s / 2, p.sy - s * 0.42, s, s);
     });
   }
@@ -172,7 +193,7 @@ G.activities.sling = () => {
     if (P.state !== 'drag') return;
     const v = launchVel();
     let x = P.x, y = P.y, z = P.z, vx = v.vx, vy = v.vy, vz = v.vz;
-    for (let i = 0; i < 40; i++) {
+    for (let i = 0; i < 22; i++) {
       for (let k = 0; k < 2; k++) { vy -= G_ACC * 0.02; x += vx * 0.02; y += vy * 0.02; z += vz * 0.02; }
       if (y < 0) break;
       const p = proj(x, y, z);
@@ -194,12 +215,37 @@ G.activities.sling = () => {
 
   /* ---------- Fizik ---------- */
   const MAXPULL = () => Math.min(W, H) * 0.32;
-  // Geri çekme miktarından fırlatma hızı: aşağı çek = ileri + yukarı, sola çek = sağa
+  /* Nişan: sapanı geri (aşağı) çekince, çekişin TERS yönünde ekranda bir nişan noktası oluşur.
+     Ne kadar çok çekilirse nokta o kadar yukarı/uzağa gider. Noktaya yakın balon hedef seçilir
+     (küçük eller için geniş tolerans) ve hayvan tam o balona uçar. */
+  let aimTarget = null;
+  function aimPoint() {
+    const m = MAXPULL(), p0 = pouch();
+    const up = Math.max(0, drag.dy) / m;                       // 0..1
+    const ax = Math.min(W * 0.97, Math.max(W * 0.03, p0.x - drag.dx / m * W * 0.75));
+    const ay = p0.y - up * (p0.y - H * 0.12) * 1.1;
+    return { ax, ay };
+  }
+  function pickTarget() {
+    const { ax, ay } = aimPoint();
+    let best = null, bd = 1e9;
+    balloons.forEach(b => {
+      if (!b.alive || b.cy == null) return;
+      const p = proj(b.x, b.cy, b.z), d = Math.hypot(ax - p.sx, ay - p.sy);
+      const tol = Math.max(Math.min(W, H) * 0.16, b.r * 2.2 * p.s);
+      if (d < tol && d < bd) { bd = d; best = b; }
+    });
+    return best;
+  }
+  const T_FLY = 0.85;
+  function velTo(tx, ty, tz) {
+    return { vx: (tx - 0) / T_FLY, vz: (tz - 1.2) / T_FLY, vy: (ty - 1.1 + 0.5 * G_ACC * T_FLY * T_FLY) / T_FLY };
+  }
   function launchVel() {
-    const m = MAXPULL();
-    const back = Math.max(0, drag.dy) / m;            // 0..1
-    const side = -drag.dx / m;                        // ters yöne
-    return { vz: 8 + back * 22, vy: 2.5 + back * 6, vx: side * 9 };
+    const b = aimTarget;
+    if (b) return velTo(b.x + b.drift / 60 * 0, b.cy, b.z);
+    const { ax, ay } = aimPoint(), z = 14;
+    return velTo((ax - W / 2) * z / F, CAM_H + (horizon() - ay) * z / F, z);
   }
 
   function popBalloon(b) {
@@ -229,10 +275,12 @@ G.activities.sling = () => {
     P.vy -= G_ACC * dt;
     P.x += P.vx * dt; P.y += P.vy * dt; P.z += P.vz * dt;
     P.rot += dt * 7;
+    let hit = false;
     balloons.forEach(b => {
-      if (b.alive && b.cy != null && Math.abs(P.z - b.z) < 1.1 && Math.hypot(P.x - b.x, P.y - b.cy) < b.r + 0.55) popBalloon(b);
+      if (b.alive && b.cy != null && Math.abs(P.z - b.z) < 1.3 && Math.hypot(P.x - b.x, P.y - b.cy) < b.r + 0.7) { popBalloon(b); hit = true; }
     });
-    if (P.y < 0.3 || P.z > 70) {
+    // vuruşta ya da hedeflerin ötesine geçince atış biter → çocuk hemen yeniden atabilir
+    if (hit || P.y < 0.3 || P.z > 26) {
       P.state = 'done';
       setTimeout(() => { if (G.alive(id)) { resetShot(); Sounds.whoosh(); } }, 450);
     }
@@ -265,10 +313,7 @@ G.activities.sling = () => {
       const p = proj(b.x, b.cy, b.z);
       return Math.hypot(x - p.sx, y - p.sy) < b.r * 1.6 * p.s;
     });
-    if (hit) {
-      const T = 0.9;
-      fire({ vx: (hit.x - 0) / T, vz: (hit.z - 1.2) / T, vy: (hit.cy - 1.1 + 0.5 * G_ACC * T * T) / T });
-    }
+    if (hit) fire(velTo(hit.x, hit.cy, hit.z));
   });
   cv.addEventListener('pointermove', (e) => {
     if (P.state !== 'drag' || e.pointerId !== dragId) return;
@@ -276,11 +321,14 @@ G.activities.sling = () => {
     const m = MAXPULL(), d = Math.hypot(dx, dy);
     if (d > m) { dx = dx / d * m; dy = dy / d * m; }
     drag = { dx, dy: Math.max(-m * 0.2, dy) };
+    aimTarget = pickTarget();
   });
   const release = (e) => {
     if (P.state !== 'drag' || e.pointerId !== dragId) return;
-    if (drag.dy < MAXPULL() * 0.12) { P.state = 'rest'; drag = { dx: 0, dy: 0 }; return; }
+    if (Math.hypot(drag.dx, drag.dy) < MAXPULL() * 0.12) { P.state = 'rest'; drag = { dx: 0, dy: 0 }; aimTarget = null; return; }
+    aimTarget = pickTarget();
     fire(launchVel());
+    aimTarget = null;
   };
   cv.addEventListener('pointerup', release);
   cv.addEventListener('pointercancel', release);
@@ -309,7 +357,7 @@ G.activities.sling = () => {
     requestAnimationFrame(frame);
   }
 
-  const onResize = () => resize();
+  const onResize = () => { resize(); balloons.forEach(placeBalloon); };
   window.addEventListener('resize', onResize);
   G.onLeave(() => window.removeEventListener('resize', onResize));
   resize();

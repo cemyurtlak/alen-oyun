@@ -4,6 +4,33 @@
 
 ---
 
+## Aşama 7 — Sapan dikey ekranda düzgün ve nişanla vurulabilir; hayvanlarda önce ses, sonra ad
+**Tarih:** 17.11.2026
+
+**İstek (Cem):**
+- Sapan: ekran dik konumdayken balonlar ekranın içinde kalmıyor; sapanla vurulabilecek açıda olmuyor,
+  sadece balona tıklayınca vuruluyor.
+- Hayvanlar kısmında önce hayvanın sesi çıksın, sonra adını söylesin.
+
+**Yapılanlar:**
+- `js/act/sling.js`:
+  - Balonlar artık ekrana göre (u,v) yerleşiyor: her derinlikte görünür genişliğin %85'i ve üst çubuk ile sapan
+    arasındaki yükseklik içinde. Ekran döndürülünce/boyut değişince yeniden yerleşiyor. Kayan balonlar da kenarda dönüyor.
+  - Yeni nişan: sapan geri çekilince çekişin ters yönünde ekranda bir nişan noktası oluşur (çok çekince yukarı/uzağa).
+    Noktaya yakın balon **parlak halkayla** işaretlenir (geniş tolerans), bırakınca hayvan balistik olarak tam ona uçar.
+    Boşluğa nişan alınırsa o noktaya doğru uçar. Balona dokunarak atış (kolay mod) aynı hesapla çalışır.
+  - Vuruşta ya da hedeflerin ötesine geçince atış hemen biter → yeni atış beklemesi 4–5 sn'den ~0,5 sn'ye indi.
+- `js/learn.js`: öğrenmede sıra **gerçek hayvan sesi → Türkçe ad → İngilizce ad → taklit ("Hav hav!")**;
+  soruda **gerçek ses → ad**.
+
+**Değişen dosyalar:** `js/act/sling.js`, `js/learn.js`, README, bu günlük.
+
+**Test durumu:** Headless Chrome, sadece geri çekip nişan alarak: dikey 390×844 → 10 atışta 10 balon,
+yatay 1100×700 → 10/10; ekran görüntüsünde tüm balonlar görünür. Hayvanlar öğrenme/soru ses sırası kayıtla doğrulandı
+(dog_2 → köpek → dog → hav hav; cow_3 → cow → inek). Sayfa hatası yok.
+
+---
+
 ## Aşama 6 — Yumurta Sürprizi: tek dokunuşta açılma, sesler atlanmıyor
 **Tarih:** 17.11.2026
 

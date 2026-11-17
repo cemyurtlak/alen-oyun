@@ -142,6 +142,15 @@ const Learn = (() => {
       await wait(350);
     }
     const ntr = $('#ntr'), nen = $('#nen');
+    // Hayvanlarda önce gerçek ses, sonra adı (Cem'in isteği)
+    if (it.snd) {
+      box && box.classList.add('wiggle');
+      await AnimalSounds.play(it.snd);
+      box && box.classList.remove('wiggle');
+      if (!G.alive(id)) return false;
+      await wait(250);
+      if (!G.alive(id)) return false;
+    }
     ntr && ntr.classList.add('speaking');
     let ok = await Speech.seq([{ t: trSay(it), l: TR }]);
     ntr && ntr.classList.remove('speaking');
@@ -152,12 +161,12 @@ const Learn = (() => {
     ok = await Speech.seq([{ t: enSay(it), l: EN }]);
     nen && nen.classList.remove('speaking');
     if (!ok || !G.alive(id)) return false;
-    if (it.sound || it.snd) {
+    // sonra taklit sesi ("Hav hav!") — çocuk tekrar etsin diye
+    if (it.sound) {
       await wait(300);
       if (!G.alive(id)) return false;
       box && box.classList.add('wiggle');
-      if (it.sound) ok = await Speech.seq([{ t: it.sound, l: TR, pitch: 1.5 }]);
-      if (ok && it.snd && G.alive(id)) await AnimalSounds.play(it.snd);
+      ok = await Speech.seq([{ t: it.sound, l: TR, pitch: 1.5 }]);
       box && box.classList.remove('wiggle');
     }
     return ok && G.alive(id);
@@ -269,9 +278,12 @@ const Learn = (() => {
       await AnimalSounds.play(it.snd);
       if (!G.alive(id)) return;
     }
-    const ok = await Speech.seq(promptParts(c, it));
-    // isimden hemen sonra hayvanın sesi (ör. "Kedi!" → miyav)
-    if (ok && G.alive(id) && it.snd && !c.soundQuiz) await AnimalSounds.play(it.snd);
+    // önce hayvanın gerçek sesi, sonra adı (ör. miyav → "Kedi!")
+    if (it.snd && !c.soundQuiz) {
+      await AnimalSounds.play(it.snd);
+      if (!G.alive(id)) return;
+    }
+    await Speech.seq(promptParts(c, it));
     if (G.alive(id)) $$('.q-line').forEach(l => l.classList.remove('pulse'));
   }
 
