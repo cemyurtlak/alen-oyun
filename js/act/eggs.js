@@ -1,7 +1,8 @@
 /* =========================================================
    YUMURTA SÜRPRİZİ — renkli yumurtalara dokun, çatlasın,
    içinden civciv, ördek yavrusu, kedi... çıksın!
-   Her dokunuşta yumurtanın rengi söylenir (renk öğrenme).
+   Tek dokunuşta çatlar; yavrunun gerçek sesi ve adı duyulur.
+   Art arda dokununca sesler sıraya girer, atlanmaz.
    ========================================================= */
 G.activities.eggs = () => {
   const { $, $$, rand, shuffle, wait, TR, EN } = G;
@@ -46,42 +47,56 @@ G.activities.eggs = () => {
         <div class="nest-cup"></div>
       </button>`).join('');
     $$('.egg', root).forEach((el, i) => {
-      el._c = cols[i]; el._k = kids[i]; el._taps = 0;
+      el._c = cols[i]; el._k = kids[i];
       el.onclick = () => tapEgg(el);
     });
   }
 
-  async function tapEgg(el) {
-    if (el.classList.contains('hatched') || el._busy) return;
-    const c = el._c;
-    el._taps++;
-    if (el._taps <= 2) {
-      G.anim(el, 'wobble');
-      Sounds.crunch();
-      el.querySelector('.crack path').setAttribute('d', CRACK[el._taps]);
-      Speech.cancel();
-      Speech.seq([{ t: `${c.tr} yumurta!`, l: TR }, 100, { t: `${c.en} egg!`, l: EN }]);
+  /* Sesler sıraya girer: art arda dokununca hiçbir ses kesilmez ya da atlanmaz.
+     (Kuyrukta en fazla 8 iş bekler; fazlası eklenmez ki sesler dakikalarca sürmesin.) */
+  let queue = Promise.resolve(), pending = 0, introOn = true;
+  function enqueue(job) {
+    if (pending >= 8) return;
+    pending++;
+    queue = queue.then(async () => {
+      try { if (G.alive(id)) await job(); } catch (e) { /* yoksay */ }
+      pending--;
+    });
+  }
+  const announce = (k) => async () => {
+    if (k.snd) await AnimalSounds.play(k.snd);
+    if (!G.alive(id)) return;
+    await Speech.seq([{ t: `Sürpriz! ${k.tr}!`, l: TR, pitch: 1.4 }, 150, { t: `A ${k.en.toLowerCase()}!`, l: EN, pitch: 1.4 }]);
+  };
+
+  // Tek dokunuşta çatlar ve içinden yavru çıkar
+  function tapEgg(el) {
+    // ilk dokunuşta açılış konuşmasını kes (sonrakiler sıraya girer, kesilmez)
+    if (introOn) { introOn = false; Speech.cancel(); }
+    const k = el._k;
+    if (el.classList.contains('hatched')) {
+      // çıkmış yavruya dokununca sesi ve adı yine duyulsun
+      G.anim(el.querySelector('.baby-in'), 'wiggle');
+      enqueue(announce(k));
       return;
     }
-    el._busy = true;
-    Speech.cancel(); // önceki konuşmayı sustur (akışı bozmadan)
+    el.querySelector('.crack path').setAttribute('d', CRACK[2]);
     el.classList.add('hatched');
     Sounds.pop();
     Sounds.crunch();
     G.burstAt(el, ['✨', '⭐'], 12);
-    const k = el._k;
-    await wait(500);
-    if (k.snd) AnimalSounds.play(k.snd);
-    await Speech.seq([{ t: `Sürpriz! ${k.tr}!`, l: TR, pitch: 1.4 }, 150, { t: `A ${k.en.toLowerCase()}!`, l: EN, pitch: 1.4 }]);
+    enqueue(announce(k));
     hatched++;
-    if (hatched >= 3 && G.alive(id)) {
+    if (hatched >= 3) {
       hatched = 0;
-      await G.celebrate({ extra: [{ t: 'Yeni yumurtalar geliyor!', l: TR }, { t: 'More eggs!', l: EN }] });
-      makeEggs();
+      enqueue(async () => {
+        await G.celebrate({ extra: [{ t: 'Yeni yumurtalar geliyor!', l: TR }, { t: 'More eggs!', l: EN }] });
+        if (G.alive(id)) makeEggs();
+      });
     }
   }
 
   makeEggs();
   Speech.seq([{ t: 'Yumurtalara dokun!', l: TR, pitch: 1.3 }, 150, { t: 'Tap the eggs!', l: EN, pitch: 1.3 }, 150,
-    { t: 'İçinden ne çıkacak?', l: TR, pitch: 1.3 }]);
+    { t: 'İçinden ne çıkacak?', l: TR, pitch: 1.3 }]).then(() => { introOn = false; });
 };

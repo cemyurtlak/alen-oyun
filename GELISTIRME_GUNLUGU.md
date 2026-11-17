@@ -4,6 +4,25 @@
 
 ---
 
+## Aşama 6 — Yumurta Sürprizi: tek dokunuşta açılma, sesler atlanmıyor
+**Tarih:** 17.11.2026
+
+**İstek (Cem):** Yumurtalara bir kere basınca kırılıp açılsın. Basmaya devam edince ses çalmıyor; sesler atlanmasın.
+
+**Yapılanlar:**
+- `js/act/eggs.js`: yumurta artık **tek dokunuşta** çatlıyor (önce 3 dokunuş gerekiyordu).
+- Ses kuyruğu: her dokunuşun sesi (gerçek hayvan sesi → "Sürpriz! Köpek!" → "A puppy!") sıraya giriyor; yeni dokunuş
+  önceki sesi kesmiyor (eskiden `Speech.cancel()` ile kesiliyordu). Çıkmış yavruya tekrar dokununca sesi ve adı yine
+  sıraya eklenir. Kuyruk en fazla 8 iş tutar (sesler dakikalarca birikmesin). Açılış konuşması ilk dokunuşta susar.
+- Hız için yumurta başına renk cümlesi kaldırıldı (yumurta başına ~4–6 sn). 3 yumurta açılınca kutlama, sonra yeni yumurtalar.
+
+**Değişen dosyalar:** `js/act/eggs.js`, README, bu günlük.
+
+**Test durumu:** Headless Chrome: 3 yumurtaya 150 ms arayla basıldı → üçü hemen açıldı; 3 hayvan sesi + adları sırayla,
+kesilmeden çaldı; 4. dokunuş (açılmış yavru) da çaldı; ardından yeni yumurtalar geldi. Sayfa hatası yok.
+
+---
+
 ## Aşama 5 — Takılan akışlar düzeltildi, gerçekçi hayvan fotoğrafları
 **Tarih:** 17.11.2026
 
