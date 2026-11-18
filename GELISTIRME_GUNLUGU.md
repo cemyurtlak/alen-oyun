@@ -4,6 +4,26 @@
 
 ---
 
+## Aşama 20 — Karga ve at sesleri yenilendi
+**Tarih:** 18.11.2026
+
+**İstek (Cem):** Karganın sesi çıkmıyor; at seslerinden biri saçma.
+
+**Yapılanlar:**
+- Karga: ESC-50 kayıtları (crow_1..3) BBC Sound Effects'ten iki net "gak gak" kaydıyla değiştirildi:
+  - NHU05100162 "Carrion crow – Call CU" → `crow_1`
+  - NHU05097107 "American crow – MCU calls" → `crow_2`
+  Her dosyanın en yoğun 2,5 sn'si alındı ve -16 LUFS'a ayarlandı; spektrogramda 4'er net ötüş görüldü. `crow_3` kullanılmıyor.
+- At: `horse_2` gürültülü bir kayıttı (spektrogramda kişneme yok). BBC 07050147 "One horse neighs" ile değiştirildi;
+  temiz harmonik kişneme, 2 sn.
+- Telefonlardaki eski seslerin yenilenmesi için medya önbelleği `alen-medya-v4` yapıldı.
+
+**Değişen dosyalar:** `assets/sfx/crow_1.mp3`, `crow_2.mp3`, `horse_2.mp3`, `js/animalsounds.js`, `sw.js`, `sw_liste.js`, bu günlük.
+
+**Test durumu:** Headless Chrome: karga ve at sesleri sonuna kadar çaldı.
+
+---
+
 ## Aşama 19 — "Dans Eden Bebekler" yerine "Dans Edelim": gerçek dans eden çocuk videoları
 **Tarih:** 18.11.2026
 

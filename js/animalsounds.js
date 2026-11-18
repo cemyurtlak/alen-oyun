@@ -45,7 +45,7 @@ const AnimalSounds = (() => {
     wolf: { f: ['wolf_1'] },
     tiger: { f: ['tiger_1', 'tiger_2'] },
     cuckoo: { f: ['cuckoo_1', 'cuckoo_2'] },
-    crow: { f: ['crow_1', 'crow_2', 'crow_3'] },
+    crow: { f: ['crow_1', 'crow_2'] },
     seagull: { f: ['seagull_1', 'seagull_2'] },
     parrot: { f: ['parrot_1'] },
     whale: { f: ['whale_1', 'whale_2'] },
