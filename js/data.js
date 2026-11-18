@@ -279,15 +279,26 @@ const HOMES = [
 ];
 
 /* Ana sayfadaki oyun / etkinlik kartları */
+/* Sesi birbirine benzeyen (ya da aynı kaydı kullanan) hayvanlar: aynı soruda birlikte seçenek olmaz */
+const SOUND_ALIKE = [
+  ['lion', 'tiger', 'bear'],
+  ['chicken', 'rooster', 'turkey'],
+  ['duck', 'goose'],
+  ['bird', 'chick', 'pigeon'],
+  ['monkey', 'gorilla'],
+  ['dog', 'wolf', 'fox']
+];
+
 const ACTIVITIES = [
   { id: 'catrun', tr: 'Kedi Koşusu', en: 'Kitty Run', icon: '😸' },
   { id: 'copy', tr: 'Ses Taklidi', en: 'Copy the Sound', icon: '🐮' },
-  { id: 'talk', tr: 'Konuşalım', en: "Let's Talk", icon: '🗣️' },
-  { id: 'parrot', tr: 'Konuşan Kedi', en: 'Talking Kitty', icon: '🎤' },
   { id: 'dance', tr: 'Dans Eden Bebekler', en: 'Dancing Babies', icon: '🪩' },
   { id: 'feed', tr: 'Yemek Zamanı', en: 'Meal Time', icon: '🍽️' },
   { id: 'fingers', tr: 'Parmakla Say', en: 'Finger Count', icon: '🖐️' },
   { id: 'eggs', tr: 'Yumurta Sürprizi', en: 'Egg Surprise', icon: '🐣' },
+  { id: 'dino', tr: 'Dinozor Yumurtaları', en: 'Dino Eggs', icon: '🦕' },
+  { id: 'pegs', tr: 'Çekiç Oyunu', en: 'Hammer Time', icon: '🔨' },
+  { id: 'roll', tr: 'Top Yuvarla', en: 'Roll the Ball', icon: '⚽' },
   { id: 'homes', tr: 'Hayvan Evleri', en: 'Animal Homes', icon: '🏡' },
   { id: 'sling', tr: 'Sapan', en: 'Slingshot', icon: '🎯' },
   { id: 'pop', tr: 'Balon Patlat', en: 'Pop Balloons', icon: '🎈' },

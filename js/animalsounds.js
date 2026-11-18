@@ -69,7 +69,7 @@ const AnimalSounds = (() => {
   // Not: eskiden sounds/animals/ altındaki isteğe bağlı kayıtlar açılışta tek tek yoklanıyordu (55+ boş istek,
   // yavaş açılış ve telefonda oynatıcı sınırının dolması) — kaldırıldı.
   const url = (name) => 'assets/sfx/' + name + '.mp3';
-  function playSrc(src, rate, resolve, maxMs = 4500) {
+  function playSrc(src, rate, resolve, maxMs = 6500) {
     AudioCache.play(src, { group: 'fx', rate: rate || 1, maxMs }).then(() => resolve());
   }
 

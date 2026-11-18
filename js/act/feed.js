@@ -1,147 +1,94 @@
 /* =========================================================
-   YEMEK ZAMANI — katı yiyeceklere oyunla alıştırma
-   • Çocuk bir yiyeceğe dokunur → yiyecek uçar, kedi ağzını açar "Aaam!",
-     çiğner ("ham ham ham", çıtır sesler), "Mmm, çok lezzetli!" der.
-   • "Birlikte çiğneyelim": aç → ısır → çiğne → yut adımlarını gösterir (model olma).
-   • "Ben de yedim!": çocuk gerçek bir lokma yiyince ebeveyn basar → büyük kutlama.
+   YEMEK ZAMANI — bir hayvan gelir, gerçek sesini çıkarır ve adı söylenir;
+   çocuk tepsideki yiyeceklerden o hayvanın yediğini seçer
+   (inek → ot, at → havuç, maymun → muz, köpek → kemik ...).
+   Doğru: yiyecek hayvanın ağzına uçar, "Mmmm, çok lezzetli!" + hayvanın sesi.
+   Yanlış: yiyecek sallanır. Hayvan konuşurken yanlış dokunuş konuşmayı kesmez.
    ========================================================= */
 G.activities.feed = () => {
-  const { $, $$, rand, shuffle, wait, TR, EN, esc } = G;
+  const { $, $$, rand, shuffle, wait } = G;
   const id = G.newFlow();
-  const CHARS = [
-    { tr: 'Kedi', en: 'Kitty', face: '🐱', open: '🙀', chew: '😸', love: '😻', full: '😽', snd: 'catHappy' },
-    { tr: 'Köpek', en: 'Puppy', face: '🐶', open: '🐶', chew: '🐶', love: '🐶', full: '🐶', snd: 'dog' },
-    { tr: 'Ayı', en: 'Bear', face: '🐻', open: '🐻', chew: '🐻', love: '🐻', full: '🐻', snd: 'bear' }
-  ];
-  let ch = CHARS[0], tummy = 0, busy = false;
-  const FULL = 5;
+  const MEALS = [
+    { snd: 'cow', food: '🌿' }, { snd: 'horse', food: '🥕' }, { snd: 'monkey', food: '🍌' },
+    { snd: 'chicken', food: '🌽' }, { snd: 'dog', food: '🦴' }, { snd: 'cat', food: '🐟' },
+    { snd: 'bear', food: '🍯' }, { snd: 'frog', food: '🪰' }, { snd: 'bird', food: '🪱' },
+    { snd: 'elephant', food: '🥜' }
+  ].map(m => ({ ...m, a: ANIMALS.find(x => x.snd === m.snd) })).filter(m => m.a && imgSrc(m.a.emoji) && imgSrc(m.food));
 
-  const root = G.screen('feed', G.topbar(`${pic('🍽️', 'title-ic')} Yemek Zamanı <small>Meal Time</small>`) + `
-    <div class="char-pick">${CHARS.map((c, i) => `<button class="cp ${i === 0 ? 'on' : ''}" data-i="${i}">${pic(c.face)}${c.tr}</button>`).join('')}</div>
-    <div class="feed-stage">
-      <div class="bubble-say" id="say"></div>
-      <div class="eater" id="eater">${pic(ch.face)}</div>
-      <div class="bib"></div>
-      <div class="tummy"><div class="tummy-fill" id="tf"></div><span>${pic('💖')}</span></div>
-      <div class="table"></div>
+  AnimalSounds.preload(MEALS.map(m => m.snd));
+  Speech.preload(MEALS.map(m => [m.a.tr + '!', 'tr-TR']).concat(MEALS.map(m => [m.a.en + '!', 'en-US']),
+    [['Mmmm! Çok lezzetli!', 'tr-TR'], ['Mmm! Yummy!', 'en-US'], ['Hayır, o değil!', 'tr-TR'], ['Nope, not that one!', 'en-US']]));
+
+  const root = G.screen('feed2', G.topbar(`${pic('🍽️', 'title-ic')} Yemek Zamanı <small>Meal Time</small>`,
+    `<div class="counter" id="cnt"><b>0</b>${pic('🍽️')}</div>`) + `
+    <div class="meal-stage">
+      <div class="meal-animal" id="animal"></div>
+      <div class="meal-table"></div>
     </div>
-    <div class="tray" id="tray"></div>
-    <div class="feed-ctrl">
-      <button class="dbtn" id="chew">${pic('😋')}<small>Birlikte çiğneyelim</small></button>
-      <button class="dbtn big" id="ate">${pic('🥳')}<small>${esc(G.childName())} de yedi!</small></button>
-    </div>`);
+    <div class="meal-tray" id="tray"></div>`);
   G.bindHome(root);
 
-  const eater = $('#eater');
-  const face = (e) => { eater.innerHTML = pic(e); };
-  function say(t) { const b = $('#say'); b.textContent = t; G.anim(b, 'show'); }
+  let cur = null, last = null, locked = false, asking = 0, fed = 0;
 
-  function fillTray() {
-    const foods = shuffle(FOODS).slice(0, 6);
-    $('#tray').innerHTML = foods.map((f, i) => `<button class="food" data-i="${FOODS.indexOf(f)}" style="animation-delay:${i * 0.06}s">${pic(f.emoji)}</button>`).join('');
-    $$('#tray .food').forEach(b => b.onclick = () => feed(b, FOODS[+b.dataset.i]));
+  async function next() {
+    if (!G.alive(id)) return;
+    let m;
+    do { m = rand(MEALS); } while (m === last && MEALS.length > 1);
+    last = cur = m;
+    locked = false;
+    const others = shuffle(MEALS.filter(x => x.food !== m.food)).slice(0, 2).map(x => x.food);
+    const foods = shuffle([m.food, ...others]);
+    $('#animal').innerHTML = `<img src="${imgSrc(m.a.emoji)}" alt="" draggable="false">`;
+    G.anim($('#animal'), 'boom');
+    $('#tray').innerHTML = foods.map(f => `<button class="meal-food" data-f="${f}">${pic(f)}</button>`).join('');
+    $$('.meal-food', root).forEach(b => b.onclick = () => choose(b));
+    // önce hayvanın gerçek sesi, sonra adı
+    const my = ++asking;
+    await wait(250);
+    if (!G.alive(id) || my !== asking) return;
+    await AnimalSounds.play(m.snd);
+    if (!G.alive(id) || my !== asking) return;
+    await Speech.seq(G.both(m.a.tr + '!', m.a.en + '!'));
+    if (my === asking) asking = -my; // soru bitti
   }
 
-  async function feed(btn, food) {
-    if (busy) return;
-    busy = true;
-    const fid = G.newFlow();
-    Sounds.tap();
-    // yiyeceği karakterin ağzına uçur
-    const from = btn.getBoundingClientRect(), to = eater.getBoundingClientRect();
-    const fly = document.createElement('div');
-    fly.className = 'flyfood';
-    fly.innerHTML = pic(food.emoji);
-    fly.style.left = from.left + 'px';
-    fly.style.top = from.top + 'px';
-    fly.style.width = from.width + 'px';
-    document.body.appendChild(fly);
-    btn.style.visibility = 'hidden';
-    Speech.seq(G.both(food.tr + '!', food.en + '!'));
-    face(ch.open);
-    eater.classList.add('open');
-    requestAnimationFrame(() => {
-      fly.style.transform = `translate(${to.left + to.width / 2 - from.left - from.width / 2}px, ${to.top + to.height * 0.62 - from.top - from.height / 2}px) scale(.55)`;
-    });
-    await wait(750);
-    fly.remove();
-    if (!G.alive(fid)) { busy = false; return; }
-    // çiğneme
-    eater.classList.remove('open');
-    face(ch.chew);
-    eater.classList.add('chewing');
-    say(G.tx('Ham ham ham!', 'Yum yum yum!'));
-    for (let i = 0; i < 6; i++) { if (!G.alive(fid)) { busy = false; return; } Sounds.crunch(); await wait(230); }
-    if (!G.alive(fid)) { busy = false; return; }
-    eater.classList.remove('chewing');
-    Sounds.gulp();
-    face(ch.love);
-    G.anim(eater, 'jump');
-    G.burstAt(eater, ['💖', '✨', '⭐'], 12);
-    tummy = Math.min(FULL, tummy + 1);
-    $('#tf').style.height = (tummy / FULL * 100) + '%';
-    if (ch.snd) AnimalSounds.play(ch.snd);
-    say(G.tx('Mmm! Çok lezzetli!', 'Mmm! Yummy!'));
-    await Speech.seq(G.both('Mmmm! Çok lezzetli!', 'Mmm! Yummy!'));
-    if (!G.alive(fid)) { busy = false; return; }
-    if (tummy >= FULL) {
-      face(ch.full);
-      say(G.tx('Karnım doydu!', "I'm full!"));
-      await G.celebrate({ big: true, extra: [...G.both('Karnım doydu!', "I'm full!"), 250,
-        ...G.both(`Şimdi sıra sende ${G.childName()}! Sen de bir lokma ye!`, `Now it's your turn, ${G.childName()}! Take a bite!`)] });
-      tummy = 0;
-      $('#tf').style.height = '0%';
-      fillTray();
-    } else {
-      btn.style.visibility = '';
-      const nf = rand(FOODS);
-      btn.dataset.i = FOODS.indexOf(nf);
-      btn.innerHTML = pic(nf.emoji);
-      G.anim(btn, 'pop-in');
-      btn.onclick = () => feed(btn, nf);
-      if (tummy === 2) await Speech.seq(G.both('Sen de ye! Ham!', 'You eat too! Yum!'));
+  async function choose(btn) {
+    if (locked || btn.classList.contains('wrong')) return;
+    const f = btn.dataset.f;
+    if (f !== cur.food) {
+      G.anim(btn, 'shake');
+      btn.classList.add('wrong');
+      G.anim($('#animal'), 'shake');
+      // soru hâlâ çalıyorsa kesme
+      if (asking > 0) return;
+      Speech.cancel();
+      Speech.seq(G.both('Hayır, o değil!', 'Nope, not that one!'));
+      return;
     }
-    face(ch.face);
-    busy = false;
+    locked = true;
+    asking = 0;
+    Speech.cancel();
+    // yiyecek hayvanın ağzına uçar
+    const a = $('#animal').getBoundingClientRect(), b = btn.getBoundingClientRect();
+    btn.style.setProperty('--dx', (a.left + a.width / 2 - (b.left + b.width / 2)) + 'px');
+    btn.style.setProperty('--dy', (a.top + a.height * 0.45 - (b.top + b.height / 2)) + 'px');
+    btn.classList.add('eaten');
+    $$('.meal-food', root).forEach(o => { if (o !== btn) o.classList.add('fade'); });
+    await wait(650);
+    if (!G.alive(id)) return;
+    Sounds.crunch();
+    G.anim($('#animal'), 'chomp');
+    G.burstAt($('#animal'), ['💖', '✨', '😋'], 10);
+    fed++;
+    const cnt = $('#cnt b');
+    if (cnt) { cnt.textContent = fed; G.anim($('#cnt'), 'boom'); }
+    await Speech.seq(G.both('Mmmm! Çok lezzetli!', 'Mmm! Yummy!'));
+    if (!G.alive(id)) return;
+    await AnimalSounds.play(cur.snd);
+    if (!G.alive(id)) return;
+    if (fed % 5 === 0) { await Promise.race([G.celebrate({ big: true }), wait(3500)]); if (!G.alive(id)) return; }
+    next();
   }
 
-  // Ağzını aç → ısır → çiğne → yut (çocuğa model olma)
-  async function chewTogether() {
-    if (busy) return;
-    busy = true;
-    const cid = G.newFlow();
-    const steps = [
-      async () => { face(ch.open); eater.classList.add('open'); say(G.tx('Ağzını aç: Aaaa!', 'Open wide: Aaah!')); await Speech.seq(G.both('Ağzını aç! Aaaaa!', 'Open wide! Aaaah!')); eater.classList.remove('open'); },
-      async () => { face(ch.chew); G.anim(eater, 'nod'); Sounds.crunch(); say(G.tx('Isır: Hap!', 'Bite: Chomp!')); await Speech.seq(G.both('Isır! Hap!', 'Bite! Chomp!')); },
-      async () => { eater.classList.add('chewing'); say(G.tx('Çiğne, çiğne, çiğne!', 'Chew, chew, chew!')); for (let i = 0; i < 3; i++) { Sounds.crunch(); await wait(200); }
-        await Speech.seq(G.both('Çiğne, çiğne, çiğne!', 'Chew, chew, chew!')); eater.classList.remove('chewing'); },
-      async () => { Sounds.gulp(); face(ch.love); G.anim(eater, 'jump'); say(G.tx('Yut: Gulp!', 'Swallow: Gulp!')); await Speech.seq(G.both('Yut! Gulp!', 'Swallow! Gulp!')); }
-    ];
-    for (const s of steps) { if (!G.alive(cid)) break; await s(); await wait(400); }
-    if (G.alive(cid)) await G.celebrate({ extra: G.both('Sen de yapabilirsin!', 'You can do it too!') });
-    face(ch.face);
-    busy = false;
-  }
-
-  $('#chew').onclick = () => { Sounds.tap(); chewTogether(); };
-  $('#ate').onclick = () => {
-    G.newFlow();
-    busy = false;
-    face(ch.love);
-    G.anim(eater, 'jump');
-    G.celebrate({ big: true, extra: G.both(`Aferin ${G.childName()}! Kocaman bir lokma yedin!`, `Great job, ${G.childName()}! What a big bite!`) });
-    G.confetti(80);
-  };
-  $$('.cp', root).forEach(b => b.onclick = () => {
-    Sounds.tap();
-    ch = CHARS[+b.dataset.i];
-    face(ch.face);
-    $$('.cp', root).forEach(x => x.classList.toggle('on', x === b));
-    G.anim(eater, 'pop-in');
-  });
-  eater.onclick = () => { G.anim(eater, 'wiggle'); if (ch.snd) AnimalSounds.play(ch.snd); };
-
-  fillTray();
-  say(G.tx('Karnım aç!', "I'm hungry!"));
-  Speech.seq([...G.both('Karnım çok aç!', "I'm so hungry!"), 200, ...G.both('Bana yemek verir misin?', 'Can I have some food?')]);
+  next();
 };

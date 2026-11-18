@@ -212,3 +212,8 @@ function pic(e, cls = '') {
 function tintSrc(kind, color) { return `assets/img/tint/${kind}_${color}.webp`; }
 function picSrc(src, cls = '') { return `<img class="pic ${cls}" src="${src}" alt="" draggable="false">`; }
 Object.assign(IMG, { '🌬️': 'wind_face', '👆': 'backhand_up', '👂': 'ear' });
+/* Aşama 18: yeni Fluent görselleri (dinozor, yiyecekler, çekiç) */
+Object.assign(IMG, {
+  '🦕': 'sauropod', '🦖': 't_rex', '🦴': 'bone', '🍯': 'honey_pot', '🌿': 'herb', '🔨': 'hammer',
+  '🥬': 'leafy_green', '🪱': 'worm', '🪰': 'fly', '🥜': 'peanuts', '🌱': 'seedling', '🌋': 'volcano', '🌴': 'palm_tree', '⚽': 'soccer_ball'
+});

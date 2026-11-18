@@ -4,6 +4,140 @@
 
 ---
 
+## Aşama 18 — Yeni oyunlar: Dinozor Yumurtaları, Çekiç Oyunu, Top Yuvarla; Yemek Zamanı yenilendi; eller ve parmak sayma düzeltildi
+**Tarih:** 18.11.2026
+
+**İstek (Cem):**
+- Çizgi filmlerdeki gibi: yumurtaların önünde onların renginde şekiller olsun, şekle basınca yumurta kırılsın, içinden
+  dinozor çıksın (şekil + renk öğrenir).
+- Konuşalım ve Konuşan Kedi kaldırılsın; başka ses çıkarınca da kabul ediyor, işe yaramıyor.
+- Yemek Zamanı: bir hayvan çıksın, Alen onun yediği yiyeceği seçsin (inek → ot, tavşan → havuç ...).
+- Delikler, üstünde renkli toplar; çekiçle vurunca toplar deliğe düşsün.
+- Renkli topu yukarıdan yuvarlamayı, dönerek ve ses çıkararak inmesini seviyor.
+- Parmakla Say: art arda basınca sayıyı duymadan sonraki parmak çıkıyor. Ellerin bir kısmı görünmüyor (temizlerken silinmiş).
+- Dans Eden Bebekler kullanışlı değil (gerçekten dans eden bir bebek düşünmüştü).
+
+**Yapılanlar:**
+- `js/act/dino.js` (yeni) — Dinozor Yumurtaları:
+  - Her yumurtanın önünde aynı renkte bir şekil durur (7 şekil × 7 renk).
+  - Şekle ya da yumurtaya dokununca "Kırmızı! Üçgen!" söylenir, yumurta çatlar ve dinozor (sauropod / T-rex) çıkar.
+  - 3 yumurta açılınca kutlama ve yeni tur. Yumurta Sürprizi'ndeki takılmaz kuyruk düzeni kullanıldı.
+- `js/act/feed.js` (baştan yazıldı) — Yemek Zamanı:
+  - Hayvan gelir: önce gerçek sesi, sonra adı. Tepside 3 yiyecek vardır.
+  - Eşleşmeler: inek–ot, at–havuç, maymun–muz, tavuk–mısır, köpek–kemik, kedi–balık, ayı–bal, kurbağa–sinek,
+    kuş–solucan, fil–fıstık. Tavşan oyunda yok (gerçek sesi bulunamadığı için çıkarılmıştı); at–havuç onun yerini tutuyor.
+  - Doğru yiyecek ağza uçar, "Mmmm! Çok lezzetli!" ve hayvanın sesi çalar; her 5 doğruda kutlama.
+  - Yanlış seçim sallanır. Soru konuşması yanlış dokunuşla kesilmez.
+- `js/act/pegs.js` (yeni) — Çekiç Oyunu: tahtada 5 delik, üstlerinde renkli toplar. Topa dokununca çekiç iner,
+  top "tok" diye deliğe düşer ve rengi söylenir; hepsi düşünce kutlama ve yeni toplar.
+- `js/act/roll.js` (yeni) — Top Yuvarla: sepetteki topa dokununca top 4 zikzak rampadan dönerek iner.
+  Rampada "gürül gürül" ses (`Sounds.roll`), her düşüşte "tok" sesi çıkar; kutuya düşünce rengi söylenir. 6 top inince kutlama.
+- Konuşalım (`talk`) ve Konuşan Kedi (`parrot`, `js/act/parrot.js` artık yüklenmiyor) ana sayfadan kaldırıldı.
+  Ses Taklidi kaldı.
+- Parmakla Say: sayı söylenirken gelen dokunuşlar yok sayılır, her sayı duyulmadan yeni parmak açılmaz.
+  `hand_1..5` orijinal fotoğraftan, gerçek panel sınırlarına göre ve ten rengi maskesiyle yeniden kesildi; eller artık tam.
+- Yeni Fluent görselleri: dinozorlar, kemik, bal, ot, çekiç, solucan, sinek, fıstık, marul, fide, yanardağ, palmiye, top.
+- `Sounds.thud()` (tahta "tok") ve `Sounds.roll()` (yuvarlanma) efektleri eklendi.
+
+**Yeni ses kaydı gerekmedi:** şekil, renk, hayvan adları ve "Mmmm! Çok lezzetli!" zaten Piku ile kayıtlıydı.
+İleride istenirse ElevenLabs'te: yiyecek adları (Ot, Kemik, Balık, Bal, Sinek, Solucan, Fıstık), "Dinozor!",
+"… ne yer?" soruları.
+
+**Değişen dosyalar:** `js/act/dino.js`, `js/act/pegs.js`, `js/act/roll.js` (yeni), `js/act/feed.js`, `js/act/fingers.js`,
+`js/sounds.js`, `js/data.js`, `js/images.js`, `index.html`, `css/style.css`, `assets/img/*.webp` (13 yeni),
+`assets/img/real/hand_1..5.webp`, `sw_liste.js`, `sw.js`, README, DEVAM_NOTLARI, bu günlük.
+
+**Test durumu:** Headless Chrome, 400×800 ve 1024×700:
+- Yemek: 4/4 doğru seçim, sayaç ilerledi.
+- Dinozor: 2 tur tamamlandı.
+- Çekiç: 5 top düştü, yeni tur geldi.
+- Top Yuvarla: 6 top kutuya indi, sepet yenilendi.
+- Parmakla Say: 150 ms arayla 10 hızlı dokunuşta yalnızca 2 sayı ilerledi; sayılar atlanmadan 10'a ulaşıldı.
+- Hata yok, kaydı olmayan cümle yok. Ekran görüntüleri kontrol edildi.
+
+---
+
+## Aşama 17 — Aslan–kaplan aynı soruda çıkmaz, sesler arasında nefes payı
+**Tarih:** 18.11.2026
+
+**İstek (Cem):** Civciv sesi düzeldi mi? Hayvanları sorarken aslanla kaplan aynı anda gelmesin, sesleri aynı.
+Konuşmanın hemen arkasından yeni soru gelince anlaşılmayabiliyor; seslerden önce boşluk bırak.
+
+**Yapılanlar:**
+- Civciv: Aşama 15'te yeni temiz kayıtla değiştirildi (yayınlanınca telefona gelir).
+- `data.js` `SOUND_ALIKE`: sesi benzeyen hayvan grupları (aslan–kaplan–ayı, tavuk–horoz–hindi, ördek–kaz,
+  kuş–civciv–güvercin, maymun–goril, köpek–kurt–tilki). `learn.js` seçenek seçerken bunları aynı soruda bir araya getirmez.
+- `audiocache.js`: bir ses bittikten sonra aynı türden (konuşma/efekt) yeni ses en az 350 ms sonra başlar.
+  Bekleme sırasında da "meşgul" sayılır ve durdurulabilir.
+
+**Test durumu:** Kim Bu Ses 12 soru: ardışık sesler arası ~350 ms; 24 bölüm hatasız; yumurta stres testi 6/6 tur.
+
+---
+
+## Aşama 16 — Yumurta Sürprizi takılmıyor, alakasız sesler kalktı
+**Tarih:** 18.11.2026
+
+**İstek (Cem):** Yumurta kırma kısmında takılıp kalıyor; hızlıca sırayla basınca hepsini kırıyor ama alakasız sesler çıkıyor. Eksik bir şey varsa tamamla.
+
+**Sebep:**
+- Ses sırası en fazla 8 iş tutuyordu. Hızlı basınca (özellikle çıkmış yavrulara tekrar tekrar) sıra doluyordu ve
+  "kutlama + yeni yumurtalar" adımı sıraya giremeyip kayboluyordu → yeni yumurtalar hiç gelmiyordu (takılma).
+- Çıkmış yavrulara her dokunuş yeni bir "ses + ad" ekliyordu. Bunlar yeni yumurtalar geldikten sonra da çalmaya
+  devam ediyordu (alakasız sesler).
+
+**Yapılanlar (`js/act/eggs.js`):**
+- Tur numarası eklendi: tur değişince eski turun bekleyen sesleri atlanır.
+- Yumurta kırılma sesi ve "kutlama + yeni yumurtalar" adımı sıraya her zaman girer (zorunlu); oyun asla takılmaz.
+  Kutlama en fazla 6 sn bekler.
+- Çıkmış yavruya dokununca ses yalnızca o an başka ses çalmıyorsa tekrar çalar (sıra birikmez).
+- Kutlama sırasında yumurtalara dokunma kapatılır.
+
+**Eksik kontrolü:** 24 bölüm ve oyunun hepsi açıldı. Kaydı olmayan cümle yok, eksik dosya (404) yok, sayfa hatası yok.
+
+**Değişen dosyalar:** `js/act/eggs.js`, `sw.js`/`sw_liste.js` (sürüm), bu günlük, DEVAM_NOTLARI.
+
+**Test durumu:** Headless Chrome: 6 tur boyunca her turda 3 yumurtaya 4'er kez hızlıca (60 ms arayla) basıldı.
+6 turun hepsi tamamlandı; 18 hayvan sesi çaldı, hepsi o anki yumurtalara aitti (alakasız ses 0).
+
+---
+
+## Aşama 15 — Sesler yarıda kesilmiyor, civciv sesi yenilendi, baloncuklarda hayvanlar
+**Tarih:** 18.11.2026
+
+**İstek (Cem):** Karganın sesi çıkmadı (ekrana sürekli basılmış olabilir). Baloncuk oyununda baloncukların içine balık koy;
+sonra düzeltti: farklı farklı hayvanlar olsun, patlayınca sesleri çıksın. "Kırmızı köpek balığı" yerine "kırmızı kop" diyor.
+Sapanda ve her yerde sesler yarıda kesiliyor. Hayvanlarda civciv sesi duyulmuyor.
+
+**Bulunanlar:**
+- Ses dosyaları sağlam: 753 konuşma ve 117 efekt dosyası tarayıcıda tek tek açıldı, hece/enerji incelemesiyle
+  kırmızı köpek balığı kaydının tam olduğu görüldü.
+- Kesilmenin asıl sebebi oyunun kendisiydi: doğru cevaptan sonra kutlamaya en fazla 1,6 sn tanınıyor, sonra yeni soru
+  konuşmayı ortasından kesiyordu ("Yaşasın! Bra…").
+- Yanlış şıkka dokunmak, çalmakta olan soruyu (hayvan sesi/adı) durduruyordu. Çocuk sürekli dokununca karga sesi hiç duyulmuyordu.
+- Aşama 12'deki Web Audio motoru telefonda güvenilir değildi.
+- Civciv kayıtları (ESC-50) neredeyse tamamen hışırtıydı; içinde yalnızca birkaç zayıf cik vardı.
+
+**Yapılanlar:**
+- `audiocache.js` baştan yazıldı. Dosyalar bir kez indirilip bellekte (Blob) tutuluyor. Çalma telefonun medya oynatıcısıyla
+  (`<audio>`) yapılıyor; en fazla 8 oynatıcılık havuz var. Dosya 1,5 sn'de bellekte değilse doğrudan internetten çalar, ses atlanmaz.
+- `learn.js`: kutlama konuşması sonuna kadar çalar (güvenlik sınırı 3,5 sn), alkış kendi yumuşak kısılmasıyla biter (~1,9 sn).
+  Soru çalarken yanlış şıkka dokunulursa soru kesilmez; şık sadece sallanır ve işaretlenir.
+- Civciv: BBC kaydından (NHU05012038) en temiz 8 cik ayıklandı (spektrogramda net harmonik yaylar) → yeni `chick_1/2.mp3`.
+- Baloncuk Patlat: baloncukların ~%75'inde oyundaki 36 hayvandan biri var (aynısı art arda gelmez). Patlayınca hayvan kenara
+  doğru gider, önce gerçek sesi sonra adı çalar; çok hızlı patlatılırsa ad atlanır, ses atlanmaz. Boş baloncuklar sayılmaya devam eder.
+- Servis çalışanı: medya önbelleği `alen-medya-v3` (yeni civciv sesleri telefona gelsin); arka plan indirmesi 2 paralele düşürüldü.
+
+**Değişen dosyalar:** `js/audiocache.js`, `js/learn.js`, `js/core.js`, `js/animalsounds.js`, `js/act/bubbles.js`,
+`assets/sfx/chick_1.mp3`, `assets/sfx/chick_2.mp3`, `sw.js`, `sw_liste.js`, README, DEVAM_NOTLARI, bu günlük.
+
+**Test durumu:** Headless Chrome, sesler oynatıcı düzeyinde izlendi:
+- Kim Bu Ses 10 soru: 41 ses çaldı, 41'i sonuna kadar bitti. Kutlama ve soru konuşmalarında kesilme yok; kesilenler yalnızca
+  alkışın kasıtlı kısılması ve doğru şıkka dokununca duran soru.
+- Baloncuk Patlat: hayvanlar sesleriyle çıktı, hata yok.
+- 24 bölüm ve oyunun hepsi hatasız açıldı.
+
+---
+
 ## Aşama 14 — Yeni oyun: Baloncuk Patlat (su altı)
 **Tarih:** 18.11.2026
 

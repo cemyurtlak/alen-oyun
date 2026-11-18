@@ -50,9 +50,15 @@
 | Sentez fanfar kapalı; ses eklemeden önce spektrogramla kontrol | Alkıştaki ıslık ve yanlış fil kaydı kulakla değil spektrogramla bulundu |
 | Etkinlik içinde `G.newFlow()` dikkatli kullanılır | `newFlow` etkinliğin başlangıç kimliğini geçersiz kılar; yalnızca konuşmayı susturmak için `Speech.cancel()` kullan, yoksa "ilerlemiyor" hatası çıkar (Yumurtalar'da yaşandı) |
 | Mikrofon gerektiren adımlar asla sonsuza kadar beklemez | Çocuk tek başına oynar; mikrofon/izin yoksa birkaç saniye sonra kendiliğinden devam |
-| Tüm sesler `AudioCache` (Web Audio, tek bağlam, çözülmüş tampon önbelleği) ile çalar; yeni `new Audio()` açılmaz | Telefonda her `<audio>` bir oynatıcı tutuyor, sınır dolunca sesler gecikiyor/çalmıyordu. Yeni ses eklenen yerde bölüm açılırken `AnimalSounds.preload([...])` / `Speech.preload([[metin, dil]])` çağır |
+| Tüm sesler `AudioCache` ile çalar: dosya bir kez Blob olarak belleğe alınır, havuzdaki (≤8) `<audio>` oynatıcılarla çalınır | Web Audio (Aşama 12) telefonda sesleri yarıda kesti; ağdan çalmak gecikiyordu; açılış yoklamaları oynatıcı sınırını dolduruyordu. Yeni ses eklenen yerde bölüm açılırken `AnimalSounds.preload([...])` / `Speech.preload([[metin, dil]])` çağır |
 | Açılışta dosya varlığı yoklanmaz | 55 boş istek açılışı yavaşlatıyordu; isteğe bağlı `sounds/` kayıt desteği kaldırıldı |
 | Servis çalışanı (`sw.js`): kod ağ-önce, medya önbellek-önce | Kod güncellemeleri hemen gelsin, görsel/sesler anında açılsın. **Görsel/ses eklenince `python tools/sw_liste.py` çalıştır** (liste + sürüm). Medya önbelleği `alen-medya-vN` (şu an v2): aynı adla dosya DEĞİŞTİRİLİRSE N'yi bir artır (eskisi otomatik silinir) |
+| Konuşmayı süreyle kesme (`Promise.race(..., wait(kısa))`) yapma | Kutlama 1,6 sn'de kesiliyordu ("Yaşasın! Bra…"); sınır gerekiyorsa bütün cümleyi kapsasın (≥3,5 sn) |
+| Soru çalarken yanlış dokunuş soruyu kesmez (`S.asking`) | 2 yaşında çocuk sürekli dokunuyor; hayvan sesi hiç duyulmuyordu |
+| Yeni efekt eklemeden önce spektrogram + ses düzeyi kontrolü | ESC-50 civciv kaydı neredeyse tamamen hışırtıydı |
+| Ses kuyruğunda oyunu ilerleten adım (yeni tur, kutlama) asla sınır yüzünden düşmez (`force`) ve tur numarasıyla eski sesler atlanır | Yumurta Sürprizi'nde dolan kuyruk yeni turu yutuyordu → oyun takılıyordu |
+| Konuşalım ve Konuşan Kedi kaldırıldı (mikrofon herhangi bir sesi kabul ediyordu); `parrot.js` dosyası duruyor ama yüklenmiyor | Cem: işe yaramıyor |
+| El fotoğrafları ten rengi maskesiyle kesilir (rembg değil); şerit fotoğraf gerçek panel çizgilerinden bölünür | Eşit bölme ve rakam örtüsü ellerin kenarını kesmişti |
 | Yüzdelik `padding` kullanılmaz | Yüzde, düğme yerine kapsayıcı genişliğine göre hesaplanıyor → görseller küçülüyordu |
 
 ## Yayın
@@ -86,6 +92,8 @@
 ## Sonraki adımlar / fikirler
 - Baloncuk Patlat'a başka deniz hayvanları (balık, ahtapot, yengeç, kaplumbağa, yunus) eklenebilir. Bunun için ElevenLabs'te adları (TR/EN) seslendirilmeli; Fluent görselleri hazır.
 - İstenirse baloncuk "blop" efekti için BBC'den gerçek su kabarcığı kaydı.
+- Dans Eden Bebekler: Cem gerçekten dans eden bir bebek istiyor; mevcut hali beğenilmedi (karar bekleniyor).
+- ElevenLabs'te kaydedilecekler: yiyecek adları (Ot, Kemik, Balık, Bal, Sinek, Solucan, Fıstık), "Dinozor!", "İnek ne yer?" gibi sorular.
 - Taşıtlar için gerçek kayıt (motor, gemi düdüğü, bisiklet zili, traktör, roket).
 - İstenirse daha fazla hayvan: deve, yunus, su aygırı, ağaçkakan, fare için temiz kayıt aranabilir. Domuz Cem'in isteğiyle çıkarıldı (sesi çalmıyordu); geri eklenirse yeni temiz kayıt gerekir.
 - ElevenLabs 2. hesapta ~2.570 kredi kaldı (18.11.2026).

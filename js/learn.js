@@ -230,7 +230,9 @@ const Learn = (() => {
     S.target = target;
     S.last = target;
     const n = Math.min(Settings.get('optionCount'), S.cat.items.length);
-    const similar = (a, b) => a.key && b.key && SIMILAR[a.key] && SIMILAR[a.key].includes(b.key);
+    // Benzer renkler ve SESİ BENZEYEN hayvanlar (ör. aslan–kaplan) aynı soruda birlikte çıkmaz
+    const similar = (a, b) => (a.key && b.key && SIMILAR[a.key] && SIMILAR[a.key].includes(b.key)) ||
+      (a.snd && b.snd && SOUND_ALIKE.some(g => g.includes(a.snd) && g.includes(b.snd)));
     let others = shuffle(pool.filter(x => x !== target && !similar(target, x)));
     if (others.length < n - 1) others = others.concat(shuffle(S.cat.items.filter(x => x !== target && !others.includes(x) && !similar(target, x))));
     if (others.length < n - 1) {
@@ -296,6 +298,7 @@ const Learn = (() => {
   async function ask() {
     const id = G.newFlow();
     const c = S.cat, it = S.target;
+    S.asking = id;
     $$('.q-line').forEach(l => l.classList.add('pulse'));
     if (c.soundQuiz) {
       G.anim($('.q-speaker'), 'boom');
@@ -308,6 +311,7 @@ const Learn = (() => {
       if (!G.alive(id)) return;
     }
     await Speech.seq(promptParts(c, it));
+    if (S.asking === id) S.asking = 0;
     if (G.alive(id)) $$('.q-line').forEach(l => l.classList.remove('pulse'));
   }
 
@@ -328,14 +332,26 @@ const Learn = (() => {
     G.burstAt(btn);
     if (S.cat.id === 'colors') setTimeout(() => Sounds.pop(), 500);
     setMascot('🥳', 'jump');
-    // kutlama en fazla ~1,6 sn sürer; sonra yeni soru (konuşma kesilir)
-    await Promise.race([G.celebrate(), wait(1600)]);
+    // kutlama konuşması sonuna kadar çalar (eskiden 1,6 sn'de kesiliyordu: "Yaşasın! Bra…"); güvenlik sınırı 3,5 sn
+    // alkış da kendi yumuşak kısılmasıyla bitsin (~1,9 sn), sonra yeni soru
+    await Promise.all([Promise.race([G.celebrate(), wait(3500)]), wait(1900)]);
     if (G.alive(id)) nextQuestion();
   }
 
   // Yanlış: kısa "Hayır!", kilit yok — çocuk hemen başka birine dokunabilir
   async function wrongAnswer(btn) {
     S.attempts++;
+    // Soru (hayvan sesi/adı) hâlâ çalıyorsa kesme: sadece salla ve işaretle, soru sonuna kadar duyulsun
+    if (S.asking && G.alive(S.asking)) {
+      G.anim(btn, 'shake');
+      btn.classList.add('wrong');
+      const left = $$('.opt').filter(o => !o.classList.contains('wrong'));
+      if (S.attempts >= 2 || left.length <= 1) {
+        const tb = $(`.opt[data-i="${S.options.indexOf(S.target)}"]`);
+        tb && tb.classList.add('hint');
+      }
+      return;
+    }
     const id = G.newFlow();
     G.anim(btn, 'shake');
     btn.classList.add('wrong');

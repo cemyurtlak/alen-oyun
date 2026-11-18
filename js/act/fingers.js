@@ -5,7 +5,7 @@
    ========================================================= */
 G.activities.fingers = () => {
   const { $, $$, rand, shuffle, wait, TR, EN } = G;
-  let mode = 'count', n = 0, target = 0, lock = false, rounds = 0;
+  let mode = 'count', n = 0, target = 0, lock = false, rounds = 0, counting = false;
 
   const root = G.screen('fingers', G.topbar(`${pic('🖐️', 'title-ic')} Parmakla Say <small>Finger Count</small>`) + `
     <div class="tabs"><button class="tab on" data-m="count">${pic('☝️')} Say · Count</button><button class="tab" data-m="quiz">${pic('✌️')} Kaç tane? · How many?</button></div>
@@ -29,6 +29,7 @@ G.activities.fingers = () => {
 
   function setupCount() {
     G.newFlow();
+    counting = false;
     mode = 'count'; n = 0;
     hb.innerHTML = G.hands(10);
     G.setFingers(hb, 0);
@@ -38,16 +39,20 @@ G.activities.fingers = () => {
     Speech.seq([{ t: 'Parmaklarına dokun ve sayalım!', l: TR, pitch: 1.3 }, 150, { t: "Tap and let's count!", l: EN, pitch: 1.3 }]);
   }
 
+  // Sayı söylenmeden yeni parmak açılmaz: söylenirken gelen dokunuşlar yok sayılır (sayılar atlanmasın)
   async function countTap() {
+    if (counting) { G.anim(hb, 'wiggle'); return; }
     if (n >= 10) { setupCount(); return; }
+    counting = true;
+    const id = G.newFlow(); // açılış konuşmasını keser
     n++;
-    G.newFlow();
     G.setFingers(hb, n);
     Sounds.tap();
     showNum(n);
     await Speech.seq([{ t: COUNT_TR[n - 1] + '!', l: TR, rate: 1.05 }, 80, { t: COUNT_EN[n - 1] + '!', l: EN, rate: 1.05 }]);
     if (n === 5) G.burstAt(hb, ['⭐'], 10);
-    if (n === 10) G.celebrate({ big: true, extra: [{ t: 'On parmak!', l: TR }, { t: 'Ten fingers!', l: EN }] });
+    if (n === 10 && G.alive(id)) await Promise.race([G.celebrate({ big: true, extra: [{ t: 'On parmak!', l: TR }, { t: 'Ten fingers!', l: EN }] }), wait(5000)]);
+    counting = false;
   }
 
   function setupQuiz() {

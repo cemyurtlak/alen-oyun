@@ -147,7 +147,7 @@ const G = (() => {
   // Doğru cevap ya da başarı: müzik + alkış + konfeti + kısa "Yeeey! Aferin!"
   function celebrate(opts = {}) {
     Sounds.fanfare();
-    Sounds.applause(opts.big ? 2.4 : 1.6);
+    Sounds.applause(opts.big ? 2.4 : 1.9);
     confetti(opts.big ? 130 : 75);
     const p = rand(PRAISE);
     const parts = [];

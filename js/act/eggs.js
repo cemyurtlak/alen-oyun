@@ -33,10 +33,11 @@ G.activities.eggs = () => {
     </div>`);
   G.bindHome(root);
 
-  let hatched = 0;
+  let hatched = 0, round = 0;
 
   function makeEggs() {
     hatched = 0;
+    round++;
     const cols = shuffle(COLORS.filter(c => c.key !== 'black')).slice(0, 3);
     const kids = shuffle(BABIES_IN).slice(0, 3);
     $('#row').innerHTML = cols.map((c, i) => `
@@ -54,17 +55,19 @@ G.activities.eggs = () => {
   }
 
   /* Sesler sıraya girer: art arda dokununca hiçbir ses kesilmez ya da atlanmaz.
-     (Kuyrukta en fazla 8 iş bekler; fazlası eklenmez ki sesler dakikalarca sürmesin.) */
+     Her turda en fazla 3 yavru sesi + kutlama sıraya girer; tur değişince eski turun bekleyen sesleri atlanır
+     (yeni yumurtalarda alakasız ses çıkmasın). Kutlama/yeni tur adımı her zaman eklenir → oyun asla takılmaz. */
   let queue = Promise.resolve(), pending = 0, introOn = true;
-  function enqueue(job) {
-    if (pending >= 8) return;
+  function enqueue(job, force) {
+    if (pending >= 5 && !force) return;
     pending++;
     queue = queue.then(async () => {
       try { if (G.alive(id)) await job(); } catch (e) { /* yoksay */ }
       pending--;
     });
   }
-  const announce = (k) => async () => {
+  const announce = (k, r) => async () => {
+    if (r !== round) return; // eski turun sesi: atla
     if (k.snd) await AnimalSounds.play(k.snd);
     if (!G.alive(id)) return;
     await Speech.seq([{ t: `Sürpriz! ${k.tr}!`, l: TR, pitch: 1.4 }, 150, { t: `A ${k.en.toLowerCase()}!`, l: EN, pitch: 1.4 }]);
@@ -78,7 +81,7 @@ G.activities.eggs = () => {
     if (el.classList.contains('hatched')) {
       // çıkmış yavruya dokununca sesi ve adı yine duyulsun
       G.anim(el.querySelector('.baby-in'), 'wiggle');
-      enqueue(announce(k));
+      if (pending === 0) enqueue(announce(k, round)); // yalnızca sessizken (sıra birikmesin)
       return;
     }
     el.querySelector('.crack path').setAttribute('d', CRACK[2]);
@@ -86,14 +89,18 @@ G.activities.eggs = () => {
     Sounds.pop();
     Sounds.crunch();
     G.burstAt(el, ['✨', '⭐'], 12);
-    enqueue(announce(k));
+    enqueue(announce(k, round), true);
     hatched++;
     if (hatched >= 3) {
       hatched = 0;
+      const r = round;
       enqueue(async () => {
-        await G.celebrate({ extra: [{ t: 'Yeni yumurtalar geliyor!', l: TR }, { t: 'More eggs!', l: EN }] });
-        if (G.alive(id)) makeEggs();
-      });
+        if (r !== round) return;
+        // kutlama sırasında dokunulamasın, yeni yumurtalar mutlaka gelsin
+        $$('.egg', root).forEach(e => { e.onclick = null; });
+        await Promise.race([G.celebrate({ extra: [{ t: 'Yeni yumurtalar geliyor!', l: TR }, { t: 'More eggs!', l: EN }] }), wait(6000)]);
+        if (G.alive(id) && r === round) makeEggs();
+      }, true);
     }
   }
 

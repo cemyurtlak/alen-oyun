@@ -1,9 +1,9 @@
 /* =========================================================
    BALONCUK PATLAT (su altı) — denizin dibinden sabun köpüğü gibi
    parlak baloncuklar yükselir; dokununca "blop" diye patlar.
+   - Baloncukların çoğunda bir hayvan var (oyundaki 36 hayvandan biri): patlayınca hayvan kurtulup
+     kenara doğru gider, önce gerçek sesi sonra adı duyulur.
    - Boş baloncuk: sırayla sayılır (Bir! İki! ... On! → kutlama)
-   - İçinde deniz hayvanı olan baloncuk: hayvan kurtulup yüzerek gider,
-     gerçek sesi (balina, fok, penguen) ve adı söylenir; renkli köpek balığının rengi söylenir.
    Sesler sıraya girer: üst üste binmez, sayılar atlanmaz (Kedi Koşusu ile aynı düzen).
    Tanıtım yok — oyun hemen başlar (Cem'in isteği).
    ========================================================= */
@@ -11,27 +11,20 @@ G.activities.bubbles = () => {
   const { $, rand } = G;
   const id = G.newFlow();
 
-  // Baloncuklardan çıkan deniz hayvanları (yalnızca gerçek sesi/adı kayıtlı olanlar)
-  const SHARK_COLORS = COLORS.filter(c => ['red', 'blue', 'yellow', 'green', 'orange', 'pink', 'purple'].includes(c.key));
-  const SEA = [
-    { e: '🐋', snd: 'whale', tr: 'Balina', en: 'Whale', face: 1 },
-    { e: '🦭', snd: 'seal', tr: 'Fok', en: 'Seal', face: -1 },
-    { e: '🐧', snd: 'penguin', tr: 'Penguen', en: 'Penguin', face: 0 }
-  ];
+  // Baloncukların içindeki hayvanlar: oyundaki tüm hayvanlar (hepsinin gerçek sesi ve fotoğrafı var)
+  const FRIENDS = ANIMALS.filter(a => a.snd && AnimalSounds.has(a.snd) && imgSrc(a.emoji));
+  let lastFriend = null;
   function randomFriend() {
-    if (Math.random() < 0.55) {
-      const c = rand(SHARK_COLORS);
-      return { src: tintSrc('shark', c.key), tr: c.tr + ' köpek balığı', en: c.en + ' shark', face: 1 };
-    }
-    const s = rand(SEA);
-    return { src: imgSrc(s.e), snd: s.snd, tr: s.tr, en: s.en, face: s.face };
+    let a;
+    do { a = rand(FRIENDS); } while (a === lastFriend && FRIENDS.length > 1);
+    lastFriend = a;
+    return { src: imgSrc(a.emoji), snd: a.snd, tr: a.tr, en: a.en, face: 0 };
   }
 
   // Ses ve konuşmaları önceden yükle (ilk dokunuşta gecikme olmasın)
-  AnimalSounds.preload(SEA.map(s => s.snd));
+  AnimalSounds.preload(FRIENDS.map(a => a.snd));
   Speech.preload(COUNT_TR.map(n => [n + '!', 'tr-TR']).concat(COUNT_EN.map(n => [n + '!', 'en-US']))
-    .concat(SEA.map(s => [s.tr + '!', 'tr-TR']), SEA.map(s => [s.en + '!', 'en-US']))
-    .concat(SHARK_COLORS.map(c => [c.tr + ' köpek balığı!', 'tr-TR']), SHARK_COLORS.map(c => [c.en + ' shark!', 'en-US'])));
+    .concat(FRIENDS.map(a => [a.tr + '!', 'tr-TR']), FRIENDS.map(a => [a.en + '!', 'en-US'])));
 
   let deco = '';
   for (let i = 0; i < 16; i++) deco += `<span class="ocean-bubble" style="left:${Math.random() * 100}%;animation-delay:${-Math.random() * 7}s;--s:${0.4 + Math.random() * 0.8}"></span>`;
@@ -63,7 +56,7 @@ G.activities.bubbles = () => {
     const size = 110 + Math.random() * 100;
     const el = document.createElement('button');
     el.className = 'sbubble';
-    const friend = Math.random() < 0.25 ? randomFriend() : null;
+    const friend = Math.random() < 0.75 ? randomFriend() : null; // çoğu baloncukta bir hayvan var
     el.innerHTML = '<span class="shine"></span>' + (friend ? `<img class="inside" src="${friend.src}" alt="" draggable="false">` : '');
     el.style.width = size + 'px';
     el.style.height = size + 'px';
@@ -108,20 +101,12 @@ G.activities.bubbles = () => {
 
     if (b.friend) {
       const f = b.friend;
-      // hayvan kurtulur, ekranın kenarına doğru yüzer
-      const dir = cx < innerWidth / 2 ? -1 : 1;
-      const sw = document.createElement('div');
-      sw.className = 'swim-away';
-      sw.innerHTML = `<img src="${f.src}" alt="" draggable="false">`;
-      sw.style.left = cx + 'px';
-      sw.style.top = cy + 'px';
-      sw.style.setProperty('--dx', dir * (innerWidth * 0.7) + 'px');
-      sw.style.setProperty('--flip', f.face && f.face !== dir ? -1 : 1);
-      G.fx.appendChild(sw);
-      setTimeout(() => sw.remove(), 3000);
+      swimAway(f, cx, cy);
+      // önce hayvanın gerçek sesi, sonra adı; çok hızlı patlatılırsa ad atlanır, ses atlanmaz
+      const withName = pending < 2;
       enqueue(async () => {
-        if (f.snd) { await AnimalSounds.play(f.snd); if (!G.alive(id)) return; }
-        await Speech.seq(G.both(f.tr + '!', f.en + '!'));
+        await AnimalSounds.play(f.snd);
+        if (withName && G.alive(id)) await Speech.seq(G.both(f.tr + '!', f.en + '!'));
       });
       return;
     }
@@ -135,6 +120,20 @@ G.activities.bubbles = () => {
     count = n;
     const cnt = $('#cnt b');
     if (cnt) { cnt.textContent = count; G.anim($('#cnt'), 'boom'); }
+  }
+
+  // hayvan/balık kurtulur, ekranın kenarına doğru yüzer
+  function swimAway(f, cx, cy) {
+    const dir = cx < innerWidth / 2 ? -1 : 1;
+    const sw = document.createElement('div');
+    sw.className = 'swim-away';
+    sw.innerHTML = `<img src="${f.src}" alt="" draggable="false">`;
+    sw.style.left = cx + 'px';
+    sw.style.top = cy + 'px';
+    sw.style.setProperty('--dx', dir * (innerWidth * 0.7) + 'px');
+    sw.style.setProperty('--flip', f.face && f.face !== dir ? -1 : 1);
+    G.fx.appendChild(sw);
+    setTimeout(() => sw.remove(), 3000);
   }
 
   function loop(now) {

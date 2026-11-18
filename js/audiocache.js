@@ -1,130 +1,124 @@
 /* =========================================================
-   Ortak ses motoru (Web Audio API)
-   - Her ses dosyası bir kez indirilir ve çözülür (decode), sonra GECİKMESİZ çalar.
-   - Telefon/tabletlerde her ses için yeni <audio> açmak oynatıcı sınırını dolduruyor,
-     sesler gecikiyor ya da hiç çalmıyordu → tek AudioContext kullanılır.
+   Ortak ses motoru
+   - Her ses dosyası BİR KEZ indirilir ve bellekte (Blob) saklanır → çalarken internet beklenmez, gecikme olmaz.
+   - Çalma, telefonun kendi medya oynatıcısıyla (<audio>) yapılır. (Aşama 12'de Web Audio denendi;
+     telefonda sesler yarıda kesildi → Aşama 15'te medya oynatıcısına geri dönüldü.)
+   - Oynatıcılar havuzda tekrar kullanılır (en fazla 8): telefonun oynatıcı sınırı dolmaz.
    - Gruplar: 'speech' (konuşma) ve 'fx' (hayvan/efekt); grup bazında durdurulabilir.
-   - Çözülmüş sesler için sınırlı önbellek (LRU) — bellek şişmesin.
+   - Dosya henüz inmediyse beklemek yerine doğrudan internetten çalar (ses atlanmaz).
    ========================================================= */
 const AudioCache = (() => {
-  const AC = window.AudioContext || window.webkitAudioContext;
-  let ctx = null;
-  const bufs = new Map();      // url -> AudioBuffer (LRU sırası: Map ekleme sırası)
-  const loading = new Map();   // url -> Promise<AudioBuffer|null>
-  const MAX_BUFS = 220;
+  const blobs = new Map();     // url -> blob: adresi
+  const loading = new Map();   // url -> Promise<blobUrl|null>
   const active = { speech: new Set(), fx: new Set() };
+  const pool = [];             // { a: HTMLAudioElement, free: bool }
+  const POOL_MAX = 8;
+  // Bir ses bittikten sonra yenisi hemen başlamasın: arada kısa nefes payı (çocuk ayırt edebilsin)
+  const GAP = 350;
+  let lastEnd = 0;
 
-  function getCtx() {
-    if (!AC) return null;
-    if (!ctx) ctx = new AC();
-    if (ctx.state === 'suspended') ctx.resume().catch(() => {});
-    return ctx;
-  }
-
-  // iOS/Android: ilk dokunuşta ses motorunu aç
-  const unlock = () => {
-    const c = getCtx();
-    if (!c) return;
-    try {
-      const b = c.createBuffer(1, 1, 22050), s = c.createBufferSource();
-      s.buffer = b; s.connect(c.destination); s.start(0);
-    } catch (e) { /* yoksay */ }
-  };
-  ['pointerdown', 'touchend', 'keydown'].forEach(ev => window.addEventListener(ev, unlock, { passive: true }));
-
-  function touch(url, b) { bufs.delete(url); bufs.set(url, b); if (bufs.size > MAX_BUFS) bufs.delete(bufs.keys().next().value); }
-
-  function decode(ab) {
-    const c = getCtx();
-    return new Promise((res, rej) => {
-      try {
-        const p = c.decodeAudioData(ab, res, rej);
-        if (p && p.then) p.then(res, rej);
-      } catch (e) { rej(e); }
-    });
+  function newEl() {
+    const a = new Audio();
+    a.preload = 'auto';
+    try { a.preservesPitch = false; a.mozPreservesPitch = false; a.webkitPreservesPitch = false; } catch (e) { /* yoksay */ }
+    const p = { a, free: true };
+    pool.push(p);
+    return p;
   }
 
   function load(url) {
-    if (!AC) return Promise.resolve(null);
-    if (bufs.has(url)) { const b = bufs.get(url); touch(url, b); return Promise.resolve(b); }
+    if (blobs.has(url)) return Promise.resolve(blobs.get(url));
     if (loading.has(url)) return loading.get(url);
     const p = fetch(url)
-      .then(r => { if (!r.ok) throw new Error(r.status); return r.arrayBuffer(); })
-      .then(decode)
-      .then(b => { touch(url, b); return b; })
+      .then(r => { if (!r.ok) throw new Error(r.status); return r.blob(); })
+      .then(b => { const u = URL.createObjectURL(b); blobs.set(url, u); return u; })
       .catch(() => null)
       .finally(() => loading.delete(url));
     loading.set(url, p);
     return p;
   }
 
-  // Arka planda sırayla önceden yükle (aynı anda en fazla 4 indirme)
+  // Arka planda sırayla önceden indir (aynı anda en fazla 3)
   let queue = [], running = 0;
   function preload(urls) {
-    urls.forEach(u => { if (u && !bufs.has(u) && !loading.has(u) && !queue.includes(u)) queue.push(u); });
+    urls.forEach(u => { if (u && !blobs.has(u) && !loading.has(u) && !queue.includes(u)) queue.push(u); });
     pump();
   }
   function pump() {
-    while (running < 4 && queue.length) {
+    while (running < 3 && queue.length) {
       const u = queue.shift();
       running++;
       load(u).finally(() => { running--; pump(); });
     }
   }
 
+  // Boş oynatıcı al; hepsi doluysa en eski efekti durdurup onu kullan
+  function takeEl() {
+    let p = pool.find(x => x.free) || (pool.length < POOL_MAX ? newEl() : null);
+    if (!p) {
+      const oldest = active.fx.values().next().value || active.speech.values().next().value;
+      if (oldest) oldest.stop();
+      p = pool.find(x => x.free) || newEl();
+    }
+    p.free = false;
+    return p;
+  }
+
   /* Çal. opts: { group: 'speech'|'fx', rate, vol, maxMs, fadeAfterMs, alive: () => bool }
-     Ses bitince (ya da durdurulunca) çözülen bir söz (Promise) döndürür; 'err' = çalınamadı. */
+     Ses bitince (ya da durdurulunca) çözülen bir söz (Promise) döndürür. */
   function play(url, opts = {}) {
     const group = opts.group || 'fx';
-    if (!AC) return htmlFallback(url, opts);
     return new Promise(async (resolve) => {
-      // yükleme çok uzarsa beklemeyi bırak (oyun takılmasın)
-      const b = bufs.has(url) ? bufs.get(url)
-        : await Promise.race([load(url), new Promise(r => setTimeout(() => r('slow'), 6000))]);
-      if (b === 'slow' || !b) return resolve('err');
+      let src = blobs.get(url);
+      if (!src) {
+        // en fazla 1,5 sn bellekteki kopyayı bekle; olmazsa doğrudan internetten çal
+        src = await Promise.race([load(url), new Promise(r => setTimeout(() => r(null), 1500))]) || url;
+      }
+      const since = performance.now() - lastEnd;
+      if (!busy(group) && since < GAP) {
+        // bekleme sırasında da "meşgul" sayılır ve durdurulabilir
+        let cancelled = false, tw = 0;
+        const w = { stop: () => { cancelled = true; clearTimeout(tw); } };
+        active[group].add(w);
+        await new Promise(r => { tw = setTimeout(r, GAP - since); const st = w.stop; w.stop = () => { st(); r(); }; });
+        active[group].delete(w);
+        if (cancelled) return resolve();
+      }
       if (opts.alive && !opts.alive()) return resolve();
-      const c = getCtx();
-      const src = c.createBufferSource();
-      src.buffer = b;
-      src.playbackRate.value = opts.rate || 1;
-      const g = c.createGain();
-      g.gain.value = opts.vol == null ? 1 : opts.vol;
-      src.connect(g).connect(c.destination);
-      let done = false;
+      const p = takeEl(), a = p.a;
+      let done = false, tmax = 0, tfade = 0, ifade = 0;
       const item = { stop: () => fin(true) };
       const fin = (stopNow) => {
         if (done) return;
         done = true;
-        clearTimeout(tmax);
+        clearTimeout(tmax); clearTimeout(tfade); clearInterval(ifade);
+        a.onended = a.onerror = null;
+        if (stopNow) { try { a.pause(); } catch (e) { /* yoksay */ } }
         active[group].delete(item);
-        if (stopNow) { try { src.stop(); } catch (e) { /* yoksay */ } }
+        p.free = true;
+        lastEnd = performance.now();
         resolve();
       };
-      src.onended = () => fin(false);
       active[group].add(item);
-      const tmax = setTimeout(() => fin(true), opts.maxMs || 15000);
+      a.onended = () => fin(false);
+      a.onerror = () => fin(false);
+      try {
+        a.src = src;
+        a.defaultPlaybackRate = opts.rate || 1;
+        a.playbackRate = opts.rate || 1;
+        a.volume = opts.vol == null ? 1 : opts.vol;
+      } catch (e) { /* yoksay */ }
+      tmax = setTimeout(() => fin(true), opts.maxMs || 15000);
       if (opts.fadeAfterMs) {
-        const t0 = c.currentTime + opts.fadeAfterMs / 1000;
-        g.gain.setValueAtTime(g.gain.value, t0);
-        g.gain.linearRampToValueAtTime(0.0001, t0 + 0.45);
-        setTimeout(() => fin(true), opts.fadeAfterMs + 500);
+        tfade = setTimeout(() => {
+          ifade = setInterval(() => {
+            const v = a.volume - 0.07;
+            if (v <= 0.02) fin(true); else a.volume = v;
+          }, 40);
+        }, opts.fadeAfterMs);
       }
-      src.start(0);
-    });
-  }
-
-  // Web Audio olmayan eski tarayıcılar için
-  function htmlFallback(url, opts) {
-    return new Promise(resolve => {
-      const a = new Audio(url);
-      a.playbackRate = opts.rate || 1;
-      a.volume = opts.vol == null ? 1 : opts.vol;
-      const item = { stop: () => { try { a.pause(); } catch (e) { /* yoksay */ } resolve(); } };
-      active[opts.group || 'fx'].add(item);
-      const end = () => { active[opts.group || 'fx'].delete(item); resolve(); };
-      a.onended = end; a.onerror = () => { end(); };
-      setTimeout(item.stop, opts.maxMs || 15000);
-      a.play().catch(end);
+      const r = a.play();
+      if (r && r.catch) r.catch(() => fin(false));
     });
   }
 
@@ -132,5 +126,5 @@ const AudioCache = (() => {
   function stop(group) { (group ? [group] : Object.keys(active)).forEach(g => [...(active[g] || [])].forEach(i => i.stop())); }
   const busy = (group) => !!(active[group] && active[group].size > 0);
 
-  return { load, preload, play, stop, busy, ctx: getCtx };
+  return { load, preload, play, stop, busy };
 })();

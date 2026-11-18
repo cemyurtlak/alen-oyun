@@ -104,6 +104,38 @@ const Sounds = (() => {
     noise(0.01, 0.06, 0.12, 1800, 1.2);
   }
 
+  // Çekiç Oyunu: tahtaya vuruş "tok" sesi (kısa, alçak, tahta gibi)
+  function thud() {
+    init();
+    if (!ctx) return;
+    tone(180, 0, 0.16, 'sine', 0.45, 70);
+    tone(420, 0, 0.05, 'triangle', 0.18, 200);
+    noise(0, 0.05, 0.25, 900, 1.5);
+  }
+
+  // Top Yuvarla: rampada yuvarlanan topun "gürül gürül" sesi (dur saniye). Döndürülen nesne ile erken durdurulabilir.
+  function roll(dur, vol = 0.32) {
+    init();
+    if (!ctx) return { stop() {} };
+    const t = ctx.currentTime;
+    const src = ctx.createBufferSource();
+    src.buffer = noiseBuf; src.loop = true;
+    const f = ctx.createBiquadFilter(); f.type = 'bandpass'; f.frequency.value = 260; f.Q.value = 0.9;
+    const g = ctx.createGain();
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(vol, t + 0.08);
+    g.gain.setValueAtTime(vol, t + Math.max(0.1, dur - 0.12));
+    g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    // tıkırtı hissi: genliği hızlıca dalgalandır
+    const lfo = ctx.createOscillator(), lg = ctx.createGain();
+    lfo.frequency.value = 11; lg.gain.value = vol * 0.55;
+    lfo.connect(lg).connect(g.gain);
+    src.connect(f).connect(g).connect(ctx.destination);
+    src.start(t); lfo.start(t);
+    src.stop(t + dur + 0.05); lfo.stop(t + dur + 0.05);
+    return { stop() { try { g.gain.cancelScheduledValues(ctx.currentTime); g.gain.setValueAtTime(0.0001, ctx.currentTime); } catch (e) { /* yoksay */ } } };
+  }
+
   // Dokunma sesi
   function tap() {
     init();
@@ -134,7 +166,7 @@ const Sounds = (() => {
   }
 
   return {
-    init, applause, fanfare, wrong, pop, bubble, tap, whoosh, crunch, gulp,
+    init, applause, fanfare, wrong, pop, bubble, thud, roll, tap, whoosh, crunch, gulp,
     getCtx: () => { init(); return ctx; },
     getNoise: () => { init(); return noiseBuf; },
     hasFile: () => false,

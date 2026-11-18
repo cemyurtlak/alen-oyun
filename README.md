@@ -31,15 +31,16 @@ yanlışta kısa **"Hayıııır!"** (hemen yeniden denenebilir). 2 yanlıştan 
 |---|---|
 | **Kedi Koşusu** | Kediler uzaktan koşarak ekrana yaklaşır ve **ekrana zıplar**, camda pati izi bırakır. Her zıplayan kedi farklı bir gerçek miyavla zıplar (20 farklı kayıt); dokunulan kedi ayrıca sayılır (1–10). Sesler sırayla çalar, üst üste binmez. |
 | **Ses Taklidi** | İnek "Mööö", **uluyan köpek** "Auuuu", kedi, ördek, tavuk... Sesi dinler, hece hece duyar, "Sen yap!" der. Mikrofon çocuğun ses çıkarmasını algılar ve **her denemeyi** ödüllendirir. |
-| **Konuşalım** | İlk sesler (a, o, u, m, ba, ma, pa, da) ve ilk kelimeler (anne, baba, su, mama, daha, bay bay...). Hece hece yavaşça söylenir, çocuğun her sesi kutlanır. |
-| **Konuşan Kedi / Bebek** | Çocuk ne söylerse (babıldama dahil) kedi veya bebek onu **komik ince bir sesle tekrar eder**. Dokununca gıdıklanır. |
 | **Dans Eden Bebekler** | Disko topu, renkli ışıklar, özgün neşeli müzik; 5 bebek dans eder ve konuşur. Dokununca döner ve bir şey söyler. |
-| **Yemek Zamanı** | Kedi (köpek, panda, ayı) acıkmıştır; çocuk yiyeceğe dokununca kedi ağzını açar, **çiğner ("ham ham")**, "Mmm, çok lezzetli!" der. "Birlikte çiğneyelim" düğmesi aç–ısır–çiğne–yut adımlarını gösterir. **"Alen de yedi!"** düğmesi gerçek bir lokma yendiğinde büyük kutlama yapar. |
+| **Yemek Zamanı** | Bir hayvan gelir (gerçek sesi + adı); çocuk tepsideki 3 yiyecekten onun yediğini seçer (inek–ot, at–havuç, maymun–muz, köpek–kemik ...). Doğru yiyecek ağzına uçar, "Mmmm! Çok lezzetli!" |
 | **Parmakla Say** | Dokundukça parmaklar açılır ve sayılır (1–10); "Kaç tane?" modunda parmak sayısını bulur. |
 | **Yumurta Sürprizi** | Renkli yumurtaya **bir kez** dokun, çatlasın; içinden civciv, ördek, kedi, baykuş... çıksın. Gerçek sesi ve adı duyulur; art arda dokununca sesler sıraya girer, hiçbiri atlanmaz. |
+| Dinozor Yumurtaları 🦕 | Yumurtaların önünde aynı renkte şekiller; şekle dokun → "Kırmızı! Üçgen!", yumurta çatlar, dinozor çıkar |
+| Çekiç Oyunu 🔨 | Delikli tahta, üstünde renkli toplar; dokun → çekiç vurur, top "tok" diye düşer, rengi söylenir |
+| Top Yuvarla ⚽ | Sepetteki renkli topa dokun → zikzak rampalardan dönerek, gürül gürül yuvarlanır; kutuya düşünce rengi söylenir |
 | **Hayvan Evleri** | Doğrudan oyun: hayvanı **parmakla doğru evine sürükle** (ya da eve dokun). Doğru evde "Ördek gölde yaşar" denir; iki yanlışta doğru ev parlar. |
 | **Balon Patlat** | Renkli balonlar aşağıdan sürekli uçar, dokununca patlar; bazılarının altında sürpriz hayvan vardır. |
-| Baloncuk Patlat 🫧 | Su altında yükselen baloncuklara dokun: blop! Boş baloncuklar sayılır, içindeki köpek balığı, balina, fok, penguen kurtulup yüzer |
+| Baloncuk Patlat 🫧 | Su altında yükselen baloncuklara dokun: blop! İçindeki hayvan (36 hayvandan biri) kurtulur, gerçek sesi ve adı duyulur; boş baloncuklar sayılır |
 | **Sapan** | Sapan ekranın altında: hayvanı **kendine doğru geri çek** — nişanlanan balon parlak halkayla gösterilir — **bırak** → hayvan tam o balona uçar. Dikey ve yatay ekranda balonlar hep görünür. Balona dokunmak da otomatik atış yapar. |
 | **Balonu Üfle** | Mikrofona üfledikçe balon şişer ve patlar (ağız-dudak kaslarını çalıştırır). |
 
@@ -51,9 +52,9 @@ yanlışta kısa **"Hayıııır!"** (hemen yeniden denenebilir). 2 yanlıştan 
 4. **Ebeveyn ayarları:** sol üstteki ⚙️ düğmesine **basılı tutun** (çocuk yanlışlıkla açmasın diye).
    Çocuğun adı, seçenek sayısı (2–4), soru sayısı, konuşma dili, soru sırası (önce İngilizce/Türkçe).
 
-> **Mikrofon:** Konuşalım, Ses Taklidi, Konuşan Kedi ve Balonu Üfle mikrofon izni ister.
+> **Mikrofon:** Ses Taklidi ve Balonu Üfle mikrofon izni ister.
 > Mikrofon yalnızca ses *seviyesini* ölçer; hiçbir şey kaydedilip bir yere gönderilmez
-> (Konuşan Kedi kaydı yalnızca tarayıcı içinde anında geri çalar). Mikrofon izni yoksa ebeveyn 👍 düğmesine basar.
+> Mikrofon izni yoksa ebeveyn 👍 düğmesine basar.
 
 
 ## Ana sayfa
@@ -72,7 +73,7 @@ Tüm oyun ve bölüm kartları tek alandadır. Bir karta **basılı tutup sürü
   (eksikleri `tools/eksik_sesler_*.txt`'ye yazar) → ElevenLabs'te Piku ile seslendir, indir →
   `python tools/elevenlabs_bol.py indirilen.mp3 tr` → `python tools/ses_uret.py`.
 
-- Tüm sesler ortak ses motoruyla (`js/audiocache.js`) bir kez indirilip saklanır; bir bölüm açılınca o bölümün sesleri
+- Tüm sesler ortak ses motoruyla (`js/audiocache.js`) bir kez indirilip bellekte saklanır ve telefonun medya oynatıcısıyla çalınır; bir bölüm açılınca o bölümün sesleri
   önceden yüklenir, böylece sorularda gecikme olmaz.
 
 ## Hız ve internetsiz kullanım
@@ -102,7 +103,7 @@ js/music.js           Dans müziği (özgün ezgiler)
 js/core.js            Ortak altyapı: ekran, konfeti, kutlama, eller (parmak)
 js/learn.js           Öğren + soru-cevap motoru
 js/home.js            Başla ekranı, ana sayfa, ayarlar
-js/act/*.js           Oyunlar: catrun, imitate (Konuşalım + Ses Taklidi), parrot,
+js/act/*.js           Oyunlar: catrun, imitate (Ses Taklidi), dino, pegs, roll,
                       dance, feed, fingers, eggs, homes, sling, pop, bubbles, blow
 assets/img/real/      Gerçek hayvan fotoğrafları (KAYNAK.txt)
 assets/sfx/           Gerçek hayvan/taşıt sesleri ve alkış (ESC-50 + BBC Sound Effects)

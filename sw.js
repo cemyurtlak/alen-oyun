@@ -3,8 +3,8 @@
    - Görsel ve sesler: önce önbellek (anında açılır), yoksa indirip saklar
    - Kurulumdan sonra tüm görseller ve efekt sesleri arka planda yavaşça indirilir
    SURUM değeri tools/sw_liste.py ile otomatik güncellenir. */
-const SURUM = 'dbee09d7fa';
-const KOD = 'alen-kod-' + SURUM, MEDYA = 'alen-medya-v2';
+const SURUM = '5361824318';
+const KOD = 'alen-kod-' + SURUM, MEDYA = 'alen-medya-v3';
 importScripts('sw_liste.js');
 
 const KABUK = ['./', 'index.html', 'css/style.css', 'manifest.json', 'audio/voice/index.js',
@@ -74,5 +74,5 @@ async function isit() {
       } catch (e) { /* yoksay */ }
     }
   };
-  await Promise.all([isci(), isci(), isci()]);
+  await Promise.all([isci(), isci()]); // 2 paralel: oyunun kendi indirmelerini yavaşlatmasın
 }
