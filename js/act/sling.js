@@ -16,6 +16,7 @@ G.activities.sling = () => {
     { e: '🦆', snd: 'duck', tr: 'Ördek', en: 'Duck' },
     { e: '🐸', snd: 'frog', tr: 'Kurbağa', en: 'Frog' }
   ];
+  AnimalSounds.preload(AMMO.map(x => x.snd).filter(Boolean)); // ilk dokunuşta gecikme olmasın
   const root = G.screen('sling', G.topbar(`${pic('🎯', 'title-ic')} Sapan <small>Slingshot</small>`,
     `<div class="counter" id="score"><b>0</b>${pic('🎈')}</div>`) + `
     <canvas id="cv"></canvas>

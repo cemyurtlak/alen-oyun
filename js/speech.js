@@ -32,7 +32,6 @@ const Speech = (() => {
      konsola uyarı yazılır: yeni cümle eklenirse sesini ElevenLabs'ten üretin. */
   const supported = false;
   let token = 0;
-  let current = null; // çalan ses kaydı
   const FILES = (typeof VOICE_FILES !== 'undefined') ? VOICE_FILES : {};
   const missing = new Set();
 
@@ -57,19 +56,9 @@ const Speech = (() => {
     return null;
   }
 
+  // Kayıt ortak ses motoruyla çalınır (önceden yüklendiyse gecikmesiz)
   function playFile(src, id) {
-    return new Promise(resolveP => {
-      const a = new Audio(src);
-      current = a;
-      let done = false;
-      const fin = () => { if (!done) { done = true; clearTimeout(t); if (current === a) current = null; resolveP(); } };
-      const t = setTimeout(fin, 9000);
-      a.onended = fin;
-      a.onerror = () => { done = true; clearTimeout(t); resolveP('err'); };
-      a.play().catch(() => { done = true; clearTimeout(t); resolveP('err'); });
-      // iptal edilirse
-      const chk = setInterval(() => { if (id !== token) { clearInterval(chk); try { a.pause(); } catch (e) { /* yoksay */ } fin(); } if (done) clearInterval(chk); }, 60);
-    });
+    return AudioCache.play(src, { group: 'speech', alive: () => id === token, maxMs: 12000 });
   }
 
   // Tek cümle (dil filtresiyle)
@@ -108,7 +97,7 @@ const Speech = (() => {
 
   function cancel() {
     token++;
-    if (current) { try { current.pause(); } catch (e) { /* yoksay */ } current = null; }
+    AudioCache.stop('speech');
     if (typeof AnimalSounds !== 'undefined') AnimalSounds.stopAll();
   }
 
@@ -119,6 +108,9 @@ const Speech = (() => {
     hasRecordings: () => Object.keys(FILES).length > 0,
     listVoices: () => [],
     missing: () => [...missing],
-    busy: () => !!current
+    busy: () => AudioCache.busy('speech'),
+    // Bir cümlenin ses dosyası (dil filtresi uygulanarak) — önceden yükleme için
+    fileFor: (text, lang) => { const r = resolve({ t: text, l: lang }); return r ? FILES[keyOf(r.t, r.l)] : null; },
+    preload: (pairs) => AudioCache.preload(pairs.map(([t, l]) => { const r = resolve({ t, l }); return r && FILES[keyOf(r.t, r.l)]; }).filter(Boolean))
   };
 })();

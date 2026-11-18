@@ -50,6 +50,9 @@
 | Sentez fanfar kapalı; ses eklemeden önce spektrogramla kontrol | Alkıştaki ıslık ve yanlış fil kaydı kulakla değil spektrogramla bulundu |
 | Etkinlik içinde `G.newFlow()` dikkatli kullanılır | `newFlow` etkinliğin başlangıç kimliğini geçersiz kılar; yalnızca konuşmayı susturmak için `Speech.cancel()` kullan, yoksa "ilerlemiyor" hatası çıkar (Yumurtalar'da yaşandı) |
 | Mikrofon gerektiren adımlar asla sonsuza kadar beklemez | Çocuk tek başına oynar; mikrofon/izin yoksa birkaç saniye sonra kendiliğinden devam |
+| Tüm sesler `AudioCache` (Web Audio, tek bağlam, çözülmüş tampon önbelleği) ile çalar; yeni `new Audio()` açılmaz | Telefonda her `<audio>` bir oynatıcı tutuyor, sınır dolunca sesler gecikiyor/çalmıyordu. Yeni ses eklenen yerde bölüm açılırken `AnimalSounds.preload([...])` / `Speech.preload([[metin, dil]])` çağır |
+| Açılışta dosya varlığı yoklanmaz | 55 boş istek açılışı yavaşlatıyordu; isteğe bağlı `sounds/` kayıt desteği kaldırıldı |
+| Servis çalışanı (`sw.js`): kod ağ-önce, medya önbellek-önce | Kod güncellemeleri hemen gelsin, görsel/sesler anında açılsın. **Görsel/ses eklenince `python tools/sw_liste.py` çalıştır** (liste + sürüm). Medya önbelleği `alen-medya-v1`: aynı adla dosya DEĞİŞTİRİLİRSE bu adı v2 yap |
 | Yüzdelik `padding` kullanılmaz | Yüzde, düğme yerine kapsayıcı genişliğine göre hesaplanıyor → görseller küçülüyordu |
 
 ## Yayın
@@ -61,6 +64,8 @@
 ## Kod haritası
 - `js/core.js` → `G`: `screen()`, `topbar()`, `celebrate()`, `oops()`, `confetti()`, `burstAt()`, `visual()`,
   `hands()/setFingers()` (parmaklı eller SVG), `longPress()`, `toggleFullscreen()`, `activities{}` kaydı.
+- `js/audiocache.js` → `AudioCache.load/preload/play/stop/busy` (tüm seslerin ortak motoru).
+- `sw.js` + `sw_liste.js` → önbellek; `tools/sw_liste.py` ile yenilenir.
 - `js/learn.js` → `Learn.open(cat)`: grup seçimi → tanıtım (`learnFlow`) → soru (`nextQuestion/ask/correct/wrongAnswer`) → tebrik.
   Kategori özellikleri: `type` (pic/number/letter/shape), `theme` (ocean/road), `soundQuiz`, `colorNames`, `qEn/qTr`.
 - `js/home.js` → başla ekranı, ana sayfa (Oyunlar + Öğrenelim), ayarlar; `G.goHome`.
@@ -76,13 +81,12 @@
 - ElevenLabs kesimleri otomatik doğrulandı ama kulakla dinlenmedi; hatalı kesim bildirilirse o paket yeniden üretilir.
 - Chrome aynı siteden art arda çok dosya indirmeyi engelliyor → BBC sesleri tek paket (`bbc_paket.bin`) olarak indirilip burada açıldı.
 - Çocuğun adı değişirse adlı cümleler (Merhaba Alen!) için yeni ad ElevenLabs'te seslendirilmeli (aksi halde o cümleler sessiz geçer).
-- `sounds/` içinde dosya yoksa tarayıcı konsolunda 404 uyarıları görünür (zararsız).
+- Konuşma kayıtları (16 MB) arka planda topluca indirilmez, yalnızca bölüm açılınca o bölümünkiler; ilk açılışta internet yoksa çalmaz.
 
 ## Sonraki adımlar / fikirler
 - Taşıtlar için gerçek kayıt (motor, gemi düdüğü, bisiklet zili, traktör, roket).
 - İstenirse daha fazla hayvan: deve, yunus, su aygırı, ağaçkakan, fare için temiz kayıt aranabilir.
 - ElevenLabs 2. hesapta ~2.570 kredi kaldı (18.11.2026).
 - Anne-baba sesiyle "aferin", "hayır" ve kelime kayıtları (ayarlardan kayıt alma özelliği eklenebilir).
-- Çevrimdışı çalışma için service worker.
 - İlerleme takibi: hangi kelimeleri söylemeye çalıştı, kaç lokma yedi (ebeveyn paneli).
 - Daha fazla oyun: araba yarışı, köpek balığı besleme, kedi saklambacı.

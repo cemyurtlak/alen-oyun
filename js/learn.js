@@ -74,7 +74,16 @@ const Learn = (() => {
     S.group = Math.min(gi, groups.length - 1);
     S.items = groups[S.group];
     S.idx = 0;
+    preloadCat(cat, S.items);
     startQuiz();
+  }
+
+  // Bölümün tüm seslerini arka planda önceden yükle: önce hayvan sesleri, sonra adlar → sorular gecikmesiz
+  function preloadCat(cat, items) {
+    AnimalSounds.preload(items.map(i => i.snd).filter(Boolean));
+    const pairs = [['Kim bu?', TR], ['Who is it?', EN]];
+    items.forEach(it => { const n = names(it, true); pairs.push([n.tr + '!', TR], [n.en + '!', EN]); });
+    Speech.preload(pairs);
   }
 
   function startLearn(cat, gi) {

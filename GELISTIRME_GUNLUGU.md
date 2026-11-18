@@ -4,6 +4,39 @@
 
 ---
 
+## Aşama 12 — Hız: sesler gecikmesiz, açılış ve görseller hızlı (ortak ses motoru + önbellek)
+**Tarih:** 18.11.2026
+
+**İstek (Cem):** "Kim bu" kısmında sesler ya geç geliyor ya da hiç çıkmıyor; oyun geç açılıyor; görseller geç çıkıyor.
+
+**Neden oluyordu:**
+- Açılışta `sounds/animals/` ve `sounds/` altındaki isteğe bağlı kayıtlar tek tek yoklanıyordu → ~55 boş (404) istek,
+  ve telefonda her biri bir ses oynatıcısı açtığı için oynatıcı sınırı doluyordu (sesler çalmıyordu).
+- Her ses/cümle için yeni `<audio>` açılıp dosya o an indiriliyordu → her soruda gecikme; hayvan sesinde 4 sn sınırı
+  yüklenmeyen sesi hiç çalmadan kesiyordu.
+- Hiçbir şey cihazda saklanmıyordu → her açılışta görseller yeniden indiriliyordu; Google yazı tipi açılışı bekletiyordu.
+
+**Yapılanlar:**
+- Yeni `js/audiocache.js` (AudioCache): tek Web Audio bağlamı, her dosya bir kez indirilip çözülür, sonra anında çalar;
+  ilk dokunuşta ses kilidi açılır; `speech`/`fx` grupları ayrı durdurulur; arka planda sıralı önceden yükleme (4 paralel); bellek sınırı 220 ses.
+- `speech.js`, `animalsounds.js`, `sounds.js` (alkış) bu motora bağlandı; açılış yoklamaları kaldırıldı.
+- Önceden yükleme: bölüm açılınca o bölümün tüm hayvan sesleri + adları + "Kim bu?"; ana sayfada kutlama/alkış/"hayır";
+  Kedi Koşusu'nda miyavlar ve sayılar; Yumurta, Sapan, Balon Patlat'ta hayvan sesleri.
+- `sw.js` servis çalışanı: kod önce ağdan (güncellemeler hemen gelir), görsel/ses önce önbellekten; kurulumdan sonra
+  390 görsel+efekt arka planda indirilir → ikinci açılıştan itibaren anında ve internetsiz çalışır.
+  `tools/sw_liste.py` listeyi (`sw_liste.js`) ve sürüm numarasını yeniler.
+- Google yazı tipi açılışı bekletmeyecek şekilde yükleniyor.
+
+**Değişen dosyalar:** `js/audiocache.js` (yeni), `sw.js` (yeni), `sw_liste.js` (yeni), `tools/sw_liste.py` (yeni), `index.html`,
+`js/speech.js`, `js/animalsounds.js`, `js/sounds.js`, `js/learn.js`, `js/home.js`, `js/act/catrun.js`, `js/act/eggs.js`,
+`js/act/sling.js`, `js/act/pop.js`, README, DEVAM_NOTLARI, bu günlük.
+
+**Test durumu:** Headless Chrome: açılışta 404 kalmadı (yalnızca test ortamında internet olmadığı için Google yazı tipi);
+"Kim Bu Ses?" 10 soru: hayvan sesi soru ekrana gelir gelmez 2–3 ms içinde başladı, ardından ad çaldı; yavaş ağ (1,5 Mbit, 150 ms)
+benzetiminde ilk soru 0,36 sn. 24 bölüm/oyunun hepsi hatasız açıldı. Servis çalışanı ~600 dosyayı önbelleğe aldı.
+
+---
+
 ## Aşama 11 — Kedi Koşusu: her zıplayışta farklı gerçek miyav, "pıt" sesi kaldırıldı
 **Tarih:** 18.11.2026
 

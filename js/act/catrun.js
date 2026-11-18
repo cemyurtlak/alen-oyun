@@ -37,6 +37,8 @@ G.activities.catrun = () => {
     });
     return true;
   }
+  AnimalSounds.preloadMeows();
+  Speech.preload(COUNT_TR.map(n => [n + '!', 'tr-TR']).concat(COUNT_EN.map(n => [n + '!', 'en-US'])));
   enqueue(() => Speech.seq(G.both('Kediler geliyor!', 'Here come the kitties!')));
 
   function spawn() {

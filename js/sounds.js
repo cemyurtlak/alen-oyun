@@ -1,15 +1,11 @@
 /* =========================================================
    Ses efektleri (Web Audio API ile üretilir — dosya gerekmez)
    İsterseniz sounds/ klasörüne kendi kayıtlarınızı koyabilirsiniz:
-     sounds/yeah.mp3   -> doğru cevapta sevinç ("yeeey")
-     sounds/alkis.mp3  -> doğru cevapta alkış
-     sounds/hayir.mp3  -> yanlış cevapta "hayııır"
-   Dosya varsa onu çalar, yoksa üretilmiş sesi kullanır.
+   (Alkış gerçek kayıttır ve ortak ses motoru AudioCache ile çalınır.)
    ========================================================= */
 const Sounds = (() => {
   let ctx = null;
   let noiseBuf = null;
-  const files = {};
 
   function init() {
     if (!ctx) {
@@ -24,21 +20,7 @@ const Sounds = (() => {
     if (ctx.state === 'suspended') ctx.resume();
   }
 
-  // İsteğe bağlı kayıt dosyalarını önceden yükle
-  ['yeah', 'alkis', 'hayir'].forEach(name => {
-    try {
-      const a = new Audio('sounds/' + name + '.mp3');
-      a.preload = 'auto';
-      a.addEventListener('canplaythrough', () => { files[name] = a; }, { once: true });
-      a.addEventListener('error', () => {}, { once: true });
-    } catch (e) { /* yoksay */ }
-  });
-
-  function playFile(name) {
-    const a = files[name];
-    if (!a) return false;
-    try { a.currentTime = 0; a.play().catch(() => {}); return true; } catch (e) { return false; }
-  }
+  // (Eskiden sounds/ altındaki isteğe bağlı kayıtlar açılışta yoklanıyordu — gereksiz istekler kaldırıldı)
 
   function tone(freq, start, dur, type = 'sine', vol = 0.25, freqEnd) {
     if (!ctx) return;
@@ -73,22 +55,13 @@ const Sounds = (() => {
     src.stop(t + dur + 0.02);
   }
 
-  // Alkış: SADECE gerçek kayıt (BBC Sound Effects, temiz salon alkışı) — sentez yedeği yok
+  // Alkış: SADECE gerçek kayıt (BBC Sound Effects, temiz salon alkışı); ortak ses motoruyla gecikmesiz çalar,
+  // sona doğru yumuşakça kısılarak biter (kesik "tık" olmasın)
   function applause(duration = 2.4) {
-    if (playFile('alkis')) return;
-    try {
-      const a = new Audio('assets/sfx/clapping_' + (1 + Math.floor(Math.random() * 3)) + '.mp3');
-      a.volume = 0.75;
-      const stopAt = Math.min(duration, 3) * 1000;
-      a.play().then(() => {
-        // sona doğru yumuşakça kıs (kesik "tık" olmasın)
-        setTimeout(() => {
-          let v = a.volume;
-          const iv = setInterval(() => { v -= 0.08; if (v <= 0) { clearInterval(iv); try { a.pause(); } catch (e) { /* yoksay */ } } else a.volume = v; }, 40);
-        }, Math.max(0, stopAt - 450));
-      }).catch(() => {});
-    } catch (e) { /* yoksay */ }
+    const src = 'assets/sfx/clapping_' + (1 + Math.floor(Math.random() * 3)) + '.mp3';
+    AudioCache.play(src, { group: 'fx', vol: 0.75, fadeAfterMs: Math.max(300, Math.min(duration, 3) * 1000 - 450) });
   }
+  const preloadCommon = () => AudioCache.preload([1, 2, 3].map(i => 'assets/sfx/clapping_' + i + '.mp3'));
 
   // Sevinç müziği (ta-da!)
   /* Bilgisayarla üretilmiş "ta-da" müziği kutlamada alkışın arkasında ayrı bir ses gibi duyuluyordu
@@ -154,7 +127,8 @@ const Sounds = (() => {
     init, applause, fanfare, wrong, pop, tap, whoosh, crunch, gulp,
     getCtx: () => { init(); return ctx; },
     getNoise: () => { init(); return noiseBuf; },
-    hasFile: (n) => !!files[n],
-    playFile
+    hasFile: () => false,
+    preloadCommon,
+    playFile: () => false
   };
 })();

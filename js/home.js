@@ -105,6 +105,14 @@
   }
   G.goHome = () => renderHome(false);
 
+  // Açılıştan kısa süre sonra en sık çalan sesleri önceden yükle (kutlama, alkış, "hayır")
+  setTimeout(() => {
+    Sounds.preloadCommon();
+    const pairs = [];
+    PRAISE.concat(TRY_AGAIN).forEach(p => pairs.push([p.tr, 'tr-TR'], [p.en, 'en-US']));
+    Speech.preload(pairs);
+  }, 1500);
+
   /* Basılı tut → sürükle → bırak: kart sırası değişir, Settings.homeOrder'a kaydedilir.
      Basılı tutmadan kaydırmak sayfayı normal kaydırır. */
   function enableReorder(grid) {
@@ -203,8 +211,6 @@
           <button id="tTr">🔊 Türkçe dene</button>
           <button id="tEn">🔊 İngilizce dene</button>
         </div>
-        <p class="note">Kendi sesinizi kullanmak için <b>sounds</b> klasörüne yeah.mp3, alkis.mp3, hayir.mp3;
-          gerçek hayvan sesleri için <b>sounds/animals</b> klasörüne cat.mp3, dog.mp3, cow.mp3 gibi dosyalar koyabilirsiniz.</p>
         <button class="close" id="sClose">Kaydet ve kapat</button>
       </div>`;
     document.body.appendChild(wrap);

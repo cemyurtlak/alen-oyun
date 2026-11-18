@@ -17,6 +17,7 @@ G.activities.eggs = () => {
     { tr: 'Köpek', en: 'Puppy', emoji: '🐶', snd: 'dog' },
     { tr: 'Kurbağa', en: 'Frog', emoji: '🐸', snd: 'frog' }
   ];
+  AnimalSounds.preload(BABIES_IN.map(x => x.snd).filter(Boolean)); // ilk dokunuşta gecikme olmasın
   const CRACK = [
     '',
     'M38 46 L46 52 L42 58 L52 60',

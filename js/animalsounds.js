@@ -8,8 +8,7 @@
    - BBC Sound Effects (RemArc lisansı, kişisel/ev kullanımı): duck, horse, lion,
      elephant, monkey, owl, chick, howl, bear, fox, goat, donkey, turkey, goose, wolf, tiger, cuckoo,
      seagull, parrot, whale, seal, gorilla, peacock, pigeon, penguin, snake (çıngırak), cricket
-   Kendi kaydınızı kullanmak isterseniz sounds/animals/<anahtar>.mp3 koyun;
-   dosya varsa önce o çalar.
+   Tüm sesler ortak ses motoru (AudioCache) ile önceden yüklenip gecikmesiz çalınır.
    ========================================================= */
 const AnimalSounds = (() => {
   /* rate: çalma hızı (1.35 = yavru kedi gibi ince, 0.8 = iri kedi) */
@@ -68,48 +67,29 @@ const AnimalSounds = (() => {
     heli: { f: ['helicopter_1', 'helicopter_2'] }
   };
 
-  // Kullanıcının kendi kayıtları (varsa)
-  const files = {};
-  Object.keys(REAL).forEach(k => {
-    try {
-      const a = new Audio('sounds/animals/' + k + '.mp3');
-      a.preload = 'auto';
-      a.addEventListener('canplaythrough', () => { files[k] = a; }, { once: true });
-      a.addEventListener('error', () => {}, { once: true });
-    } catch (e) { /* yoksay */ }
-  });
-
-  const playing = new Set();
-
-  function playSrc(src, rate, resolve, maxMs = 4000) {
-    const a = new Audio(src);
-    a.preservesPitch = false; a.mozPreservesPitch = false; a.webkitPreservesPitch = false;
-    a.playbackRate = rate || 1;
-    playing.add(a);
-    let done = false;
-    const fin = () => { if (!done) { done = true; clearTimeout(t); playing.delete(a); resolve(); } };
-    const t = setTimeout(() => { try { a.pause(); } catch (e) { /* yoksay */ } fin(); }, maxMs);
-    a.onended = fin;
-    a.onpause = fin;
-    a.onerror = fin;
-    a.play().catch(fin);
+  // Not: eskiden sounds/animals/ altındaki isteğe bağlı kayıtlar açılışta tek tek yoklanıyordu (55+ boş istek,
+  // yavaş açılış ve telefonda oynatıcı sınırının dolması) — kaldırıldı.
+  const url = (name) => 'assets/sfx/' + name + '.mp3';
+  function playSrc(src, rate, resolve, maxMs = 4500) {
+    AudioCache.play(src, { group: 'fx', rate: rate || 1, maxMs }).then(() => resolve());
   }
 
   // Sesi çal, bitince çözülen bir söz (Promise) döndür. Gerçek kaydı yoksa sessiz geçer.
   function play(key) {
     return new Promise(resolve => {
       if (!key) return resolve();
-      if (files[key]) return playSrc(files[key].src, 1, resolve);
       const r = REAL[key];
       if (!r) return resolve();
       const name = r.f[Math.floor(Math.random() * r.f.length)];
-      playSrc('assets/sfx/' + name + '.mp3', (r.rate || 1) * (0.95 + Math.random() * 0.1), resolve);
+      playSrc(url(name), (r.rate || 1) * (0.95 + Math.random() * 0.1), resolve);
     });
   }
 
-  function stopAll() {
-    playing.forEach(a => { try { a.pause(); } catch (e) { /* yoksay */ } });
-    playing.clear();
+  function stopAll() { AudioCache.stop('fx'); }
+
+  // Önceden yükle: anahtarların tüm kayıtları (bölüm açılırken çağrılır → ilk çalışta gecikme olmaz)
+  function preload(keys) {
+    AudioCache.preload([].concat(...keys.filter(k => REAL[k]).map(k => REAL[k].f.map(url))));
   }
 
   // Kedi Koşusu için farklı gerçek miyavlar: 17 BBC kaydı (Burma, Siyam, İran, erkek kedi, yavrular) + ESC-50,
@@ -120,8 +100,9 @@ const AnimalSounds = (() => {
     let m;
     do { m = MEOWS[Math.floor(Math.random() * MEOWS.length)]; } while (m === lastMeow);
     lastMeow = m;
-    return new Promise(res => playSrc('assets/sfx/' + m + '.mp3', 0.9 + Math.random() * 0.3, res));
+    return new Promise(res => playSrc(url(m), 0.9 + Math.random() * 0.3, res));
   }
 
-  return { play, randomMeow, stopAll, has: (k) => !!(files[k] || REAL[k]) };
+  const preloadMeows = () => AudioCache.preload(MEOWS.map(url));
+  return { play, randomMeow, stopAll, preload, preloadMeows, has: (k) => !!REAL[k] };
 })();

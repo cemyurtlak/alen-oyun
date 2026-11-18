@@ -71,9 +71,12 @@ Tüm oyun ve bölüm kartları tek alandadır. Bir karta **basılı tutup sürü
   (eksikleri `tools/eksik_sesler_*.txt`'ye yazar) → ElevenLabs'te Piku ile seslendir, indir →
   `python tools/elevenlabs_bol.py indirilen.mp3 tr` → `python tools/ses_uret.py`.
 
-## Kendi sesinizi ekleyin (isteğe bağlı)
-- `sounds/yeah.mp3`, `sounds/alkis.mp3`, `sounds/hayir.mp3` → doğru/yanlış cevap sesleri yerine çalınır (anne-baba sesi çok etkili olur!).
-- `sounds/animals/` → kendi hayvan kayıtlarınız: `cat.mp3`, `dog.mp3`, `howl.mp3` (uluma) ... Varsa hazır seslerin yerine çalınır.
+- Tüm sesler ortak ses motoruyla (`js/audiocache.js`) bir kez indirilip saklanır; bir bölüm açılınca o bölümün sesleri
+  önceden yüklenir, böylece sorularda gecikme olmaz.
+
+## Hız ve internetsiz kullanım
+- İlk açılıştan sonra oyun cihaza kaydedilir (`sw.js`): görseller ve efektler arka planda iner, sonraki açılışlar anında olur.
+- Görsel veya ses ekledikten sonra yayından önce `python tools/sw_liste.py` çalıştırın (önbellek listesi ve sürüm yenilenir).
 
 ## Yayın (GitHub Pages)
 - Depo: https://github.com/cemyurtlak/alen-oyun — Pages: `main` dalı, `/ (root)`.
@@ -89,6 +92,7 @@ css/style.css         Tüm tasarım ve animasyonlar
 js/images.js          3D görsel haritası (emoji → dosya)
 js/data.js            Bölümler, kelimeler, hayvanlar, evler, oyun listesi
 js/settings.js        Ebeveyn ayarları (tarayıcıda saklanır)
+js/audiocache.js      Ortak ses motoru (önceden yükleme, gecikmesiz çalma)
 js/speech.js          Konuşma kayıtlarını çalar (ElevenLabs Piku; bilgisayar sesi yok)
 js/sounds.js          Alkış, ta-da, "vuuu", patlama, çıtır sesleri
 js/animalsounds.js    Hayvan/taşıt sesleri (sadece gerçek kayıtlar)
@@ -105,7 +109,7 @@ audio/voice/          ElevenLabs (Piku) konuşma kayıtları + index.js
 tools/                ses_listesi_olustur.js (cümle listesi), ses_uret.py (dizin + eksik listesi), elevenlabs_bol.py (bölme)
 assets/img/           3D görseller (Microsoft Fluent Emoji, MIT lisansı)
 assets/img/tint/      Renklendirilmiş balon, araba, yumurta, köpek balığı
-sounds/               (isteğe bağlı) kendi ses kayıtlarınız
+sw.js, sw_liste.js    Önbellek (servis çalışanı) ve önbelleğe alınacak dosya listesi
 github_yukle.bat      Değişiklikleri GitHub'a gönderir (Git gerekir)
 ```
 

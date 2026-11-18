@@ -10,6 +10,7 @@ G.activities.pop = () => {
     { e: '🐱', snd: 'kitten' }, { e: '🐶', snd: 'dog' }, { e: '🐥', snd: 'chick' },
     { e: '🐮', snd: 'cow' }, { e: '🐸', snd: 'frog' }, { e: '🐑', snd: 'sheep' }
   ];
+  AnimalSounds.preload(FRIENDS.map(x => x.snd).filter(Boolean)); // ilk dokunuşta gecikme olmasın
   const root = G.screen('popgame', G.topbar(`${pic('🎈', 'title-ic')} Balon Patlat <small>Pop Balloons</small>`,
     `<div class="counter" id="cnt"><b>0</b>${pic('🎈')}</div>`) + `
     <div class="pop-field" id="field"></div>`);
