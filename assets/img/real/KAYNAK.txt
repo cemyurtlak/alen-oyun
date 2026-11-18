@@ -5,7 +5,7 @@ dog.webp  <-  Golden Retriever  https://upload.wikimedia.org/wikipedia/commons/b
 cat.webp  <-  Tabby cat  https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4d/Cat_November_2010-1a.jpg/960px-Cat_November_2010-1a.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail
 yellowcat.webp  <-  European Shorthair  https://upload.wikimedia.org/wikipedia/commons/2/2c/European_Shorthair_EUR_d_22.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled
 blackcat.webp  <-  Bombay cat  https://upload.wikimedia.org/wikipedia/commons/a/ac/Bombay_femelle.JPG?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled
-sheep.webp  <-  Texel sheep  https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c7/Texelschafe_2003_%28cropped%29.jpg/960px-Texelschafe_2003_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail
+sheep.webp  <-  Columbia ewe lamb (Ewe lamb, Columbia breed.jpg)  https://commons.wikimedia.org/wiki/File:Ewe_lamb,_Columbia_breed.jpg
 hen.webp  <-  Sussex chicken  https://upload.wikimedia.org/wikipedia/commons/5/54/Light_sussex_hen.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled
 duck.webp  <-  American Pekin  https://upload.wikimedia.org/wikipedia/commons/3/3f/Amerikanische_Pekingenten_2013_01%2C_cropped.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled
 chick.webp  <-  Day old chick black background.jpg  https://thumb.wikimedia.org/wikipedia/commons/thumb/5/54/Day_old_chick_black_background.jpg/500px-Day_old_chick_black_background.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail

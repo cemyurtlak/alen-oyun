@@ -52,7 +52,7 @@
 | Mikrofon gerektiren adımlar asla sonsuza kadar beklemez | Çocuk tek başına oynar; mikrofon/izin yoksa birkaç saniye sonra kendiliğinden devam |
 | Tüm sesler `AudioCache` (Web Audio, tek bağlam, çözülmüş tampon önbelleği) ile çalar; yeni `new Audio()` açılmaz | Telefonda her `<audio>` bir oynatıcı tutuyor, sınır dolunca sesler gecikiyor/çalmıyordu. Yeni ses eklenen yerde bölüm açılırken `AnimalSounds.preload([...])` / `Speech.preload([[metin, dil]])` çağır |
 | Açılışta dosya varlığı yoklanmaz | 55 boş istek açılışı yavaşlatıyordu; isteğe bağlı `sounds/` kayıt desteği kaldırıldı |
-| Servis çalışanı (`sw.js`): kod ağ-önce, medya önbellek-önce | Kod güncellemeleri hemen gelsin, görsel/sesler anında açılsın. **Görsel/ses eklenince `python tools/sw_liste.py` çalıştır** (liste + sürüm). Medya önbelleği `alen-medya-v1`: aynı adla dosya DEĞİŞTİRİLİRSE bu adı v2 yap |
+| Servis çalışanı (`sw.js`): kod ağ-önce, medya önbellek-önce | Kod güncellemeleri hemen gelsin, görsel/sesler anında açılsın. **Görsel/ses eklenince `python tools/sw_liste.py` çalıştır** (liste + sürüm). Medya önbelleği `alen-medya-vN` (şu an v2): aynı adla dosya DEĞİŞTİRİLİRSE N'yi bir artır (eskisi otomatik silinir) |
 | Yüzdelik `padding` kullanılmaz | Yüzde, düğme yerine kapsayıcı genişliğine göre hesaplanıyor → görseller küçülüyordu |
 
 ## Yayın
@@ -84,8 +84,10 @@
 - Konuşma kayıtları (16 MB) arka planda topluca indirilmez, yalnızca bölüm açılınca o bölümünkiler; ilk açılışta internet yoksa çalmaz.
 
 ## Sonraki adımlar / fikirler
+- Baloncuk Patlat'a başka deniz hayvanları (balık, ahtapot, yengeç, kaplumbağa, yunus) eklenebilir. Bunun için ElevenLabs'te adları (TR/EN) seslendirilmeli; Fluent görselleri hazır.
+- İstenirse baloncuk "blop" efekti için BBC'den gerçek su kabarcığı kaydı.
 - Taşıtlar için gerçek kayıt (motor, gemi düdüğü, bisiklet zili, traktör, roket).
-- İstenirse daha fazla hayvan: deve, yunus, su aygırı, ağaçkakan, fare için temiz kayıt aranabilir.
+- İstenirse daha fazla hayvan: deve, yunus, su aygırı, ağaçkakan, fare için temiz kayıt aranabilir. Domuz Cem'in isteğiyle çıkarıldı (sesi çalmıyordu); geri eklenirse yeni temiz kayıt gerekir.
 - ElevenLabs 2. hesapta ~2.570 kredi kaldı (18.11.2026).
 - Anne-baba sesiyle "aferin", "hayır" ve kelime kayıtları (ayarlardan kayıt alma özelliği eklenebilir).
 - İlerleme takibi: hangi kelimeleri söylemeye çalıştı, kaç lokma yedi (ebeveyn paneli).

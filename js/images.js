@@ -181,7 +181,6 @@ Object.assign(IMG, {
   "🐈‍⬛": "real/blackcat",
   "🦈": "real/shark",
   "🐐": "real/goat",
-  "🐷": "real/pig",
   "🫏": "real/donkey",
   "🦃": "real/turkey",
   "🪿": "real/goose",

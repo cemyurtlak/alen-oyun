@@ -94,6 +94,16 @@ const Sounds = (() => {
     tone(600, 0, 0.12, 'sine', 0.2, 120);
   }
 
+  // Su altı baloncuk "blop" sesi: yükselen yumuşak ton + çok kısa su şıpırtısı
+  function bubble() {
+    init();
+    if (!ctx) return;
+    const f = 260 + Math.random() * 160;
+    tone(f, 0, 0.13, 'sine', 0.32, f * 3.2);
+    tone(f * 1.5, 0.02, 0.08, 'sine', 0.12, f * 4);
+    noise(0.01, 0.06, 0.12, 1800, 1.2);
+  }
+
   // Dokunma sesi
   function tap() {
     init();
@@ -124,7 +134,7 @@ const Sounds = (() => {
   }
 
   return {
-    init, applause, fanfare, wrong, pop, tap, whoosh, crunch, gulp,
+    init, applause, fanfare, wrong, pop, bubble, tap, whoosh, crunch, gulp,
     getCtx: () => { init(); return ctx; },
     getNoise: () => { init(); return noiseBuf; },
     hasFile: () => false,

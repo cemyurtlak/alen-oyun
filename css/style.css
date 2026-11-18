@@ -607,3 +607,32 @@ img { -webkit-user-drag: none; }
 .tile-placeholder { opacity: .25; outline: 4px dashed rgba(255,255,255,.9); outline-offset: -6px; }
 .order-hint { text-align: center; opacity: .7; font-size: clamp(12px, 1.8vmin, 15px); margin: 18px 0 6px; }
 .tiles .tile { -webkit-touch-callout: none; user-select: none; }
+
+/* ---------- Baloncuk Patlat (su altı) ---------- */
+.bubblegame { padding: 0; }
+.bubblegame .topbar { padding: 10px 14px 0; position: relative; z-index: 5; }
+.bubblegame .pop-field { z-index: 3; }
+.mini-bubble { display: inline-block; width: 1.1em; height: 1.1em; border-radius: 50%; margin-left: 6px; vertical-align: -0.15em;
+  border: 2px solid rgba(120,200,255,.9); background: radial-gradient(circle at 32% 30%, #fff 0 18%, rgba(160,220,255,.35) 40%, transparent 70%); }
+.sbubble { position: absolute; left: 0; top: 0; padding: 0; border-radius: 50%; will-change: transform; overflow: hidden;
+  border: 3px solid rgba(255,255,255,.75);
+  background:
+    radial-gradient(circle at 50% 55%, transparent 52%, hsla(calc(var(--hue) + 0deg), 90%, 75%, .45) 64%, hsla(calc(var(--hue) + 120deg), 90%, 75%, .55) 72%, transparent 76%),
+    radial-gradient(circle at 50% 50%, rgba(255,255,255,.08), rgba(255,255,255,.22) 70%, rgba(255,255,255,.55) 100%);
+  box-shadow: inset 0 0 18px rgba(255,255,255,.45), 0 6px 18px rgba(0,30,80,.18); }
+.sbubble .shine { position: absolute; left: 18%; top: 14%; width: 30%; height: 20%; border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(255,255,255,.95), rgba(255,255,255,0) 70%); transform: rotate(-30deg); }
+.sbubble::after { content: ''; position: absolute; right: 20%; bottom: 16%; width: 12%; height: 12%; border-radius: 50%; background: rgba(255,255,255,.6); }
+.sbubble .inside { position: absolute; left: 15%; top: 15%; width: 70%; height: 70%; object-fit: contain; animation: wiggle 2.2s ease-in-out infinite; }
+.sbubble.popped { opacity: 0; transition: opacity .2s, width .2s, height .2s; }
+.froth { position: absolute; border-radius: 50%; margin: -8px 0 0 -8px; border: 2px solid rgba(255,255,255,.85);
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.8), transparent 60%); animation: burst .8s ease-out forwards; z-index: 50; }
+.swim-away { position: absolute; width: 150px; height: 150px; margin: -75px 0 0 -75px; z-index: 40; animation: swimAway 2.9s ease-in forwards; }
+.swim-away img { width: 100%; height: 100%; object-fit: contain; transform: scaleX(var(--flip, 1)); animation: wiggle 1s ease-in-out infinite; }
+@keyframes swimAway { 0% { transform: translate(0, 0) scale(.6); opacity: 0; } 12% { transform: translate(0, -10px) scale(1.15); opacity: 1; }
+  35% { transform: translate(calc(var(--dx) * .15), 0) scale(1.1); } 100% { transform: translate(var(--dx), -40px) scale(1); opacity: 0; } }
+.bg-fish { position: absolute; width: clamp(50px, 9vmin, 90px); height: clamp(50px, 9vmin, 90px); opacity: .8; animation: bgSwim 18s linear infinite; }
+.bg-fish .pic { width: 100%; height: 100%; }
+.bg-fish.f1 { top: 30%; } .bg-fish.f2 { top: 52%; animation-duration: 24s; animation-delay: -9s; } .bg-fish.f3 { top: 68%; animation-duration: 21s; animation-delay: -15s; }
+@keyframes bgSwim { from { transform: translateX(110vw); } to { transform: translateX(-20vw); } }
+.bubblegame .counter { color: var(--ink); }

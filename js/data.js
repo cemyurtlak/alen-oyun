@@ -44,7 +44,6 @@ const ANIMALS = [
   { tr: 'Arı', en: 'Bee', emoji: '🐝', sound: 'Vızzz!', snd: 'bee' },
   { tr: 'Tilki', en: 'Fox', emoji: '🦊', snd: 'fox' },
   { tr: 'Keçi', en: 'Goat', emoji: '🐐', snd: 'goat' },
-  { tr: 'Domuz', en: 'Pig', emoji: '🐷', snd: 'pig' },
   { tr: 'Eşek', en: 'Donkey', emoji: '🫏', snd: 'donkey' },
   { tr: 'Hindi', en: 'Turkey', emoji: '🦃', snd: 'turkey' },
   { tr: 'Kaz', en: 'Goose', emoji: '🪿', snd: 'goose' },
@@ -292,6 +291,7 @@ const ACTIVITIES = [
   { id: 'homes', tr: 'Hayvan Evleri', en: 'Animal Homes', icon: '🏡' },
   { id: 'sling', tr: 'Sapan', en: 'Slingshot', icon: '🎯' },
   { id: 'pop', tr: 'Balon Patlat', en: 'Pop Balloons', icon: '🎈' },
+  { id: 'bubbles', tr: 'Baloncuk Patlat', en: 'Pop the Bubbles', icon: '🫧' },
   { id: 'blow', tr: 'Balonu Üfle', en: 'Blow It Up', icon: '🌬️' }
 ];
 

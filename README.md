@@ -18,7 +18,7 @@ yanlışta kısa **"Hayıııır!"** (hemen yeniden denenebilir). 2 yanlıştan 
 | Renkler | 10 renk, havada süzülen 3D balonlarla |
 | Sayılar | 1–10, **parmaklarla tek tek sayarak** |
 | Kediler | Mutlu, gülen, seven, şaşkın, üzgün, kızgın kediler — her biri farklı tonda miyavlar |
-| Hayvanlar | 37 hayvan (hepsi gerçek sesli ve gerçek fotoğraflı); önce hayvanın **gerçek sesi**, sonra adı söylenir |
+| Hayvanlar | 36 hayvan (hepsi gerçek sesli ve gerçek fotoğraflı); önce hayvanın **gerçek sesi**, sonra adı söylenir |
 | Kim Bu Ses? | Hayvan sesi çalar, çocuk sesin sahibini bulur |
 | Köpek Balıkları | Okyanus sahnesinde yüzen **renkli köpek balıkları** |
 | Arabalar | Polis, ambulans, itfaiye (siren), taksi, yarış arabası, renkli arabalar |
@@ -39,6 +39,7 @@ yanlışta kısa **"Hayıııır!"** (hemen yeniden denenebilir). 2 yanlıştan 
 | **Yumurta Sürprizi** | Renkli yumurtaya **bir kez** dokun, çatlasın; içinden civciv, ördek, kedi, baykuş... çıksın. Gerçek sesi ve adı duyulur; art arda dokununca sesler sıraya girer, hiçbiri atlanmaz. |
 | **Hayvan Evleri** | Doğrudan oyun: hayvanı **parmakla doğru evine sürükle** (ya da eve dokun). Doğru evde "Ördek gölde yaşar" denir; iki yanlışta doğru ev parlar. |
 | **Balon Patlat** | Renkli balonlar aşağıdan sürekli uçar, dokununca patlar; bazılarının altında sürpriz hayvan vardır. |
+| Baloncuk Patlat 🫧 | Su altında yükselen baloncuklara dokun: blop! Boş baloncuklar sayılır, içindeki köpek balığı, balina, fok, penguen kurtulup yüzer |
 | **Sapan** | Sapan ekranın altında: hayvanı **kendine doğru geri çek** — nişanlanan balon parlak halkayla gösterilir — **bırak** → hayvan tam o balona uçar. Dikey ve yatay ekranda balonlar hep görünür. Balona dokunmak da otomatik atış yapar. |
 | **Balonu Üfle** | Mikrofona üfledikçe balon şişer ve patlar (ağız-dudak kaslarını çalıştırır). |
 
@@ -102,7 +103,7 @@ js/core.js            Ortak altyapı: ekran, konfeti, kutlama, eller (parmak)
 js/learn.js           Öğren + soru-cevap motoru
 js/home.js            Başla ekranı, ana sayfa, ayarlar
 js/act/*.js           Oyunlar: catrun, imitate (Konuşalım + Ses Taklidi), parrot,
-                      dance, feed, fingers, eggs, homes, sling, pop, blow
+                      dance, feed, fingers, eggs, homes, sling, pop, bubbles, blow
 assets/img/real/      Gerçek hayvan fotoğrafları (KAYNAK.txt)
 assets/sfx/           Gerçek hayvan/taşıt sesleri ve alkış (ESC-50 + BBC Sound Effects)
 audio/voice/          ElevenLabs (Piku) konuşma kayıtları + index.js

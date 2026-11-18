@@ -3,7 +3,7 @@
    Bilgisayarla üretilmiş (sentez) ses yoktur. Gerçek kaydı olmayan
    anahtar sessiz geçer; böyle bir hayvan oyuna eklenmemelidir.
    Kaynaklar:
-   - ESC-50 veri seti (K. J. Piczak): dog, cat, cow, sheep, hen, rooster, frog, pig, crow,
+   - ESC-50 veri seti (K. J. Piczak): dog, cat, cow, sheep, hen, rooster, frog, crow,
      chirping_birds, insects, car_horn, siren, train, airplane, helicopter, clapping
    - BBC Sound Effects (RemArc lisansı, kişisel/ev kullanımı): duck, horse, lion,
      elephant, monkey, owl, chick, howl, bear, fox, goat, donkey, turkey, goose, wolf, tiger, cuckoo,
@@ -39,7 +39,6 @@ const AnimalSounds = (() => {
     fox: { f: ['fox_1', 'fox_2'] },
     frog: { f: ['frog_1', 'frog_3'] },
     goat: { f: ['goat_1', 'goat_2'] },
-    pig: { f: ['pig_1', 'pig_2', 'pig_3'] },
     donkey: { f: ['donkey_1', 'donkey_2'] },
     turkey: { f: ['turkey_1'] },
     goose: { f: ['goose_1'] },

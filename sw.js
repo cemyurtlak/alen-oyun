@@ -3,8 +3,8 @@
    - Görsel ve sesler: önce önbellek (anında açılır), yoksa indirip saklar
    - Kurulumdan sonra tüm görseller ve efekt sesleri arka planda yavaşça indirilir
    SURUM değeri tools/sw_liste.py ile otomatik güncellenir. */
-const SURUM = '1717303fca';
-const KOD = 'alen-kod-' + SURUM, MEDYA = 'alen-medya-v1';
+const SURUM = 'dbee09d7fa';
+const KOD = 'alen-kod-' + SURUM, MEDYA = 'alen-medya-v2';
 importScripts('sw_liste.js');
 
 const KABUK = ['./', 'index.html', 'css/style.css', 'manifest.json', 'audio/voice/index.js',
@@ -18,7 +18,7 @@ self.addEventListener('install', e => {
 self.addEventListener('activate', e => {
   e.waitUntil((async () => {
     const adlar = await caches.keys();
-    await Promise.all(adlar.filter(a => a.startsWith('alen-kod-') && a !== KOD).map(a => caches.delete(a)));
+    await Promise.all(adlar.filter(a => a !== KOD && a !== MEDYA).map(a => caches.delete(a)));
     await self.clients.claim();
     isit(); // arka planda görselleri/efektleri indir
   })());

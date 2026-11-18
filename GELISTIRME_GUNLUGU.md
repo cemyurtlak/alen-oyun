@@ -4,6 +4,51 @@
 
 ---
 
+## Aşama 14 — Yeni oyun: Baloncuk Patlat (su altı)
+**Tarih:** 18.11.2026
+
+**İstek (Cem):** Oyuna bir de suyun altında baloncuk patlatma oyunu ekleyelim.
+
+**Yapılanlar:**
+- `js/act/bubbles.js`: okyanus sahnesi (ışık huzmeleri, kum, mercan, yengeç, ahtapot, arkada yüzen balıklar).
+  Dipten gökkuşağı yansımalı sabun köpüğü baloncuklar yükselir, hafifçe esner. Balon Patlat'taki gibi önce hızlı çıkar,
+  sonra yavaşlar; ekrana girmeden patlatılamaz.
+- Dokununca "blop" sesiyle patlar, etrafa minik köpükler saçılır. Boş baloncuklar sırayla sayılır (Bir... On → kutlama).
+- Baloncukların %25'inde deniz hayvanı vardır: renkli köpek balığı (rengiyle söylenir), balina, fok, penguen
+  (gerçek sesi + adı). Patlayınca hayvan kurtulup ekranın kenarına doğru yüzer.
+- Sesler kuyrukta (en fazla 6): üst üste binmez, sayılar atlanmaz. Tanıtım konuşması yok; oyun hemen başlar.
+- Yeni konuşma kaydı gerekmedi: sayılar, hayvan adları ve renkli köpek balıkları zaten Piku ile kayıtlıydı.
+- `Sounds.bubble()`: kısa yükselen "blop" efekti (konuşma değil, efekt).
+- Ana sayfaya "Baloncuk Patlat 🫧" kartı eklendi. Kaydedilmiş sıralamada yoksa sona eklenir, basılı tutup taşınabilir.
+
+**Değişen dosyalar:** `js/act/bubbles.js` (yeni), `js/sounds.js`, `js/data.js`, `index.html`, `css/style.css`, `sw.js`/`sw_liste.js`,
+README, DEVAM_NOTLARI, bu günlük.
+
+**Test durumu:** Headless Chrome, 400×800 ve 1024×700: ~33 baloncuk patlatıldı, sayılar sırayla, hayvan sesleri ve adları
+çaldı, sayfa hatası yok. Ekran görüntüleri kontrol edildi.
+
+---
+
+## Aşama 13 — Domuz kaldırıldı, koyun fotoğrafı yenilendi
+**Tarih:** 18.11.2026
+
+**İstek (Cem):** "Kim bu"da domuzun sesi çıkmıyor, domuzu tamamen kaldır. Koyunun arka bacakları yok.
+
+**Yapılanlar:**
+- Domuz `ANIMALS` listesinden, `animalsounds.js` REAL haritasından ve `images.js` gerçek fotoğraf bloğundan çıkarıldı → 36 hayvan.
+  (`pig_*.mp3` ve `real/pig.webp` dosyaları klasörde duruyor ama artık kullanılmıyor.)
+- Koyun: eski fotoğrafta arka bacaklar otun içinde kayboluyordu. Wikimedia Commons'tan yandan çekilmiş, dört bacağı görünen
+  Columbia kuzusu (Ewe lamb, Columbia breed.jpg) alındı, rembg ile arka planı temizlendi → `assets/img/real/sheep.webp`. KAYNAK.txt güncellendi.
+- Aynı adlı görsel değiştiği için servis çalışanının medya önbelleği `alen-medya-v2` yapıldı; eski önbellek otomatik silinir.
+
+**Değişen dosyalar:** `js/data.js`, `js/animalsounds.js`, `js/images.js`, `assets/img/real/sheep.webp`, `assets/img/real/KAYNAK.txt`,
+`sw.js`, `sw_liste.js`, DEVAM_NOTLARI, bu günlük.
+
+**Test durumu:** Headless Chrome: 36 hayvan, domuz yok, sesi olmayan hayvan yok; Kim Bu Ses?, Hayvanlar, Hayvan Evleri,
+Yumurtalar hatasız açıldı. Yeni koyun görseli kontrol edildi (dört bacak görünür).
+
+---
+
 ## Aşama 12 — Hız: sesler gecikmesiz, açılış ve görseller hızlı (ortak ses motoru + önbellek)
 **Tarih:** 18.11.2026
 
