@@ -4,6 +4,25 @@
 
 ---
 
+## Aşama 11 — Kedi Koşusu: her zıplayışta farklı gerçek miyav, "pıt" sesi kaldırıldı
+**Tarih:** 18.11.2026
+
+**İstek (Cem):** Kediler geliyor bölümünde kediler zıplarken farklı miyav sesleri çıksın; şu an sadece "pıt pıt" ses çıkıyor, bu gereksiz.
+
+**Yapılanlar:**
+- BBC Sound Effects'ten 11 kedi kaydı (Burma, Siyam, İran, erkek kedi, 10 haftalık ve 3 aylık yavrular...) indirildi; enerji tabanlı
+  olay tespitiyle tek tek miyavlar ayıklandı, spektrogramla (harmonik yaylar) doğrulandı → `assets/sfx/meow_1..17.mp3`.
+- `animalsounds.js` `randomMeow`: 17 BBC + 3 ESC-50 miyav arasından, aynısı art arda gelmeden, hafif ton farkıyla çalar.
+- `catrun.js`: kendiliğinden ekrana zıplayan kediler de miyavlar (sıra kalabalıksa eklenmez, böylece üst üste binmez);
+  dokunulan kedi miyav + sayı. Kedi cama yapışınca çalan `Sounds.pop()` ("pıt") kaldırıldı.
+
+**Değişen dosyalar:** `js/act/catrun.js`, `js/animalsounds.js`, `assets/sfx/meow_1..17.mp3`, README, bu günlük.
+
+**Test durumu:** Headless Chrome: dokunmadan 25 sn → 10 kedi zıpladı, 10 farklı miyav sırayla çaldı (meow_3, 11, 12, 17, 9, cat_3, 1, 10, 8, 4),
+"pıt" sesi yok, sayfa hatası yok.
+
+---
+
 ## Aşama 10 — Gerçekçi kediler/köpek balıkları/eller, 37 hayvan, 10 soruluk kesintisiz tur, kart sıralama
 **Tarih:** 18.11.2026
 

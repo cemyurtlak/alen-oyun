@@ -2,7 +2,7 @@
    KEDİ KOŞUSU — kediler uzaktan koşarak ekrana yaklaşır,
    sonunda ekrana doğru zıplar (farklı tonlarda miyav). Kediler gerçek fotoğraf ve hep yüzü ekrana dönük.
    Kediye dokununca hemen zıplar, miyavlar ve sayılır (1-10). Sesler sıraya girer, üst üste binmez;
-   kendiliğinden zıplayan kediler sessizdir.
+   kendiliğinden zıplayan kediler de farklı miyavlarla zıplar.
    ========================================================= */
 G.activities.catrun = () => {
   const { $, rand, TR, EN } = G;
@@ -53,14 +53,18 @@ G.activities.catrun = () => {
     cats.push(c);
   }
 
-  // tapped=true: çocuk dokundu → miyav + sayı. Kendiliğinden zıplayan kedi sessizdir (sesler birbirine girmesin).
+  // tapped=true: çocuk dokundu → miyav + sayı. Kendiliğinden zıplayan kedi de farklı bir miyavla zıplar;
+  // sesler sıraya girer (üst üste binmez). Sıra kalabalıksa kendiliğinden zıplayanın miyavı eklenmez.
   function startJump(c, tapped) {
     c.jumping = true;
     c.jt = 0;
     c.s0 = c.scale || 0.5;
     c.xj = c.x || field.clientWidth / 2;
     c.yj = c.y || field.clientHeight * 0.8;
-    if (!tapped) return;
+    if (!tapped) {
+      if (pending <= 1) enqueue(() => AnimalSounds.randomMeow());
+      return;
+    }
     const n = count + 1 > 10 ? 1 : count + 1;
     // kuyruk doluysa sayma da atlanmaz: sayı ve ses birlikte eklenir ya da hiç eklenmez
     if (!enqueue(async () => {
@@ -96,7 +100,7 @@ G.activities.catrun = () => {
       glass.appendChild(p);
       setTimeout(() => p.remove(), 2600);
     }
-    Sounds.pop();
+    // "pıt" sesi yok (Cem: gereksiz) — kedinin sesi miyavdır
   }
 
   field.addEventListener('pointerdown', () => { if (cats.length < 6) spawn(); });

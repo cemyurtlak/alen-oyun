@@ -29,7 +29,7 @@ yanlışta kısa **"Hayıııır!"** (hemen yeniden denenebilir). 2 yanlıştan 
 ### 🎮 Oyunlar
 | Oyun | Ne yapar? |
 |---|---|
-| **Kedi Koşusu** | Kediler uzaktan koşarak ekrana yaklaşır ve **ekrana zıplar**, camda pati izi bırakır. Dokunulan kedi farklı tonda gerçek miyavlar ve sayılır (1–10); sesler sırayla çalar, üst üste binmez. |
+| **Kedi Koşusu** | Kediler uzaktan koşarak ekrana yaklaşır ve **ekrana zıplar**, camda pati izi bırakır. Her zıplayan kedi farklı bir gerçek miyavla zıplar (20 farklı kayıt); dokunulan kedi ayrıca sayılır (1–10). Sesler sırayla çalar, üst üste binmez. |
 | **Ses Taklidi** | İnek "Mööö", **uluyan köpek** "Auuuu", kedi, ördek, tavuk... Sesi dinler, hece hece duyar, "Sen yap!" der. Mikrofon çocuğun ses çıkarmasını algılar ve **her denemeyi** ödüllendirir. |
 | **Konuşalım** | İlk sesler (a, o, u, m, ba, ma, pa, da) ve ilk kelimeler (anne, baba, su, mama, daha, bay bay...). Hece hece yavaşça söylenir, çocuğun her sesi kutlanır. |
 | **Konuşan Kedi / Bebek** | Çocuk ne söylerse (babıldama dahil) kedi veya bebek onu **komik ince bir sesle tekrar eder**. Dokununca gıdıklanır. |

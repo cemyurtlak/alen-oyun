@@ -112,9 +112,15 @@ const AnimalSounds = (() => {
     playing.clear();
   }
 
-  // Kedi Koşusu için rastgele tonda gerçek miyav (yavru → iri kedi)
+  // Kedi Koşusu için farklı gerçek miyavlar: 17 BBC kaydı (Burma, Siyam, İran, erkek kedi, yavrular) + ESC-50,
+  // hafif ton farkıyla; aynı ses art arda gelmez
+  const MEOWS = Array.from({ length: 17 }, (_, i) => 'meow_' + (i + 1)).concat(['cat_1', 'cat_2', 'cat_3']);
+  let lastMeow = '';
   function randomMeow() {
-    return new Promise(res => playSrc('assets/sfx/' + ['cat_1', 'cat_2', 'cat_3'][Math.floor(Math.random() * 3)] + '.mp3', 0.75 + Math.random() * 0.75, res));
+    let m;
+    do { m = MEOWS[Math.floor(Math.random() * MEOWS.length)]; } while (m === lastMeow);
+    lastMeow = m;
+    return new Promise(res => playSrc('assets/sfx/' + m + '.mp3', 0.9 + Math.random() * 0.3, res));
   }
 
   return { play, randomMeow, stopAll, has: (k) => !!(files[k] || REAL[k]) };
