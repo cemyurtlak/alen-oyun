@@ -1,0 +1,7 @@
+Dans videoları — Pexels (https://www.pexels.com), Pexels Lisansı: ücretsiz kullanım, atıf gerekmez.
+dans_1.mp4  <- "A footage of a toddler stomping his feet"   https://www.pexels.com/video/8909486/
+dans_2.mp4  <- "A kid dancing while wearing colorful headband" https://www.pexels.com/video/8384570/
+dans_3.mp4  <- "A little girl dancing"                      https://www.pexels.com/video/8385588/
+dans_4.mp4  <- "A boy is dancing"                           https://www.pexels.com/video/8100586/
+dans_5.mp4  <- "Children doing dance"                       https://www.pexels.com/video/8159871/
+Sessiz, 360p'ye küçültülmüş (ffmpeg, crf 27); oyunda oyunun kendi müziğiyle oynatılır.

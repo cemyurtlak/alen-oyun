@@ -3,7 +3,7 @@
    - Görsel ve sesler: önce önbellek (anında açılır), yoksa indirip saklar
    - Kurulumdan sonra tüm görseller ve efekt sesleri arka planda yavaşça indirilir
    SURUM değeri tools/sw_liste.py ile otomatik güncellenir. */
-const SURUM = '5361824318';
+const SURUM = '8813388b35';
 const KOD = 'alen-kod-' + SURUM, MEDYA = 'alen-medya-v3';
 importScripts('sw_liste.js');
 

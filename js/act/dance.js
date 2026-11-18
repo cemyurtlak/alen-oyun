@@ -1,100 +1,80 @@
 /* =========================================================
-   DANS EDEN BEBEKLER — disko ışıkları, müzik ve konuşan bebekler
-   Bebeğe dokununca kıkırdar, döner ve bir şey söyler.
+   DANS EDELİM — gerçek çocuklar dans eder (Pexels videoları, sessiz),
+   oyunun kendi neşeli müziği çalar; Alen izleyip birlikte dans eder.
+   • Alttaki küçük resimlerden dansçı seçilir (küçük çocuk, kız, oğlan, sınıf).
+   • Müzik aç/kapa, başka şarkı, alkış düğmeleri. Işıklar müziğin ritmiyle yanıp söner.
+   (Eski "Dans Eden Bebekler" Cem'in isteğiyle kaldırıldı: çizim bebekler dans öğretmiyordu.)
    ========================================================= */
 G.activities.dance = () => {
   const { $, $$, rand, wait, TR, EN } = G;
   const id = G.newFlow();
-  const MOVES = ['d-bounce', 'd-sway', 'd-spin', 'd-jump', 'd-wiggle'];
-  const LINES = [
-    { t: 'Dans edelim!', l: TR }, { t: "Let's dance!", l: EN }, { t: 'Yaşasın!', l: TR },
-    { t: 'Ellerini çırp!', l: TR }, { t: 'Clap your hands!', l: EN }, { t: 'Zıpla zıpla!', l: TR },
-    { t: 'Jump jump!', l: EN }, { t: 'Hi hi hi!', l: TR }, { t: () => `${G.childName()}, gel dans et!`, l: TR },
-    { t: 'Merhaba!', l: TR }, { t: 'Hello!', l: EN }, { t: 'Agu agu!', l: TR }
-  ];
-  // seçili dile uyan cümleler
-  const pickLine = () => rand(LINES.filter(x => Speech.allows(x.l) || (typeof x.t === 'string' && PHRASE_EN[x.t] && Speech.mode() === 'en')));
-  const babies = BABIES.map((b, i) => ({ src: 'assets/img/' + b + '.webp', move: MOVES[i % MOVES.length] }));
+  const DANCERS = [1, 2, 3, 4, 5].map(i => ({ src: `assets/video/dans_${i}.mp4`, poster: `assets/video/dans_${i}.jpg` }));
+  let cur = 0;
 
-  const root = G.screen('dance', G.topbar(`${pic('🪩', 'title-ic')} Dans Eden Bebekler <small>Dancing Babies</small>`) + `
+  const root = G.screen('dance dance2', G.topbar(`${pic('🪩', 'title-ic')} Dans Edelim <small>Let's Dance</small>`) + `
     <div class="disco">
       <div class="spot s1"></div><div class="spot s2"></div><div class="spot s3"></div>
-      <div class="ball">${pic('🪩')}</div>
       <div class="notes" id="notes"></div>
-      <div class="dancefloor"><div class="tiles-floor"></div></div>
-      <div class="babies" id="babies">
-        ${babies.map((b, i) => `<button class="baby ${b.move}" data-i="${i}" style="--i:${i}">
-            <div class="say"></div><img class="pic" src="${b.src}" alt="" draggable="false"><div class="shadow"></div></button>`).join('')}
-      </div>
+    </div>
+    <div class="dance-video-wrap">
+      <video id="dv" class="dance-video" muted playsinline loop autoplay preload="auto" poster="${DANCERS[0].poster}" src="${DANCERS[0].src}"></video>
+    </div>
+    <div class="dancer-pick" id="pick">
+      ${DANCERS.map((d, i) => `<button class="dp ${i === 0 ? 'on' : ''}" data-i="${i}"><img src="${d.poster}" alt="" draggable="false"></button>`).join('')}
     </div>
     <div class="dance-ctrl">
       <button class="dbtn" id="pp">${pic('🎵')}<small>Müzik</small></button>
       <button class="dbtn" id="song">${pic('🎶')}<small>Şarkı</small></button>
       <button class="dbtn" id="clap">${pic('👏')}<small>Alkış</small></button>
-      <button class="dbtn" id="move">${pic('🔁')}<small>Hareket</small></button>
     </div>`);
   G.bindHome(root);
-  G.onLeave(() => { Music.onBeat(null); Music.stop(); });
+  const dv = $('#dv');
+  G.onLeave(() => { Music.onBeat(null); Music.stop(); try { dv.pause(); dv.removeAttribute('src'); dv.load(); } catch (e) { /* yoksay */ } });
 
-  const els = $$('.baby', root);
-  function setTempo() { root.style.setProperty('--beat', (60 / Music.bpm()) + 's'); }
+  const playVideo = () => { const p = dv.play(); if (p && p.catch) p.catch(() => {}); };
 
-  function babySay(el, line) {
-    let text = typeof line.t === 'function' ? line.t() : line.t;
-    if (!Speech.allows(line.l) && PHRASE_EN[text]) text = PHRASE_EN[text];
-    const b = el.querySelector('.say');
-    b.textContent = text;
-    G.anim(b, 'show');
-    Music.duck(true);
-    Speech.say(text, Speech.allows(line.l) ? line.l : EN, { pitch: 1.2, rate: 1.05 }).then(() => Music.duck(false));
-  }
-
-  els.forEach(el => el.onclick = () => {
+  function choose(i) {
+    if (i === cur) { playVideo(); return; }
+    cur = i;
     Sounds.tap();
-    G.anim(el.querySelector('.pic'), 'twirl');
-    G.burstAt(el, ['💖', '⭐', '🎵'], 10);
-    babySay(el, pickLine());
-  });
+    $$('.dp', root).forEach((b, k) => b.classList.toggle('on', k === i));
+    dv.poster = DANCERS[i].poster;
+    dv.src = DANCERS[i].src;
+    playVideo();
+    G.anim($('.dance-video-wrap'), 'boom');
+    if (!Music.isPlaying()) { Music.start(); root.classList.remove('paused'); }
+  }
+  $$('.dp', root).forEach(b => b.onclick = () => choose(+b.dataset.i));
+  dv.onclick = () => { if (dv.paused) playVideo(); };
 
   Music.onBeat((beat) => {
     if (!G.alive(id)) return;
-    // ışık ve nota efektleri vuruşla senkron
     root.classList.toggle('flash', beat % 2 === 0);
     if (beat % 2 === 0) {
       const n = document.createElement('div');
       n.className = 'fnote';
       n.innerHTML = pic(rand(['🎵', '🎶', '⭐', '💖']));
-      n.style.left = (10 + Math.random() * 80) + '%';
+      n.style.left = (5 + Math.random() * 90) + '%';
       $('#notes').appendChild(n);
       setTimeout(() => n.remove(), 2600);
     }
-    // ara sıra bir bebek konuşur
-    if (beat % 16 === 8 && !Speech.busy()) babySay(rand(els), pickLine());
   });
 
   $('#pp').onclick = () => {
     Sounds.tap();
-    if (Music.isPlaying()) { Music.stop(); root.classList.add('paused'); }
-    else { Music.start(); setTempo(); root.classList.remove('paused'); }
+    if (Music.isPlaying()) { Music.stop(); dv.pause(); root.classList.add('paused'); }
+    else { Music.start(); playVideo(); root.classList.remove('paused'); }
   };
-  $('#song').onclick = () => { Music.next(); setTempo(); root.classList.remove('paused'); G.toast('🎶 ' + Music.songName(), 1500); };
-  $('#clap').onclick = () => {
-    Sounds.applause(1.4);
-    els.forEach((el, i) => setTimeout(() => G.anim(el, 'hop'), i * 60));
-  };
-  $('#move').onclick = () => {
-    Sounds.whoosh();
-    els.forEach(el => {
-      const cur = MOVES.find(m => el.classList.contains(m));
-      el.classList.remove(cur);
-      el.classList.add(MOVES[(MOVES.indexOf(cur) + 1) % MOVES.length]);
-    });
-  };
+  $('#song').onclick = () => { Music.next(); playVideo(); root.classList.remove('paused'); G.toast('🎶 ' + Music.songName(), 1500); };
+  $('#clap').onclick = () => { Sounds.applause(1.4); G.burstAt($('.dance-video-wrap'), ['👏', '⭐', '💖'], 12); };
 
   (async () => {
     Music.start(0);
-    setTempo();
-    await wait(600);
-    if (G.alive(id)) babySay(els[2], Speech.mode() === 'en' ? { t: "Let's dance!", l: EN } : { t: 'Hadi dans edelim!', l: TR });
+    playVideo();
+    await wait(500);
+    if (!G.alive(id)) return;
+    Music.duck(true);
+    await Speech.seq(G.both('Hadi dans edelim!', "Let's dance!"));
+    Music.duck(false);
   })();
 };

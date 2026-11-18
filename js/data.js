@@ -292,7 +292,7 @@ const SOUND_ALIKE = [
 const ACTIVITIES = [
   { id: 'catrun', tr: 'Kedi Koşusu', en: 'Kitty Run', icon: '😸' },
   { id: 'copy', tr: 'Ses Taklidi', en: 'Copy the Sound', icon: '🐮' },
-  { id: 'dance', tr: 'Dans Eden Bebekler', en: 'Dancing Babies', icon: '🪩' },
+  { id: 'dance', tr: 'Dans Edelim', en: "Let's Dance", icon: '🪩' },
   { id: 'feed', tr: 'Yemek Zamanı', en: 'Meal Time', icon: '🍽️' },
   { id: 'fingers', tr: 'Parmakla Say', en: 'Finger Count', icon: '🖐️' },
   { id: 'eggs', tr: 'Yumurta Sürprizi', en: 'Egg Surprise', icon: '🐣' },

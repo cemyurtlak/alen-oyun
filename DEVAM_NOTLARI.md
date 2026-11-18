@@ -59,6 +59,7 @@
 | Ses kuyruğunda oyunu ilerleten adım (yeni tur, kutlama) asla sınır yüzünden düşmez (`force`) ve tur numarasıyla eski sesler atlanır | Yumurta Sürprizi'nde dolan kuyruk yeni turu yutuyordu → oyun takılıyordu |
 | Konuşalım ve Konuşan Kedi kaldırıldı (mikrofon herhangi bir sesi kabul ediyordu); `parrot.js` dosyası duruyor ama yüklenmiyor | Cem: işe yaramıyor |
 | El fotoğrafları ten rengi maskesiyle kesilir (rembg değil); şerit fotoğraf gerçek panel çizgilerinden bölünür | Eşit bölme ve rakam örtüsü ellerin kenarını kesmişti |
+| Dans: gerçek çocuk videoları (Pexels, sessiz, 360p), müzik oyunun kendi `Music` motorundan | Cem çizim bebekleri "saçma" buldu, gerçekten dans eden çocuk istedi; videolar küçük tutuldu (toplam 2,8 MB) |
 | Yüzdelik `padding` kullanılmaz | Yüzde, düğme yerine kapsayıcı genişliğine göre hesaplanıyor → görseller küçülüyordu |
 
 ## Yayın
@@ -92,7 +93,6 @@
 ## Sonraki adımlar / fikirler
 - Baloncuk Patlat'a başka deniz hayvanları (balık, ahtapot, yengeç, kaplumbağa, yunus) eklenebilir. Bunun için ElevenLabs'te adları (TR/EN) seslendirilmeli; Fluent görselleri hazır.
 - İstenirse baloncuk "blop" efekti için BBC'den gerçek su kabarcığı kaydı.
-- Dans Eden Bebekler: Cem gerçekten dans eden bir bebek istiyor; mevcut hali beğenilmedi (karar bekleniyor).
 - ElevenLabs'te kaydedilecekler: yiyecek adları (Ot, Kemik, Balık, Bal, Sinek, Solucan, Fıstık), "Dinozor!", "İnek ne yer?" gibi sorular.
 - Taşıtlar için gerçek kayıt (motor, gemi düdüğü, bisiklet zili, traktör, roket).
 - İstenirse daha fazla hayvan: deve, yunus, su aygırı, ağaçkakan, fare için temiz kayıt aranabilir. Domuz Cem'in isteğiyle çıkarıldı (sesi çalmıyordu); geri eklenirse yeni temiz kayıt gerekir.

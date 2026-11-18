@@ -31,7 +31,7 @@ yanlışta kısa **"Hayıııır!"** (hemen yeniden denenebilir). 2 yanlıştan 
 |---|---|
 | **Kedi Koşusu** | Kediler uzaktan koşarak ekrana yaklaşır ve **ekrana zıplar**, camda pati izi bırakır. Her zıplayan kedi farklı bir gerçek miyavla zıplar (20 farklı kayıt); dokunulan kedi ayrıca sayılır (1–10). Sesler sırayla çalar, üst üste binmez. |
 | **Ses Taklidi** | İnek "Mööö", **uluyan köpek** "Auuuu", kedi, ördek, tavuk... Sesi dinler, hece hece duyar, "Sen yap!" der. Mikrofon çocuğun ses çıkarmasını algılar ve **her denemeyi** ödüllendirir. |
-| **Dans Eden Bebekler** | Disko topu, renkli ışıklar, özgün neşeli müzik; 5 bebek dans eder ve konuşur. Dokununca döner ve bir şey söyler. |
+| **Dans Edelim** 🪩 | Gerçek çocukların dans videoları (Pexels), oyunun neşeli müziğiyle; dansçı seçilir, Alen izleyip birlikte dans eder |
 | **Yemek Zamanı** | Bir hayvan gelir (gerçek sesi + adı); çocuk tepsideki 3 yiyecekten onun yediğini seçer (inek–ot, at–havuç, maymun–muz, köpek–kemik ...). Doğru yiyecek ağzına uçar, "Mmmm! Çok lezzetli!" |
 | **Parmakla Say** | Dokundukça parmaklar açılır ve sayılır (1–10); "Kaç tane?" modunda parmak sayısını bulur. |
 | **Yumurta Sürprizi** | Renkli yumurtaya **bir kez** dokun, çatlasın; içinden civciv, ördek, kedi, baykuş... çıksın. Gerçek sesi ve adı duyulur; art arda dokununca sesler sıraya girer, hiçbiri atlanmaz. |
@@ -106,6 +106,7 @@ js/home.js            Başla ekranı, ana sayfa, ayarlar
 js/act/*.js           Oyunlar: catrun, imitate (Ses Taklidi), dino, pegs, roll,
                       dance, feed, fingers, eggs, homes, sling, pop, bubbles, blow
 assets/img/real/      Gerçek hayvan fotoğrafları (KAYNAK.txt)
+assets/video/         Dans videoları (Pexels, KAYNAK.txt)
 assets/sfx/           Gerçek hayvan/taşıt sesleri ve alkış (ESC-50 + BBC Sound Effects)
 audio/voice/          ElevenLabs (Piku) konuşma kayıtları + index.js
 tools/                ses_listesi_olustur.js (cümle listesi), ses_uret.py (dizin + eksik listesi), elevenlabs_bol.py (bölme)

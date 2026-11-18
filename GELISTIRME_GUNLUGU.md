@@ -4,6 +4,31 @@
 
 ---
 
+## Aşama 19 — "Dans Eden Bebekler" yerine "Dans Edelim": gerçek dans eden çocuk videoları
+**Tarih:** 18.11.2026
+
+**İstek (Cem):** Dans Eden Bebekler kullanışlı değil; gerçekten dans eden bir bebek olsun, Alen izleyip dans etmeyi öğrensin.
+Seçenekler arasından "2" (ücretsiz lisanslı gerçek dans videosu) seçildi.
+
+**Yapılanlar:**
+- Pexels'te "toddler dancing" ve "baby dancing" aramaları yapıldı. 10 aday video indirildi, kareleri incelendi; tek
+  çocuğun net dans ettiği 4 video ve birlikte dans eden bir sınıf videosu seçildi.
+  Pexels Lisansı: ücretsiz kullanım, atıf gerekmez; kaynaklar `assets/video/KAYNAK.txt` içinde.
+- Videolar sessiz, 360p'ye küçültüldü (H.264, crf 27, faststart) → `assets/video/dans_1..5.mp4` + kapak resimleri (toplam 2,8 MB).
+- `js/act/dance.js` baştan yazıldı:
+  - Büyük video ekranı sessiz ve döngülü oynar; oyunun kendi müziği çalar, ışıklar ve notalar ritimle yanıp söner.
+  - Alttaki küçük resimlerden dansçı seçilir: emzikli küçük çocuk, gökkuşağı etekli kız (iki video), şapkalı oğlan, dans eden sınıf.
+  - Müzik, Şarkı ve Alkış düğmeleri var. Açılışta "Hadi dans edelim!" (kayıt mevcut).
+- Ana sayfa kartının adı "Dans Edelim" oldu.
+
+**Değişen dosyalar:** `js/act/dance.js`, `js/data.js`, `css/style.css`, `assets/video/*` (yeni), `sw.js`/`sw_liste.js`,
+README, DEVAM_NOTLARI, bu günlük.
+
+**Test durumu:** Headless Chrome, 400×800 ve 1024×700: video yüklendi ve oynadı (readyState 4); 5. dansçıya geçiş çalıştı;
+hata yok. Ekran görüntüleri kontrol edildi.
+
+---
+
 ## Aşama 18 — Yeni oyunlar: Dinozor Yumurtaları, Çekiç Oyunu, Top Yuvarla; Yemek Zamanı yenilendi; eller ve parmak sayma düzeltildi
 **Tarih:** 18.11.2026
 
