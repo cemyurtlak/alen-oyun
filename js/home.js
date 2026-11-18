@@ -67,8 +67,15 @@
 
   function renderHome(greet) {
     const id = G.newFlow();
-    const learnTiles = CATEGORIES.map((c, i) => tile(i, c.icon, c.tr, c.en, `data-cat="${i}"`)).join('');
-    const actTiles = ACTIVITIES.map((a, i) => tile(i + 3, a.icon, a.tr, a.en, `data-act="${a.id}"`)).join('');
+    // Tüm kartlar tek alanda; sıra ebeveyn/çocuk tarafından basılı tutup sürüklenerek değiştirilir ve kalıcı saklanır
+    const all = [
+      ...ACTIVITIES.map((a, i) => ({ key: 'act:' + a.id, html: (k) => tile(k + 3, a.icon, a.tr, a.en, `data-act="${a.id}" data-key="act:${a.id}"`) })),
+      ...CATEGORIES.map((c, i) => ({ key: 'cat:' + c.id, html: (k) => tile(k, c.icon, c.tr, c.en, `data-cat="${i}" data-key="cat:${c.id}"`) }))
+    ];
+    const saved = Settings.get('homeOrder') || [];
+    const rank = (k) => { const i = saved.indexOf(k); return i < 0 ? 1000 + all.findIndex(x => x.key === k) : i; };
+    all.sort((a, b) => rank(a.key) - rank(b.key));
+    const allTiles = all.map((x, k) => x.html(k)).join('');
     const root = G.screen('home', `
       <div class="topbar">
         <button class="icon-btn small" id="gear" title="Ayarlar için basılı tutun" aria-label="Ayarlar">⚙️</button>
@@ -76,13 +83,13 @@
         <button class="icon-btn small" id="full" title="Tam ekran" aria-label="Tam ekran">⛶</button>
       </div>
       <div class="home-scroll">
-        <h2 class="section-title">${pic('🎮')} Oyunlar <small>Games</small></h2>
-        <div class="tiles">${actTiles}</div>
-        <h2 class="section-title">${pic('📖')} Öğrenelim <small>Let's Learn</small></h2>
-        <div class="tiles">${learnTiles}</div>
+        <div class="tiles" id="tiles">${allTiles}</div>
+        <p class="order-hint">Kartların yerini değiştirmek için karta basılı tutup sürükleyin.</p>
       </div>`);
-    $$('[data-cat]', root).forEach(b => b.onclick = () => { Sounds.tap(); Learn.open(CATEGORIES[+b.dataset.cat]); });
+    enableReorder($('#tiles'));
+    $$('[data-cat]', root).forEach(b => b.onclick = () => { if (b._dragged) return; Sounds.tap(); Learn.open(CATEGORIES[+b.dataset.cat]); });
     $$('[data-act]', root).forEach(b => b.onclick = () => {
+      if (b._dragged) return;
       Sounds.tap();
       const fn = G.activities[b.dataset.act];
       if (fn) fn(); else G.toast('Yakında!');
@@ -98,6 +105,82 @@
   }
   G.goHome = () => renderHome(false);
 
+  /* Basılı tut → sürükle → bırak: kart sırası değişir, Settings.homeOrder'a kaydedilir.
+     Basılı tutmadan kaydırmak sayfayı normal kaydırır. */
+  function enableReorder(grid) {
+    let pressT = null, drag = null, sx = 0, sy = 0;
+    const tiles = () => [...grid.querySelectorAll('.tile')];
+    const save = () => Settings.set('homeOrder', tiles().map(t => t.dataset.key));
+    const blockTouch = (e) => { if (drag) e.preventDefault(); };
+    document.addEventListener('touchmove', blockTouch, { passive: false });
+    grid.addEventListener('contextmenu', (e) => e.preventDefault());
+    grid.addEventListener('pointerdown', (e) => {
+      const t = e.target.closest('.tile');
+      if (!t) return;
+      t._dragged = false;
+      sx = e.clientX; sy = e.clientY;
+      clearTimeout(pressT);
+      pressT = setTimeout(() => {
+        const r = t.getBoundingClientRect();
+        const ghost = t.cloneNode(true);
+        ghost.classList.add('tile-ghost');
+        Object.assign(ghost.style, { width: r.width + 'px', height: r.height + 'px', left: r.left + 'px', top: r.top + 'px', animation: 'none' });
+        document.body.appendChild(ghost);
+        t.classList.add('tile-placeholder');
+        drag = { t, ghost, ox: sx - r.left, oy: sy - r.top };
+        t._dragged = true;
+        try { navigator.vibrate && navigator.vibrate(30); } catch (er) { /* yoksay */ }
+        Sounds.tap();
+      }, 450);
+    });
+    const move = (e) => {
+      if (!grid.isConnected) return cleanup();
+      if (!drag) {
+        if (pressT && Math.hypot(e.clientX - sx, e.clientY - sy) > 12) { clearTimeout(pressT); pressT = null; }
+        return;
+      }
+      e.preventDefault();
+      drag.ghost.style.left = (e.clientX - drag.ox) + 'px';
+      drag.ghost.style.top = (e.clientY - drag.oy) + 'px';
+      // parmağın altındaki karta göre yer değiştir
+      drag.ghost.style.visibility = 'hidden';
+      const under = document.elementFromPoint(e.clientX, e.clientY);
+      drag.ghost.style.visibility = '';
+      const over = under && under.closest('#tiles .tile');
+      if (over && over !== drag.t) {
+        const list = tiles();
+        if (list.indexOf(over) > list.indexOf(drag.t)) over.after(drag.t); else over.before(drag.t);
+      }
+      // kenara yaklaşınca kaydır
+      const sc = grid.closest('.home-scroll');
+      if (sc) {
+        const r = sc.getBoundingClientRect();
+        if (e.clientY > r.bottom - 60) sc.scrollTop += 12; else if (e.clientY < r.top + 60) sc.scrollTop -= 12;
+      }
+    };
+    const end = () => {
+      if (!grid.isConnected) return cleanup();
+      clearTimeout(pressT); pressT = null;
+      if (!drag) return;
+      drag.ghost.remove();
+      drag.t.classList.remove('tile-placeholder');
+      const t = drag.t;
+      drag = null;
+      save();
+      setTimeout(() => { t._dragged = false; }, 300);
+    };
+    // ana sayfadan çıkınca dinleyiciler kaldırılır (birikmesin)
+    function cleanup() {
+      window.removeEventListener('pointermove', move);
+      window.removeEventListener('pointerup', end);
+      window.removeEventListener('pointercancel', end);
+      document.removeEventListener('touchmove', blockTouch);
+    }
+    window.addEventListener('pointermove', move, { passive: false });
+    window.addEventListener('pointerup', end);
+    window.addEventListener('pointercancel', end);
+  }
+
   /* ---------- Ebeveyn ayarları (⚙️ basılı tutunca) ---------- */
   function openSettings() {
     G.newFlow();
@@ -110,7 +193,6 @@
         <p class="note">${Speech.hasRecordings() ? '✅ Tüm konuşmalar ElevenLabs çocuk sesiyle (Piku) kayıtlı. Bilgisayar seslendirmesi kullanılmaz.' : '⚠️ Ses kayıtları yüklenemedi.'}</p>
         <label>Çocuğun adı <input id="sName" maxlength="20" value="${esc(G.childName())}"></label>
         <label>Seçenek sayısı ${sel('sOpt', [2, 3, 4], Settings.get('optionCount'))}</label>
-        <label>Bir turdaki soru sayısı ${sel('sQ', [3, 5, 8, 10], Settings.get('questionCount'))}</label>
         <label>Konuşma dili
           <select id="sLang">${[['tr', 'Sadece Türkçe'], ['en', 'Only English'], ['both', 'İkisi (Türkçe + English)']].map(([v, t]) => `<option value="${v}" ${v === (Settings.get('lang') || 'tr') ? 'selected' : ''}>${t}</option>`).join('')}</select></label>
         <label>İkisi seçiliyse sıra
@@ -129,7 +211,6 @@
     const save = () => {
       Settings.set('childName', ($('#sName').value || 'Alen').trim() || 'Alen');
       Settings.set('optionCount', +$('#sOpt').value);
-      Settings.set('questionCount', +$('#sQ').value);
       Settings.set('enFirst', $('#sOrd').value === '1');
       Settings.set('lang', $('#sLang').value);
       Settings.set('autoFull', $('#sFull').checked);

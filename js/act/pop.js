@@ -34,10 +34,15 @@ G.activities.pop = () => {
     const b = {
       el, c, friend, size,
       x: 0.06 + Math.random() * 0.88, y: field.clientHeight + size,
-      vy: 70 + Math.random() * 70 + Math.min(count, 40) * 1.2,      // px/sn — patlattıkça biraz hızlanır
+      vy: 70 + Math.random() * 70 + Math.min(count, 40) * 1.2,      // px/sn seyir hızı — patlattıkça biraz hızlanır
+      age: 0,
       ph: Math.random() * 6, sway: 18 + Math.random() * 22, dead: false
     };
-    el.addEventListener('pointerdown', (e) => { e.preventDefault(); popIt(b); });
+    el.addEventListener('pointerdown', (e) => {
+      e.preventDefault();
+      if (b.y > field.clientHeight - b.size * 0.6) return; // balon henüz görünmüyor
+      popIt(b);
+    });
     balloons.push(b);
   }
 
@@ -92,7 +97,11 @@ G.activities.pop = () => {
     for (let i = balloons.length - 1; i >= 0; i--) {
       const b = balloons[i];
       if (b.dead) { balloons.splice(i, 1); continue; }
-      b.y -= b.vy * dt;
+      // Giriş: balon alttan hızlı fırlar (ekranın ~%40'ı kadar), sonra yavaşlayıp seyir hızına iner.
+      // Böylece çocuk balonu ekrana çıkmadan önce kenarda patlatamaz.
+      b.age += dt;
+      const H = field.clientHeight;
+      b.y -= (b.vy + H * 1.2 * Math.exp(-b.age * 3)) * dt;
       b.ph += dt * 1.6;
       const x = b.x * W + Math.sin(b.ph) * b.sway - b.size / 2;
       b.el.style.transform = `translate(${x}px, ${b.y}px) rotate(${Math.sin(b.ph) * 6}deg)`;

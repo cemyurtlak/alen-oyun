@@ -178,7 +178,28 @@ Object.assign(IMG, {
   "🦊": "real/fox",
   "🐕": "real/howl",
   "🐈": "real/yellowcat",
-  "🐈‍⬛": "real/blackcat"
+  "🐈‍⬛": "real/blackcat",
+  "🦈": "real/shark",
+  "🐐": "real/goat",
+  "🐷": "real/pig",
+  "🫏": "real/donkey",
+  "🦃": "real/turkey",
+  "🪿": "real/goose",
+  "🐓": "real/rooster",
+  "🐺": "real/wolf",
+  "🐯": "real/tiger",
+  "cuckoo": "real/cuckoo",
+  "🐦‍⬛": "real/crow",
+  "seagull": "real/seagull",
+  "🦜": "real/parrot",
+  "🐋": "real/whale",
+  "🦭": "real/seal",
+  "🦍": "real/gorilla",
+  "🦚": "real/peacock",
+  "🕊️": "real/pigeon",
+  "🐧": "real/penguin",
+  "🐍": "real/snake",
+  "🦗": "real/cricket"
 });
 
 function imgSrc(e) { return IMG[e] ? 'assets/img/' + IMG[e] + '.webp' : null; }

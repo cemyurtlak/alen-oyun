@@ -1,13 +1,15 @@
 /* =========================================================
    KEDİ KOŞUSU — kediler uzaktan koşarak ekrana yaklaşır,
-   sonunda ekrana doğru zıplar (farklı tonlarda miyav).
+   sonunda ekrana doğru zıplar (farklı tonlarda miyav). Kediler gerçek fotoğraf ve hep yüzü ekrana dönük.
    Kediye dokununca hemen zıplar, miyavlar ve sayılır (1-10). Sesler sıraya girer, üst üste binmez;
    kendiliğinden zıplayan kediler sessizdir.
    ========================================================= */
 G.activities.catrun = () => {
   const { $, rand, TR, EN } = G;
   const id = G.newFlow();
-  const CATS = ['🐱', '🐈', '🐈‍⬛', '😺', '😸', '😻', '😹', '🙀', '😽'];
+  // Gerçek kedi fotoğrafları — hepsi kameraya bakıyor: koşarken de zıplarken de yüzleri ekrana dönük
+  const CATS = ['black', 'cream', 'ginger', 'grey', 'mainecoon', 'orangewhite', 'persian', 'tabby'];
+  const catImg = (k) => `<img class="pic" src="assets/img/real/cat_${k}.webp" alt="" draggable="false">`;
   const root = G.screen('catrun', G.topbar(`${pic('😸', 'title-ic')} Kedi Koşusu <small>Kitty Run</small>`,
     `<div class="counter" id="cnt"><b>0</b>${pic('🐱')}</div>`) + `
     <div class="field" id="field">
@@ -40,7 +42,7 @@ G.activities.catrun = () => {
   function spawn() {
     const el = document.createElement('div');
     el.className = 'runcat';
-    el.innerHTML = pic(rand(CATS));
+    el.innerHTML = catImg(rand(CATS));
     field.appendChild(el);
     const c = {
       el, t: 0, x0: 0.25 + Math.random() * 0.5, xEnd: 0.15 + Math.random() * 0.7,
@@ -117,9 +119,10 @@ G.activities.catrun = () => {
         const y = horizon + (H * 0.97 - horizon) * Math.pow(t, 1.35);
         const hop = Math.abs(Math.sin(c.t * 15 + c.phase)) * 34 * scale;
         c.scale = scale; c.x = x; c.y = y - hop;
-        c.el.style.transform = `translate(${x}px,${y - hop}px) translate(-50%,-100%) scale(${scale}) scaleX(${c.flip ? -1 : 1})`;
+        // ayna çevirme yok: kedinin yüzü hep ekrana dönük
+        c.el.style.transform = `translate(${x}px,${y - hop}px) translate(-50%,-100%) scale(${scale})`;
         c.el.style.zIndex = Math.round(t * 100);
-        c.el.querySelector('.pic').style.transform = `rotate(${Math.sin(c.t * 15 + c.phase) * 6}deg)`;
+        c.el.querySelector('.pic').style.transform = `rotate(${Math.sin(c.t * 15 + c.phase) * 4}deg)`;
         if (c.t >= 1) startJump(c);
       } else {
         c.jt += dt;
@@ -127,7 +130,8 @@ G.activities.catrun = () => {
         const scale = c.s0 * (1 + j * j * 3.2);
         const y = c.yj - Math.sin(j * Math.PI * 0.85) * H * 0.35 + j * H * 0.1;
         const x = c.xj + (W / 2 - c.xj) * j * 0.4;
-        c.el.style.transform = `translate(${x}px,${y}px) translate(-50%,-100%) scale(${scale}) rotate(${j * 12 * (c.flip ? -1 : 1)}deg)`;
+        // zıplarken dönmeden, yüzü doğrudan ekrana doğru büyüyerek gelir
+        c.el.style.transform = `translate(${x}px,${y}px) translate(-50%,-100%) scale(${scale})`;
         c.el.style.zIndex = 500;
         c.el.style.opacity = j > 0.8 ? String(1 - (j - 0.8) * 5) : '1';
         if (j >= 1) {

@@ -42,7 +42,27 @@ const ANIMALS = [
   { tr: 'Baykuş', en: 'Owl', emoji: '🦉', sound: 'Hu hu!', snd: 'owl' },
   { tr: 'Ayı', en: 'Bear', emoji: '🐻', sound: 'Grrr!', snd: 'bear' },
   { tr: 'Arı', en: 'Bee', emoji: '🐝', sound: 'Vızzz!', snd: 'bee' },
-  { tr: 'Tilki', en: 'Fox', emoji: '🦊', snd: 'fox' }
+  { tr: 'Tilki', en: 'Fox', emoji: '🦊', snd: 'fox' },
+  { tr: 'Keçi', en: 'Goat', emoji: '🐐', snd: 'goat' },
+  { tr: 'Domuz', en: 'Pig', emoji: '🐷', snd: 'pig' },
+  { tr: 'Eşek', en: 'Donkey', emoji: '🫏', snd: 'donkey' },
+  { tr: 'Hindi', en: 'Turkey', emoji: '🦃', snd: 'turkey' },
+  { tr: 'Kaz', en: 'Goose', emoji: '🪿', snd: 'goose' },
+  { tr: 'Horoz', en: 'Rooster', emoji: '🐓', snd: 'rooster' },
+  { tr: 'Kurt', en: 'Wolf', emoji: '🐺', snd: 'wolf' },
+  { tr: 'Kaplan', en: 'Tiger', emoji: '🐯', snd: 'tiger' },
+  { tr: 'Guguk Kuşu', en: 'Cuckoo', emoji: 'cuckoo', snd: 'cuckoo' },
+  { tr: 'Karga', en: 'Crow', emoji: '🐦‍⬛', snd: 'crow' },
+  { tr: 'Martı', en: 'Seagull', emoji: 'seagull', snd: 'seagull' },
+  { tr: 'Papağan', en: 'Parrot', emoji: '🦜', snd: 'parrot' },
+  { tr: 'Balina', en: 'Whale', emoji: '🐋', snd: 'whale' },
+  { tr: 'Fok', en: 'Seal', emoji: '🦭', snd: 'seal' },
+  { tr: 'Goril', en: 'Gorilla', emoji: '🦍', snd: 'gorilla' },
+  { tr: 'Tavus Kuşu', en: 'Peacock', emoji: '🦚', snd: 'peacock' },
+  { tr: 'Güvercin', en: 'Pigeon', emoji: '🕊️', snd: 'pigeon' },
+  { tr: 'Penguen', en: 'Penguin', emoji: '🐧', snd: 'penguin' },
+  { tr: 'Yılan', en: 'Snake', emoji: '🐍', snd: 'snake' },
+  { tr: 'Cırcır Böceği', en: 'Cricket', emoji: '🦗', snd: 'cricket' }
 ];
 
 const FOODS = [

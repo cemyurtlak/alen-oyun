@@ -1560,6 +1560,246 @@
   "file": "audio/voice/en_5b65b434c0.mp3"
  },
  {
+  "key": "tr|keçi",
+  "lang": "tr",
+  "text": "Keçi!",
+  "file": "audio/voice/tr_5983a4db1d.mp3"
+ },
+ {
+  "key": "en|goat",
+  "lang": "en",
+  "text": "Goat!",
+  "file": "audio/voice/en_867b3b8992.mp3"
+ },
+ {
+  "key": "tr|domuz",
+  "lang": "tr",
+  "text": "Domuz!",
+  "file": "audio/voice/tr_bbdcfb79bb.mp3"
+ },
+ {
+  "key": "en|pig",
+  "lang": "en",
+  "text": "Pig!",
+  "file": "audio/voice/en_f9d3f143f7.mp3"
+ },
+ {
+  "key": "tr|eşek",
+  "lang": "tr",
+  "text": "Eşek!",
+  "file": "audio/voice/tr_5ed6ea2131.mp3"
+ },
+ {
+  "key": "en|donkey",
+  "lang": "en",
+  "text": "Donkey!",
+  "file": "audio/voice/en_e3d9e685d7.mp3"
+ },
+ {
+  "key": "tr|hindi",
+  "lang": "tr",
+  "text": "Hindi!",
+  "file": "audio/voice/tr_87eea895c2.mp3"
+ },
+ {
+  "key": "en|turkey",
+  "lang": "en",
+  "text": "Turkey!",
+  "file": "audio/voice/en_9b010bd335.mp3"
+ },
+ {
+  "key": "tr|kaz",
+  "lang": "tr",
+  "text": "Kaz!",
+  "file": "audio/voice/tr_492882f54a.mp3"
+ },
+ {
+  "key": "en|goose",
+  "lang": "en",
+  "text": "Goose!",
+  "file": "audio/voice/en_70e58ded3c.mp3"
+ },
+ {
+  "key": "tr|horoz",
+  "lang": "tr",
+  "text": "Horoz!",
+  "file": "audio/voice/tr_9384381869.mp3"
+ },
+ {
+  "key": "en|rooster",
+  "lang": "en",
+  "text": "Rooster!",
+  "file": "audio/voice/en_0bbcccefa9.mp3"
+ },
+ {
+  "key": "tr|kurt",
+  "lang": "tr",
+  "text": "Kurt!",
+  "file": "audio/voice/tr_b7a6490e7f.mp3"
+ },
+ {
+  "key": "en|wolf",
+  "lang": "en",
+  "text": "Wolf!",
+  "file": "audio/voice/en_cf71b3616a.mp3"
+ },
+ {
+  "key": "tr|kaplan",
+  "lang": "tr",
+  "text": "Kaplan!",
+  "file": "audio/voice/tr_84504fbd57.mp3"
+ },
+ {
+  "key": "en|tiger",
+  "lang": "en",
+  "text": "Tiger!",
+  "file": "audio/voice/en_273d7b985a.mp3"
+ },
+ {
+  "key": "tr|guguk kuşu",
+  "lang": "tr",
+  "text": "Guguk Kuşu!",
+  "file": "audio/voice/tr_b40bb1da7f.mp3"
+ },
+ {
+  "key": "en|cuckoo",
+  "lang": "en",
+  "text": "Cuckoo!",
+  "file": "audio/voice/en_a7083af06b.mp3"
+ },
+ {
+  "key": "tr|karga",
+  "lang": "tr",
+  "text": "Karga!",
+  "file": "audio/voice/tr_3a80896cac.mp3"
+ },
+ {
+  "key": "en|crow",
+  "lang": "en",
+  "text": "Crow!",
+  "file": "audio/voice/en_d350edb571.mp3"
+ },
+ {
+  "key": "tr|martı",
+  "lang": "tr",
+  "text": "Martı!",
+  "file": "audio/voice/tr_f647506dab.mp3"
+ },
+ {
+  "key": "en|seagull",
+  "lang": "en",
+  "text": "Seagull!",
+  "file": "audio/voice/en_638ab67665.mp3"
+ },
+ {
+  "key": "tr|papağan",
+  "lang": "tr",
+  "text": "Papağan!",
+  "file": "audio/voice/tr_6fee840c2c.mp3"
+ },
+ {
+  "key": "en|parrot",
+  "lang": "en",
+  "text": "Parrot!",
+  "file": "audio/voice/en_8a85ea3a94.mp3"
+ },
+ {
+  "key": "tr|balina",
+  "lang": "tr",
+  "text": "Balina!",
+  "file": "audio/voice/tr_b7d5b48843.mp3"
+ },
+ {
+  "key": "en|whale",
+  "lang": "en",
+  "text": "Whale!",
+  "file": "audio/voice/en_580455abb2.mp3"
+ },
+ {
+  "key": "tr|fok",
+  "lang": "tr",
+  "text": "Fok!",
+  "file": "audio/voice/tr_4608539116.mp3"
+ },
+ {
+  "key": "en|seal",
+  "lang": "en",
+  "text": "Seal!",
+  "file": "audio/voice/en_9e15470275.mp3"
+ },
+ {
+  "key": "tr|goril",
+  "lang": "tr",
+  "text": "Goril!",
+  "file": "audio/voice/tr_d8b9cf0f91.mp3"
+ },
+ {
+  "key": "en|gorilla",
+  "lang": "en",
+  "text": "Gorilla!",
+  "file": "audio/voice/en_439954bbab.mp3"
+ },
+ {
+  "key": "tr|tavus kuşu",
+  "lang": "tr",
+  "text": "Tavus Kuşu!",
+  "file": "audio/voice/tr_c23b462b2a.mp3"
+ },
+ {
+  "key": "en|peacock",
+  "lang": "en",
+  "text": "Peacock!",
+  "file": "audio/voice/en_f59f26a402.mp3"
+ },
+ {
+  "key": "tr|güvercin",
+  "lang": "tr",
+  "text": "Güvercin!",
+  "file": "audio/voice/tr_1a5c244223.mp3"
+ },
+ {
+  "key": "en|pigeon",
+  "lang": "en",
+  "text": "Pigeon!",
+  "file": "audio/voice/en_fd4880cfa5.mp3"
+ },
+ {
+  "key": "tr|penguen",
+  "lang": "tr",
+  "text": "Penguen!",
+  "file": "audio/voice/tr_899601e850.mp3"
+ },
+ {
+  "key": "en|penguin",
+  "lang": "en",
+  "text": "Penguin!",
+  "file": "audio/voice/en_0010b7cd67.mp3"
+ },
+ {
+  "key": "tr|yılan",
+  "lang": "tr",
+  "text": "Yılan!",
+  "file": "audio/voice/tr_52a6237b6b.mp3"
+ },
+ {
+  "key": "en|snake",
+  "lang": "en",
+  "text": "Snake!",
+  "file": "audio/voice/en_da81670da6.mp3"
+ },
+ {
+  "key": "tr|cırcır böceği",
+  "lang": "tr",
+  "text": "Cırcır Böceği!",
+  "file": "audio/voice/tr_c7588057e0.mp3"
+ },
+ {
+  "key": "en|cricket",
+  "lang": "en",
+  "text": "Cricket!",
+  "file": "audio/voice/en_72caaa415e.mp3"
+ },
+ {
   "key": "tr|kim bu ses",
   "lang": "tr",
   "text": "Kim Bu Ses?",

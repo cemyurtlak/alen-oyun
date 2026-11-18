@@ -9,7 +9,7 @@ Kurulum gerektirmez; tarayıcıda açılır, telefonda/tablette tam ekran çalı
 
 ### 📖 Öğrenelim (tanıtım + soru-cevap)
 Başlangıçta **dil seçilir**: Türkçe, English ya da İkisi. Seçilen dilde konuşur.
-Tanıtım yok: her bölüm **doğrudan oyunla** başlar, çocuk oynayarak öğrenir. Bölümler gruplara ayrılmaz, tüm öğelerden
+Tanıtım yok: her bölüm **doğrudan oyunla** başlar, çocuk oynayarak öğrenir. Her 10 soruda büyük kutlama yapılır ve oyun kendiliğinden devam eder. Bölümler gruplara ayrılmaz, tüm öğelerden
 sorulur; hayvanlarda önce gerçek ses, sonra isim söylenir (*"Kedi!"* / *"Dog!"*). Doğru cevapta **"Yeeey!" + alkış + konfeti** ve **beklemeden** sıradaki soru;
 yanlışta kısa **"Hayıııır!"** (hemen yeniden denenebilir). 2 yanlıştan sonra doğru cevap parlayarak ipucu verir.
 
@@ -18,7 +18,7 @@ yanlışta kısa **"Hayıııır!"** (hemen yeniden denenebilir). 2 yanlıştan 
 | Renkler | 10 renk, havada süzülen 3D balonlarla |
 | Sayılar | 1–10, **parmaklarla tek tek sayarak** |
 | Kediler | Mutlu, gülen, seven, şaşkın, üzgün, kızgın kediler — her biri farklı tonda miyavlar |
-| Hayvanlar | 17 hayvan (hepsi gerçek sesli ve gerçek fotoğraflı); önce hayvanın **gerçek sesi**, sonra adı söylenir |
+| Hayvanlar | 37 hayvan (hepsi gerçek sesli ve gerçek fotoğraflı); önce hayvanın **gerçek sesi**, sonra adı söylenir |
 | Kim Bu Ses? | Hayvan sesi çalar, çocuk sesin sahibini bulur |
 | Köpek Balıkları | Okyanus sahnesinde yüzen **renkli köpek balıkları** |
 | Arabalar | Polis, ambulans, itfaiye (siren), taksi, yarış arabası, renkli arabalar |
@@ -55,8 +55,11 @@ yanlışta kısa **"Hayıııır!"** (hemen yeniden denenebilir). 2 yanlıştan 
 > (Konuşan Kedi kaydı yalnızca tarayıcı içinde anında geri çalar). Mikrofon izni yoksa ebeveyn 👍 düğmesine basar.
 
 
+## Ana sayfa
+Tüm oyun ve bölüm kartları tek alandadır. Bir karta **basılı tutup sürükleyerek** yerini değiştirin; sıra kalıcı olarak saklanır.
+
 ## Görseller
-- Hayvanlar **gerçek fotoğraflardır** (Wikimedia Commons, arka planı temizlenmiş) → `assets/img/real/`.
+- Hayvanlar, Kedi Koşusu kedileri (yüzü ekrana dönük), köpek balıkları (renklere boyanmış) ve parmak sayma elleri **gerçek fotoğraflardır** (Wikimedia Commons, arka planı temizlenmiş) → `assets/img/real/`.
 - Diğer görseller Microsoft Fluent 3D (MIT). Kedi duygu yüzleri ve renkli köpek balıkları çizim olarak kalır.
 
 ## Sesler

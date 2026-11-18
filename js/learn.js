@@ -204,12 +204,13 @@ const Learn = (() => {
     S.q = 0;
     S.score = 0;
     S.last = null;
-    S.total = Settings.get('questionCount');
+    S.total = 10; // her turda 10 soru (Cem'in isteği)
     nextQuestion();
   }
 
   function nextQuestion() {
-    if (S.q >= S.total) return renderFinish();
+    // 10 soru bitince "Tekrar oyna" ekranı yok: büyük kutlama yapılır ve yeni 10 soruyla kendiliğinden devam edilir
+    if (S.q >= S.total) return roundDone();
     G.newFlow();
     S.q++;
     S.attempts = 0;
@@ -229,6 +230,16 @@ const Learn = (() => {
     S.options = shuffle([target, ...others.slice(0, n - 1)]);
     renderQuiz();
     ask();
+  }
+
+  async function roundDone() {
+    const id = G.newFlow();
+    S.locked = true;
+    await G.celebrate({ big: true });
+    if (!G.alive(id)) return;
+    S.q = 0;
+    S.score = 0;
+    nextQuestion();
   }
 
   function starsBar() {

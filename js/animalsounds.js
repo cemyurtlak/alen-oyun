@@ -3,10 +3,11 @@
    Bilgisayarla üretilmiş (sentez) ses yoktur. Gerçek kaydı olmayan
    anahtar sessiz geçer; böyle bir hayvan oyuna eklenmemelidir.
    Kaynaklar:
-   - ESC-50 veri seti (K. J. Piczak): dog, cat, cow, sheep, hen, rooster, frog,
+   - ESC-50 veri seti (K. J. Piczak): dog, cat, cow, sheep, hen, rooster, frog, pig, crow,
      chirping_birds, insects, car_horn, siren, train, airplane, helicopter, clapping
    - BBC Sound Effects (RemArc lisansı, kişisel/ev kullanımı): duck, horse, lion,
-     elephant, monkey, owl, chick, howl, bear, fox
+     elephant, monkey, owl, chick, howl, bear, fox, goat, donkey, turkey, goose, wolf, tiger, cuckoo,
+     seagull, parrot, whale, seal, gorilla, peacock, pigeon, penguin, snake (çıngırak), cricket
    Kendi kaydınızı kullanmak isterseniz sounds/animals/<anahtar>.mp3 koyun;
    dosya varsa önce o çalar.
    ========================================================= */
@@ -38,6 +39,25 @@ const AnimalSounds = (() => {
     bear: { f: ['bear_1'] },
     fox: { f: ['fox_1', 'fox_2'] },
     frog: { f: ['frog_1', 'frog_3'] },
+    goat: { f: ['goat_1', 'goat_2'] },
+    pig: { f: ['pig_1', 'pig_2', 'pig_3'] },
+    donkey: { f: ['donkey_1', 'donkey_2'] },
+    turkey: { f: ['turkey_1'] },
+    goose: { f: ['goose_1'] },
+    wolf: { f: ['wolf_1'] },
+    tiger: { f: ['tiger_1', 'tiger_2'] },
+    cuckoo: { f: ['cuckoo_1', 'cuckoo_2'] },
+    crow: { f: ['crow_1', 'crow_2', 'crow_3'] },
+    seagull: { f: ['seagull_1', 'seagull_2'] },
+    parrot: { f: ['parrot_1'] },
+    whale: { f: ['whale_1', 'whale_2'] },
+    seal: { f: ['seal_1'] },
+    gorilla: { f: ['gorilla_1'] },
+    peacock: { f: ['peacock_1', 'peacock_2'] },
+    pigeon: { f: ['pigeon_1'] },
+    penguin: { f: ['penguin_1'] },
+    snake: { f: ['snake_1', 'snake_2'] },
+    cricket: { f: ['cricket_1'] },
     bird: { f: ['chirping_birds_3', 'chirping_birds_1'] },
     bee: { f: ['insects_1'] },
     car: { f: ['car_horn_2', 'car_horn_3'] },

@@ -4,11 +4,12 @@ const Settings = (() => {
   const defaults = {
     childName: 'Alen',
     optionCount: 3,      // soru başına seçenek sayısı (2-4)
-    questionCount: 5,    // bir turdaki soru sayısı
+    questionCount: 10,   // (kullanılmıyor: tur hep 10 soru, sonra kendiliğinden devam)
     groupSize: 5,        // bir grupta kaç öğe tanıtılır
     rate: 0.85,          // konuşma hızı
     enFirst: true,       // soruda önce İngilizce mi?
     autoFull: true,      // başlarken tam ekran
+    homeOrder: null,     // ana sayfa kart sırası (basılı tutup sürükleyerek)
     progress: {}         // bölüm -> son seçilen grup
   };
   let data = { ...defaults };

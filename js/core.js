@@ -208,37 +208,29 @@ const G = (() => {
     </svg>`;
   }
 
-  /* Parmaklı eller: n kadar parmak açık (0–10). Sol el 1-5, sağ el 6-10.
-     Parmak sırası: işaret, orta, yüzük, serçe, başparmak */
-  function handSvg(up, mirror) {
-    const f = (i) => i < up ? 'up' : '';
-    return `<svg class="hand ${mirror ? 'mirror' : ''}" viewBox="0 0 130 170" aria-hidden="true">
-      <defs>
-        <linearGradient id="skin" x1="0" x2="1"><stop offset="0" stop-color="#ffd9b3"/><stop offset="1" stop-color="#f4b183"/></linearGradient>
-        <linearGradient id="cuff" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#5fb8ff"/><stop offset="1" stop-color="#2f80ed"/></linearGradient>
-      </defs>
-      <g class="finger f0 ${f(0)}"><rect x="30" y="18" width="19" height="72" rx="9.5" fill="url(#skin)" stroke="#e3955b" stroke-width="2"/><rect x="34" y="21" width="11" height="11" rx="5" fill="#ffe9ee"/></g>
-      <g class="finger f1 ${f(1)}"><rect x="51" y="8" width="20" height="82" rx="10" fill="url(#skin)" stroke="#e3955b" stroke-width="2"/><rect x="55.5" y="11" width="11" height="11" rx="5" fill="#ffe9ee"/></g>
-      <g class="finger f2 ${f(2)}"><rect x="73" y="16" width="19" height="74" rx="9.5" fill="url(#skin)" stroke="#e3955b" stroke-width="2"/><rect x="77" y="19" width="11" height="11" rx="5" fill="#ffe9ee"/></g>
-      <g class="finger f3 ${f(3)}"><rect x="94" y="32" width="17" height="60" rx="8.5" fill="url(#skin)" stroke="#e3955b" stroke-width="2"/><rect x="97.5" y="35" width="10" height="10" rx="5" fill="#ffe9ee"/></g>
-      <g class="thumb ${f(4)}"><rect x="2" y="78" width="40" height="20" rx="10" fill="url(#skin)" stroke="#e3955b" stroke-width="2"/><rect x="5" y="81" width="11" height="12" rx="5" fill="#ffe9ee"/></g>
-      <rect x="26" y="66" width="88" height="80" rx="34" fill="url(#skin)" stroke="#e3955b" stroke-width="2"/>
-      <path d="M48 100 Q70 110 92 100" stroke="#e3955b" stroke-width="2" fill="none" opacity=".5"/>
-      <rect x="34" y="136" width="72" height="30" rx="10" fill="url(#cuff)"/>
-    </svg>`;
+  /* Parmaklı eller: GERÇEK el fotoğrafları (Wikimedia Commons "Finger-counting to 5 from pointer",
+     "Closed fist"), assets/img/real/hand_0..5.webp. n = açık parmak sayısı (0–10).
+     1–5 tek el; 6–10 iki el (birinci el 5 parmak, ikinci el aynalanmış). */
+  const handSrc = (k) => `assets/img/real/hand_${Math.max(0, Math.min(5, k))}.webp`;
+  function handImg(k, mirror) {
+    return `<img class="hand ${mirror ? 'mirror' : ''}" src="${handSrc(k)}" alt="" draggable="false">`;
   }
   function hands(n) {
-    if (n <= 5) return `<div class="hands one">${handSvg(n, false)}</div>`;
-    return `<div class="hands two">${handSvg(5, false)}${handSvg(n - 5, true)}</div>`;
+    if (n <= 5) return `<div class="hands one">${handImg(n, false)}</div>`;
+    return `<div class="hands two">${handImg(5, false)}${handImg(n - 5, true)}</div>`;
   }
-  // Ellerdeki açık parmak sayısını canlı değiştir
+  // Ellerdeki açık parmak sayısını canlı değiştir (fotoğraf değişir, küçük bir zıplama ile)
   function setFingers(container, n) {
-    const hs = $$('.hand', container);
-    hs.forEach((h, hi) => {
-      const k = Math.max(0, Math.min(5, n - hi * 5));
-      $$('.finger, .thumb', h).forEach((f, i) => f.classList.toggle('up', i < k));
+    $$('.hand', container).forEach((h, hi) => {
+      const src = handSrc(n - hi * 5);
+      if (!h.src.endsWith(src)) {
+        h.src = src;
+        h.classList.remove('bump'); void h.offsetWidth; h.classList.add('bump');
+      }
     });
   }
+  // fotoğrafları önceden yükle (sayarken gecikme olmasın)
+  for (let k = 0; k <= 5; k++) { const im = new Image(); im.src = handSrc(k); }
 
   // Bölüm öğesinin görseli
   function visual(it, cat) {

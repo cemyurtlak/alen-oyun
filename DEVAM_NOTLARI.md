@@ -40,6 +40,10 @@
 | Mikrofon yalnızca seviye ölçer | Çocuğun ne dediğini anlamaya gerek yok; her ses denemesi ödül alır (babıldama dahil) |
 | Akış belirteci (`G.newFlow()` / `G.alive(id)`) | Ekran değişince eski konuşmalar/döngüler kendini durdurur |
 | Hayvan görselleri gerçek fotoğraf (`assets/img/real`, arka planı temizlenmiş) | Cem "daha gerçekçi" istedi; Wikipedia ana fotoğrafları en net sonuç verdi. Yeni hayvan eklenirse aynı yöntem: foto → rembg isnet → 360px WebP → `images.js` gerçek fotoğraf bloğu |
+| Tur 10 soru, bitiş ekranı yok (`roundDone` → kutlama → yeni tur) | Cem: "5 soru sorup tekrar oyna çıkmasın, 10 soru sorsun" |
+| Ana sayfa tek kart alanı, basılı tut + sürükle ile sıralama (`Settings.homeOrder`) | Cem kartların sırasını kendisi belirlemek istedi; yeni kart eklenince listede yoksa sona eklenir |
+| Hayvan ekleme: BBC ses (spektrogram kontrolü) + Wikipedia foto (rembg) + Piku ad (TR/EN) — üçü yoksa hayvan eklenmez | Deve, yunus, su aygırı, ağaçkakan, fare temiz ses bulunamadığı için eklenmedi |
+| El görseli gerçek fotoğraf (`hand_0..5`) | Çizim el "ele benzemiyor" bulundu |
 | Tanıtım yok, bölümler doğrudan oyunla başlar (`Learn.open` → `startPlay`; Hayvan Evleri → `play()`) | Cem: "direkt oyun oynayarak öğrenmiş olur". `startLearn`/`teach` kodu duruyor, istenirse geri açılabilir |
 | Bölümlerde grup yok (`groupsOf` tek grup döner) | Cem: "kendi içinde bölümler olmasın, tüm hayvanlar çıksın" |
 | Art arda dokunulan etkinliklerde ses kuyruğu (Yumurtalar, Kedi Koşusu) | Cem: sesler üst üste binmesin ve atlanmasın; kuyruk sınırlı tutulur |
@@ -76,6 +80,8 @@
 
 ## Sonraki adımlar / fikirler
 - Taşıtlar için gerçek kayıt (motor, gemi düdüğü, bisiklet zili, traktör, roket).
+- İstenirse daha fazla hayvan: deve, yunus, su aygırı, ağaçkakan, fare için temiz kayıt aranabilir.
+- ElevenLabs 2. hesapta ~2.570 kredi kaldı (18.11.2026).
 - Anne-baba sesiyle "aferin", "hayır" ve kelime kayıtları (ayarlardan kayıt alma özelliği eklenebilir).
 - Çevrimdışı çalışma için service worker.
 - İlerleme takibi: hangi kelimeleri söylemeye çalıştı, kaç lokma yedi (ebeveyn paneli).

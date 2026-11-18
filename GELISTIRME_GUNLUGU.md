@@ -4,6 +4,49 @@
 
 ---
 
+## Aşama 10 — Gerçekçi kediler/köpek balıkları/eller, 37 hayvan, 10 soruluk kesintisiz tur, kart sıralama
+**Tarih:** 18.11.2026
+
+**İstek (Cem):**
+- Kedi Koşusu: kediler zıplarken yüzleri ekrana doğru gelsin; kediler gerçekçi olsun.
+- Balon Patlat: balonlar alttan biraz hızlı gelip yavaşlasın (çıkmadan patlatıyor).
+- Köpek balıkları yüzen gerçekçi köpek balığı olsun.
+- "Kim bu ses?" bölümüne çok daha fazla hayvan (en sevdiği bölüm).
+- 5 soru sorup "Tekrar oyna" çıkmasın, 10 soru sorsun.
+- Ana sayfadaki giriş kartlarının sırası basılı tutarak kalıcı değiştirilebilsin.
+- Parmak saymadaki el çizimi kötü; gerçekçi el.
+
+**Yapılanlar:**
+- Kedi Koşusu (`catrun.js`): 8 gerçek, kameraya bakan kedi fotoğrafı (Wikipedia: Bombay, Scottish Fold, sarman, Rus mavisi,
+  Maine Coon, turuncu-beyaz, İran, tekir; arka planı temizlendi) → `assets/img/real/cat_*.webp`. Ayna çevirme ve zıplarken
+  dönme kaldırıldı: kedi hep yüzü ekrana dönük koşar ve ekrana doğru büyüyerek zıplar.
+- Balon Patlat (`pop.js`): giriş hızı = seyir hızı + H·1,2·e^(−3t) → balon ekranın ~%40'ına hızla çıkıp yavaşlar;
+  henüz ekrana girmemiş balona dokunma sayılmaz.
+- Köpek balıkları: Wikipedia mako fotoğrafı arka planı temizlenip 10 renge boyandı (karın beyaz kalır) →
+  `assets/img/tint/shark_*.webp` (mevcut yüzme animasyonu sürüyor); 🦈 → `real/shark.webp`.
+- Yeni 20 hayvan (`data.js`, `animalsounds.js`, `images.js`): Keçi, Domuz, Eşek, Hindi, Kaz, Horoz, Kurt, Kaplan, Guguk Kuşu,
+  Karga, Martı, Papağan, Balina, Fok, Goril, Tavus Kuşu, Güvercin, Penguen, Yılan (çıngırak), Cırcır Böceği → toplam 37.
+  Sesler BBC Sound Effects (spektrogramla seçildi; insan ıslığı "wolf whistle", guguklu saat, oyuncak fare gibi yanlış
+  sonuçlar elendi; deve, yunus, su aygırı, ağaçkakan ve fare temiz kayıt bulunamadığı için eklenmedi), domuz/karga/horoz ESC-50.
+  Fotoğraflar Wikipedia (arka planı temizlendi). Türkçe/İngilizce adlar ElevenLabs Piku ile üretildi (40 kayıt, 2. hesap).
+- Sorular (`learn.js`): tur 10 soru; bitince bitiş ekranı yerine büyük kutlama ve kendiliğinden yeni 10 soru.
+  Ayarlardaki "soru sayısı" seçeneği kaldırıldı.
+- Ana sayfa (`home.js`, `settings.js`, `style.css`): tüm kartlar tek alanda; karta ~0,45 sn basılı tut → kart kalkar →
+  sürükle → bırak. Sıra `Settings.homeOrder`'a kaydedilir (kalıcı). Basılı tutmadan kaydırma normal çalışır;
+  sürüklemeden sonra kart yanlışlıkla açılmaz. Ana sayfadan çıkınca dinleyiciler temizlenir.
+- Parmak sayma (`core.js`): çizim el yerine gerçek el fotoğrafları (Wikimedia "Finger-counting to 5 from pointer" 4160×1200
+  şerit 5 ele bölündü + "Closed fist" = 0) → `assets/img/real/hand_0..5.webp`; 6–10 için ikinci el aynalanır; değişimde küçük zıplama.
+
+**Değişen / oluşan dosyalar:** `js/{catrun,pop}.js` (act), `js/learn.js`, `js/home.js`, `js/settings.js`, `js/images.js`, `js/data.js`,
+`js/animalsounds.js`, `js/core.js`, `css/style.css`, `assets/img/real/*` (8 kedi, 20 hayvan, köpek balığı, 6 el), `assets/img/tint/shark_*`,
+`assets/sfx/*` (25 yeni), `audio/voice/*` (40 yeni) + `index.js`, `tools/ses_listesi.json`, README, DEVAM_NOTLARI, bu günlük.
+
+**Test durumu:** Headless Chrome: 37 hayvanın hepsinde gerçek ses + fotoğraf var; 753 cümlenin hepsi kayıtlı; renkler bölümünde
+11 doğru cevap → 10. sorudan sonra kutlama ve yeni soru (bitiş ekranı yok); kart sürükleme 16. sıradan 11.'ye taşıdı,
+yenilemede korundu; ekran görüntüleriyle eller, Kedi Koşusu, köpek balıkları, Kim bu ses kontrol edildi. Sayfa hatası ve 404 yok.
+
+---
+
 ## Aşama 9 — Tanıtım kısımları kaldırıldı, doğrudan oyun
 **Tarih:** 17.11.2026
 
